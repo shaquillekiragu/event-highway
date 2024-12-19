@@ -11,7 +11,7 @@ function EventsPage() {
     async function fetchEvents() {
       try {
         const response = await getEvents();
-        setEventsList(response);
+        setEventsList(response.data.events);
         setIsLoading(false);
       } catch (err) {
         console.error(err, " << error");
