@@ -4,6 +4,20 @@ const app = express();
 const healthcheck = require("./controllers/healthcheck.controller");
 const getApi = require("./controllers/api.controller");
 
+const {
+  getEvents,
+  getEvent,
+  postEvent,
+  patchEvent,
+  deleteEvent,
+} = require("./controllers/events.controller");
+
+const {
+  getUser,
+  postUser,
+  patchUser,
+} = require("./controllers/users.controller");
+
 app.use(express.json());
 
 app.get("/api/healthcheck", healthcheck);
