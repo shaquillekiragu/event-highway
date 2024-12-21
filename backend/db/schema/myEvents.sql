@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS myEvents;
 
-CREATE TABLE events (
+CREATE TABLE myEvents (
     eventId SERIAL PRIMARY KEY,
     creatorName VARCHAR(50) NOT NULL,
     eventName VARCHAR(100) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE events (
     thumbnail VARCHAR(250)
 );
 
-INSERT INTO events (author, eventName, eventStart, eventEnd, eventDescription, createdAt, venue, isOnline, attendeeLimit)
+INSERT INTO myEvents (author, eventName, eventStart, eventEnd, eventDescription, createdAt, venue, isOnline, attendeeLimit)
 VALUES
 (),
 ();
