@@ -6,14 +6,48 @@ const {
   removeEvent,
 } = require("../models/events.model");
 
-function getEvents(request, response, next) {}
+async function getEvents(request, response, next) {
+  try {
+    const events = await fetchEvents();
+    response.status(200).send({ events });
+  } catch (err) {
+    next(err);
+  }
+}
 
-function getEvent(request, response, next) {}
+async function getEvent(request, response, next) {
+  try {
+    const { eventId } = request.params;
+    const event = await fetchEvent(eventId);
+    response.status(200).send({ event });
+  } catch (err) {
+    next(err);
+  }
+}
 
-function postEvent(request, response, next) {}
+async function postEvent(request, response, next) {
+  try {
+  } catch (err) {
+    next(err);
+  }
+}
 
-function patchEvent(request, response, next) {}
-function deleteEvent(request, response, next) {}
+async function patchEvent(request, response, next) {
+  try {
+  } catch (err) {
+    next(err);
+  }
+}
+
+async function deleteEvent(request, response, next) {
+  try {
+    const { eventId } = request.params;
+    const event = removeEvent(eventId);
+    response.status(204).send({ event });
+  } catch (err) {
+    next(err);
+  }
+}
 
 module.exports = {
   getEvents,

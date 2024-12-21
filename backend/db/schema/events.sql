@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS events;
 
 CREATE TABLE events (
     eventId SERIAL PRIMARY KEY,
-    creatorName VARCHAR(50) NOT NULL,
+    publisher VARCHAR(40) NOT NULL REFERENCES users(fullName),
+    host VARCHAR(50) NOT NULL,
     eventName VARCHAR(100) NOT NULL,
     eventStart DATETIME NOT NULL,
     eventEnd DATETIME NOT NULL,
@@ -18,7 +19,7 @@ CREATE TABLE events (
     thumbnail VARCHAR(250)
 );
 
-INSERT INTO events (author, eventName, eventStart, eventEnd, eventDescription, createdAt, venue, isOnline, attendeeLimit)
+INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail)
 VALUES
 (),
 ();

@@ -4,8 +4,13 @@ CREATE TABLE users (
     userId SERIAL PRIMARY KEY,
     firstName VARCHAR(20) NOT NULL,
     lastName VARCHAR(20),
-    creatorName VARCHAR(50) NOT NULL,
+    fullName VARCHAR(40) NOT NULL,
     email VARCHAR(50) NOT NULL,
     userPassword VARCHAR(20) NOT NULL,
-    isStaffMember BOOLEAN NOT NULL
+    isAdmin BOOLEAN NOT NULL
 );
+
+INSERT INTO users (userId, firstName, lastName, creatorName, email, userPassword, isAdmin)
+VALUES
+(),
+();
