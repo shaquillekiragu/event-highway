@@ -27,6 +27,41 @@ async function getEvent(request, response, next) {
 
 async function postEvent(request, response, next) {
   try {
+    const {
+      publisher,
+      host,
+      eventName,
+      eventStart,
+      eventEnd,
+      eventDescription,
+      createdAt,
+      category,
+      isOnline,
+      venue,
+      isFree,
+      cost,
+      isLimit,
+      attendeeLimit,
+      thumbnail,
+    } = request.params;
+    const event = await insertEvent(
+      publisher,
+      host,
+      eventName,
+      eventStart,
+      eventEnd,
+      eventDescription,
+      createdAt,
+      category,
+      isOnline,
+      venue,
+      isFree,
+      cost,
+      isLimit,
+      attendeeLimit,
+      thumbnail
+    );
+    response.status(201).send({ event });
   } catch (err) {
     next(err);
   }
@@ -34,6 +69,10 @@ async function postEvent(request, response, next) {
 
 async function patchEvent(request, response, next) {
   try {
+    const { eventId } = request.params;
+    const { changedProperty, newValue } = request.body;
+    const event = await updateEvent(eventId, changedProperty, newValue);
+    response.status(200).send({ event });
   } catch (err) {
     next(err);
   }
@@ -42,7 +81,7 @@ async function patchEvent(request, response, next) {
 async function deleteEvent(request, response, next) {
   try {
     const { eventId } = request.params;
-    const event = removeEvent(eventId);
+    const event = await removeEvent(eventId);
     response.status(204).send({ event });
   } catch (err) {
     next(err);
