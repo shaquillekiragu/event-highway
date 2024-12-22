@@ -9,7 +9,7 @@ const seed = async ({ eventsData, usersData }) => {
     await db.query(
       `CREATE TABLE events (
         eventId SERIAL PRIMARY KEY,
-        publisher VARCHAR(40) NOT NULL REFERENCES users(fullName),
+        publisher VARCHAR(40) NOT NULL REFERENCES users(displayName),
         host VARCHAR(50) NOT NULL,
         eventName VARCHAR(100) NOT NULL,
         eventStart DATETIME NOT NULL,
@@ -32,7 +32,7 @@ const seed = async ({ eventsData, usersData }) => {
         userId SERIAL PRIMARY KEY,
         firstName VARCHAR(20) NOT NULL,
         lastName VARCHAR(20),
-        fullName VARCHAR(40) NOT NULL,
+        displayName VARCHAR(40) NOT NULL,
         email VARCHAR(50) NOT NULL,
         userPassword VARCHAR(20) NOT NULL,
         isAdmin BOOLEAN NOT NULL

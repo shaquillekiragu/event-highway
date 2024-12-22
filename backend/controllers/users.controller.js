@@ -12,12 +12,12 @@ async function getUser(request, response, next) {
 
 async function postUser(request, response, next) {
   try {
-    const { firstName, lastName, fullName, email, userPassword, isAdmin } =
+    const { firstName, lastName, displayName, email, userPassword, isAdmin } =
       request.body;
     const user = await insertUser(
       firstName,
       lastName,
-      fullName,
+      displayName,
       email,
       userPassword,
       isAdmin

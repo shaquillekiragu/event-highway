@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS events;
 
 CREATE TABLE events (
     eventId SERIAL PRIMARY KEY,
-    publisher VARCHAR(40) NOT NULL REFERENCES users(fullName),
+    publisher VARCHAR(40) NOT NULL REFERENCES users(displayName),
     host VARCHAR(50) NOT NULL,
     eventName VARCHAR(100) NOT NULL,
     eventStart DATETIME NOT NULL,

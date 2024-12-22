@@ -16,18 +16,18 @@ async function fetchUser(userId) {
 async function insertUser(
   firstName,
   lastName,
-  fullName,
+  displayName,
   email,
   userPassword,
   isAdmin
 ) {
   const { rows } = await db.query(
     `INSERT INTO users
-      (firstName, lastName, fullName, email, userPassword, isAdmin)
+      (firstName, lastName, displayName, email, userPassword, isAdmin)
       VALUES
       ($1, $2, $3, $4, $5, $6)
       RETURNING *;`,
-    [firstName, lastName, fullName, email, userPassword, isAdmin]
+    [firstName, lastName, displayName, email, userPassword, isAdmin]
   );
   return rows[0];
 }
