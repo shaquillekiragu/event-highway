@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     firstName: "Barry",
     lastName: "Bonds",
@@ -25,7 +25,6 @@
   },
   {
     firstName: "Zendaya",
-    lastName: "",
     displayName: "Zendaya",
     email: "michellejones@gmail.com",
     userPassword: "gotnolastname23",

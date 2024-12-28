@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS users;
-
 CREATE TABLE users (
     userId SERIAL PRIMARY KEY,
     firstName VARCHAR(20) NOT NULL,

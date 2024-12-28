@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS events;
-
 CREATE TABLE events (
     eventId SERIAL PRIMARY KEY,
     publisher VARCHAR(40) NOT NULL REFERENCES users(displayName),
@@ -12,6 +10,7 @@ CREATE TABLE events (
     category VARCHAR(25) NOT NULL,
     isOnline BOOLEAN NOT NULL,
     venue VARCHAR(50),
+    venueAddress VARCHAR(100),
     isFree BOOLEAN NOT NULL,
     cost INT,
     isLimit BOOLEAN NOT NULL,
@@ -19,7 +18,7 @@ CREATE TABLE events (
     thumbnail VARCHAR(250)
 );
 
-INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail)
+INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, venueAddress, isFree, cost, isLimit, attendeeLimit, thumbnail)
 VALUES
 (),
 ();
