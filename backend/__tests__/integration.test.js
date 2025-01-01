@@ -392,14 +392,14 @@ describe("/api/users/:userId", () => {
   test("GET 400 - Invalid id given", async () => {
     const {
       body: { msg },
-    } = await request(app).get("/api/events/notAnId").expect(400);
+    } = await request(app).get("/api/users/notAnId").expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test("GET 404 - Event with that id does not exist", async () => {
+  test("GET 404 - User with that id does not exist", async () => {
     const {
       body: { msg },
-    } = await request(app).get("/api/events/999").expect(404);
-    expect(msg).toBe("Event not found");
+    } = await request(app).get("/api/users/999").expect(404);
+    expect(msg).toBe("User not found");
   });
   test("PATCH 200 - Responds with an event with correctly updated event property values", async () => {
     const {
