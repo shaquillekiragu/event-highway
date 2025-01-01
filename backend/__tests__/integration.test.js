@@ -81,6 +81,73 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("thumbnail");
     });
   });
+  test("POST 201 - Adds an event to the database, given inputted information from the user", async () => {
+    const {
+      body: { event },
+    } = await request(app)
+      .post("/api/events")
+      .send({
+        publisher: "Henry Brown",
+        host: "Amelia Events Ltd.",
+        eventName: "Digital Future Conference",
+        eventStart: "2025-01-15T10:00:00",
+        eventEnd: "2025-01-15T16:30:00",
+        eventDescription: "A conference.",
+        createdAt: "2025-01-01T14:20:00",
+        category: "Technology",
+        isOnline: false,
+        venue: "ExCel London",
+        venueAddress:
+          "One Western Gateway, Royal Victoria Dock, London E16 1XL",
+        isFree: true,
+        cost: 0,
+        isLimit: true,
+        attendeeLimit: 500,
+        thumbnail:
+          "https://example.com/thumbnails/digital_future_conference.jpg",
+      })
+      .expect(201);
+    expect(event).toHaveProperty("publisher", "Henry Brown");
+    expect(event).toHaveProperty("host", "Amelia Events Ltd.");
+    expect(event).toHaveProperty("eventName", "Digital Future Conference");
+    expect(event).toHaveProperty("eventStart", "2025-01-15T10:00:00");
+    expect(event).toHaveProperty("eventEnd", "2025-01-15T16:30:00");
+    expect(event).toHaveProperty(
+      "eventDescription",
+      "A conference exploring the latest trends in digital technology and innovation."
+    );
+    expect(event).toHaveProperty("createdAt", "2025-01-01T14:20:00");
+    expect(event).toHaveProperty("category", "Technology");
+    expect(event).toHaveProperty("isOnline", false);
+    expect(event).toHaveProperty("venue", "ExCel London");
+    expect(event).toHaveProperty(
+      "venueAddress",
+      "One Western Gateway, Royal Victoria Dock, London E16 1XL"
+    );
+    expect(event).toHaveProperty("isFree", true);
+    expect(event).toHaveProperty("cost", 0);
+    expect(event).toHaveProperty("isLimit", true);
+    expect(event).toHaveProperty("attendeeLimit", 500);
+    expect(event).toHaveProperty(
+      "thumbnail",
+      "https://example.com/thumbnails/digital_future_conference.jpg"
+    );
+  });
+  test("POST 400 - Empty events object received", async () => {
+    const {
+      body: { msg },
+    } = await request(app).post("/api/events").send({}).expect(400);
+    expect(msg).toBe("Bad Request");
+  });
+  test("POST 400 - Failing schema validation", async () => {
+    const {
+      body: { msg },
+    } = await request(app)
+      .post("/api/events")
+      .send({ publisher: "Harry Davis" })
+      .expect(400);
+    expect(msg).toBe("Bad Request");
+  });
 });
 
 describe("/api/events/:eventId", () => {
