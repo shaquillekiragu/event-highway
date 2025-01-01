@@ -401,84 +401,45 @@ describe("/api/users/:userId", () => {
     } = await request(app).get("/api/users/999").expect(404);
     expect(msg).toBe("User not found");
   });
-  test("PATCH 200 - Responds with an event with correctly updated event property values", async () => {
+  test("PATCH 200 - Responds with a user with correctly updated user property values", async () => {
     const {
-      body: { event },
+      body: { user },
     } = await request(app)
-      .patch("/api/events/1")
+      .patch("/api/users/1")
       .send({
-        publisher: "Sophia Green",
-        host: "Tech Innovations Inc.",
-        eventName: "AI and the Future of Work",
-        eventStart: "2025-02-10T09:00:00",
-        eventEnd: "2025-02-10T15:00:00",
-        eventDescription:
-          "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        createdAt: "2025-01-05T12:30:00",
-        category: "AI & Technology",
-        isOnline: true,
-        venue: null,
-        venueAddress: null,
-        isFree: false,
-        cost: 100,
-        isLimit: true,
-        attendeeLimit: 200,
-        thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
+        firstName: "Mia",
+        lastName: "Harrison",
+        displayName: "Mia Harrison",
+        email: "mia.harrison@example.com",
+        userPassword: "MiaSecurePass01",
+        isAdmin: false,
       })
       .expect(200);
-    expect(event).toHaveProperty("eventId");
-    expect(event).toHaveProperty("publisher", "Sophia Green");
-    expect(event).toHaveProperty("host", "Tech Innovations Inc.");
-    expect(event).toHaveProperty("eventName", "AI and the Future of Work");
-    expect(event).toHaveProperty("eventStart", "2025-02-10T09:00:00");
-    expect(event).toHaveProperty("eventEnd", "2025-02-10T15:00:00");
-    expect(event).toHaveProperty(
-      "eventDescription",
-      "A deep dive into how artificial intelligence is shaping the future of work and automation across industries."
-    );
-    expect(event).toHaveProperty("createdAt", "2025-01-05T12:30:00");
-    expect(event).toHaveProperty("category", "AI & Technology");
-    expect(event).toHaveProperty("isOnline", true);
-    expect(event).toHaveProperty("venue", null);
-    expect(event).toHaveProperty("venueAddress", null);
-    expect(event).toHaveProperty("isFree", false);
-    expect(event).toHaveProperty("cost", 100);
-    expect(event).toHaveProperty("isLimit", true);
-    expect(event).toHaveProperty("attendeeLimit", 200);
-    expect(event).toHaveProperty(
-      "thumbnail",
-      "https://example.com/thumbnails/ai_future_of_work.jpg"
-    );
+    expect(user).toHaveProperty("firstName", "Mia");
+    expect(user).toHaveProperty("lastName", "Harrison");
+    expect(user).toHaveProperty("displayName", "Mia Harrison");
+    expect(user).toHaveProperty("email", "mia.harrison@gmail.com");
+    expect(user).toHaveProperty("userPassword", "MiaSecurePass01");
+    expect(user).toHaveProperty("isAdmin", false);
   });
-  test("PATCH 400 - Empty event object received", async () => {
+  test("PATCH 400 - Empty user object received", async () => {
     const {
       body: { msg },
-    } = await request(app).patch("/api/events/1").send({}).expect(400);
+    } = await request(app).patch("/api/users/1").send({}).expect(400);
     expect(msg).toBe("Bad Request");
   });
   test("PATCH 400 - Failing schema validation", async () => {
     const {
       body: { msg },
     } = await request(app)
-      .patch("/api/events/1")
+      .patch("/api/users/1")
       .send({
-        publisher: "Sophia Green",
-        host: "Tech Innovations Inc.",
-        eventName: "AI and the Future of Work",
-        eventStart: "2025-02-10T09:00:00",
-        eventEnd: "2025-02-10T15:00:00",
-        eventDescription:
-          "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        createdAt: "2025-01-05T12:30:00",
-        category: "AI & Technology",
-        isOnline: true,
-        venue: null,
-        venueAddress: null,
-        isFree: false,
-        cost: 100,
-        isLimit: true,
-        attendeeLimit: 200,
-        thumbnail: 65,
+        firstName: "Mia",
+        lastName: "Harrison",
+        displayName: "Mia Harrison",
+        email: "mia.harrison@example.com",
+        userPassword: "MiaSecurePass01",
+        isAdmin: 56,
       })
       .expect(400);
     expect(msg).toBe("Bad Request");
@@ -487,54 +448,32 @@ describe("/api/users/:userId", () => {
     const {
       body: { msg },
     } = await request(app)
-      .patch("/api/events/notAnId")
+      .patch("/api/users/notAnId")
       .send({
-        publisher: "Sophia Green",
-        host: "Tech Innovations Inc.",
-        eventName: "AI and the Future of Work",
-        eventStart: "2025-02-10T09:00:00",
-        eventEnd: "2025-02-10T15:00:00",
-        eventDescription:
-          "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        createdAt: "2025-01-05T12:30:00",
-        category: "AI & Technology",
-        isOnline: true,
-        venue: null,
-        venueAddress: null,
-        isFree: false,
-        cost: 100,
-        isLimit: true,
-        attendeeLimit: 200,
-        thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
+        firstName: "Mia",
+        lastName: "Harrison",
+        displayName: "Mia Harrison",
+        email: "mia.harrison@example.com",
+        userPassword: "MiaSecurePass01",
+        isAdmin: false,
       })
       .expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test("PATCH 404 - Event with that id does not exist", async () => {
+  test("PATCH 404 - User with that id does not exist", async () => {
     const {
       body: { msg },
     } = await request(app)
-      .patch("/api/events/999")
+      .patch("/api/users/999")
       .send({
-        publisher: "Sophia Green",
-        host: "Tech Innovations Inc.",
-        eventName: "AI and the Future of Work",
-        eventStart: "2025-02-10T09:00:00",
-        eventEnd: "2025-02-10T15:00:00",
-        eventDescription:
-          "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        createdAt: "2025-01-05T12:30:00",
-        category: "AI & Technology",
-        isOnline: true,
-        venue: null,
-        venueAddress: null,
-        isFree: false,
-        cost: 100,
-        isLimit: true,
-        attendeeLimit: 200,
-        thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
+        firstName: "Mia",
+        lastName: "Harrison",
+        displayName: "Mia Harrison",
+        email: "mia.harrison@example.com",
+        userPassword: "MiaSecurePass01",
+        isAdmin: false,
       })
       .expect(404);
-    expect(msg).toBe("event not found");
+    expect(msg).toBe("user not found");
   });
 });
