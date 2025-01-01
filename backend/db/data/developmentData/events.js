@@ -1,6 +1,6 @@
 module.exports = [
   {
-    publisher: "Sophia Clarke",
+    publisher: "Amelia Walker",
     host: "Green Earth Initiatives",
     eventName: "Sustainability Summit 2025",
     eventStart: "2025-06-10T09:00:00",
@@ -18,7 +18,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/nature",
   },
   {
-    publisher: "Jacob Miller",
+    publisher: "Henry Brown",
     host: "The Fitness Lab",
     eventName: "Outdoor Bootcamp",
     eventStart: "2025-05-20T07:00:00",
@@ -36,7 +36,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/fitness",
   },
   {
-    publisher: "Charlotte Hall",
+    publisher: "Ella Taylor",
     host: "Artistry Beyond",
     eventName: "Abstract Art Workshop",
     eventStart: "2025-07-15T14:00:00",
@@ -54,7 +54,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/art",
   },
   {
-    publisher: "James Wilson",
+    publisher: "Noah Johnson",
     host: "Code Connect",
     eventName: "Hackathon UK 2025",
     eventStart: "2025-06-17T09:00:00",
@@ -72,7 +72,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/tech",
   },
   {
-    publisher: "Emily Harris",
+    publisher: "Chloe Wilson",
     host: "Cultural Vibes",
     eventName: "Classical Music Evening",
     eventStart: "2025-05-25T19:00:00",
@@ -90,7 +90,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/music",
   },
   {
-    publisher: "Liam Roberts",
+    publisher: "Amelia Walker",
     host: "Startup Society",
     eventName: "Pitch Perfect Workshop",
     eventStart: "2025-04-05T10:00:00",
@@ -108,7 +108,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/business",
   },
   {
-    publisher: "Olivia Evans",
+    publisher: "Henry Brown",
     host: "Literary Horizons",
     eventName: "Poetry Reading: Modern Voices",
     eventStart: "2025-06-01T18:00:00",
@@ -126,7 +126,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/literature",
   },
   {
-    publisher: "Isabella Moore",
+    publisher: "Ella Taylor",
     host: "Healthy Minds",
     eventName: "Mental Health Awareness Walk",
     eventStart: "2025-05-12T09:30:00",
@@ -144,7 +144,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/health",
   },
   {
-    publisher: "Ethan Walker",
+    publisher: "Noah Johnson",
     host: "History Reimagined",
     eventName: "World War II Museum Tour",
     eventStart: "2025-06-25T11:00:00",
@@ -162,7 +162,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/history",
   },
   {
-    publisher: "Ella Adams",
+    publisher: "Chloe Wilson",
     host: "Nature Lovers Club",
     eventName: "Birdwatching in the Cotswolds",
     eventStart: "2025-05-15T07:30:00",
@@ -180,7 +180,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/nature",
   },
   {
-    publisher: "Liam Thompson",
+    publisher: "Amelia Walker",
     host: "Mindful Moments",
     eventName: "Meditation in the Gardens",
     eventStart: "2025-05-10T10:00:00",
@@ -198,7 +198,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/health",
   },
   {
-    publisher: "Sophia Green",
+    publisher: "Henry Brown",
     host: "Tech Talks UK",
     eventName: "The Future of AI",
     eventStart: "2025-06-15T18:00:00",
@@ -216,7 +216,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/tech",
   },
   {
-    publisher: "Oliver James",
+    publisher: "Ella Taylor",
     host: "Outdoor Adventures",
     eventName: "Climbing the Peaks",
     eventStart: "2025-07-08T08:00:00",
@@ -234,7 +234,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/adventure",
   },
   {
-    publisher: "Emma Robinson",
+    publisher: "Noah Johnson",
     host: "City Lights Tours",
     eventName: "Historic London Walk",
     eventStart: "2025-04-18T14:00:00",
@@ -252,7 +252,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/history",
   },
   {
-    publisher: "James Carter",
+    publisher: "Chloe Wilson",
     host: "Foodies United",
     eventName: "Gourmet Tasting Experience",
     eventStart: "2025-05-21T19:00:00",
@@ -270,7 +270,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/food",
   },
   {
-    publisher: "Emily White",
+    publisher: "Amelia Walker",
     host: "Pet Lovers Network",
     eventName: "Dog Training Workshop",
     eventStart: "2025-05-10T10:30:00",
@@ -288,7 +288,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/pets",
   },
   {
-    publisher: "Mia Brown",
+    publisher: "Henry Brown",
     host: "Film Buffs",
     eventName: "Classic Cinema Screening",
     eventStart: "2025-05-23T20:00:00",
@@ -306,7 +306,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/entertainment",
   },
   {
-    publisher: "Luke Scott",
+    publisher: "Ella Taylor",
     host: "Cycling Pro",
     eventName: "Tour de Yorkshire",
     eventStart: "2025-06-14T08:00:00",
@@ -324,7 +324,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/sports",
   },
   {
-    publisher: "Isabella Wright",
+    publisher: "Noah Johnson",
     host: "Gardening Club",
     eventName: "Spring Planting Workshop",
     eventStart: "2025-04-12T11:00:00",
@@ -342,7 +342,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/gardening",
   },
   {
-    publisher: "Charlotte Davies",
+    publisher: "Chloe Wilson",
     host: "Science Curious",
     eventName: "Stargazing Night",
     eventStart: "2025-07-05T21:00:00",
