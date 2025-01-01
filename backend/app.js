@@ -26,19 +26,19 @@ app.get("/api", getApi);
 
 app.get("/api/events", getEvents);
 
-app.get("/api/events/:eventId", getEvent);
-
-app.get("/api/users/:userId", getUser);
-
 app.post("/api/events", postEvent);
 
-app.post("/api/users", postUser);
+app.get("/api/events/:eventId", getEvent);
 
 app.patch("/api/events/:eventId", patchEvent);
 
-app.patch("/api/users/:userId", patchUser);
-
 app.delete("/api/events/:eventId", deleteEvent);
+
+app.post("/api/users", postUser);
+
+app.get("/api/users/:userId", getUser);
+
+app.patch("/api/users/:userId", patchUser);
 
 app.all("*", (request, response) => {
   response.status(404).send({ msg: "Endpoint not found" });
