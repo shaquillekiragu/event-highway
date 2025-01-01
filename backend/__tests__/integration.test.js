@@ -150,6 +150,45 @@ describe("/api/events", () => {
   });
 });
 
+describe("/api/users", () => {
+  test("POST 201 - Adds a user to the database, given inputted information from the user", async () => {
+    const {
+      body: { user },
+    } = await request(app)
+      .post("/api/users")
+      .send({
+        firstName: "Oleksandr",
+        lastName: "Usyk",
+        displayName: "Oleksandr Usyk",
+        email: "oleks.usyk@gmail.com",
+        userPassword: "usyk987",
+        isAdmin: false,
+      })
+      .expect(201);
+    expect(user).toHaveProperty("firstName", "Oleksandr");
+    expect(user).toHaveProperty("lastName", "Usyk");
+    expect(user).toHaveProperty("displayName", "Oleksandr Usyk");
+    expect(user).toHaveProperty("email", "oleks.usyk@gmail.com");
+    expect(user).toHaveProperty("userPassword", "usyk987");
+    expect(user).toHaveProperty("isAdmin", false);
+  });
+  test("POST 400 - Empty user object received", async () => {
+    const {
+      body: { msg },
+    } = await request(app).post("/api/users").send({}).expect(400);
+    expect(msg).toBe("Bad Request");
+  });
+  test("POST 400 - Failing schema validation", async () => {
+    const {
+      body: { msg },
+    } = await request(app)
+      .post("/api/users")
+      .send({ firstName: "Oleksandr" })
+      .expect(400);
+    expect(msg).toBe("Bad Request");
+  });
+});
+
 describe("/api/events/:eventId", () => {
   test("GET 200 - Responds with a single event by eventId", async () => {
     const {
@@ -191,41 +230,48 @@ describe("/api/events/:eventId", () => {
     } = await request(app)
       .patch("/api/events/1")
       .send({
-        publisher: "",
-        host: "",
-        eventName: "",
-        eventStart: "",
-        eventEnd: "",
-        eventDescription: "",
-        createdAt: "",
-        category: "",
-        isOnline: false,
-        venue: "",
-        venueAddress: "",
-        isFree: true,
-        cost: NULL,
-        isLimit: false,
-        attendeeLimit: NULL,
-        thumbnail: "",
+        publisher: "Sophia Green",
+        host: "Tech Innovations Inc.",
+        eventName: "AI and the Future of Work",
+        eventStart: "2025-02-10T09:00:00",
+        eventEnd: "2025-02-10T15:00:00",
+        eventDescription:
+          "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
+        createdAt: "2025-01-05T12:30:00",
+        category: "AI & Technology",
+        isOnline: true,
+        venue: null,
+        venueAddress: null,
+        isFree: false,
+        cost: 100,
+        isLimit: true,
+        attendeeLimit: 200,
+        thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(200);
     expect(event).toHaveProperty("eventId");
-    expect(event).toHaveProperty("publisher");
-    expect(event).toHaveProperty("host");
-    expect(event).toHaveProperty("eventName");
-    expect(event).toHaveProperty("eventStart");
-    expect(event).toHaveProperty("eventEnd");
-    expect(event).toHaveProperty("eventDescription");
-    expect(event).toHaveProperty("createdAt");
-    expect(event).toHaveProperty("category");
-    expect(event).toHaveProperty("isOnline");
-    expect(event).toHaveProperty("venue");
-    expect(event).toHaveProperty("venueAddress");
-    expect(event).toHaveProperty("isFree");
-    expect(event).toHaveProperty("cost");
-    expect(event).toHaveProperty("isLimit");
-    expect(event).toHaveProperty("attendeeLimit");
-    expect(event).toHaveProperty("thumbnail");
+    expect(event).toHaveProperty("publisher", "Sophia Green");
+    expect(event).toHaveProperty("host", "Tech Innovations Inc.");
+    expect(event).toHaveProperty("eventName", "AI and the Future of Work");
+    expect(event).toHaveProperty("eventStart", "2025-02-10T09:00:00");
+    expect(event).toHaveProperty("eventEnd", "2025-02-10T15:00:00");
+    expect(event).toHaveProperty(
+      "eventDescription",
+      "A deep dive into how artificial intelligence is shaping the future of work and automation across industries."
+    );
+    expect(event).toHaveProperty("createdAt", "2025-01-05T12:30:00");
+    expect(event).toHaveProperty("category", "AI & Technology");
+    expect(event).toHaveProperty("isOnline", true);
+    expect(event).toHaveProperty("venue", null);
+    expect(event).toHaveProperty("venueAddress", null);
+    expect(event).toHaveProperty("isFree", false);
+    expect(event).toHaveProperty("cost", 100);
+    expect(event).toHaveProperty("isLimit", true);
+    expect(event).toHaveProperty("attendeeLimit", 200);
+    expect(event).toHaveProperty(
+      "thumbnail",
+      "https://example.com/thumbnails/ai_future_of_work.jpg"
+    );
   });
   test("PATCH 400 - Empty event object received", async () => {
     const {
@@ -239,21 +285,22 @@ describe("/api/events/:eventId", () => {
     } = await request(app)
       .patch("/api/events/1")
       .send({
-        publisher: "",
-        host: "",
-        eventName: "",
-        eventStart: "",
-        eventEnd: "",
-        eventDescription: "",
-        createdAt: "",
-        category: "",
-        isOnline: false,
-        venue: "",
-        venueAddress: "",
-        isFree: true,
-        cost: NULL,
-        isLimit: false,
-        attendeeLimit: NULL,
+        publisher: "Sophia Green",
+        host: "Tech Innovations Inc.",
+        eventName: "AI and the Future of Work",
+        eventStart: "2025-02-10T09:00:00",
+        eventEnd: "2025-02-10T15:00:00",
+        eventDescription:
+          "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
+        createdAt: "2025-01-05T12:30:00",
+        category: "AI & Technology",
+        isOnline: true,
+        venue: null,
+        venueAddress: null,
+        isFree: false,
+        cost: 100,
+        isLimit: true,
+        attendeeLimit: 200,
         thumbnail: 65,
       })
       .expect(400);
@@ -265,22 +312,23 @@ describe("/api/events/:eventId", () => {
     } = await request(app)
       .patch("/api/events/notAnId")
       .send({
-        publisher: "",
-        host: "",
-        eventName: "",
-        eventStart: "",
-        eventEnd: "",
-        eventDescription: "",
-        createdAt: "",
-        category: "",
-        isOnline: false,
-        venue: "",
-        venueAddress: "",
-        isFree: true,
-        cost: NULL,
-        isLimit: false,
-        attendeeLimit: NULL,
-        thumbnail: "",
+        publisher: "Sophia Green",
+        host: "Tech Innovations Inc.",
+        eventName: "AI and the Future of Work",
+        eventStart: "2025-02-10T09:00:00",
+        eventEnd: "2025-02-10T15:00:00",
+        eventDescription:
+          "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
+        createdAt: "2025-01-05T12:30:00",
+        category: "AI & Technology",
+        isOnline: true,
+        venue: null,
+        venueAddress: null,
+        isFree: false,
+        cost: 100,
+        isLimit: true,
+        attendeeLimit: 200,
+        thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(400);
     expect(msg).toBe("Bad Request");
@@ -291,86 +339,26 @@ describe("/api/events/:eventId", () => {
     } = await request(app)
       .patch("/api/events/999")
       .send({
-        publisher: "",
-        host: "",
-        eventName: "",
-        eventStart: "",
-        eventEnd: "",
-        eventDescription: "",
-        createdAt: "",
-        category: "",
-        isOnline: false,
-        venue: "",
-        venueAddress: "",
-        isFree: true,
-        cost: NULL,
-        isLimit: false,
-        attendeeLimit: NULL,
-        thumbnail: "",
+        publisher: "Sophia Green",
+        host: "Tech Innovations Inc.",
+        eventName: "AI and the Future of Work",
+        eventStart: "2025-02-10T09:00:00",
+        eventEnd: "2025-02-10T15:00:00",
+        eventDescription:
+          "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
+        createdAt: "2025-01-05T12:30:00",
+        category: "AI & Technology",
+        isOnline: true,
+        venue: null,
+        venueAddress: null,
+        isFree: false,
+        cost: 100,
+        isLimit: true,
+        attendeeLimit: 200,
+        thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(404);
     expect(msg).toBe("event not found");
-  });
-  test("GET 200 - Responds with a single event, this time with a ****, by eventId ", async () => {
-    const {
-      body: { event },
-    } = await request(app).get("/api/events/1").expect(200);
-    expect(event).toHaveProperty("eventId");
-    expect(event).toHaveProperty("publisher");
-    expect(event).toHaveProperty("host");
-    expect(event).toHaveProperty("eventName");
-    expect(event).toHaveProperty("eventStart");
-    expect(event).toHaveProperty("eventEnd");
-    expect(event).toHaveProperty("eventDescription");
-    expect(event).toHaveProperty("createdAt");
-    expect(event).toHaveProperty("category");
-    expect(event).toHaveProperty("isOnline");
-    expect(event).toHaveProperty("venue");
-    expect(event).toHaveProperty("venueAddress");
-    expect(event).toHaveProperty("isFree");
-    expect(event).toHaveProperty("cost");
-    expect(event).toHaveProperty("isLimit");
-    expect(event).toHaveProperty("attendeeLimit");
-    expect(event).toHaveProperty("thumbnail");
-  });
-});
-
-describe("/api/users", () => {
-  test("POST 201 - Adds a user to the database, given inputted information from the user", async () => {
-    const {
-      body: { user },
-    } = await request(app)
-      .post("/api/users")
-      .send({
-        firstName: "Oleksandr",
-        lastName: "Usyk",
-        displayName: "Oleksandr Usyk",
-        email: "oleks.usyk@gmail.com",
-        userPassword: "usyk987",
-        isAdmin: false,
-      })
-      .expect(201);
-    expect(user).toHaveProperty("firstName", "Oleksandr");
-    expect(user).toHaveProperty("lastName", "Usyk");
-    expect(user).toHaveProperty("displayName", "Oleksandr Usyk");
-    expect(user).toHaveProperty("email", "oleks.usyk@gmail.com");
-    expect(user).toHaveProperty("userPassword", "usyk987");
-    expect(user).toHaveProperty("isAdmin", false);
-  });
-  test("POST 400 - Empty user object received", async () => {
-    const {
-      body: { msg },
-    } = await request(app).post("/api/users").send({}).expect(400);
-    expect(msg).toBe("Bad Request");
-  });
-  test("POST 400 - Failing schema validation", async () => {
-    const {
-      body: { msg },
-    } = await request(app)
-      .post("/api/users")
-      .send({ firstName: "Oleksandr" })
-      .expect(400);
-    expect(msg).toBe("Bad Request");
   });
 });
 
