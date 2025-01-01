@@ -1,6 +1,6 @@
 module.exports = [
   {
-    publisher: "Emily Watson",
+    publisher: "Barry Bonds",
     host: "Johnson & Co.",
     eventName: "Tech Innovations 2025",
     eventStart: "2025-02-15T10:00:00",
@@ -19,7 +19,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/tech",
   },
   {
-    publisher: "Oliver Brown",
+    publisher: "Tony Stark",
     host: "Health First Events",
     eventName: "Mindfulness and Wellness",
     eventStart: "2025-03-01T09:00:00",
@@ -38,7 +38,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/health",
   },
   {
-    publisher: "Sophia Green",
+    publisher: "Ye",
     host: "Cultural Encounters",
     eventName: "Exploring British Heritage",
     eventStart: "2025-04-20T11:00:00",
@@ -56,7 +56,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/culture",
   },
   {
-    publisher: "Jack Taylor",
+    publisher: "Zendaya",
     host: "StartUp Sparks",
     eventName: "Entrepreneurship Bootcamp",
     eventStart: "2025-02-22T09:00:00",
@@ -74,7 +74,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/business",
   },
   {
-    publisher: "Charlotte Evans",
+    publisher: "Liam Thompson",
     host: "Film Fans United",
     eventName: "Documentary Screening: Our Planet",
     eventStart: "2025-03-12T18:00:00",
@@ -92,7 +92,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/nature",
   },
   {
-    publisher: "Harry Davis",
+    publisher: "Barry Bonds",
     host: "Art Collective",
     eventName: "Modern Art Exhibition",
     eventStart: "2025-03-08T12:00:00",
@@ -111,7 +111,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/art",
   },
   {
-    publisher: "Isabella Wilson",
+    publisher: "Tony Stark",
     host: "Tech Connect",
     eventName: "AI and the Future",
     eventStart: "2025-03-22T14:00:00",
@@ -129,7 +129,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/tech",
   },
   {
-    publisher: "James Martin",
+    publisher: "Ye",
     host: "Nature Walks UK",
     eventName: "Spring Wildlife Walk",
     eventStart: "2025-04-05T09:30:00",
@@ -147,7 +147,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/nature",
   },
   {
-    publisher: "Amelia Johnson",
+    publisher: "Zendaya",
     host: "Fitness Together",
     eventName: "Yoga for Beginners",
     eventStart: "2025-04-12T10:00:00",
@@ -165,7 +165,7 @@ module.exports = [
     thumbnail: "https://placeimg.com/300/200/health",
   },
   {
-    publisher: "Mia Thompson",
+    publisher: "Liam Thompson",
     host: "Reading Circle",
     eventName: "Book Club: Classics Edition",
     eventStart: "2025-04-18T18:00:00",
