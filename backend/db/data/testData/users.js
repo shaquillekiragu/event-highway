@@ -30,4 +30,12 @@ module.exports = [
     userPassword: "gotnolastname23",
     isAdmin: true,
   },
+  {
+    firstName: "Liam",
+    lastName: "Thompson",
+    displayName: "Liam Thompson",
+    email: "liam.thompson@yahoo.com",
+    userPassword: "SecurePass123",
+    isAdmin: false,
+  },
 ];
