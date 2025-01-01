@@ -1,0 +1,42 @@
+module.exports = [
+  {
+    firstName: "Amelia",
+    lastName: "Walker",
+    displayName: "Amelia Walker",
+    email: "amelia.walker@gmail.com",
+    userPassword: "AmeliaPass123",
+    isAdmin: false,
+  },
+  {
+    firstName: "Henry",
+    lastName: "Brown",
+    displayName: "Henry Brown",
+    email: "henry.brown@outlook.com",
+    userPassword: "Henry456",
+    isAdmin: true,
+  },
+  {
+    firstName: "Ella",
+    lastName: "Taylor",
+    displayName: "Ella Taylor",
+    email: "ella.taylor@yahoo.com",
+    userPassword: "Taylor789",
+    isAdmin: false,
+  },
+  {
+    firstName: "Noah",
+    lastName: "Johnson",
+    displayName: "Noah Johnson",
+    email: "noah.johnson@outlook.com",
+    userPassword: "Johnson123",
+    isAdmin: true,
+  },
+  {
+    firstName: "Chloe",
+    lastName: "Wilson",
+    displayName: "Chloe Wilson",
+    email: "chloe.wilson@gmail.com",
+    userPassword: "Wilson987",
+    isAdmin: false,
+  },
+];
