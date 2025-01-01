@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     publisher: "Sophia Clarke",
     host: "Green Earth Initiatives",

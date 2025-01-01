@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     publisher: "Emily Watson",
     host: "Johnson & Co.",
