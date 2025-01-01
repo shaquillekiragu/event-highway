@@ -360,6 +360,21 @@ describe("/api/events/:eventId", () => {
       .expect(404);
     expect(msg).toBe("event not found");
   });
+  test("DELETE 204 - Responds with a 204 status code for the deleted event with the given eventId", async () => {
+    await request(app).delete("/api/events/1").expect(204);
+  });
+  test("DELETE 400 - Invalid id given", async () => {
+    const {
+      body: { msg },
+    } = await request(app).delete("/api/events/notAnId").expect(400);
+    expect(msg).toBe("Bad Request");
+  });
+  test("DELETE 404 - Event with that id does not exist", async () => {
+    const {
+      body: { msg },
+    } = await request(app).delete("/api/events/999").expect(404);
+    expect(msg).toBe("Event not found");
+  });
 });
 
 describe("/api/users/:userId", () => {
