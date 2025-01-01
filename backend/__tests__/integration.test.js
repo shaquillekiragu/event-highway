@@ -1,5 +1,3 @@
-// REPLACE **** AND inc_votes WITH CORRECTIONS
-
 const request = require("supertest");
 const app = require("../app.js");
 const db = require("../db/connection.js");
