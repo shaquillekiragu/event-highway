@@ -267,3 +267,46 @@ describe("/api/events/:eventId", () => {
     expect(event).toHaveProperty("thumbnail");
   });
 });
+
+describe("/api/users", () => {
+  test("POST 201 - Adds a user to the database, given inputted information from the user", async () => {
+    const {
+      body: { user },
+    } = await request(app)
+      .post("/api/users")
+      .send({
+        firstName: "Oleksandr",
+        lastName: "Usyk",
+        displayName: "Oleksandr Usyk",
+        email: "oleks.usyk@gmail.com",
+        userPassword: "usyk987",
+        isAdmin: false,
+      })
+      .expect(201);
+    expect(user).toHaveProperty("firstName", "Oleksandr");
+    expect(user).toHaveProperty("lastName", "Usyk");
+    expect(user).toHaveProperty("displayName", "Oleksandr Usyk");
+    expect(user).toHaveProperty("email", "oleks.usyk@gmail.com");
+    expect(user).toHaveProperty("userPassword", "usyk987");
+    expect(user).toHaveProperty("isAdmin", false);
+  });
+  test("POST 400 - Empty user object received", async () => {
+    const {
+      body: { msg },
+    } = await request(app).post("/api/users").send({}).expect(400);
+    expect(msg).toBe("Bad Request");
+  });
+  test("POST 400 - Failing schema validation", async () => {
+    const {
+      body: { msg },
+    } = await request(app)
+      .post("/api/users")
+      .send({ firstName: "Oleksandr" })
+      .expect(400);
+    expect(msg).toBe("Bad Request");
+  });
+});
+
+describe("/api/users/:userId", () => {
+  test("", () => {});
+});
