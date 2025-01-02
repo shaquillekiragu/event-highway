@@ -18,28 +18,22 @@ const seed = async ({ eventsData, usersData }) => {
       )`
     );
 
+    const usersInsertQuery =
+      format(`INSERT INTO users (userId, firstName, lastName, displayName, email, userPassword, isAdmin)
+        VALUES %L;`);
+
     await db.query(
-      `INSERT INTO users (userId, firstName, lastName, displayName, email, userPassword, isAdmin)
-        VALUES %L;`,
-      usersData.map(
-        ({
-          firstName,
-          lastName,
-          displayName,
-          email,
-          userPassword,
-          isAdmin,
-        }) => {
-          return [
-            firstName,
-            lastName,
-            displayName,
-            email,
-            userPassword,
-            isAdmin,
-          ];
-        }
-      )
+      usersInsertQuery,
+      usersData.map((user) => {
+        return [
+          user.firstName,
+          user.lastName,
+          user.displayName,
+          user.email,
+          user.userPassword,
+          user.isAdmin,
+        ];
+      })
     );
 
     await db.query(
@@ -63,46 +57,31 @@ const seed = async ({ eventsData, usersData }) => {
       )`
     );
 
+    const eventsInsertQuery =
+      format(`INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail)
+        VALUES %L;`);
+
     await db.query(
-      `INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail)
-        VALUES %L;`,
-      eventsData.map(
-        ({
-          publisher,
-          host,
-          eventName,
-          eventStart,
-          eventEnd,
-          eventDescription,
-          createdAt,
-          category,
-          isOnline,
-          venue,
-          isFree,
-          cost,
-          isLimit,
-          attendeeLimit,
-          thumbnail,
-        }) => {
-          return [
-            publisher,
-            host,
-            eventName,
-            eventStart,
-            eventEnd,
-            eventDescription,
-            createdAt,
-            category,
-            isOnline,
-            venue,
-            isFree,
-            cost,
-            isLimit,
-            attendeeLimit,
-            thumbnail,
-          ];
-        }
-      )
+      eventsInsertQuery,
+      eventsData.map((event) => {
+        return [
+          event.publisher,
+          event.host,
+          event.eventName,
+          event.eventStart,
+          event.eventEnd,
+          event.eventDescription,
+          event.createdAt,
+          event.category,
+          event.isOnline,
+          event.venue,
+          event.isFree,
+          event.cost,
+          event.isLimit,
+          event.attendeeLimit,
+          event.thumbnail,
+        ];
+      })
     );
   } catch (error) {
     console.error(error, "<< seed.js async function error");
