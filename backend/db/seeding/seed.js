@@ -12,10 +12,10 @@ const seed = async ({ eventsData, usersData }) => {
         publisher VARCHAR(40) NOT NULL REFERENCES users(displayName),
         host VARCHAR(50) NOT NULL,
         eventName VARCHAR(100) NOT NULL,
-        eventStart DATETIME NOT NULL,
-        eventEnd DATETIME NOT NULL,
+        eventStart TIMESTAMP NOT NULL,
+        eventEnd TIMESTAMP NOT NULL,
         eventDescription VARCHAR(250) NOT NULL,
-        createdAt DATETIME NOT NULL,
+        createdAt TIMESTAMP NOT NULL,
         category VARCHAR(25) NOT NULL,
         isOnline BOOLEAN NOT NULL,
         venue VARCHAR(50),
@@ -54,3 +54,5 @@ const seed = async ({ eventsData, usersData }) => {
     console.error(error, "<< seed.js async function error");
   }
 };
+
+module.exports = seed;
