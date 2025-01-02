@@ -32,7 +32,7 @@ PGDATABASE=event_highway_test
 .env.development:
 
 ```
-PGDATABASE=event_highway_development
+PGDATABASE=event_highway
 ```
 
 3. To install all of the required dependencies for this repo locally, run this command:
