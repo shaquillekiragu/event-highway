@@ -21,7 +21,25 @@ const seed = async ({ eventsData, usersData }) => {
     await db.query(
       `INSERT INTO users (userId, firstName, lastName, displayName, email, userPassword, isAdmin)
         VALUES %L;`,
-      usersData
+      usersData.map(
+        ({
+          firstName,
+          lastName,
+          displayName,
+          email,
+          userPassword,
+          isAdmin,
+        }) => {
+          return [
+            firstName,
+            lastName,
+            displayName,
+            email,
+            userPassword,
+            isAdmin,
+          ];
+        }
+      )
     );
 
     await db.query(
@@ -48,7 +66,43 @@ const seed = async ({ eventsData, usersData }) => {
     await db.query(
       `INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail)
         VALUES %L;`,
-      eventsData
+      eventsData.map(
+        ({
+          publisher,
+          host,
+          eventName,
+          eventStart,
+          eventEnd,
+          eventDescription,
+          createdAt,
+          category,
+          isOnline,
+          venue,
+          isFree,
+          cost,
+          isLimit,
+          attendeeLimit,
+          thumbnail,
+        }) => {
+          return [
+            publisher,
+            host,
+            eventName,
+            eventStart,
+            eventEnd,
+            eventDescription,
+            createdAt,
+            category,
+            isOnline,
+            venue,
+            isFree,
+            cost,
+            isLimit,
+            attendeeLimit,
+            thumbnail,
+          ];
+        }
+      )
     );
   } catch (error) {
     console.error(error, "<< seed.js async function error");
