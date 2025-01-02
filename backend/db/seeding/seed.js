@@ -11,30 +11,31 @@ const seed = async ({ eventsData, usersData }) => {
         userId SERIAL PRIMARY KEY,
         firstName VARCHAR(20) NOT NULL,
         lastName VARCHAR(20),
-        displayName VARCHAR(40) NOT NULL,
+        displayName VARCHAR(40) NOT NULL UNIQUE,
         email VARCHAR(50) NOT NULL,
         userPassword VARCHAR(20) NOT NULL,
         isAdmin BOOLEAN NOT NULL
       )`
     );
 
-    const usersInsertQuery =
-      format(`INSERT INTO users (userId, firstName, lastName, displayName, email, userPassword, isAdmin)
-        VALUES %L;`);
+    const formattedUserData = usersData.map((user) => {
+      return [
+        user.firstName,
+        user.lastName,
+        user.displayName,
+        user.email,
+        user.userPassword,
+        user.isAdmin,
+      ];
+    });
 
-    await db.query(
-      usersInsertQuery,
-      usersData.map((user) => {
-        return [
-          user.firstName,
-          user.lastName,
-          user.displayName,
-          user.email,
-          user.userPassword,
-          user.isAdmin,
-        ];
-      })
+    const usersInsertQuery = format(
+      `INSERT INTO users (firstName, lastName, displayName, email, userPassword, isAdmin)
+        VALUES %L;`,
+      formattedUserData
     );
+
+    await db.query(usersInsertQuery);
 
     await db.query(
       `CREATE TABLE events (
@@ -57,32 +58,33 @@ const seed = async ({ eventsData, usersData }) => {
       )`
     );
 
-    const eventsInsertQuery =
-      format(`INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail)
-        VALUES %L;`);
+    const formattedEventData = eventsData.map((event) => {
+      return [
+        event.publisher,
+        event.host,
+        event.eventName,
+        event.eventStart,
+        event.eventEnd,
+        event.eventDescription,
+        event.createdAt,
+        event.category,
+        event.isOnline,
+        event.venue,
+        event.isFree,
+        event.cost,
+        event.isLimit,
+        event.attendeeLimit,
+        event.thumbnail,
+      ];
+    });
 
-    await db.query(
-      eventsInsertQuery,
-      eventsData.map((event) => {
-        return [
-          event.publisher,
-          event.host,
-          event.eventName,
-          event.eventStart,
-          event.eventEnd,
-          event.eventDescription,
-          event.createdAt,
-          event.category,
-          event.isOnline,
-          event.venue,
-          event.isFree,
-          event.cost,
-          event.isLimit,
-          event.attendeeLimit,
-          event.thumbnail,
-        ];
-      })
+    const eventsInsertQuery = format(
+      `INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail)
+        VALUES %L;`,
+      formattedEventData
     );
+
+    await db.query(eventsInsertQuery);
   } catch (error) {
     console.error(error, "<< seed.js async function error");
   }
