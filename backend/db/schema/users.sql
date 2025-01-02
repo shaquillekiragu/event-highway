@@ -8,7 +8,7 @@ CREATE TABLE users (
     isAdmin BOOLEAN NOT NULL
 );
 
-INSERT INTO users (userId, firstName, lastName, creatorName, email, userPassword, isAdmin)
+INSERT INTO users (userId, firstName, lastName, displayName, email, userPassword, isAdmin)
 VALUES
 (),
 ();

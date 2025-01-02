@@ -46,7 +46,7 @@ const seed = async ({ eventsData, usersData }) => {
     );
 
     await db.query(
-      `INSERT INTO users (userId, firstName, lastName, creatorName, email, userPassword, isAdmin)
+      `INSERT INTO users (userId, firstName, lastName, displayName, email, userPassword, isAdmin)
         VALUES %L;`,
       usersData
     );
