@@ -3,8 +3,26 @@ const db = require("../connection");
 
 const seed = async ({ eventsData, usersData }) => {
   try {
-    await db.query(`DROP TABLE IF EXISTS events;`);
     await db.query(`DROP TABLE IF EXISTS users;`);
+    await db.query(`DROP TABLE IF EXISTS events;`);
+
+    await db.query(
+      `CREATE TABLE users (
+        userId SERIAL PRIMARY KEY,
+        firstName VARCHAR(20) NOT NULL,
+        lastName VARCHAR(20),
+        displayName VARCHAR(40) NOT NULL,
+        email VARCHAR(50) NOT NULL,
+        userPassword VARCHAR(20) NOT NULL,
+        isAdmin BOOLEAN NOT NULL
+      )`
+    );
+
+    await db.query(
+      `INSERT INTO users (userId, firstName, lastName, displayName, email, userPassword, isAdmin)
+        VALUES %L;`,
+      usersData
+    );
 
     await db.query(
       `CREATE TABLE events (
@@ -28,27 +46,9 @@ const seed = async ({ eventsData, usersData }) => {
     );
 
     await db.query(
-      `CREATE TABLE users (
-        userId SERIAL PRIMARY KEY,
-        firstName VARCHAR(20) NOT NULL,
-        lastName VARCHAR(20),
-        displayName VARCHAR(40) NOT NULL,
-        email VARCHAR(50) NOT NULL,
-        userPassword VARCHAR(20) NOT NULL,
-        isAdmin BOOLEAN NOT NULL
-      )`
-    );
-
-    await db.query(
       `INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail)
         VALUES %L;`,
       eventsData
-    );
-
-    await db.query(
-      `INSERT INTO users (userId, firstName, lastName, displayName, email, userPassword, isAdmin)
-        VALUES %L;`,
-      usersData
     );
   } catch (error) {
     console.error(error, "<< seed.js async function error");
