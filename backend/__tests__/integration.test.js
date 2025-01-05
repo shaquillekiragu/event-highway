@@ -29,11 +29,11 @@ describe("/api", () => {
 });
 
 describe("/api/events", () => {
-  test("GET 200 - Responds with a list of events", async () => {
+  test.only("GET 200 - Responds with a list of events", async () => {
     const {
       body: { events },
     } = await request(app).get("/api/events").expect(200);
-    // expect(events).toHaveLength(13);
+    expect(events).toHaveLength(17);
     events.forEach((event) => {
       expect(event).toHaveProperty("eventId");
       expect(event).toHaveProperty("publisher");
@@ -58,7 +58,7 @@ describe("/api/events", () => {
     const {
       body: { events },
     } = await request(app).get("/api/events?").expect(200);
-    // expect(events).toHaveLength(13);
+    expect(events).toHaveLength(17);
     events.forEach((event) => {
       expect(event).toHaveProperty("eventId");
       expect(event).toHaveProperty("publisher");
