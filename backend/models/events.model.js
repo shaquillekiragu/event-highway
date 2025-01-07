@@ -8,6 +8,7 @@ async function fetchEvents() {
   if (!rows.length) {
     return Promise.reject({ status: 404, msg: "Events not found" });
   }
+  console.log(rows, "rows");
   return rows;
 }
 

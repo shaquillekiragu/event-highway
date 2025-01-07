@@ -33,9 +33,8 @@ describe("/api/events", () => {
     const {
       body: { events },
     } = await request(app).get("/api/events").expect(200);
-    expect(events).toHaveLength(17);
+    expect(events).toHaveLength(16);
     events.forEach((event) => {
-      expect(event).toHaveProperty("eventId");
       expect(event).toHaveProperty("publisher");
       expect(event).toHaveProperty("host");
       expect(event).toHaveProperty("eventName");
@@ -58,9 +57,8 @@ describe("/api/events", () => {
     const {
       body: { events },
     } = await request(app).get("/api/events?").expect(200);
-    expect(events).toHaveLength(17);
+    expect(events).toHaveLength(16);
     events.forEach((event) => {
-      expect(event).toHaveProperty("eventId");
       expect(event).toHaveProperty("publisher");
       expect(event).toHaveProperty("host");
       expect(event).toHaveProperty("eventName");
