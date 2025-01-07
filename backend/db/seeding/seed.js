@@ -71,6 +71,7 @@ const seed = async ({ eventsData, usersData }) => {
         event.category,
         event.is_online,
         event.venue,
+        event.venue_address,
         event.is_free,
         event.cost,
         event.is_limit,
@@ -80,7 +81,7 @@ const seed = async ({ eventsData, usersData }) => {
     });
 
     const eventsInsertQuery = format(
-      `INSERT INTO events (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, is_free, cost, is_limit, attendee_limit, thumbnail)
+      `INSERT INTO events (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost, is_limit, attendee_limit, thumbnail)
         VALUES %L;`,
       formattedEventData
     );
