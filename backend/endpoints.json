@@ -1,1 +1,264 @@
-{}
+{
+  "GET /api/events": {
+    "description": "Serves a list of all event objects",
+    "queries": [],
+    "exampleResponse": {
+      "events": [
+        {
+          "publisher": "Barry Bonds",
+          "host": "Johnson & Co.",
+          "eventName": "Tech Innovations 2025",
+          "eventStart": "2025-02-15T10:00:00",
+          "eventEnd": "2025-02-15T14:00:00",
+          "eventDescription": "A showcase of cutting-edge technologies shaping the future.",
+          "createdAt": "2024-12-25T09:30:00",
+          "category": "Technology",
+          "isOnline": false,
+          "venue": "Tech Hub London",
+          "venueAddress": "10 Finsbury Square, London, EC2A 1AF",
+          "isFree": true,
+          "cost": null,
+          "isLimit": true,
+          "attendeeLimit": 150,
+          "thumbnail": "https://placeimg.com/300/200/tech"
+        },
+        {
+          "publisher": "Tony Stark",
+          "host": "Health First Events",
+          "eventName": "Mindfulness and Wellness",
+          "eventStart": "2025-03-01T09:00:00",
+          "eventEnd": "2025-03-01T12:00:00",
+          "eventDescription": "Learn practical techniques for a healthier mind and body.",
+          "createdAt": "2025-01-10T15:00:00",
+          "category": "Health",
+          "isOnline": false,
+          "venue": "Manchester Conference Centre",
+          "venueAddress": "78 Sackville St, Manchester, M1 3BB",
+          "isFree": false,
+          "cost": 20,
+          "isLimit": true,
+          "attendeeLimit": 50,
+          "thumbnail": "https://placeimg.com/300/200/health"
+        },
+        {
+          "publisher": "Ye",
+          "host": "Cultural Encounters",
+          "eventName": "Exploring British Heritage",
+          "eventStart": "2025-04-20T11:00:00",
+          "eventEnd": "2025-04-20T16:00:00",
+          "eventDescription": "A guided tour of key historical sites in Edinburgh.",
+          "createdAt": "2025-01-20T12:00:00",
+          "category": "Culture",
+          "isOnline": false,
+          "venue": "Edinburgh Castle",
+          "venueAddress": "Castlehill, Edinburgh, EH1 2NG",
+          "isFree": false,
+          "cost": 15,
+          "isLimit": true,
+          "attendeeLimit": 30,
+          "thumbnail": "https://placeimg.com/300/200/culture"
+        }
+      ]
+    }
+  },
+  "GET /api/events?": {
+    "description": "Serves a list of all event objects when a query symbol is present in the url",
+    "queries": [],
+    "exampleResponse": {
+      "events": [
+        {
+          "publisher": "Barry Bonds",
+          "host": "Johnson & Co.",
+          "eventName": "Tech Innovations 2025",
+          "eventStart": "2025-02-15T10:00:00",
+          "eventEnd": "2025-02-15T14:00:00",
+          "eventDescription": "A showcase of cutting-edge technologies shaping the future.",
+          "createdAt": "2024-12-25T09:30:00",
+          "category": "Technology",
+          "isOnline": false,
+          "venue": "Tech Hub London",
+          "venueAddress": "10 Finsbury Square, London, EC2A 1AF",
+          "isFree": true,
+          "cost": null,
+          "isLimit": true,
+          "attendeeLimit": 150,
+          "thumbnail": "https://placeimg.com/300/200/tech"
+        },
+        {
+          "publisher": "Tony Stark",
+          "host": "Health First Events",
+          "eventName": "Mindfulness and Wellness",
+          "eventStart": "2025-03-01T09:00:00",
+          "eventEnd": "2025-03-01T12:00:00",
+          "eventDescription": "Learn practical techniques for a healthier mind and body.",
+          "createdAt": "2025-01-10T15:00:00",
+          "category": "Health",
+          "isOnline": false,
+          "venue": "Manchester Conference Centre",
+          "venueAddress": "78 Sackville St, Manchester, M1 3BB",
+          "isFree": false,
+          "cost": 20,
+          "isLimit": true,
+          "attendeeLimit": 50,
+          "thumbnail": "https://placeimg.com/300/200/health"
+        },
+        {
+          "publisher": "Ye",
+          "host": "Cultural Encounters",
+          "eventName": "Exploring British Heritage",
+          "eventStart": "2025-04-20T11:00:00",
+          "eventEnd": "2025-04-20T16:00:00",
+          "eventDescription": "A guided tour of key historical sites in Edinburgh.",
+          "createdAt": "2025-01-20T12:00:00",
+          "category": "Culture",
+          "isOnline": false,
+          "venue": "Edinburgh Castle",
+          "venueAddress": "Castlehill, Edinburgh, EH1 2NG",
+          "isFree": false,
+          "cost": 15,
+          "isLimit": true,
+          "attendeeLimit": 30,
+          "thumbnail": "https://placeimg.com/300/200/culture"
+        }
+      ]
+    }
+  },
+  "POST /api/events": {
+    "description": "Serves an event object that has been appended to the list of events",
+    "queries": [],
+    "exampleResponse": {
+      "event": {
+        "publisher": "Barry Bonds",
+        "host": "Johnson & Co.",
+        "eventName": "Tech Innovations 2025",
+        "eventStart": "2025-02-15T10:00:00",
+        "eventEnd": "2025-02-15T14:00:00",
+        "eventDescription": "A showcase of cutting-edge technologies shaping the future.",
+        "createdAt": "2024-12-25T09:30:00",
+        "category": "Technology",
+        "isOnline": false,
+        "venue": "Tech Hub London",
+        "venueAddress": "10 Finsbury Square, London, EC2A 1AF",
+        "isFree": true,
+        "cost": null,
+        "isLimit": true,
+        "attendeeLimit": 150,
+        "thumbnail": "https://placeimg.com/300/200/tech"
+      }
+    }
+  },
+  "POST /api/users": {
+    "description": "Serves a user object that has been appended to the list of users",
+    "queries": [],
+    "exampleResponse": {
+      "user": {
+        "firstName": "Liam",
+        "lastName": "Thompson",
+        "displayName": "Liam Thompson",
+        "email": "liam.thompson@yahoo.com",
+        "userPassword": "SecurePass123",
+        "isAdmin": false
+      }
+    }
+  },
+  "GET /api/events/:eventId": {
+    "description": "Serves a single event object that has been fetched using an eventId",
+    "queries": [],
+    "exampleResponse": {
+      "event": {
+        "publisher": "Barry Bonds",
+        "host": "Johnson & Co.",
+        "eventName": "Tech Innovations 2025",
+        "eventStart": "2025-02-15T10:00:00",
+        "eventEnd": "2025-02-15T14:00:00",
+        "eventDescription": "A showcase of cutting-edge technologies shaping the future.",
+        "createdAt": "2024-12-25T09:30:00",
+        "category": "Technology",
+        "isOnline": false,
+        "venue": "Tech Hub London",
+        "venueAddress": "10 Finsbury Square, London, EC2A 1AF",
+        "isFree": true,
+        "cost": null,
+        "isLimit": true,
+        "attendeeLimit": 150,
+        "thumbnail": "https://placeimg.com/300/200/tech"
+      }
+    }
+  },
+  "PATCH /api/events/:eventId": {
+    "description": "Serves a single event object that has been updated using an eventId",
+    "queries": [],
+    "exampleResponse": {
+      "event": {
+        "publisher": "Barry Bonds",
+        "host": "Johnson & Co.",
+        "eventName": "Tech Innovations 2025",
+        "eventStart": "2025-02-15T10:00:00",
+        "eventEnd": "2025-02-15T14:00:00",
+        "eventDescription": "A showcase of cutting-edge technologies shaping the future.",
+        "createdAt": "2024-12-25T09:30:00",
+        "category": "Technology",
+        "isOnline": false,
+        "venue": "Tech Hub London",
+        "venueAddress": "10 Finsbury Square, London, EC2A 1AF",
+        "isFree": true,
+        "cost": null,
+        "isLimit": true,
+        "attendeeLimit": 150,
+        "thumbnail": "https://placeimg.com/300/200/tech"
+      }
+    }
+  },
+  "DELETE /api/events/:eventId": {
+    "description": "Serves a single event object that has been deleted using an eventId",
+    "queries": [],
+    "exampleResponse": {
+      "event": {
+        "publisher": "Barry Bonds",
+        "host": "Johnson & Co.",
+        "eventName": "Tech Innovations 2025",
+        "eventStart": "2025-02-15T10:00:00",
+        "eventEnd": "2025-02-15T14:00:00",
+        "eventDescription": "A showcase of cutting-edge technologies shaping the future.",
+        "createdAt": "2024-12-25T09:30:00",
+        "category": "Technology",
+        "isOnline": false,
+        "venue": "Tech Hub London",
+        "venueAddress": "10 Finsbury Square, London, EC2A 1AF",
+        "isFree": true,
+        "cost": null,
+        "isLimit": true,
+        "attendeeLimit": 150,
+        "thumbnail": "https://placeimg.com/300/200/tech"
+      }
+    }
+  },
+  "GET /api/users/:userId": {
+    "description": "Serves a single user object that has been fetched using a userId",
+    "queries": [],
+    "exampleResponse": {
+      "user": {
+        "firstName": "Liam",
+        "lastName": "Thompson",
+        "displayName": "Liam Thompson",
+        "email": "liam.thompson@yahoo.com",
+        "userPassword": "SecurePass123",
+        "isAdmin": false
+      }
+    }
+  },
+  "PATCH /api/user/:userId": {
+    "description": "Serves a single user object that has been fetched using a userId",
+    "queries": [],
+    "exampleResponse": {
+      "user": {
+        "firstName": "Liam",
+        "lastName": "Thompson",
+        "displayName": "Liam Thompson",
+        "email": "liam.thompson@yahoo.com",
+        "userPassword": "SecurePass123",
+        "isAdmin": false
+      }
+    }
+  }
+}
