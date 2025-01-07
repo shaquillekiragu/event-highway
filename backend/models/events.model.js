@@ -2,7 +2,7 @@ const db = require("../db/connection");
 
 async function fetchEvents() {
   const { rows } = await db.query(
-    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, is_free, cost, is_limit, attendee_limit, thumbnail
+    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost, is_limit, attendee_limit, thumbnail
       FROM events;`
   );
   if (!rows.length) {
@@ -14,7 +14,7 @@ async function fetchEvents() {
 
 async function fetchEvent(eventId) {
   const { rows } = await db.query(
-    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, is_free, cost, is_limit, attendee_limit, thumbnail
+    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost, is_limit, attendee_limit, thumbnail
       FROM events
       WHERE eventId = $1`,
     [eventId]
@@ -36,6 +36,7 @@ async function insertEvent(
   category,
   is_online,
   venue,
+  venue_address,
   is_free,
   cost,
   is_limit,
@@ -44,7 +45,7 @@ async function insertEvent(
 ) {
   const { rows } = await db.query(
     `INSERT INTO events
-      (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, is_free, cost, is_limit, attendee_limit, thumbnail)
+      (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost, is_limit, attendee_limit, thumbnail)
       VALUES
       ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
       RETURNING *;`,
@@ -59,6 +60,7 @@ async function insertEvent(
       category,
       is_online,
       venue,
+      venue_address,
       is_free,
       cost,
       is_limit,
