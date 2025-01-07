@@ -40,7 +40,7 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("event_start");
       expect(event).toHaveProperty("event_end");
       expect(event).toHaveProperty("event_description");
-      expect(event).toHaveProperty("created_att");
+      expect(event).toHaveProperty("created_at");
       expect(event).toHaveProperty("category");
       expect(event).toHaveProperty("is_online");
       expect(event).toHaveProperty("venue");
@@ -64,7 +64,7 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("event_start");
       expect(event).toHaveProperty("event_end");
       expect(event).toHaveProperty("event_description");
-      expect(event).toHaveProperty("created_att");
+      expect(event).toHaveProperty("created_at");
       expect(event).toHaveProperty("category");
       expect(event).toHaveProperty("is_online");
       expect(event).toHaveProperty("venue");
@@ -88,7 +88,7 @@ describe("/api/events", () => {
         event_start: "2025-01-15T10:00:00",
         event_end: "2025-01-15T16:30:00",
         event_description: "A conference.",
-        created_att: "2025-01-01T14:20:00",
+        created_at: "2025-01-01T14:20:00",
         category: "Technology",
         is_online: false,
         venue: "ExCel London",
@@ -111,7 +111,7 @@ describe("/api/events", () => {
       "event_description",
       "A conference exploring the latest trends in digital technology and innovation."
     );
-    expect(event).toHaveProperty("created_att", "2025-01-01T14:20:00");
+    expect(event).toHaveProperty("created_at", "2025-01-01T14:20:00");
     expect(event).toHaveProperty("category", "Technology");
     expect(event).toHaveProperty("is_online", false);
     expect(event).toHaveProperty("venue", "ExCel London");
@@ -196,7 +196,7 @@ describe("/api/events/:eventId", () => {
     expect(event).toHaveProperty("event_start");
     expect(event).toHaveProperty("event_end");
     expect(event).toHaveProperty("event_description");
-    expect(event).toHaveProperty("created_att");
+    expect(event).toHaveProperty("created_at");
     expect(event).toHaveProperty("category");
     expect(event).toHaveProperty("is_online");
     expect(event).toHaveProperty("venue");
@@ -232,7 +232,7 @@ describe("/api/events/:eventId", () => {
         event_end: "2025-02-10T15:00:00",
         event_description:
           "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        created_att: "2025-01-05T12:30:00",
+        created_at: "2025-01-05T12:30:00",
         category: "AI & Technology",
         is_online: true,
         venue: null,
@@ -254,7 +254,7 @@ describe("/api/events/:eventId", () => {
       "event_description",
       "A deep dive into how artificial intelligence is shaping the future of work and automation across industries."
     );
-    expect(event).toHaveProperty("created_att", "2025-01-05T12:30:00");
+    expect(event).toHaveProperty("created_at", "2025-01-05T12:30:00");
     expect(event).toHaveProperty("category", "AI & Technology");
     expect(event).toHaveProperty("is_online", true);
     expect(event).toHaveProperty("venue", null);
@@ -287,7 +287,7 @@ describe("/api/events/:eventId", () => {
         event_end: "2025-02-10T15:00:00",
         event_description:
           "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        created_att: "2025-01-05T12:30:00",
+        created_at: "2025-01-05T12:30:00",
         category: "AI & Technology",
         is_online: true,
         venue: null,
@@ -314,7 +314,7 @@ describe("/api/events/:eventId", () => {
         event_end: "2025-02-10T15:00:00",
         event_description:
           "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        created_att: "2025-01-05T12:30:00",
+        created_at: "2025-01-05T12:30:00",
         category: "AI & Technology",
         is_online: true,
         venue: null,
@@ -341,7 +341,7 @@ describe("/api/events/:eventId", () => {
         event_end: "2025-02-10T15:00:00",
         event_description:
           "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        created_att: "2025-01-05T12:30:00",
+        created_at: "2025-01-05T12:30:00",
         category: "AI & Technology",
         is_online: true,
         venue: null,
