@@ -2,7 +2,7 @@ const db = require("../db/connection");
 
 async function fetchEvents() {
   const { rows } = await db.query(
-    `SELECT publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail
+    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, is_free, cost, is_limit, attendee_limit, thumbnail
       FROM events;`
   );
   if (!rows.length) {
@@ -14,7 +14,7 @@ async function fetchEvents() {
 
 async function fetchEvent(eventId) {
   const { rows } = await db.query(
-    `SELECT publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail
+    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, is_free, cost, is_limit, attendee_limit, thumbnail
       FROM events
       WHERE eventId = $1`,
     [eventId]
@@ -28,41 +28,41 @@ async function fetchEvent(eventId) {
 async function insertEvent(
   publisher,
   host,
-  eventName,
-  eventStart,
-  eventEnd,
-  eventDescription,
-  createdAt,
+  event_name,
+  event_start,
+  event_end,
+  event_description,
+  created_at,
   category,
-  isOnline,
+  is_online,
   venue,
-  isFree,
+  is_free,
   cost,
-  isLimit,
-  attendeeLimit,
+  is_limit,
+  attendee_limit,
   thumbnail
 ) {
   const { rows } = await db.query(
     `INSERT INTO events
-      (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, isFree, cost, isLimit, attendeeLimit, thumbnail)
+      (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, is_free, cost, is_limit, attendee_limit, thumbnail)
       VALUES
       ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
       RETURNING *;`,
     [
       publisher,
       host,
-      eventName,
-      eventStart,
-      eventEnd,
-      eventDescription,
-      createdAt,
+      event_name,
+      event_start,
+      event_end,
+      event_description,
+      created_at,
       category,
-      isOnline,
+      is_online,
       venue,
-      isFree,
+      is_free,
       cost,
-      isLimit,
-      attendeeLimit,
+      is_limit,
+      attendee_limit,
       thumbnail,
     ]
   );

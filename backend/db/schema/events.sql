@@ -2,23 +2,23 @@ CREATE TABLE events (
     eventId SERIAL PRIMARY KEY,
     publisher VARCHAR(40) NOT NULL REFERENCES users(displayName),
     host VARCHAR(50) NOT NULL,
-    eventName VARCHAR(100) NOT NULL,
-    eventStart TIMESTAMP NOT NULL,
-    eventEnd TIMESTAMP NOT NULL,
-    eventDescription VARCHAR(250) NOT NULL,
-    createdAt TIMESTAMP NOT NULL,
+    event_name VARCHAR(100) NOT NULL,
+    event_start TIMESTAMP NOT NULL,
+    event_end TIMESTAMP NOT NULL,
+    event_description VARCHAR(250) NOT NULL,
+    created_at TIMESTAMP NOT NULL,
     category VARCHAR(25) NOT NULL,
-    isOnline BOOLEAN NOT NULL,
+    is_online BOOLEAN NOT NULL,
     venue VARCHAR(50),
     venueAddress VARCHAR(100),
-    isFree BOOLEAN NOT NULL,
+    is_free BOOLEAN NOT NULL,
     cost INT,
-    isLimit BOOLEAN NOT NULL,
-    attendeeLimit INT,
+    is_limit BOOLEAN NOT NULL,
+    attendee_limit INT,
     thumbnail VARCHAR(250)
 );
 
-INSERT INTO events (publisher, host, eventName, eventStart, eventEnd, eventDescription, createdAt, category, isOnline, venue, venueAddress, isFree, cost, isLimit, attendeeLimit, thumbnail)
+INSERT INTO events (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venueAddress, is_free, cost, is_limit, attendee_limit, thumbnail)
 VALUES
 (),
 ();

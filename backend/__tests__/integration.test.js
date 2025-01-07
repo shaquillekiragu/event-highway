@@ -36,19 +36,19 @@ describe("/api/events", () => {
     events.forEach((event) => {
       expect(event).toHaveProperty("publisher");
       expect(event).toHaveProperty("host");
-      expect(event).toHaveProperty("eventName");
-      expect(event).toHaveProperty("eventStart");
-      expect(event).toHaveProperty("eventEnd");
-      expect(event).toHaveProperty("eventDescription");
-      expect(event).toHaveProperty("createdAt");
+      expect(event).toHaveProperty("event_name");
+      expect(event).toHaveProperty("event_start");
+      expect(event).toHaveProperty("event_end");
+      expect(event).toHaveProperty("event_description");
+      expect(event).toHaveProperty("created_att");
       expect(event).toHaveProperty("category");
-      expect(event).toHaveProperty("isOnline");
+      expect(event).toHaveProperty("is_online");
       expect(event).toHaveProperty("venue");
       expect(event).toHaveProperty("venueAddress");
-      expect(event).toHaveProperty("isFree");
+      expect(event).toHaveProperty("is_free");
       expect(event).toHaveProperty("cost");
-      expect(event).toHaveProperty("isLimit");
-      expect(event).toHaveProperty("attendeeLimit");
+      expect(event).toHaveProperty("is_limit");
+      expect(event).toHaveProperty("attendee_limit");
       expect(event).toHaveProperty("thumbnail");
     });
   });
@@ -60,19 +60,19 @@ describe("/api/events", () => {
       console.log(event, " << event");
       expect(event).toHaveProperty("publisher");
       expect(event).toHaveProperty("host");
-      expect(event).toHaveProperty("eventName");
-      expect(event).toHaveProperty("eventStart");
-      expect(event).toHaveProperty("eventEnd");
-      expect(event).toHaveProperty("eventDescription");
-      expect(event).toHaveProperty("createdAt");
+      expect(event).toHaveProperty("event_name");
+      expect(event).toHaveProperty("event_start");
+      expect(event).toHaveProperty("event_end");
+      expect(event).toHaveProperty("event_description");
+      expect(event).toHaveProperty("created_att");
       expect(event).toHaveProperty("category");
-      expect(event).toHaveProperty("isOnline");
+      expect(event).toHaveProperty("is_online");
       expect(event).toHaveProperty("venue");
       expect(event).toHaveProperty("venueAddress");
-      expect(event).toHaveProperty("isFree");
+      expect(event).toHaveProperty("is_free");
       expect(event).toHaveProperty("cost");
-      expect(event).toHaveProperty("isLimit");
-      expect(event).toHaveProperty("attendeeLimit");
+      expect(event).toHaveProperty("is_limit");
+      expect(event).toHaveProperty("attendee_limit");
       expect(event).toHaveProperty("thumbnail");
     });
   });
@@ -84,45 +84,45 @@ describe("/api/events", () => {
       .send({
         publisher: "Henry Brown",
         host: "Amelia Events Ltd.",
-        eventName: "Digital Future Conference",
-        eventStart: "2025-01-15T10:00:00",
-        eventEnd: "2025-01-15T16:30:00",
-        eventDescription: "A conference.",
-        createdAt: "2025-01-01T14:20:00",
+        event_name: "Digital Future Conference",
+        event_start: "2025-01-15T10:00:00",
+        event_end: "2025-01-15T16:30:00",
+        event_description: "A conference.",
+        created_att: "2025-01-01T14:20:00",
         category: "Technology",
-        isOnline: false,
+        is_online: false,
         venue: "ExCel London",
         venueAddress:
           "One Western Gateway, Royal Victoria Dock, London E16 1XL",
-        isFree: true,
+        is_free: true,
         cost: 0,
-        isLimit: true,
-        attendeeLimit: 500,
+        is_limit: true,
+        attendee_limit: 500,
         thumbnail:
           "https://example.com/thumbnails/digital_future_conference.jpg",
       })
       .expect(201);
     expect(event).toHaveProperty("publisher", "Henry Brown");
     expect(event).toHaveProperty("host", "Amelia Events Ltd.");
-    expect(event).toHaveProperty("eventName", "Digital Future Conference");
-    expect(event).toHaveProperty("eventStart", "2025-01-15T10:00:00");
-    expect(event).toHaveProperty("eventEnd", "2025-01-15T16:30:00");
+    expect(event).toHaveProperty("event_name", "Digital Future Conference");
+    expect(event).toHaveProperty("event_start", "2025-01-15T10:00:00");
+    expect(event).toHaveProperty("event_end", "2025-01-15T16:30:00");
     expect(event).toHaveProperty(
-      "eventDescription",
+      "event_description",
       "A conference exploring the latest trends in digital technology and innovation."
     );
-    expect(event).toHaveProperty("createdAt", "2025-01-01T14:20:00");
+    expect(event).toHaveProperty("created_att", "2025-01-01T14:20:00");
     expect(event).toHaveProperty("category", "Technology");
-    expect(event).toHaveProperty("isOnline", false);
+    expect(event).toHaveProperty("is_online", false);
     expect(event).toHaveProperty("venue", "ExCel London");
     expect(event).toHaveProperty(
       "venueAddress",
       "One Western Gateway, Royal Victoria Dock, London E16 1XL"
     );
-    expect(event).toHaveProperty("isFree", true);
+    expect(event).toHaveProperty("is_free", true);
     expect(event).toHaveProperty("cost", 0);
-    expect(event).toHaveProperty("isLimit", true);
-    expect(event).toHaveProperty("attendeeLimit", 500);
+    expect(event).toHaveProperty("is_limit", true);
+    expect(event).toHaveProperty("attendee_limit", 500);
     expect(event).toHaveProperty(
       "thumbnail",
       "https://example.com/thumbnails/digital_future_conference.jpg"
@@ -192,19 +192,19 @@ describe("/api/events/:eventId", () => {
     expect(event).toHaveProperty("eventId");
     expect(event).toHaveProperty("publisher");
     expect(event).toHaveProperty("host");
-    expect(event).toHaveProperty("eventName");
-    expect(event).toHaveProperty("eventStart");
-    expect(event).toHaveProperty("eventEnd");
-    expect(event).toHaveProperty("eventDescription");
-    expect(event).toHaveProperty("createdAt");
+    expect(event).toHaveProperty("event_name");
+    expect(event).toHaveProperty("event_start");
+    expect(event).toHaveProperty("event_end");
+    expect(event).toHaveProperty("event_description");
+    expect(event).toHaveProperty("created_att");
     expect(event).toHaveProperty("category");
-    expect(event).toHaveProperty("isOnline");
+    expect(event).toHaveProperty("is_online");
     expect(event).toHaveProperty("venue");
     expect(event).toHaveProperty("venueAddress");
-    expect(event).toHaveProperty("isFree");
+    expect(event).toHaveProperty("is_free");
     expect(event).toHaveProperty("cost");
-    expect(event).toHaveProperty("isLimit");
-    expect(event).toHaveProperty("attendeeLimit");
+    expect(event).toHaveProperty("is_limit");
+    expect(event).toHaveProperty("attendee_limit");
     expect(event).toHaveProperty("thumbnail");
   });
   test("GET 400 - Invalid id given", async () => {
@@ -227,42 +227,42 @@ describe("/api/events/:eventId", () => {
       .send({
         publisher: "Sophia Green",
         host: "Tech Innovations Inc.",
-        eventName: "AI and the Future of Work",
-        eventStart: "2025-02-10T09:00:00",
-        eventEnd: "2025-02-10T15:00:00",
-        eventDescription:
+        event_name: "AI and the Future of Work",
+        event_start: "2025-02-10T09:00:00",
+        event_end: "2025-02-10T15:00:00",
+        event_description:
           "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        createdAt: "2025-01-05T12:30:00",
+        created_att: "2025-01-05T12:30:00",
         category: "AI & Technology",
-        isOnline: true,
+        is_online: true,
         venue: null,
         venueAddress: null,
-        isFree: false,
+        is_free: false,
         cost: 100,
-        isLimit: true,
-        attendeeLimit: 200,
+        is_limit: true,
+        attendee_limit: 200,
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(200);
     expect(event).toHaveProperty("eventId");
     expect(event).toHaveProperty("publisher", "Sophia Green");
     expect(event).toHaveProperty("host", "Tech Innovations Inc.");
-    expect(event).toHaveProperty("eventName", "AI and the Future of Work");
-    expect(event).toHaveProperty("eventStart", "2025-02-10T09:00:00");
-    expect(event).toHaveProperty("eventEnd", "2025-02-10T15:00:00");
+    expect(event).toHaveProperty("event_name", "AI and the Future of Work");
+    expect(event).toHaveProperty("event_start", "2025-02-10T09:00:00");
+    expect(event).toHaveProperty("event_end", "2025-02-10T15:00:00");
     expect(event).toHaveProperty(
-      "eventDescription",
+      "event_description",
       "A deep dive into how artificial intelligence is shaping the future of work and automation across industries."
     );
-    expect(event).toHaveProperty("createdAt", "2025-01-05T12:30:00");
+    expect(event).toHaveProperty("created_att", "2025-01-05T12:30:00");
     expect(event).toHaveProperty("category", "AI & Technology");
-    expect(event).toHaveProperty("isOnline", true);
+    expect(event).toHaveProperty("is_online", true);
     expect(event).toHaveProperty("venue", null);
     expect(event).toHaveProperty("venueAddress", null);
-    expect(event).toHaveProperty("isFree", false);
+    expect(event).toHaveProperty("is_free", false);
     expect(event).toHaveProperty("cost", 100);
-    expect(event).toHaveProperty("isLimit", true);
-    expect(event).toHaveProperty("attendeeLimit", 200);
+    expect(event).toHaveProperty("is_limit", true);
+    expect(event).toHaveProperty("attendee_limit", 200);
     expect(event).toHaveProperty(
       "thumbnail",
       "https://example.com/thumbnails/ai_future_of_work.jpg"
@@ -282,20 +282,20 @@ describe("/api/events/:eventId", () => {
       .send({
         publisher: "Sophia Green",
         host: "Tech Innovations Inc.",
-        eventName: "AI and the Future of Work",
-        eventStart: "2025-02-10T09:00:00",
-        eventEnd: "2025-02-10T15:00:00",
-        eventDescription:
+        event_name: "AI and the Future of Work",
+        event_start: "2025-02-10T09:00:00",
+        event_end: "2025-02-10T15:00:00",
+        event_description:
           "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        createdAt: "2025-01-05T12:30:00",
+        created_att: "2025-01-05T12:30:00",
         category: "AI & Technology",
-        isOnline: true,
+        is_online: true,
         venue: null,
         venueAddress: null,
-        isFree: false,
+        is_free: false,
         cost: 100,
-        isLimit: true,
-        attendeeLimit: 200,
+        is_limit: true,
+        attendee_limit: 200,
         thumbnail: 65,
       })
       .expect(400);
@@ -309,20 +309,20 @@ describe("/api/events/:eventId", () => {
       .send({
         publisher: "Sophia Green",
         host: "Tech Innovations Inc.",
-        eventName: "AI and the Future of Work",
-        eventStart: "2025-02-10T09:00:00",
-        eventEnd: "2025-02-10T15:00:00",
-        eventDescription:
+        event_name: "AI and the Future of Work",
+        event_start: "2025-02-10T09:00:00",
+        event_end: "2025-02-10T15:00:00",
+        event_description:
           "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        createdAt: "2025-01-05T12:30:00",
+        created_att: "2025-01-05T12:30:00",
         category: "AI & Technology",
-        isOnline: true,
+        is_online: true,
         venue: null,
         venueAddress: null,
-        isFree: false,
+        is_free: false,
         cost: 100,
-        isLimit: true,
-        attendeeLimit: 200,
+        is_limit: true,
+        attendee_limit: 200,
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(400);
@@ -336,20 +336,20 @@ describe("/api/events/:eventId", () => {
       .send({
         publisher: "Sophia Green",
         host: "Tech Innovations Inc.",
-        eventName: "AI and the Future of Work",
-        eventStart: "2025-02-10T09:00:00",
-        eventEnd: "2025-02-10T15:00:00",
-        eventDescription:
+        event_name: "AI and the Future of Work",
+        event_start: "2025-02-10T09:00:00",
+        event_end: "2025-02-10T15:00:00",
+        event_description:
           "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        createdAt: "2025-01-05T12:30:00",
+        created_att: "2025-01-05T12:30:00",
         category: "AI & Technology",
-        isOnline: true,
+        is_online: true,
         venue: null,
         venueAddress: null,
-        isFree: false,
+        is_free: false,
         cost: 100,
-        isLimit: true,
-        attendeeLimit: 200,
+        is_limit: true,
+        attendee_limit: 200,
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(404);
