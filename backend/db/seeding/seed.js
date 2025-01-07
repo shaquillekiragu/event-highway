@@ -50,6 +50,7 @@ const seed = async ({ eventsData, usersData }) => {
         category VARCHAR(25) NOT NULL,
         is_online BOOLEAN NOT NULL,
         venue VARCHAR(50),
+        venue_address VARCHAR(100),
         is_free BOOLEAN NOT NULL,
         cost INT,
         is_limit BOOLEAN NOT NULL,
