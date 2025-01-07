@@ -3,8 +3,8 @@ const db = require("../connection");
 
 const seed = async ({ eventsData, usersData }) => {
   try {
-    await db.query(`DROP TABLE IF EXISTS users;`);
     await db.query(`DROP TABLE IF EXISTS events;`);
+    await db.query(`DROP TABLE IF EXISTS users;`);
 
     await db.query(
       `CREATE TABLE users (
