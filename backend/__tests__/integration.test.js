@@ -44,7 +44,7 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("category");
       expect(event).toHaveProperty("is_online");
       expect(event).toHaveProperty("venue");
-      expect(event).toHaveProperty("venueAddress");
+      expect(event).toHaveProperty("venue_address");
       expect(event).toHaveProperty("is_free");
       expect(event).toHaveProperty("cost");
       expect(event).toHaveProperty("is_limit");
@@ -68,7 +68,7 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("category");
       expect(event).toHaveProperty("is_online");
       expect(event).toHaveProperty("venue");
-      expect(event).toHaveProperty("venueAddress");
+      expect(event).toHaveProperty("venue_address");
       expect(event).toHaveProperty("is_free");
       expect(event).toHaveProperty("cost");
       expect(event).toHaveProperty("is_limit");
@@ -92,7 +92,7 @@ describe("/api/events", () => {
         category: "Technology",
         is_online: false,
         venue: "ExCel London",
-        venueAddress:
+        venue_address:
           "One Western Gateway, Royal Victoria Dock, London E16 1XL",
         is_free: true,
         cost: 0,
@@ -116,7 +116,7 @@ describe("/api/events", () => {
     expect(event).toHaveProperty("is_online", false);
     expect(event).toHaveProperty("venue", "ExCel London");
     expect(event).toHaveProperty(
-      "venueAddress",
+      "venue_address",
       "One Western Gateway, Royal Victoria Dock, London E16 1XL"
     );
     expect(event).toHaveProperty("is_free", true);
@@ -200,7 +200,7 @@ describe("/api/events/:eventId", () => {
     expect(event).toHaveProperty("category");
     expect(event).toHaveProperty("is_online");
     expect(event).toHaveProperty("venue");
-    expect(event).toHaveProperty("venueAddress");
+    expect(event).toHaveProperty("venue_address");
     expect(event).toHaveProperty("is_free");
     expect(event).toHaveProperty("cost");
     expect(event).toHaveProperty("is_limit");
@@ -236,7 +236,7 @@ describe("/api/events/:eventId", () => {
         category: "AI & Technology",
         is_online: true,
         venue: null,
-        venueAddress: null,
+        venue_address: null,
         is_free: false,
         cost: 100,
         is_limit: true,
@@ -258,7 +258,7 @@ describe("/api/events/:eventId", () => {
     expect(event).toHaveProperty("category", "AI & Technology");
     expect(event).toHaveProperty("is_online", true);
     expect(event).toHaveProperty("venue", null);
-    expect(event).toHaveProperty("venueAddress", null);
+    expect(event).toHaveProperty("venue_address", null);
     expect(event).toHaveProperty("is_free", false);
     expect(event).toHaveProperty("cost", 100);
     expect(event).toHaveProperty("is_limit", true);
@@ -291,7 +291,7 @@ describe("/api/events/:eventId", () => {
         category: "AI & Technology",
         is_online: true,
         venue: null,
-        venueAddress: null,
+        venue_address: null,
         is_free: false,
         cost: 100,
         is_limit: true,
@@ -318,7 +318,7 @@ describe("/api/events/:eventId", () => {
         category: "AI & Technology",
         is_online: true,
         venue: null,
-        venueAddress: null,
+        venue_address: null,
         is_free: false,
         cost: 100,
         is_limit: true,
@@ -345,7 +345,7 @@ describe("/api/events/:eventId", () => {
         category: "AI & Technology",
         is_online: true,
         venue: null,
-        venueAddress: null,
+        venue_address: null,
         is_free: false,
         cost: 100,
         is_limit: true,
