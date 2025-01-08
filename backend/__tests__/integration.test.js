@@ -28,8 +28,8 @@ describe.only("/api", () => {
   });
 });
 
-describe("/api/events", () => {
-  test.only("GET 200 - Responds with a list of events", async () => {
+describe.only("/api/events", () => {
+  test("GET 200 - Responds with a list of events", async () => {
     const {
       body: { events },
     } = await request(app).get("/api/events").expect(200);
@@ -52,7 +52,7 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("thumbnail");
     });
   });
-  test.only("GET 200 - Responds with a list if all events if no query given after query character", async () => {
+  test("GET 200 - Responds with a list if all events if no query given after query character", async () => {
     const {
       body: { events },
     } = await request(app).get("/api/events?").expect(200);
@@ -75,18 +75,19 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("thumbnail");
     });
   });
-  test.only("POST 201 - Adds an event to the database, given inputted information from the user", async () => {
+  test("POST 201 - Adds an event to the database, given inputted information from the user", async () => {
     const {
       body: { event },
     } = await request(app)
       .post("/api/events")
       .send({
-        publisher: "Henry Brown",
+        publisher: "Ye",
         host: "Amelia Events Ltd.",
         event_name: "Digital Future Conference",
         event_start: "2025-01-15T10:00:00",
         event_end: "2025-01-15T16:30:00",
-        event_description: "A conference.",
+        event_description:
+          "A conference exploring the latest trends in digital technology and innovation.",
         created_at: "2025-01-01T14:20:00",
         category: "Technology",
         is_online: false,
@@ -101,7 +102,7 @@ describe("/api/events", () => {
           "https://example.com/thumbnails/digital_future_conference.jpg",
       })
       .expect(201);
-    expect(event).toHaveProperty("publisher", "Henry Brown");
+    expect(event).toHaveProperty("publisher", "Ye");
     expect(event).toHaveProperty("host", "Amelia Events Ltd.");
     expect(event).toHaveProperty("event_name", "Digital Future Conference");
     expect(event).toHaveProperty("event_start", "2025-01-15T10:00:00");
@@ -127,18 +128,18 @@ describe("/api/events", () => {
       "https://example.com/thumbnails/digital_future_conference.jpg"
     );
   });
-  test.only("POST 400 - Empty events object received", async () => {
+  test("POST 400 - Empty events object received", async () => {
     const {
       body: { msg },
     } = await request(app).post("/api/events").send({}).expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test.only("POST 400 - Failing schema validation", async () => {
+  test("POST 400 - Failing schema validation", async () => {
     const {
       body: { msg },
     } = await request(app)
       .post("/api/events")
-      .send({ publisher: "Harry Davis" })
+      .send({ publisher: "Ye" })
       .expect(400);
     expect(msg).toBe("Bad Request");
   });

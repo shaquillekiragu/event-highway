@@ -49,28 +49,24 @@ async function insertEvent(
   thumbnail
 ) {
   try {
-    // console.log(is_online, " <<< is_online insertEvent model");
-    // console.log(
-    //   [
-    //     publisher,
-    //     host,
-    //     event_name,
-    //     event_start,
-    //     event_end,
-    //     event_description,
-    //     created_at,
-    //     category,
-    //     is_online,
-    //     venue,
-    //     venue_address,
-    //     is_free,
-    //     cost_in_gbp,
-    //     is_limit,
-    //     attendee_limit,
-    //     thumbnail,
-    //   ],
-    //   " <<< array of props insertEvent model"
-    // );
+    if (!publisher) {
+      return Promise.reject({ status: 400, msg: "Bad Request" });
+    }
+    const trimmedPublisher = publisher.trim();
+
+    const userResult = await db.query(
+      `SELECT display_name FROM users WHERE display_name = $1;`,
+      [trimmedPublisher]
+    );
+
+    if (!userResult.rows.length) {
+      throw {
+        status: 400,
+        msg: `Invalid publisher: ${publisher} does not exist in users table.`,
+      };
+    }
+
+    const display_name = userResult.rows[0].display_name;
     const { rows } = await db.query(
       `INSERT INTO events
       (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail)
@@ -78,7 +74,7 @@ async function insertEvent(
       ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
       RETURNING *;`,
       [
-        publisher,
+        display_name,
         host,
         event_name,
         event_start,
@@ -96,10 +92,10 @@ async function insertEvent(
         thumbnail,
       ]
     );
-    // console.log(rows, " <<< rows insert event model");
     return rows[0];
-  } catch (err) {
-    next(err, " << error");
+  } catch (error) {
+    console.error(error, " << error");
+    throw error;
   }
 }
 
@@ -169,8 +165,9 @@ async function updateEvent(
       });
     }
     return rows[0];
-  } catch (err) {
-    next(err, " << updateEvent error");
+  } catch (error) {
+    console.error(error, " << updateEvent error");
+    throw error;
   }
 }
 

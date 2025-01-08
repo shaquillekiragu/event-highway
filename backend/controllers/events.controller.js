@@ -45,7 +45,6 @@ async function postEvent(request, response, next) {
       attendee_limit,
       thumbnail,
     } = request.body;
-    console.log(is_free, " <<< is_free postEvent controller");
     const event = await insertEvent(
       publisher,
       host,
@@ -64,7 +63,10 @@ async function postEvent(request, response, next) {
       attendee_limit,
       thumbnail
     );
-    console.log(event, " <<< event postEvent controller");
+    const formatDate = (date) => new Date(date).toISOString().slice(0, 19);
+    event.event_start = formatDate(event.event_start);
+    event.event_end = formatDate(event.event_end);
+    event.created_at = formatDate(event.created_at);
     response.status(201).send({ event });
   } catch (err) {
     next(err);
