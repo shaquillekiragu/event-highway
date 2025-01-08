@@ -45,7 +45,7 @@ async function postEvent(request, response, next) {
       attendee_limit,
       thumbnail,
     } = request.body;
-    console.log(is_free, " <<< is_free");
+    // console.log(is_free, " <<< is_free");
     const event = await insertEvent(
       publisher,
       host,
@@ -64,7 +64,7 @@ async function postEvent(request, response, next) {
       attendee_limit,
       thumbnail
     );
-    console.log(event, " <<< event");
+    // console.log(event, " <<< event");
     response.status(201).send({ event });
   } catch (err) {
     next(err);
@@ -75,6 +75,9 @@ async function patchEvent(request, response, next) {
   try {
     const { event_id } = request.params;
     const { changedProperty, newValue } = request.body;
+    console.log(event_id, " <<< event_id");
+    console.log(changedProperty, " <<< changedProperty");
+    console.log(newValue, " <<< newValue");
     const event = await updateEvent(event_id, changedProperty, newValue);
     response.status(200).send({ event });
   } catch (err) {

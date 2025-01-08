@@ -48,29 +48,28 @@ async function insertEvent(
   attendee_limit,
   thumbnail
 ) {
-  console.log(is_online, " <<< is_online");
-  console.log(
-    [
-      publisher,
-      host,
-      event_name,
-      event_start,
-      event_end,
-      event_description,
-      created_at,
-      category,
-      is_online,
-      venue,
-      venue_address,
-      is_free,
-      cost_in_gbp,
-      is_limit,
-      attendee_limit,
-      thumbnail,
-    ],
-    " <<< array of props"
-  );
-
+  // console.log(is_online, " <<< is_online");
+  // console.log(
+  //   [
+  //     publisher,
+  //     host,
+  //     event_name,
+  //     event_start,
+  //     event_end,
+  //     event_description,
+  //     created_at,
+  //     category,
+  //     is_online,
+  //     venue,
+  //     venue_address,
+  //     is_free,
+  //     cost_in_gbp,
+  //     is_limit,
+  //     attendee_limit,
+  //     thumbnail,
+  //   ],
+  //   " <<< array of props"
+  // );
   const { rows } = await db.query(
     `INSERT INTO events
       (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail)
@@ -96,18 +95,18 @@ async function insertEvent(
       thumbnail,
     ]
   );
-  console.log(rows, " <<< rows");
+  // console.log(rows, " <<< rows");
   return rows[0];
 }
 
 async function updateEvent(event_id, changedProperty, newValue) {
-  const { rows } = await db.query(
-    `UPDATE events
-      SET $2 = $3
-      WHERE event_id = $1
-      RETURNING *;`,
-    [event_id, changedProperty, newValue]
-  );
+  const query = `
+    UPDATE events
+    SET ${changedProperty} = $2
+    WHERE event_id = $1
+    RETURNING *;
+  `;
+  const { rows } = await db.query(query, [event_id, newValue]);
   if (!rows.length) {
     return Promise.reject({
       status: 404,
