@@ -152,12 +152,12 @@
     "queries": [],
     "exampleResponse": {
       "user": {
-        "firstName": "Liam",
-        "lastName": "Thompson",
-        "displayName": "Liam Thompson",
+        "first_name": "Liam",
+        "last_name": "Thompson",
+        "display_name": "Liam Thompson",
         "email": "liam.thompson@yahoo.com",
-        "userPassword": "SecurePass123",
-        "isAdmin": false
+        "user_password": "SecurePass123",
+        "is_admin": false
       }
     }
   },
@@ -238,12 +238,12 @@
     "queries": [],
     "exampleResponse": {
       "user": {
-        "firstName": "Liam",
-        "lastName": "Thompson",
-        "displayName": "Liam Thompson",
+        "first_name": "Liam",
+        "last_name": "Thompson",
+        "display_name": "Liam Thompson",
         "email": "liam.thompson@yahoo.com",
-        "userPassword": "SecurePass123",
-        "isAdmin": false
+        "user_password": "SecurePass123",
+        "is_admin": false
       }
     }
   },
@@ -252,12 +252,12 @@
     "queries": [],
     "exampleResponse": {
       "user": {
-        "firstName": "Liam",
-        "lastName": "Thompson",
-        "displayName": "Liam Thompson",
+        "first_name": "Liam",
+        "last_name": "Thompson",
+        "display_name": "Liam Thompson",
         "email": "liam.thompson@yahoo.com",
-        "userPassword": "SecurePass123",
-        "isAdmin": false
+        "user_password": "SecurePass123",
+        "is_admin": false
       }
     }
   }

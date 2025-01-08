@@ -151,20 +151,20 @@ describe.only("/api/users", () => {
     } = await request(app)
       .post("/api/users")
       .send({
-        firstName: "Oleksandr",
-        lastName: "Usyk",
-        displayName: "Oleksandr Usyk",
+        first_name: "Oleksandr",
+        last_name: "Usyk",
+        display_name: "Oleksandr Usyk",
         email: "oleks.usyk@gmail.com",
-        userPassword: "usyk987",
-        isAdmin: false,
+        user_password: "usyk987",
+        is_admin: false,
       })
       .expect(201);
-    expect(user).toHaveProperty("firstName", "Oleksandr");
-    expect(user).toHaveProperty("lastName", "Usyk");
-    expect(user).toHaveProperty("displayName", "Oleksandr Usyk");
+    expect(user).toHaveProperty("first_name", "Oleksandr");
+    expect(user).toHaveProperty("last_name", "Usyk");
+    expect(user).toHaveProperty("display_name", "Oleksandr Usyk");
     expect(user).toHaveProperty("email", "oleks.usyk@gmail.com");
-    expect(user).toHaveProperty("userPassword", "usyk987");
-    expect(user).toHaveProperty("isAdmin", false);
+    expect(user).toHaveProperty("user_password", "usyk987");
+    expect(user).toHaveProperty("is_admin", false);
   });
   test("POST 400 - Empty user object received", async () => {
     const {
@@ -177,7 +177,7 @@ describe.only("/api/users", () => {
       body: { msg },
     } = await request(app)
       .post("/api/users")
-      .send({ firstName: "Oleksandr" })
+      .send({ first_name: "Oleksandr" })
       .expect(400);
     expect(msg).toBe("Bad Request");
   });
@@ -376,12 +376,12 @@ describe("/api/users/:userId", () => {
     const {
       body: { user },
     } = await request(app).get("/api/users/1").expect(200);
-    expect(user).toHaveProperty("firstName");
-    expect(user).toHaveProperty("lastName");
-    expect(user).toHaveProperty("displayName");
+    expect(user).toHaveProperty("first_name");
+    expect(user).toHaveProperty("last_name");
+    expect(user).toHaveProperty("display_name");
     expect(user).toHaveProperty("email");
-    expect(user).toHaveProperty("userPassword");
-    expect(user).toHaveProperty("isAdmin");
+    expect(user).toHaveProperty("user_password");
+    expect(user).toHaveProperty("is_admin");
   });
   test("GET 400 - Invalid id given", async () => {
     const {
@@ -401,20 +401,20 @@ describe("/api/users/:userId", () => {
     } = await request(app)
       .patch("/api/users/1")
       .send({
-        firstName: "Mia",
-        lastName: "Harrison",
-        displayName: "Mia Harrison",
+        first_name: "Mia",
+        last_name: "Harrison",
+        display_name: "Mia Harrison",
         email: "mia.harrison@example.com",
-        userPassword: "MiaSecurePass01",
-        isAdmin: false,
+        user_password: "MiaSecurePass01",
+        is_admin: false,
       })
       .expect(200);
-    expect(user).toHaveProperty("firstName", "Mia");
-    expect(user).toHaveProperty("lastName", "Harrison");
-    expect(user).toHaveProperty("displayName", "Mia Harrison");
+    expect(user).toHaveProperty("first_name", "Mia");
+    expect(user).toHaveProperty("last_name", "Harrison");
+    expect(user).toHaveProperty("display_name", "Mia Harrison");
     expect(user).toHaveProperty("email", "mia.harrison@gmail.com");
-    expect(user).toHaveProperty("userPassword", "MiaSecurePass01");
-    expect(user).toHaveProperty("isAdmin", false);
+    expect(user).toHaveProperty("user_password", "MiaSecurePass01");
+    expect(user).toHaveProperty("is_admin", false);
   });
   test("PATCH 400 - Empty user object received", async () => {
     const {
@@ -428,12 +428,12 @@ describe("/api/users/:userId", () => {
     } = await request(app)
       .patch("/api/users/1")
       .send({
-        firstName: "Mia",
-        lastName: "Harrison",
-        displayName: "Mia Harrison",
+        first_name: "Mia",
+        last_name: "Harrison",
+        display_name: "Mia Harrison",
         email: "mia.harrison@example.com",
-        userPassword: "MiaSecurePass01",
-        isAdmin: 56,
+        user_password: "MiaSecurePass01",
+        is_admin: 56,
       })
       .expect(400);
     expect(msg).toBe("Bad Request");
@@ -444,12 +444,12 @@ describe("/api/users/:userId", () => {
     } = await request(app)
       .patch("/api/users/notAnId")
       .send({
-        firstName: "Mia",
-        lastName: "Harrison",
-        displayName: "Mia Harrison",
+        first_name: "Mia",
+        last_name: "Harrison",
+        display_name: "Mia Harrison",
         email: "mia.harrison@example.com",
-        userPassword: "MiaSecurePass01",
-        isAdmin: false,
+        user_password: "MiaSecurePass01",
+        is_admin: false,
       })
       .expect(400);
     expect(msg).toBe("Bad Request");
@@ -460,12 +460,12 @@ describe("/api/users/:userId", () => {
     } = await request(app)
       .patch("/api/users/999")
       .send({
-        firstName: "Mia",
-        lastName: "Harrison",
-        displayName: "Mia Harrison",
+        first_name: "Mia",
+        last_name: "Harrison",
+        display_name: "Mia Harrison",
         email: "mia.harrison@example.com",
-        userPassword: "MiaSecurePass01",
-        isAdmin: false,
+        user_password: "MiaSecurePass01",
+        is_admin: false,
       })
       .expect(404);
     expect(msg).toBe("user not found");

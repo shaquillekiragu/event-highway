@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS myEvents;
 
 CREATE TABLE myEvents (
     event_id SERIAL PRIMARY KEY,
-    displayName VARCHAR(50) NOT NULL,
+    display_name VARCHAR(50) NOT NULL,
     event_name VARCHAR(100) NOT NULL,
     event_start TIMESTAMP NOT NULL,
     event_end TIMESTAMP NOT NULL,

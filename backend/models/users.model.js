@@ -2,7 +2,7 @@ const db = require("../db/connection");
 
 async function fetchUser(userId) {
   const { rows } = await db.query(
-    `SELECT firstName, lastName, displayName, email, userPassword, isAdmin
+    `SELECT first_name, last_name, display_name, email, user_password, is_admin
       FROM users
       WHERE userId = $1`,
     [userId]
@@ -14,20 +14,20 @@ async function fetchUser(userId) {
 }
 
 async function insertUser(
-  firstName,
-  lastName,
-  displayName,
+  first_name,
+  last_name,
+  display_name,
   email,
-  userPassword,
-  isAdmin
+  user_password,
+  is_admin
 ) {
   const { rows } = await db.query(
     `INSERT INTO users
-      (firstName, lastName, displayName, email, userPassword, isAdmin)
+      (first_name, last_name, display_name, email, user_password, is_admin)
       VALUES
       ($1, $2, $3, $4, $5, $6)
       RETURNING *;`,
-    [firstName, lastName, displayName, email, userPassword, isAdmin]
+    [first_name, last_name, display_name, email, user_password, is_admin]
   );
   return rows[0];
 }

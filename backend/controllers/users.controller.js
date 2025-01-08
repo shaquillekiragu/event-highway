@@ -12,15 +12,21 @@ async function getUser(request, response, next) {
 
 async function postUser(request, response, next) {
   try {
-    const { firstName, lastName, displayName, email, userPassword, isAdmin } =
-      request.body;
-    const user = await insertUser(
-      firstName,
-      lastName,
-      displayName,
+    const {
+      first_name,
+      last_name,
+      display_name,
       email,
-      userPassword,
-      isAdmin
+      user_password,
+      is_admin,
+    } = request.body;
+    const user = await insertUser(
+      first_name,
+      last_name,
+      display_name,
+      email,
+      user_password,
+      is_admin
     );
     response.status(201).send({ user });
   } catch (err) {

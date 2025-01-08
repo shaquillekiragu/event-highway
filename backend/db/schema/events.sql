@@ -1,6 +1,6 @@
 CREATE TABLE events (
     event_id SERIAL PRIMARY KEY,
-    publisher VARCHAR(40) NOT NULL REFERENCES users(displayName),
+    publisher VARCHAR(40) NOT NULL REFERENCES users(display_name),
     host VARCHAR(50) NOT NULL,
     event_name VARCHAR(100) NOT NULL,
     event_start TIMESTAMP NOT NULL,

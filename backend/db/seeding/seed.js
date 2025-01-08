@@ -9,28 +9,28 @@ const seed = async ({ eventsData, usersData }) => {
     await db.query(
       `CREATE TABLE users (
         userId SERIAL PRIMARY KEY,
-        firstName VARCHAR(20) NOT NULL,
-        lastName VARCHAR(20),
-        displayName VARCHAR(40) NOT NULL UNIQUE,
+        first_name VARCHAR(20) NOT NULL,
+        last_name VARCHAR(20),
+        display_name VARCHAR(40) NOT NULL UNIQUE,
         email VARCHAR(50) NOT NULL,
-        userPassword VARCHAR(20) NOT NULL,
-        isAdmin BOOLEAN NOT NULL
+        user_password VARCHAR(20) NOT NULL,
+        is_admin BOOLEAN NOT NULL
       )`
     );
 
     const formattedUserData = usersData.map((user) => {
       return [
-        user.firstName,
-        user.lastName,
-        user.displayName,
+        user.first_name,
+        user.last_name,
+        user.display_name,
         user.email,
-        user.userPassword,
-        user.isAdmin,
+        user.user_password,
+        user.is_admin,
       ];
     });
 
     const usersInsertQuery = format(
-      `INSERT INTO users (firstName, lastName, displayName, email, userPassword, isAdmin)
+      `INSERT INTO users (first_name, last_name, display_name, email, user_password, is_admin)
         VALUES %L;`,
       formattedUserData
     );
@@ -40,7 +40,7 @@ const seed = async ({ eventsData, usersData }) => {
     await db.query(
       `CREATE TABLE events (
         event_id SERIAL PRIMARY KEY,
-        publisher VARCHAR(40) NOT NULL REFERENCES users(displayName),
+        publisher VARCHAR(40) NOT NULL REFERENCES users(display_name),
         host VARCHAR(50) NOT NULL,
         event_name VARCHAR(100) NOT NULL,
         event_start TIMESTAMP NOT NULL,
