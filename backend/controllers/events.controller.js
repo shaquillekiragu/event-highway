@@ -17,8 +17,8 @@ async function getEvents(request, response, next) {
 
 async function getEvent(request, response, next) {
   try {
-    const { eventId } = request.params;
-    const event = await fetchEvent(eventId);
+    const { event_id } = request.params;
+    const event = await fetchEvent(event_id);
     response.status(200).send({ event });
   } catch (err) {
     next(err);
@@ -40,11 +40,12 @@ async function postEvent(request, response, next) {
       venue,
       venue_address,
       is_free,
-      cost,
+      cost_in_gbp,
       is_limit,
       attendee_limit,
       thumbnail,
-    } = request.params;
+    } = request.body;
+    console.log(is_free, " <<< is_free");
     const event = await insertEvent(
       publisher,
       host,
@@ -58,11 +59,12 @@ async function postEvent(request, response, next) {
       venue,
       venue_address,
       is_free,
-      cost,
+      cost_in_gbp,
       is_limit,
       attendee_limit,
       thumbnail
     );
+    console.log(event, " <<< event");
     response.status(201).send({ event });
   } catch (err) {
     next(err);
@@ -71,9 +73,9 @@ async function postEvent(request, response, next) {
 
 async function patchEvent(request, response, next) {
   try {
-    const { eventId } = request.params;
+    const { event_id } = request.params;
     const { changedProperty, newValue } = request.body;
-    const event = await updateEvent(eventId, changedProperty, newValue);
+    const event = await updateEvent(event_id, changedProperty, newValue);
     response.status(200).send({ event });
   } catch (err) {
     next(err);
@@ -82,8 +84,8 @@ async function patchEvent(request, response, next) {
 
 async function deleteEvent(request, response, next) {
   try {
-    const { eventId } = request.params;
-    const event = await removeEvent(eventId);
+    const { event_id } = request.params;
+    const event = await removeEvent(event_id);
     response.status(204).send({ event });
   } catch (err) {
     next(err);

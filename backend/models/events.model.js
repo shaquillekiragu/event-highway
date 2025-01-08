@@ -2,22 +2,27 @@ const db = require("../db/connection");
 
 async function fetchEvents() {
   const { rows } = await db.query(
-    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost, is_limit, attendee_limit, thumbnail
+    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail
       FROM events;`
   );
   if (!rows.length) {
     return Promise.reject({ status: 404, msg: "Events not found" });
   }
-  // console.log(rows, "rows");
   return rows;
 }
 
-async function fetchEvent(eventId) {
+async function fetchEvent(event_id) {
+  if (!event_id) {
+    return Promise.reject({
+      status: 400,
+      msg: "Event Id not provided",
+    });
+  }
   const { rows } = await db.query(
-    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost, is_limit, attendee_limit, thumbnail
+    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail
       FROM events
-      WHERE eventId = $1`,
-    [eventId]
+      WHERE event_id = $1`,
+    [event_id]
   );
   if (!rows.length) {
     return Promise.reject({ status: 404, msg: "Event not found" });
@@ -38,16 +43,39 @@ async function insertEvent(
   venue,
   venue_address,
   is_free,
-  cost,
+  cost_in_gbp,
   is_limit,
   attendee_limit,
   thumbnail
 ) {
+  console.log(is_online, " <<< is_online");
+  console.log(
+    [
+      publisher,
+      host,
+      event_name,
+      event_start,
+      event_end,
+      event_description,
+      created_at,
+      category,
+      is_online,
+      venue,
+      venue_address,
+      is_free,
+      cost_in_gbp,
+      is_limit,
+      attendee_limit,
+      thumbnail,
+    ],
+    " <<< array of props"
+  );
+
   const { rows } = await db.query(
     `INSERT INTO events
-      (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost, is_limit, attendee_limit, thumbnail)
+      (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail)
       VALUES
-      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
       RETURNING *;`,
     [
       publisher,
@@ -62,22 +90,23 @@ async function insertEvent(
       venue,
       venue_address,
       is_free,
-      cost,
+      cost_in_gbp,
       is_limit,
       attendee_limit,
       thumbnail,
     ]
   );
+  console.log(rows, " <<< rows");
   return rows[0];
 }
 
-async function updateEvent(eventId, changedProperty, newValue) {
+async function updateEvent(event_id, changedProperty, newValue) {
   const { rows } = await db.query(
     `UPDATE events
       SET $2 = $3
-      WHERE eventId = $1
+      WHERE event_id = $1
       RETURNING *;`,
-    [eventId, changedProperty, newValue]
+    [event_id, changedProperty, newValue]
   );
   if (!rows.length) {
     return Promise.reject({
@@ -88,12 +117,12 @@ async function updateEvent(eventId, changedProperty, newValue) {
   return rows[0];
 }
 
-async function removeEvent(eventId) {
+async function removeEvent(event_id) {
   const { rows } = await db.query(
     `DELETE FROM events
-      WHERE eventId = $1
+      WHERE event_id = $1
       RETURNING *;`,
-    [eventId]
+    [event_id]
   );
   if (!rows.length) {
     return Promise.reject({

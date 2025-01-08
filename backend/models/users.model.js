@@ -32,13 +32,13 @@ async function insertUser(
   return rows[0];
 }
 
-async function updateUser(eventId, changedProperty, newValue) {
+async function updateUser(event_id, changedProperty, newValue) {
   const { rows } = await db.query(
     `UPDATE events
       SET $2 = $3
-      WHERE eventId = $1
+      WHERE event_id = $1
       RETURNING *;`,
-    [eventId, changedProperty, newValue]
+    [event_id, changedProperty, newValue]
   );
   if (!rows.length) {
     return Promise.reject({

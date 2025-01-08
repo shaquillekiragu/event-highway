@@ -17,7 +17,7 @@
           "venue": "Tech Hub London",
           "venue_address": "10 Finsbury Square, London, EC2A 1AF",
           "is_free": true,
-          "cost": null,
+          "cost_in_gbp": null,
           "is_limit": true,
           "attendee_limit": 150,
           "thumbnail": "https://placeimg.com/300/200/tech"
@@ -35,7 +35,7 @@
           "venue": "Manchester Conference Centre",
           "venue_address": "78 Sackville St, Manchester, M1 3BB",
           "is_free": false,
-          "cost": 20,
+          "cost_in_gbp": 20,
           "is_limit": true,
           "attendee_limit": 50,
           "thumbnail": "https://placeimg.com/300/200/health"
@@ -53,7 +53,7 @@
           "venue": "Edinburgh Castle",
           "venue_address": "Castlehill, Edinburgh, EH1 2NG",
           "is_free": false,
-          "cost": 15,
+          "cost_in_gbp": 15,
           "is_limit": true,
           "attendee_limit": 30,
           "thumbnail": "https://placeimg.com/300/200/culture"
@@ -79,7 +79,7 @@
           "venue": "Tech Hub London",
           "venue_address": "10 Finsbury Square, London, EC2A 1AF",
           "is_free": true,
-          "cost": null,
+          "cost_in_gbp": null,
           "is_limit": true,
           "attendee_limit": 150,
           "thumbnail": "https://placeimg.com/300/200/tech"
@@ -97,7 +97,7 @@
           "venue": "Manchester Conference Centre",
           "venue_address": "78 Sackville St, Manchester, M1 3BB",
           "is_free": false,
-          "cost": 20,
+          "cost_in_gbp": 20,
           "is_limit": true,
           "attendee_limit": 50,
           "thumbnail": "https://placeimg.com/300/200/health"
@@ -115,7 +115,7 @@
           "venue": "Edinburgh Castle",
           "venue_address": "Castlehill, Edinburgh, EH1 2NG",
           "is_free": false,
-          "cost": 15,
+          "cost_in_gbp": 15,
           "is_limit": true,
           "attendee_limit": 30,
           "thumbnail": "https://placeimg.com/300/200/culture"
@@ -140,7 +140,7 @@
         "venue": "Tech Hub London",
         "venue_address": "10 Finsbury Square, London, EC2A 1AF",
         "is_free": true,
-        "cost": null,
+        "cost_in_gbp": null,
         "is_limit": true,
         "attendee_limit": 150,
         "thumbnail": "https://placeimg.com/300/200/tech"
@@ -161,8 +161,8 @@
       }
     }
   },
-  "GET /api/events/:eventId": {
-    "description": "Serves a single event object that has been fetched using an eventId",
+  "GET /api/events/:event_id": {
+    "description": "Serves a single event object that has been fetched using an event_id",
     "queries": [],
     "exampleResponse": {
       "event": {
@@ -178,15 +178,15 @@
         "venue": "Tech Hub London",
         "venue_address": "10 Finsbury Square, London, EC2A 1AF",
         "is_free": true,
-        "cost": null,
+        "cost_in_gbp": null,
         "is_limit": true,
         "attendee_limit": 150,
         "thumbnail": "https://placeimg.com/300/200/tech"
       }
     }
   },
-  "PATCH /api/events/:eventId": {
-    "description": "Serves a single event object that has been updated using an eventId",
+  "PATCH /api/events/:event_id": {
+    "description": "Serves a single event object that has been updated using an event_id",
     "queries": [],
     "exampleResponse": {
       "event": {
@@ -202,15 +202,15 @@
         "venue": "Tech Hub London",
         "venue_address": "10 Finsbury Square, London, EC2A 1AF",
         "is_free": true,
-        "cost": null,
+        "cost_in_gbp": null,
         "is_limit": true,
         "attendee_limit": 150,
         "thumbnail": "https://placeimg.com/300/200/tech"
       }
     }
   },
-  "DELETE /api/events/:eventId": {
-    "description": "Serves a single event object that has been deleted using an eventId",
+  "DELETE /api/events/:event_id": {
+    "description": "Serves a single event object that has been deleted using an event_id",
     "queries": [],
     "exampleResponse": {
       "event": {
@@ -226,7 +226,7 @@
         "venue": "Tech Hub London",
         "venue_address": "10 Finsbury Square, London, EC2A 1AF",
         "is_free": true,
-        "cost": null,
+        "cost_in_gbp": null,
         "is_limit": true,
         "attendee_limit": 150,
         "thumbnail": "https://placeimg.com/300/200/tech"

@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS myEvents;
 
 CREATE TABLE myEvents (
-    eventId SERIAL PRIMARY KEY,
+    event_id SERIAL PRIMARY KEY,
     displayName VARCHAR(50) NOT NULL,
     event_name VARCHAR(100) NOT NULL,
     event_start TIMESTAMP NOT NULL,
@@ -10,9 +10,9 @@ CREATE TABLE myEvents (
     created_at TIMESTAMP NOT NULL,
     category VARCHAR(25) NOT NULL,
     is_online BOOLEAN NOT NULL,
-    venue VARCHAR(50),
+    venue VARCHAR(100),
     is_free BOOLEAN NOT NULL,
-    cost INT,
+    cost_in_gbp INT,
     is_limit BOOLEAN NOT NULL,
     attendee_limit INT,
     thumbnail VARCHAR(250)

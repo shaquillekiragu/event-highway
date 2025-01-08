@@ -28,11 +28,11 @@ app.get("/api/events", getEvents);
 
 app.post("/api/events", postEvent);
 
-app.get("/api/events/:eventId", getEvent);
+app.get("/api/events/:event_id", getEvent);
 
-app.patch("/api/events/:eventId", patchEvent);
+app.patch("/api/events/:event_id", patchEvent);
 
-app.delete("/api/events/:eventId", deleteEvent);
+app.delete("/api/events/:event_id", deleteEvent);
 
 app.post("/api/users", postUser);
 
@@ -47,9 +47,9 @@ app.all("*", (request, response) => {
 // ERROR HANDLING:
 
 app.use((err, request, response, next) => {
-  //   console.log(err, " << error 1");
-  //   console.log(err.status, " << error status 1");
-  //   console.log(err.msg, " << error msg 1");
+  //   console.log(err, " < error 1");
+  //   console.log(err.status, " < error status 1");
+  //   console.log(err.msg, " < error msg 1");
   if (err.status && err.msg) {
     response.status(err.status).send({ msg: err.msg });
   }
@@ -57,8 +57,8 @@ app.use((err, request, response, next) => {
 });
 
 app.use((err, request, response, next) => {
-  //   console.log(err, " << error 2");
-  //   console.log(err.code, " << error code 2");
+  //   console.log(err, " < error 2");
+  //   console.log(err.code, " < error code 2");
   if (err.code === "22P02" || err.code === "23502") {
     response.status(400).send({ msg: "Bad Request" });
   } else if (err.code === "23503") {

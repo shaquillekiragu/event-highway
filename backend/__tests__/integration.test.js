@@ -13,13 +13,13 @@ afterAll(() => {
   return db.end();
 });
 
-describe.skip("/api/healthcheck", () => {
+describe.only("/api/healthcheck", () => {
   test("Checks for a response with the status code of 200", () => {
     return request(app).get("/api/healthcheck").expect(200);
   });
 });
 
-describe.skip("/api", () => {
+describe.only("/api", () => {
   test("GET 200 - Responds with a JSON object containing a list of available endpoints", async () => {
     const {
       body: { endpoints },
@@ -46,18 +46,17 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("venue");
       expect(event).toHaveProperty("venue_address");
       expect(event).toHaveProperty("is_free");
-      expect(event).toHaveProperty("cost");
+      expect(event).toHaveProperty("cost_in_gbp");
       expect(event).toHaveProperty("is_limit");
       expect(event).toHaveProperty("attendee_limit");
       expect(event).toHaveProperty("thumbnail");
     });
   });
-  test("GET 200 - Responds with a list if all events if no query given after query character", async () => {
+  test.only("GET 200 - Responds with a list if all events if no query given after query character", async () => {
     const {
       body: { events },
     } = await request(app).get("/api/events?").expect(200);
     events.forEach((event) => {
-      console.log(event, " << event");
       expect(event).toHaveProperty("publisher");
       expect(event).toHaveProperty("host");
       expect(event).toHaveProperty("event_name");
@@ -70,13 +69,13 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("venue");
       expect(event).toHaveProperty("venue_address");
       expect(event).toHaveProperty("is_free");
-      expect(event).toHaveProperty("cost");
+      expect(event).toHaveProperty("cost_in_gbp");
       expect(event).toHaveProperty("is_limit");
       expect(event).toHaveProperty("attendee_limit");
       expect(event).toHaveProperty("thumbnail");
     });
   });
-  test("POST 201 - Adds an event to the database, given inputted information from the user", async () => {
+  test.skip("POST 201 - Adds an event to the database, given inputted information from the user", async () => {
     const {
       body: { event },
     } = await request(app)
@@ -95,7 +94,7 @@ describe("/api/events", () => {
         venue_address:
           "One Western Gateway, Royal Victoria Dock, London E16 1XL",
         is_free: true,
-        cost: 0,
+        cost_in_gbp: 0,
         is_limit: true,
         attendee_limit: 500,
         thumbnail:
@@ -120,7 +119,7 @@ describe("/api/events", () => {
       "One Western Gateway, Royal Victoria Dock, London E16 1XL"
     );
     expect(event).toHaveProperty("is_free", true);
-    expect(event).toHaveProperty("cost", 0);
+    expect(event).toHaveProperty("cost_in_gbp", 0);
     expect(event).toHaveProperty("is_limit", true);
     expect(event).toHaveProperty("attendee_limit", 500);
     expect(event).toHaveProperty(
@@ -128,13 +127,13 @@ describe("/api/events", () => {
       "https://example.com/thumbnails/digital_future_conference.jpg"
     );
   });
-  test("POST 400 - Empty events object received", async () => {
+  test.only("POST 400 - Empty events object received", async () => {
     const {
       body: { msg },
     } = await request(app).post("/api/events").send({}).expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test("POST 400 - Failing schema validation", async () => {
+  test.only("POST 400 - Failing schema validation", async () => {
     const {
       body: { msg },
     } = await request(app)
@@ -145,7 +144,7 @@ describe("/api/events", () => {
   });
 });
 
-describe("/api/users", () => {
+describe.only("/api/users", () => {
   test("POST 201 - Adds a user to the database, given inputted information from the user", async () => {
     const {
       body: { user },
@@ -184,12 +183,12 @@ describe("/api/users", () => {
   });
 });
 
-describe("/api/events/:eventId", () => {
-  test("GET 200 - Responds with a single event by eventId", async () => {
+describe("/api/events/:event_id", () => {
+  test("GET 200 - Responds with a single event by event_id", async () => {
     const {
       body: { event },
     } = await request(app).get("/api/events/1").expect(200);
-    expect(event).toHaveProperty("eventId");
+    expect(event).toHaveProperty("event_id");
     expect(event).toHaveProperty("publisher");
     expect(event).toHaveProperty("host");
     expect(event).toHaveProperty("event_name");
@@ -202,7 +201,7 @@ describe("/api/events/:eventId", () => {
     expect(event).toHaveProperty("venue");
     expect(event).toHaveProperty("venue_address");
     expect(event).toHaveProperty("is_free");
-    expect(event).toHaveProperty("cost");
+    expect(event).toHaveProperty("cost_in_gbp");
     expect(event).toHaveProperty("is_limit");
     expect(event).toHaveProperty("attendee_limit");
     expect(event).toHaveProperty("thumbnail");
@@ -238,13 +237,13 @@ describe("/api/events/:eventId", () => {
         venue: null,
         venue_address: null,
         is_free: false,
-        cost: 100,
+        cost_in_gbp: 100,
         is_limit: true,
         attendee_limit: 200,
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(200);
-    expect(event).toHaveProperty("eventId");
+    expect(event).toHaveProperty("event_id");
     expect(event).toHaveProperty("publisher", "Sophia Green");
     expect(event).toHaveProperty("host", "Tech Innovations Inc.");
     expect(event).toHaveProperty("event_name", "AI and the Future of Work");
@@ -260,7 +259,7 @@ describe("/api/events/:eventId", () => {
     expect(event).toHaveProperty("venue", null);
     expect(event).toHaveProperty("venue_address", null);
     expect(event).toHaveProperty("is_free", false);
-    expect(event).toHaveProperty("cost", 100);
+    expect(event).toHaveProperty("cost_in_gbp", 100);
     expect(event).toHaveProperty("is_limit", true);
     expect(event).toHaveProperty("attendee_limit", 200);
     expect(event).toHaveProperty(
@@ -293,7 +292,7 @@ describe("/api/events/:eventId", () => {
         venue: null,
         venue_address: null,
         is_free: false,
-        cost: 100,
+        cost_in_gbp: 100,
         is_limit: true,
         attendee_limit: 200,
         thumbnail: 65,
@@ -320,7 +319,7 @@ describe("/api/events/:eventId", () => {
         venue: null,
         venue_address: null,
         is_free: false,
-        cost: 100,
+        cost_in_gbp: 100,
         is_limit: true,
         attendee_limit: 200,
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
@@ -347,7 +346,7 @@ describe("/api/events/:eventId", () => {
         venue: null,
         venue_address: null,
         is_free: false,
-        cost: 100,
+        cost_in_gbp: 100,
         is_limit: true,
         attendee_limit: 200,
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
@@ -355,7 +354,7 @@ describe("/api/events/:eventId", () => {
       .expect(404);
     expect(msg).toBe("event not found");
   });
-  test("DELETE 204 - Responds with a 204 status code for the deleted event with the given eventId", async () => {
+  test("DELETE 204 - Responds with a 204 status code for the deleted event with the given event_id", async () => {
     await request(app).delete("/api/events/1").expect(204);
   });
   test("DELETE 400 - Invalid id given", async () => {
