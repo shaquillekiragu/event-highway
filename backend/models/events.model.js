@@ -48,72 +48,130 @@ async function insertEvent(
   attendee_limit,
   thumbnail
 ) {
-  // console.log(is_online, " <<< is_online");
-  // console.log(
-  //   [
-  //     publisher,
-  //     host,
-  //     event_name,
-  //     event_start,
-  //     event_end,
-  //     event_description,
-  //     created_at,
-  //     category,
-  //     is_online,
-  //     venue,
-  //     venue_address,
-  //     is_free,
-  //     cost_in_gbp,
-  //     is_limit,
-  //     attendee_limit,
-  //     thumbnail,
-  //   ],
-  //   " <<< array of props"
-  // );
-  const { rows } = await db.query(
-    `INSERT INTO events
+  try {
+    // console.log(is_online, " <<< is_online insertEvent model");
+    // console.log(
+    //   [
+    //     publisher,
+    //     host,
+    //     event_name,
+    //     event_start,
+    //     event_end,
+    //     event_description,
+    //     created_at,
+    //     category,
+    //     is_online,
+    //     venue,
+    //     venue_address,
+    //     is_free,
+    //     cost_in_gbp,
+    //     is_limit,
+    //     attendee_limit,
+    //     thumbnail,
+    //   ],
+    //   " <<< array of props insertEvent model"
+    // );
+    const { rows } = await db.query(
+      `INSERT INTO events
       (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail)
       VALUES
       ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
       RETURNING *;`,
-    [
-      publisher,
-      host,
-      event_name,
-      event_start,
-      event_end,
-      event_description,
-      created_at,
-      category,
-      is_online,
-      venue,
-      venue_address,
-      is_free,
-      cost_in_gbp,
-      is_limit,
-      attendee_limit,
-      thumbnail,
-    ]
-  );
-  // console.log(rows, " <<< rows");
-  return rows[0];
+      [
+        publisher,
+        host,
+        event_name,
+        event_start,
+        event_end,
+        event_description,
+        created_at,
+        category,
+        is_online,
+        venue,
+        venue_address,
+        is_free,
+        cost_in_gbp,
+        is_limit,
+        attendee_limit,
+        thumbnail,
+      ]
+    );
+    // console.log(rows, " <<< rows insert event model");
+    return rows[0];
+  } catch (err) {
+    next(err, " << error");
+  }
 }
 
-async function updateEvent(event_id, changedProperty, newValue) {
-  const query = `
-    UPDATE events
-    SET ${changedProperty} = $2
+async function updateEvent(
+  event_id,
+  host,
+  event_name,
+  event_start,
+  event_end,
+  event_description,
+  category,
+  is_online,
+  venue,
+  venue_address,
+  is_free,
+  cost_in_gbp,
+  is_limit,
+  attendee_limit,
+  thumbnail
+) {
+  try {
+    console.log(is_free, " <<< is_free updateEvent model");
+    const { rows } = await db.query(
+      `UPDATE events
+     SET 
+      host = $2,
+      event_name = $3,
+      event_start = $4,
+      event_end = $5,
+      event_description = $6,
+      category = $7,
+      is_online = $8,
+      venue = $9,
+      venue_address = $10,
+      is_free = $11,
+      cost_in_gbp = $12,
+      is_limit = $13,
+      attendee_limit = $14,
+      thumbnail = $15
     WHERE event_id = $1
-    RETURNING *;
-  `;
-  const { rows } = await db.query(query, [event_id, newValue]);
-  if (!rows.length) {
-    return Promise.reject({
-      status: 404,
-      msg: "Event not found",
-    });
+    RETURNING *;`,
+      [
+        event_id,
+        publisher,
+        host,
+        event_name,
+        event_start,
+        event_end,
+        event_description,
+        created_at,
+        category,
+        is_online,
+        venue,
+        venue_address,
+        is_free,
+        cost_in_gbp,
+        is_limit,
+        attendee_limit,
+        thumbnail,
+      ]
+    );
+    console.log(rows[0], " <<< rows[0] updateEvent model");
+    if (!rows.length) {
+      return Promise.reject({
+        status: 404,
+        msg: "Event not found",
+      });
+    }
+    return rows[0];
+  } catch (err) {
+    next(err, " << updateEvent error");
   }
-  return rows[0];
 }
 
 async function removeEvent(event_id) {

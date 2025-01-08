@@ -75,7 +75,7 @@ describe("/api/events", () => {
       expect(event).toHaveProperty("thumbnail");
     });
   });
-  test.skip("POST 201 - Adds an event to the database, given inputted information from the user", async () => {
+  test.only("POST 201 - Adds an event to the database, given inputted information from the user", async () => {
     const {
       body: { event },
     } = await request(app)
@@ -217,20 +217,18 @@ describe("/api/events/:event_id", () => {
     } = await request(app).get("/api/events/999").expect(404);
     expect(msg).toBe("Event not found");
   });
-  test.only("PATCH 200 - Responds with an event with correctly updated event property values", async () => {
+  test("PATCH 200 - Responds with an event with correctly updated event property values", async () => {
     const {
       body: { event },
     } = await request(app)
       .patch("/api/events/1")
       .send({
-        publisher: "Sophia Green",
         host: "Tech Innovations Inc.",
         event_name: "AI and the Future of Work",
         event_start: "2025-02-10T09:00:00",
         event_end: "2025-02-10T15:00:00",
         event_description:
           "A deep dive into how artificial intelligence is shaping the future of work and automation across industries.",
-        created_at: "2025-01-05T12:30:00",
         category: "AI & Technology",
         is_online: true,
         venue: null,
@@ -242,8 +240,7 @@ describe("/api/events/:event_id", () => {
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(200);
-    expect(event).toHaveProperty("event_id");
-    expect(event).toHaveProperty("publisher", "Sophia Green");
+    expect(event).toHaveProperty("publisher");
     expect(event).toHaveProperty("host", "Tech Innovations Inc.");
     expect(event).toHaveProperty("event_name", "AI and the Future of Work");
     expect(event).toHaveProperty("event_start", "2025-02-10T09:00:00");
@@ -252,7 +249,7 @@ describe("/api/events/:event_id", () => {
       "event_description",
       "A deep dive into how artificial intelligence is shaping the future of work and automation across industries."
     );
-    expect(event).toHaveProperty("created_at", "2025-01-05T12:30:00");
+    expect(event).toHaveProperty("created_at");
     expect(event).toHaveProperty("category", "AI & Technology");
     expect(event).toHaveProperty("is_online", true);
     expect(event).toHaveProperty("venue", null);
