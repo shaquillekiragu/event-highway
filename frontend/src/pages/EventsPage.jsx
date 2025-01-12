@@ -7,11 +7,14 @@ function EventsPage() {
   const [eventsList, setEventsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log("ONE");
+
   useEffect(() => {
     async function fetchEvents() {
       try {
         const response = await getEvents();
         setEventsList(response.data.events);
+        console.log(eventsList, " <<< eventsList");
         setIsLoading(false);
       } catch (err) {
         console.error(err, " << error");
@@ -24,15 +27,14 @@ function EventsPage() {
     return <Loading />;
   }
   return (
-    <ul>
-      {eventsList.map((event) => {
-        return (
-          <li>
-            <EventCard event={event} />
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <h1>HELLO</h1>
+      {/* <ul>
+        {eventsList.map((event) => {
+          return <li>{event}</li>;
+        })}
+      </ul> */}
+    </>
   );
 }
 
