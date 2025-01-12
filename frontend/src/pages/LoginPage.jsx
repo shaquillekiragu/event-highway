@@ -7,9 +7,10 @@ import "../stylesheets/LoginPage.css";
 
 function LoginPage() {
   const [users, setUsers] = useState([]);
-  const [emailAddress, setEmailAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [invalidMsg, setInvalidMsg] = useState(false);
+  const [email, setEmailAddress] = useState("");
+  const [user_password, setUserPassword] = useState("");
+  const [invalidEmailMsg, setInvalidEmailMsg] = useState(false);
+  const [invalidPasswordMsg, setInvalidPasswordMsg] = useState(false);
   const [hasAttemptedLogin, setHasAttemptedLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,22 +36,27 @@ function LoginPage() {
   }
 
   function handlePasswordChange(event) {
-    setPassword(event.target.value);
+    setUserPassword(event.target.value);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     setHasAttemptedLogin(true);
-    const isValidUsername = users.some((user) => {
-      return user.username === username;
+    const isValidEmail = users.some((user) => {
+      return user.email === email;
     });
-    if (isValidUsername) {
-      setAuthUser({ emailAddress: emailAddress });
+    const attemptedUser = users.filter((user) => {
+      return user.email === email;
+    });
+    if (!isValidEmail) {
+      setInvalidEmailMsg(true);
+    } else if (attemptedUser.user_password !== user_password) {
+      setInvalidPasswordMsg(true);
+    } else {
+      setAuthUser({ email: email });
       setIsLoggedIn(true);
       setInvalidMsg(false);
       navigate("/home");
-    } else {
-      setInvalidMsg(true);
     }
   }
 
@@ -65,18 +71,18 @@ function LoginPage() {
         <label htmlFor="email">Email Address: </label>
         <input
           placeholder="Enter your email address..."
-          value={emailAddress}
+          value={email}
           id="email"
           type="text"
           onChange={handleEmailChange}
           required
         />
         <br />
-        <label htmlFor="password">Password: </label>
+        <label htmlFor="user_password">Password: </label>
         <input
           placeholder="Enter your password..."
-          value={password}
-          id="password"
+          value={user_password}
+          id="user_password"
           type="password"
           onChange={handlePasswordChange}
           required
@@ -86,9 +92,16 @@ function LoginPage() {
           Login
         </button>
       </form>
-      {invalidMsg ? (
+      {invalidEmailMsg ? (
         <span id="invalidMsg">
           Invalid email. Please enter in a valid email address.
+        </span>
+      ) : (
+        <></>
+      )}
+      {invalidPasswordMsg ? (
+        <span id="invalidMsg">
+          Incorrect password. Please enter the correct password.
         </span>
       ) : (
         <></>

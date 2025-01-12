@@ -7,3 +7,7 @@ body {
   overflow-x: hidden;
   list-style: none;
 }
+
+#invalidMsg {
+  color: red;
+}
