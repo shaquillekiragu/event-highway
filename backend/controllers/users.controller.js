@@ -37,8 +37,23 @@ async function postUser(request, response, next) {
 async function patchUser(request, response, next) {
   try {
     const { userId } = request.params;
-    const { changedProperty, newValue } = request.body;
-    const user = await updateUser(userId, changedProperty, newValue);
+    const {
+      first_name,
+      last_name,
+      display_name,
+      email,
+      user_password,
+      is_admin,
+    } = request.body;
+    const user = await updateUser(
+      userId,
+      first_name,
+      last_name,
+      display_name,
+      email,
+      user_password,
+      is_admin
+    );
     response.status(200).send({ user });
   } catch (err) {
     next(err);
