@@ -1,15 +1,21 @@
 import axios from "axios";
 
-export default function getEvents() {
-  return axios.get("https://localhost:9090/api/events");
+export default async function getEvents() {
+  try {
+    const response = await axios.get("http://localhost:9090/api/events");
+    console.log(response.data, " <<< response data");
+    return response;
+  } catch (err) {
+    console.error("Error fetching events:", err.message || err);
+  }
 }
 
 export function getEvent(event_id) {
-  return axios.get(`https://localhost:9090/api/events/:${event_id}`);
+  return axios.get(`http://localhost:9090/api/events/:${event_id}`);
 }
 
 export function getUser(user_id) {
-  return axios.get(`https://localhost:9090/api/users/:${user_id}`);
+  return axios.get(`http://localhost:9090/api/users/:${user_id}`);
 }
 
 export function postEvent(
@@ -30,7 +36,7 @@ export function postEvent(
   attendee_limit,
   thumbnail
 ) {
-  return axios.post("https://localhost:9090/api/events", {
+  return axios.post("http://localhost:9090/api/events", {
     publisher,
     host,
     event_name,
@@ -58,7 +64,7 @@ export function postUser(
   user_password,
   is_admin
 ) {
-  return axios.post("https://localhost:9090/api/users", {
+  return axios.post("http://localhost:9090/api/users", {
     first_name,
     last_name,
     display_name,
@@ -87,7 +93,7 @@ export function patchEvent(
   attendee_limit,
   thumbnail
 ) {
-  return axios.patch(`https://localhost:9090/api/events/:${event_id}`, {
+  return axios.patch(`http://localhost:9090/api/events/:${event_id}`, {
     publisher,
     host,
     event_name,
@@ -116,7 +122,7 @@ export function patchUser(
   user_password,
   is_admin
 ) {
-  return axios.patch(`https://localhost:9090/api/users/:${user_id}`, {
+  return axios.patch(`http://localhost:9090/api/users/:${user_id}`, {
     first_name,
     last_name,
     display_name,
@@ -127,5 +133,5 @@ export function patchUser(
 }
 
 export function deleteEvent(event_id) {
-  return axios.delete(`https://localhost:9090/api/events/:${event_id}`);
+  return axios.delete(`http://localhost:9090/api/events/:${event_id}`);
 }
