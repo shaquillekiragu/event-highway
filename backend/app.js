@@ -22,6 +22,7 @@ const {
 } = require("./controllers/events.controller");
 
 const {
+  getUsers,
   getUser,
   postUser,
   patchUser,
@@ -42,6 +43,8 @@ app.get("/api/events/:event_id", getEvent);
 app.patch("/api/events/:event_id", patchEvent);
 
 app.delete("/api/events/:event_id", deleteEvent);
+
+app.get("/api/users", getUsers);
 
 app.post("/api/users", postUser);
 

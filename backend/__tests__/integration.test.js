@@ -146,6 +146,19 @@ describe("/api/events", () => {
 });
 
 describe("/api/users", () => {
+  test("GET 200 - Responds with a list of users", async () => {
+    const {
+      body: { users },
+    } = await request(app).get("/api/users").expect(200);
+    users.forEach((user) => {
+      expect(user).toHaveProperty("first_name");
+      expect(user).toHaveProperty("last_name");
+      expect(user).toHaveProperty("display_name");
+      expect(user).toHaveProperty("email");
+      expect(user).toHaveProperty("user_password");
+      expect(user).toHaveProperty("is_admin");
+    });
+  });
   test("POST 201 - Adds a user to the database, given inputted information from the user", async () => {
     const {
       body: { user },

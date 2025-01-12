@@ -1,5 +1,16 @@
 const db = require("../db/connection");
 
+async function fetchUsers() {
+  const { rows } = await db.query(
+    `SELECT first_name, last_name, display_name, email, user_password, is_admin
+      FROM users`
+  );
+  if (!rows.length) {
+    return Promise.reject({ status: 404, msg: "Users not found" });
+  }
+  return rows;
+}
+
 async function fetchUser(userId) {
   const { rows } = await db.query(
     `SELECT first_name, last_name, display_name, email, user_password, is_admin
@@ -49,4 +60,4 @@ async function updateUser(event_id, changedProperty, newValue) {
   return rows[0];
 }
 
-module.exports = { fetchUser, insertUser, updateUser };
+module.exports = { fetchUsers, fetchUser, insertUser, updateUser };

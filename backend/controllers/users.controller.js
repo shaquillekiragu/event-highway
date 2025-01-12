@@ -1,4 +1,18 @@
-const { fetchUser, insertUser, updateUser } = require("../models/users.model");
+const {
+  fetchUsers,
+  fetchUser,
+  insertUser,
+  updateUser,
+} = require("../models/users.model");
+
+async function getUsers(request, response, next) {
+  try {
+    const users = await fetchUsers();
+    return response.status(200).send({ users });
+  } catch (err) {
+    next(err);
+  }
+}
 
 async function getUser(request, response, next) {
   try {
@@ -61,6 +75,7 @@ async function patchUser(request, response, next) {
 }
 
 module.exports = {
+  getUsers,
   getUser,
   postUser,
   patchUser,
