@@ -36,6 +36,7 @@ function EventsPage() {
   }
   return (
     <>
+      <div className="thinRedBanner"></div>
       <h1>Events</h1>
       <button onClick={handleProfileClick}>Profile Page</button>
       <ul>

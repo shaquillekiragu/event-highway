@@ -3,11 +3,58 @@
 }
 
 body {
-  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   overflow-x: hidden;
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.title {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.thinBlackBanner {
+  background-color: black;
+  width: 100vw;
+  height: 6vh;
+  position: relative;
+  left: -5vw;
+  border-top: 1px solid white;
+}
+
+.blackBanner {
+  background-color: black;
+  width: 100vw;
+  height: 10vh;
+  position: relative;
+  left: -5vw;
+}
+
+.thickBlackBanner {
+  background-color: black;
+  width: 100vw;
+  height: 15vh;
+  position: relative;
+  left: -5vw;
+}
+
+button {
+  border: 1px solid black;
+  background-color: white !important;
+  color: black !important;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.logButton {
+  height: 5vh;
+}
+
+button:not(.logButton) {
+  height: 3vh;
 }
 
 #invalidMsg {

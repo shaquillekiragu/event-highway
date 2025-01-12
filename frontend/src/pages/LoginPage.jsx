@@ -65,6 +65,7 @@ function LoginPage() {
   }
   return (
     <>
+      <div className="thinRedBanner"></div>
       <p>Welcome to Event Highway!</p>
       <h3>Login:</h3>
       <form onSubmit={handleSubmit}>

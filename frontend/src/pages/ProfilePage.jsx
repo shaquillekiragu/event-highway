@@ -34,6 +34,7 @@ function ProfilePage() {
   }
   return (
     <>
+      <div className="thinRedBanner"></div>
       <h2>Account Details:</h2>
       <p>First Name: {userInfo.first_name}</p>
       <p>Last Name: {userInfo.last_name}</p>
