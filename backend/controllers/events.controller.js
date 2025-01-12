@@ -9,7 +9,7 @@ const {
 async function getEvents(request, response, next) {
   try {
     const events = await fetchEvents();
-    response.status(200).send({ events });
+    return response.status(200).send({ events });
   } catch (err) {
     next(err);
   }
@@ -19,7 +19,7 @@ async function getEvent(request, response, next) {
   try {
     const { event_id } = request.params;
     const event = await fetchEvent(event_id);
-    response.status(200).send({ event });
+    return response.status(200).send({ event });
   } catch (err) {
     next(err);
   }
@@ -67,7 +67,7 @@ async function postEvent(request, response, next) {
     event.event_start = formatDate(event.event_start);
     event.event_end = formatDate(event.event_end);
     event.created_at = formatDate(event.created_at);
-    response.status(201).send({ event });
+    return response.status(201).send({ event });
   } catch (err) {
     next(err);
   }
@@ -131,7 +131,7 @@ async function patchEvent(request, response, next) {
       attendee_limit,
       thumbnail
     );
-    response.status(200).send({ event });
+    return response.status(200).send({ event });
   } catch (err) {
     next(err);
   }
@@ -141,7 +141,7 @@ async function deleteEvent(request, response, next) {
   try {
     const { event_id } = request.params;
     const event = await removeEvent(event_id);
-    response.status(204).send({ event });
+    return response.status(204).send({ event });
   } catch (err) {
     next(err);
   }

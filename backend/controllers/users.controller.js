@@ -4,7 +4,7 @@ async function getUser(request, response, next) {
   try {
     const { userId } = request.params;
     const user = await fetchUser(userId);
-    response.status(200).send({ user });
+    return response.status(200).send({ user });
   } catch (err) {
     next(err);
   }
@@ -28,7 +28,7 @@ async function postUser(request, response, next) {
       user_password,
       is_admin
     );
-    response.status(201).send({ user });
+    return response.status(201).send({ user });
   } catch (err) {
     next(err);
   }
@@ -54,7 +54,7 @@ async function patchUser(request, response, next) {
       user_password,
       is_admin
     );
-    response.status(200).send({ user });
+    return response.status(200).send({ user });
   } catch (err) {
     next(err);
   }
