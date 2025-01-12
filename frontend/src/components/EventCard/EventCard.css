@@ -1,0 +1,6 @@
+.eventCard {
+  border: 1px solid black;
+  border-radius: 10%;
+  width: fit-content;
+  padding: 2.5vw;
+}
