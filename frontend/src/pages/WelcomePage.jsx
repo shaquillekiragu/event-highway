@@ -25,7 +25,7 @@ function WelcomePage() {
       <label htmlFor="proceed">Proceed without logging in: </label>
       <button
         onClick={() => {
-          navigate("/home");
+          navigate("/events");
         }}
         className="logButton"
       >

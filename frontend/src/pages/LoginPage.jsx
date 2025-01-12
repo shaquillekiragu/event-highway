@@ -56,7 +56,7 @@ function LoginPage() {
       setAuthUser({ email: email });
       setIsLoggedIn(true);
       setInvalidMsg(false);
-      navigate("/home");
+      navigate("/events");
     }
   }
 

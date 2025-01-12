@@ -38,7 +38,7 @@ function SignUpPage() {
       setIsLoggedIn(true);
       console.log(authUser, "authUser");
       console.log(isLoggedIn, "isLoggedIn");
-      navigate("/home");
+      navigate("/events");
     } catch (err) {
       console.error(err);
     }
