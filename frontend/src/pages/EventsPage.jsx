@@ -5,11 +5,8 @@ import Loading from "../components/Loading/Loading.jsx";
 import "../stylesheets/EventsPage.css";
 
 function EventsPage() {
-  console.log("ONE");
   const [eventsList, setEventsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  console.log("TWO");
 
   useEffect(() => {
     async function fetchEvents() {
@@ -30,10 +27,10 @@ function EventsPage() {
   }
   return (
     <>
-      <h1>HELLO</h1>
+      <h1>Events</h1>
       <ul>
         {eventsList.map((event) => {
-          return <li>{<EventCard event={event} />}</li>;
+          return <li key={event.event_id}>{<EventCard event={event} />}</li>;
         })}
       </ul>
     </>

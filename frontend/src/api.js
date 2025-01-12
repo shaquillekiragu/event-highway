@@ -4,11 +4,8 @@ import axios from "axios";
 
 export default async function getEvents() {
   try {
-    console.log("HELLO");
     const response = await axios.get("http://localhost:9090/api/events");
     if (response && response.data) {
-      // Handle the successful response
-      console.log("SUCCESSFUL");
     } else {
       console.error("No data found in the response.");
     }
