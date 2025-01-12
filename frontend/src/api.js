@@ -20,6 +20,10 @@ export function getEvent(event_id) {
   return axios.get(`http://localhost:9090/api/events/:${event_id}`);
 }
 
+export function getUsers() {
+  return axios.get("http://localhost:9090/api/users");
+}
+
 export function getUser(user_id) {
   return axios.get(`http://localhost:9090/api/users/:${user_id}`);
 }
