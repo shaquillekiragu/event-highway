@@ -13,13 +13,13 @@ afterAll(() => {
   return db.end();
 });
 
-describe.only("/api/healthcheck", () => {
+describe("/api/healthcheck", () => {
   test("Checks for a response with the status code of 200", () => {
     return request(app).get("/api/healthcheck").expect(200);
   });
 });
 
-describe.only("/api", () => {
+describe("/api", () => {
   test("GET 200 - Responds with a JSON object containing a list of available endpoints", async () => {
     const {
       body: { endpoints },
@@ -28,7 +28,7 @@ describe.only("/api", () => {
   });
 });
 
-describe.only("/api/events", () => {
+describe("/api/events", () => {
   test("GET 200 - Responds with a list of events", async () => {
     const {
       body: { events },
@@ -145,7 +145,7 @@ describe.only("/api/events", () => {
   });
 });
 
-describe.only("/api/users", () => {
+describe("/api/users", () => {
   test("POST 201 - Adds a user to the database, given inputted information from the user", async () => {
     const {
       body: { user },
@@ -185,7 +185,7 @@ describe.only("/api/users", () => {
 });
 
 describe("/api/events/:event_id", () => {
-  test.only("GET 200 - Responds with a single event by event_id", async () => {
+  test("GET 200 - Responds with a single event by event_id", async () => {
     const {
       body: { event },
     } = await request(app).get("/api/events/1").expect(200);
@@ -206,13 +206,13 @@ describe("/api/events/:event_id", () => {
     expect(event).toHaveProperty("attendee_limit");
     expect(event).toHaveProperty("thumbnail");
   });
-  test.only("GET 400 - Invalid id given", async () => {
+  test("GET 400 - Invalid id given", async () => {
     const {
       body: { msg },
     } = await request(app).get("/api/events/notAnId").expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test.only("GET 404 - Event with that id does not exist", async () => {
+  test("GET 404 - Event with that id does not exist", async () => {
     const {
       body: { msg },
     } = await request(app).get("/api/events/999").expect(404);
@@ -351,16 +351,16 @@ describe("/api/events/:event_id", () => {
       .expect(404);
     expect(msg).toBe("event not found");
   });
-  test.only("DELETE 204 - Responds with a 204 status code for the deleted event with the given event_id", async () => {
+  test("DELETE 204 - Responds with a 204 status code for the deleted event with the given event_id", async () => {
     await request(app).delete("/api/events/1").expect(204);
   });
-  test.only("DELETE 400 - Invalid id given", async () => {
+  test("DELETE 400 - Invalid id given", async () => {
     const {
       body: { msg },
     } = await request(app).delete("/api/events/notAnId").expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test.only("DELETE 404 - Event with that id does not exist", async () => {
+  test("DELETE 404 - Event with that id does not exist", async () => {
     const {
       body: { msg },
     } = await request(app).delete("/api/events/999").expect(404);
@@ -369,7 +369,7 @@ describe("/api/events/:event_id", () => {
 });
 
 describe("/api/users/:userId", () => {
-  test.only("GET 200 - Responds with a single user by userId", async () => {
+  test("GET 200 - Responds with a single user by userId", async () => {
     const {
       body: { user },
     } = await request(app).get("/api/users/1").expect(200);
@@ -380,13 +380,13 @@ describe("/api/users/:userId", () => {
     expect(user).toHaveProperty("user_password");
     expect(user).toHaveProperty("is_admin");
   });
-  test.only("GET 400 - Invalid id given", async () => {
+  test("GET 400 - Invalid id given", async () => {
     const {
       body: { msg },
     } = await request(app).get("/api/users/notAnId").expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test.only("GET 404 - User with that id does not exist", async () => {
+  test("GET 404 - User with that id does not exist", async () => {
     const {
       body: { msg },
     } = await request(app).get("/api/users/999").expect(404);
