@@ -1,8 +1,17 @@
 import axios from "axios";
 
+// GET:
+
 export default async function getEvents() {
   try {
+    console.log("HELLO");
     const response = await axios.get("http://localhost:9090/api/events");
+    if (response && response.data) {
+      // Handle the successful response
+      console.log("SUCCESSFUL");
+    } else {
+      console.error("No data found in the response.");
+    }
     console.log(response.data, " <<< response data");
     return response;
   } catch (err) {
@@ -17,6 +26,8 @@ export function getEvent(event_id) {
 export function getUser(user_id) {
   return axios.get(`http://localhost:9090/api/users/:${user_id}`);
 }
+
+// POST:
 
 export function postEvent(
   publisher,
@@ -73,6 +84,8 @@ export function postUser(
     is_admin,
   });
 }
+
+// PATCH:
 
 export function patchEvent(
   event_id,
@@ -131,6 +144,8 @@ export function patchUser(
     is_admin,
   });
 }
+
+// DELETE:
 
 export function deleteEvent(event_id) {
   return axios.delete(`http://localhost:9090/api/events/:${event_id}`);
