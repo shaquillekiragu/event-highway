@@ -381,8 +381,8 @@ describe("/api/events/:event_id", () => {
   });
 });
 
-describe("/api/users/:userId", () => {
-  test("GET 200 - Responds with a single user by userId", async () => {
+describe("/api/users/:user_id", () => {
+  test("GET 200 - Responds with a single user by user_id", async () => {
     const {
       body: { user },
     } = await request(app).get("/api/users/1").expect(200);

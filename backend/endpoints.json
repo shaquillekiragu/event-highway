@@ -233,8 +233,8 @@
       }
     }
   },
-  "GET /api/users/:userId": {
-    "description": "Serves a single user object that has been fetched using a userId",
+  "GET /api/users/:user_id": {
+    "description": "Serves a single user object that has been fetched using a user_id",
     "queries": [],
     "exampleResponse": {
       "user": {
@@ -247,8 +247,8 @@
       }
     }
   },
-  "PATCH /api/user/:userId": {
-    "description": "Serves a single user object that has been fetched using a userId",
+  "PATCH /api/user/:user_id": {
+    "description": "Serves a single user object that has been fetched using a user_id",
     "queries": [],
     "exampleResponse": {
       "user": {

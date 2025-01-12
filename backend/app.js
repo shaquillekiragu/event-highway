@@ -48,9 +48,9 @@ app.get("/api/users", getUsers);
 
 app.post("/api/users", postUser);
 
-app.get("/api/users/:userId", getUser);
+app.get("/api/users/:user_id", getUser);
 
-app.patch("/api/users/:userId", patchUser);
+app.patch("/api/users/:user_id", patchUser);
 
 app.all("*", (request, response) => {
   return response.status(404).send({ msg: "Endpoint not found" });

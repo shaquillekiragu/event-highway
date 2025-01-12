@@ -11,12 +11,12 @@ async function fetchUsers() {
   return rows;
 }
 
-async function fetchUser(userId) {
+async function fetchUser(user_id) {
   const { rows } = await db.query(
     `SELECT first_name, last_name, display_name, email, user_password, is_admin
       FROM users
-      WHERE userId = $1`,
-    [userId]
+      WHERE user_id = $1`,
+    [user_id]
   );
   if (!rows.length) {
     return Promise.reject({ status: 404, msg: "User not found" });

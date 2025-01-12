@@ -1,5 +1,5 @@
 CREATE TABLE users (
-    userId SERIAL PRIMARY KEY,
+    user_id SERIAL PRIMARY KEY,
     first_name VARCHAR(20) NOT NULL,
     last_name VARCHAR(20),
     display_name VARCHAR(40) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE users (
     is_admin BOOLEAN NOT NULL
 );
 
-INSERT INTO users (userId, first_name, last_name, display_name, email, user_password, is_admin)
+INSERT INTO users (user_id, first_name, last_name, display_name, email, user_password, is_admin)
 VALUES
 (),
 ();

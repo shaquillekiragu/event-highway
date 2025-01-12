@@ -8,7 +8,7 @@ const seed = async ({ eventsData, usersData }) => {
 
     await db.query(
       `CREATE TABLE users (
-        userId SERIAL PRIMARY KEY,
+        user_id SERIAL PRIMARY KEY,
         first_name VARCHAR(20) NOT NULL,
         last_name VARCHAR(20),
         display_name VARCHAR(40) NOT NULL UNIQUE,
