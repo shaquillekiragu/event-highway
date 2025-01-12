@@ -25,9 +25,9 @@ function ProfilePage() {
 
   console.log(userInfo, " <<< userInfo");
 
-  const passwordStarCount = userInfo.user_password.length;
-  console.log(passwordStarCount, " <<< passwordStarCount");
-  const starredPassword = "*".repeat(passwordStarCount);
+  // const passwordStarCount = userInfo.user_password.length;
+  // console.log(passwordStarCount, " <<< passwordStarCount");
+  // const starredPassword = "*".repeat(passwordStarCount);
 
   if (isLoading) {
     return <Loading />;
@@ -39,7 +39,7 @@ function ProfilePage() {
       <p>Last Name: {userInfo.last_name}</p>
       <p>Display Name: {userInfo.display_name}</p>
       <p>Email Address: {userInfo.email}</p>
-      <p>Password: {starredPassword}</p>
+      {/* <p>Password: {starredPassword}</p> */}
       <p>Admin Status: {userInfo.is_admin ? "ADMIN" : "MEMBER"}</p>
     </>
   );
