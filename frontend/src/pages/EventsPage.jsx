@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
-import getEvents from "../../api";
+import getEvents from "../api.js";
 import EventCard from "../components/EventCard/EventCard.jsx";
 import Loading from "../components/Loading/Loading.jsx";
+import "../stylesheets/EventsPage.css";
 
 function EventsPage() {
+  console.log("ONE");
   const [eventsList, setEventsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("ONE");
+  console.log("TWO");
 
   useEffect(() => {
     async function fetchEvents() {
@@ -29,11 +31,11 @@ function EventsPage() {
   return (
     <>
       <h1>HELLO</h1>
-      {/* <ul>
+      <ul>
         {eventsList.map((event) => {
-          return <li>{event}</li>;
+          return <li>{<EventCard event={event} />}</li>;
         })}
-      </ul> */}
+      </ul>
     </>
   );
 }
