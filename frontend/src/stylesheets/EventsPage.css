@@ -2,11 +2,32 @@ h1 {
   text-align: center;
 }
 
-ul {
+.gridContainer {
   display: grid;
-  grid-template-columns: 50% 50%;
-  gap: 5vw;
+  gap: 2vw;
   padding: 0;
   margin-left: 2.5vw;
-  max-width: 90%;
+  width: 100%;
+}
+
+.gridContainer li {
+  list-style: none;
+}
+
+@media (max-width: 699px) {
+  .gridContainer {
+    grid-template-columns: 100%;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1079px) {
+  .gridContainer {
+    grid-template-columns: 50% 50%;
+  }
+}
+
+@media (min-width: 1080px) {
+  .gridContainer {
+    grid-template-columns: 33.3% 33.3% 33.3%;
+  }
 }

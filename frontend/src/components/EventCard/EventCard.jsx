@@ -5,6 +5,7 @@ function EventCard({ event }) {
   return (
     <article className="eventCard">
       <h2>{event.event_name}</h2>
+      {/* <img src={event.thumbnail} alt="Event thumbnail" /> */}
       <p>Publisher: {event.publisher}</p>
       <p>Host: {event.host}</p>
       <p>Event Start: {<FormatDateTime sqlTimestamp={event.event_start} />}</p>
@@ -27,7 +28,6 @@ function EventCard({ event }) {
           ? "Attendee Limit: There is no attendee limit for this event"
           : `Attendee Limit: The attendee limit for this event is ${event.attendee_limit}`}
       </p>
-      {/* <img src={event.thumbnail} alt="Event thumbnail" /> */}
     </article>
   );
 }

@@ -5,7 +5,7 @@ function Loading({ page }) {
     <>
       <div className="loader"></div>
       <p>
-        <em>{page} loading...</em>
+        <em>{page} page loading...</em>
       </p>
     </>
   );
