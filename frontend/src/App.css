@@ -19,7 +19,6 @@ body {
   width: 100vw;
   height: 6vh;
   position: relative;
-  left: -5vw;
   border-top: 1px solid white;
 }
 
@@ -28,7 +27,6 @@ body {
   width: 100vw;
   height: 10vh;
   position: relative;
-  left: -5vw;
 }
 
 .thickBlackBanner {
@@ -36,7 +34,6 @@ body {
   width: 100vw;
   height: 15vh;
   position: relative;
-  left: -5vw;
 }
 
 button {
