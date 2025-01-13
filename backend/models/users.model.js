@@ -1,27 +1,33 @@
 const db = require("../db/connection");
 
 async function fetchUsers() {
-  const { rows } = await db.query(
-    `SELECT first_name, last_name, display_name, email, user_password, is_admin
-      FROM users`
-  );
-  if (!rows.length) {
-    return Promise.reject({ status: 404, msg: "Users not found" });
+  try {
+    const { rows } = await db.query(`SELECT * FROM users`);
+    if (!rows.length) {
+      return Promise.reject({ status: 404, msg: "Users not found" });
+    }
+    return rows;
+  } catch (err) {
+    console.error(err, " << fetchUsers model error");
+    throw err;
   }
-  return rows;
 }
 
 async function fetchUser(user_id) {
-  const { rows } = await db.query(
-    `SELECT first_name, last_name, display_name, email, user_password, is_admin
-      FROM users
+  try {
+    const { rows } = await db.query(
+      `SELECT * FROM users
       WHERE user_id = $1`,
-    [user_id]
-  );
-  if (!rows.length) {
-    return Promise.reject({ status: 404, msg: "User not found" });
+      [user_id]
+    );
+    if (!rows.length) {
+      return Promise.reject({ status: 404, msg: "User not found" });
+    }
+    return rows[0];
+  } catch (err) {
+    console.error(err, " << fetchUser model error");
+    throw err;
   }
-  return rows[0];
 }
 
 async function insertUser(
@@ -32,32 +38,64 @@ async function insertUser(
   user_password,
   is_admin
 ) {
-  const { rows } = await db.query(
-    `INSERT INTO users
+  try {
+    const { rows } = await db.query(
+      `INSERT INTO users
       (first_name, last_name, display_name, email, user_password, is_admin)
       VALUES
       ($1, $2, $3, $4, $5, $6)
       RETURNING *;`,
-    [first_name, last_name, display_name, email, user_password, is_admin]
-  );
-  return rows[0];
+      [first_name, last_name, display_name, email, user_password, is_admin]
+    );
+    return rows[0];
+  } catch (err) {
+    console.error(err, " << insertUser model error");
+    throw err;
+  }
 }
 
-async function updateUser(event_id, changedProperty, newValue) {
-  const { rows } = await db.query(
-    `UPDATE events
-      SET $2 = $3
-      WHERE event_id = $1
-      RETURNING *;`,
-    [event_id, changedProperty, newValue]
-  );
-  if (!rows.length) {
-    return Promise.reject({
-      status: 404,
-      msg: "User not found",
-    });
+async function updateUser(
+  user_id,
+  first_name,
+  last_name,
+  display_name,
+  email,
+  user_password,
+  is_admin
+) {
+  try {
+    const { rows } = await db.query(
+      `UPDATE users
+      SET 
+      first_name = $2,
+      last_name = $3,
+      display_name = $4,
+      email = $5,
+      user_password = $6,
+      is_admin = $7
+     WHERE user_id = $1
+     RETURNING *;`,
+      [
+        user_id,
+        first_name,
+        last_name,
+        display_name,
+        email,
+        user_password,
+        is_admin,
+      ]
+    );
+    if (!rows.length) {
+      return Promise.reject({
+        status: 404,
+        msg: "User not found",
+      });
+    }
+    return rows[0];
+  } catch (err) {
+    console.error(err, " << updateUser model error");
+    throw err;
   }
-  return rows[0];
 }
 
 module.exports = { fetchUsers, fetchUser, insertUser, updateUser };

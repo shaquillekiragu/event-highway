@@ -34,6 +34,7 @@ describe("/api/events", () => {
       body: { events },
     } = await request(app).get("/api/events").expect(200);
     events.forEach((event) => {
+      expect(event).toHaveProperty("event_id");
       expect(event).toHaveProperty("publisher");
       expect(event).toHaveProperty("host");
       expect(event).toHaveProperty("event_name");
@@ -57,6 +58,7 @@ describe("/api/events", () => {
       body: { events },
     } = await request(app).get("/api/events?").expect(200);
     events.forEach((event) => {
+      expect(event).toHaveProperty("event_id");
       expect(event).toHaveProperty("publisher");
       expect(event).toHaveProperty("host");
       expect(event).toHaveProperty("event_name");
@@ -151,6 +153,7 @@ describe("/api/users", () => {
       body: { users },
     } = await request(app).get("/api/users").expect(200);
     users.forEach((user) => {
+      expect(user).toHaveProperty("user_id");
       expect(user).toHaveProperty("first_name");
       expect(user).toHaveProperty("last_name");
       expect(user).toHaveProperty("display_name");
@@ -202,6 +205,7 @@ describe("/api/events/:event_id", () => {
     const {
       body: { event },
     } = await request(app).get("/api/events/1").expect(200);
+    expect(event).toHaveProperty("event_id");
     expect(event).toHaveProperty("publisher");
     expect(event).toHaveProperty("host");
     expect(event).toHaveProperty("event_name");
@@ -254,6 +258,7 @@ describe("/api/events/:event_id", () => {
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(200);
+    expect(event).toHaveProperty("event_id");
     expect(event).toHaveProperty("publisher");
     expect(event).toHaveProperty("host", "Tech Innovations Inc.");
     expect(event).toHaveProperty("event_name", "AI and the Future of Work");
@@ -386,6 +391,7 @@ describe("/api/users/:user_id", () => {
     const {
       body: { user },
     } = await request(app).get("/api/users/1").expect(200);
+    expect(user).toHaveProperty("user_id");
     expect(user).toHaveProperty("first_name");
     expect(user).toHaveProperty("last_name");
     expect(user).toHaveProperty("display_name");

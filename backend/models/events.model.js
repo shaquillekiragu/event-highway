@@ -1,33 +1,39 @@
 const db = require("../db/connection");
 
 async function fetchEvents() {
-  const { rows } = await db.query(
-    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail
-      FROM events;`
-  );
-  if (!rows.length) {
-    return Promise.reject({ status: 404, msg: "Events not found" });
+  try {
+    const { rows } = await db.query(`SELECT * FROM events;`);
+    if (!rows.length) {
+      return Promise.reject({ status: 404, msg: "Events not found" });
+    }
+    return rows;
+  } catch (err) {
+    console.error(err, " << fetchEvents model error");
+    throw err;
   }
-  return rows;
 }
 
 async function fetchEvent(event_id) {
-  if (!event_id) {
-    return Promise.reject({
-      status: 400,
-      msg: "Event Id not provided",
-    });
-  }
-  const { rows } = await db.query(
-    `SELECT publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail
-      FROM events
+  try {
+    if (!event_id) {
+      return Promise.reject({
+        status: 400,
+        msg: "Event Id not provided",
+      });
+    }
+    const { rows } = await db.query(
+      `SELECT * FROM events
       WHERE event_id = $1`,
-    [event_id]
-  );
-  if (!rows.length) {
-    return Promise.reject({ status: 404, msg: "Event not found" });
+      [event_id]
+    );
+    if (!rows.length) {
+      return Promise.reject({ status: 404, msg: "Event not found" });
+    }
+    return rows[0];
+  } catch (err) {
+    console.error(err, " << fetchEvent model error");
+    throw err;
   }
-  return rows[0];
 }
 
 async function insertEvent(
@@ -93,9 +99,9 @@ async function insertEvent(
       ]
     );
     return rows[0];
-  } catch (error) {
-    console.error(error, " << error");
-    throw error;
+  } catch (err) {
+    console.error(err, " << insertEvent model error");
+    throw err;
   }
 }
 
@@ -165,26 +171,31 @@ async function updateEvent(
       });
     }
     return rows[0];
-  } catch (error) {
-    console.error(error, " << updateEvent error");
-    throw error;
+  } catch (err) {
+    console.error(err, " << updateEvent model error");
+    throw err;
   }
 }
 
 async function removeEvent(event_id) {
-  const { rows } = await db.query(
-    `DELETE FROM events
+  try {
+    const { rows } = await db.query(
+      `DELETE FROM events
       WHERE event_id = $1
       RETURNING *;`,
-    [event_id]
-  );
-  if (!rows.length) {
-    return Promise.reject({
-      status: 404,
-      msg: "Event not found",
-    });
+      [event_id]
+    );
+    if (!rows.length) {
+      return Promise.reject({
+        status: 404,
+        msg: "Event not found",
+      });
+    }
+    return rows[0];
+  } catch (err) {
+    console.error(err, " << removeEvent model error");
+    throw err;
   }
-  return rows[0];
 }
 
 module.exports = {
