@@ -11,7 +11,7 @@ You will need to have these versions or newer for the following technologies in 
 - Node.js - **v20.9.0** or newer
 - PostgreSQL - **v20.x** or later
 
-## Installation
+## Installation and Backend Setup
 
 **Instructions:**
 
@@ -35,19 +35,25 @@ PGDATABASE=event_highway_test
 PGDATABASE=event_highway
 ```
 
-3. To install all of the required dependencies for this repo locally, run this command:
+3. Now you need to open the change directory into the backend folder. Do this by running the following command:
+
+```
+cd backend
+```
+
+4. Now you need to install all of the required dependencies for the backend locally. Run this command:
 
 ```
 npm install
 ```
 
-4. Next, create the test and development databases by running:
+5. Next, create the test and development databases by running:
 
 ```
 npm run setup-dbs
 ```
 
-5. And now seed the databases with this command:
+6. And now seed the databases with this command:
 
 ```
 npm run seed
@@ -63,4 +69,36 @@ In order to test the API endpoints on this server, run the following command:
 npm run test
 ```
 
-This command will run the integration tests for the api endpoints, as well as the utilities tests for the seeding functions.
+## Running the Frontend Locally
+
+**Instructions:**
+
+1. Now that the backend has been setup and tested, to open the project UI you'll need to change directory into the frontend directory. Do this by running the following commands:
+
+```
+cd ..
+cd frontend
+```
+
+2. Now you'll need to install all of the required repository dependencies for the frontend. Run:
+
+```
+npm install
+```
+
+3. And lastly, to open the vite app in a browser, run:
+
+```
+npm run dev
+```
+
+4. Open the provided localhost URL in your browser.
+
+5. You should now be able to view the welcome page for Event Highway! You can proceed to use the website without being logged in, but this will only allow you to view events that are currently listed on the site. To access more features, you'll need to either create an account, or login to an existing account. Here is an existing test account for you to use:
+
+```
+email: liam.thompson@yahoo.com
+password: SecurePass123
+```
+
+I hope you have an incredible experience with Event Highway!
