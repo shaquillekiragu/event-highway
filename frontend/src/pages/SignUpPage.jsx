@@ -77,7 +77,7 @@ function SignUpPage() {
   }
   return (
     <>
-      <div className="thinRedBanner"></div>
+      <div className="thinBlackBanner"></div>
       <p>Welcome to Event Highway!</p>
       <SignUpForm
         handleSubmit={handleSubmit}

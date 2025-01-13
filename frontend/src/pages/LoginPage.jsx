@@ -61,11 +61,15 @@ function LoginPage() {
   }
 
   if (isLoading && !hasAttemptedLogin) {
-    return <Loading page={"Login page"} />;
+    return (
+      <div className="thinBlackBanner">
+        <Loading page={"Login"} />
+      </div>
+    );
   }
   return (
     <>
-      <div className="thinRedBanner"></div>
+      <div className="thinBlackBanner"></div>
       <p>Welcome to Event Highway!</p>
       <h3>Login:</h3>
       <form onSubmit={handleSubmit}>

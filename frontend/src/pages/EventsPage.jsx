@@ -32,19 +32,25 @@ function EventsPage() {
   console.log(eventsList, " <<< eventsList");
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div className="thinBlackBanner">
+        <Loading page={"Events"} />
+      </div>
+    );
   }
   return (
     <>
-      <div className="thinRedBanner"></div>
+      <div className="thinBlackBanner"></div>
       <h1>Events</h1>
       <button onClick={handleProfileClick}>Profile Page</button>
-      <ul>
-        {eventsList.map((event) => (
-          <li key={event.event_id}>
-            <EventCard event={event} />
-          </li>
-        ))}
+      <ul className="gridContainer">
+        {eventsList.map((event) => {
+          return (
+            <li key={event.event_id}>
+              <EventCard event={event} />
+            </li>
+          );
+        })}
       </ul>
     </>
   );

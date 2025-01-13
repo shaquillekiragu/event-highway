@@ -13,7 +13,7 @@ function WelcomePage() {
 
   return (
     <>
-      <div className="thinRedBanner"></div>
+      <div className="thinBlackBanner"></div>
       <p>Welcome to Event Highway!</p>
       <button onClick={handleLoginClick} className="logButton">
         Login
