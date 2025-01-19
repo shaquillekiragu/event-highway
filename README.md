@@ -11,6 +11,7 @@ You will need to have these versions or newer for the following technologies in 
 - Node.js - **v20.9.0** or newer
 - PostgreSQL - **v20.x** or later
 
+
 ## Installation and Backend Setup
 
 **Instructions:**
@@ -61,6 +62,7 @@ npm run seed
 
 Installation is now complete.
 
+
 ## Testing
 
 In order to test the API endpoints on this server, run the following command:
@@ -68,6 +70,7 @@ In order to test the API endpoints on this server, run the following command:
 ```
 npm run test
 ```
+
 
 ## Running the Database Locally
 
