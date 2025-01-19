@@ -1,34 +1,46 @@
+import { Link } from "react-router-dom";
 import FormatDateTime from "../FormatDateTime";
 import "./EventCard.css";
 
 function EventCard({ event }) {
+  const path = `/events/${event.event_id}`;
+
   return (
-    <article className="eventCard">
-      <h2>{event.event_name}</h2>
-      {/* <img src={event.thumbnail} alt="Event thumbnail" /> */}
-      <p>Publisher: {event.publisher}</p>
-      <p>Host: {event.host}</p>
-      <p>Event Start: {<FormatDateTime sqlTimestamp={event.event_start} />}</p>
-      <p>Event Finish: {<FormatDateTime sqlTimestamp={event.event_end} />}</p>
-      <p>Description: {event.event_description}</p>
-      <p>Date posted: {<FormatDateTime sqlTimestamp={event.created_at} />}</p>
-      <p>Category: {event.category}</p>
-      <p>
-        {event.is_online
-          ? "Venue: This event is online"
-          : `Venue: The venue for this event is ${event.venue} at ${event.venue_address}`}
-      </p>
-      <p>
-        {event.is_free
-          ? "Price: This event is free"
-          : `Price: The price for this event is ${event.cost_in_gbp}`}
-      </p>
-      <p>
-        {event.is_limit
-          ? "Attendee Limit: There is no attendee limit for this event"
-          : `Attendee Limit: The attendee limit for this event is ${event.attendee_limit}`}
-      </p>
-    </article>
+    <Link className="eventCardLink" to={path}>
+      <article className="eventCard">
+        <div className="layerOne">
+          <p className="host">Host: {event.host}</p>
+          <p className="category">Category: {event.category}</p>
+        </div>
+        <div className="layerTwo">
+          <h3 className="title">{event.event_name}</h3>
+        </div>
+        <div className="layerThree">
+          {/* <img className="thumbnail" src={event.thumbnail} alt="Event thumbnail" /> */}
+        </div>
+        <div className="layerFour">
+          <p className="eventStart">
+            Event Start: {<FormatDateTime sqlTimestamp={event.event_start} />}
+          </p>
+          <p className="eventEnd">
+            Event Finish: {<FormatDateTime sqlTimestamp={event.event_end} />}
+          </p>
+        </div>
+        <div className="layerFive">
+          <p className="isOnline">
+            {event.is_online ? "ONLINE" : `VENUE: ${event.venue}`}
+          </p>
+          <p className="isFree">
+            {event.is_free ? "FREE" : `COST: ${event.cost_in_gbp}`}
+          </p>
+          <p className="isLimit">
+            {event.is_limit
+              ? `Attendee Limit: ${event.attendee_limit}`
+              : "No attendee limit"}
+          </p>
+        </div>
+      </article>
+    </Link>
   );
 }
 
