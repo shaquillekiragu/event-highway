@@ -76,7 +76,7 @@ function SignUpPage() {
     );
   }
   return (
-    <>
+    <main className="signUpPage">
       <div className="thinBlackBanner"></div>
       <p>Welcome to Event Highway!</p>
       <SignUpForm
@@ -88,7 +88,7 @@ function SignUpPage() {
         handlePasswordChange={handlePasswordChange}
         handleIsAdminChange={handleIsAdminChange}
       />
-    </>
+    </main>
   );
 }
 
