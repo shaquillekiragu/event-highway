@@ -8,6 +8,7 @@ import SignUpPage from "./pages/SignUpPage.jsx";
 import EventsPage from "./pages/EventsPage.jsx";
 import ViewEvent from "./pages/ViewEvent.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
   return (
@@ -19,8 +20,9 @@ function App() {
         <Route path="/signup" element={<SignUpPage />}></Route>
         <Route path="/events" element={<EventsPage />}></Route>
         <Route path="/viewEvent/:event_id" element={<ViewEvent />}></Route>
-        <Route path="/profile/:user_id" element={<ProfilePage />}></Route>
+        {/* <Route path="/profile/:user_id" element={<ProfilePage />}></Route> */}
       </Routes>
+      <Footer />
     </UserProvider>
   );
 }
