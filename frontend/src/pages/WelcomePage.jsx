@@ -12,7 +12,7 @@ function WelcomePage() {
   }
 
   return (
-    <section className="welcomePage">
+    <main className="welcomePage">
       <div className="thinBlackBanner"></div>
       <article className="welcomeContainer">
         <div className="welcomeLayerOne">
@@ -40,7 +40,7 @@ function WelcomePage() {
           </button>
         </div>
       </article>
-    </section>
+    </main>
   );
 }
 

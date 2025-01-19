@@ -11,9 +11,11 @@ function EventsPage() {
 
   const navigate = useNavigate();
 
-  function handleProfileClick() {
-    navigate("/profile/:user_id");
-  }
+  // function handleProfileClick() {
+  //   navigate("/profile/:user_id");
+  // }
+
+  console.log("HELLO");
 
   useEffect(() => {
     async function fetchEvents() {
@@ -39,12 +41,15 @@ function EventsPage() {
     );
   }
   return (
-    <>
+    <main>
       <div className="thinBlackBanner"></div>
+      <br />
       <h1>Events</h1>
-      <button onClick={handleProfileClick}>Profile Page</button>
+      <br />
+      {/* <button onClick={handleProfileClick}>Profile Page</button> */}
       <ul className="gridContainer">
         {eventsList.map((event) => {
+          console.log(event, " <<< event");
           return (
             <li key={event.event_id}>
               <EventCard event={event} />
@@ -52,7 +57,7 @@ function EventsPage() {
           );
         })}
       </ul>
-    </>
+    </main>
   );
 }
 

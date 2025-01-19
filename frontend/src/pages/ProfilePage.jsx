@@ -37,7 +37,7 @@ function ProfilePage() {
     );
   }
   return (
-    <>
+    <main>
       <div className="thinBlackBanner"></div>
       <h2>Account Details:</h2>
       <p>First Name: {userInfo.first_name}</p>
@@ -46,7 +46,7 @@ function ProfilePage() {
       <p>Email Address: {userInfo.email}</p>
       {/* <p>Password: {starredPassword}</p> */}
       <p>Admin Status: {userInfo.is_admin ? "ADMIN" : "MEMBER"}</p>
-    </>
+    </main>
   );
 }
 

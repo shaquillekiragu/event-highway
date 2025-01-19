@@ -68,7 +68,7 @@ function LoginPage() {
     );
   }
   return (
-    <section className="loginPage">
+    <main className="loginPage">
       <div className="thinBlackBanner"></div>
       <p>Welcome to Event Highway!</p>
       <h3>Login:</h3>
@@ -111,7 +111,7 @@ function LoginPage() {
       ) : (
         <></>
       )}
-    </section>
+    </main>
   );
 }
 

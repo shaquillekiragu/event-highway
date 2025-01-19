@@ -33,7 +33,7 @@ function ViewEvent() {
     );
   }
   return (
-    <>
+    <main>
       <div className="thinBlackBanner"></div>
       <article>
         <h2>{event.event_name}</h2>
@@ -63,7 +63,7 @@ function ViewEvent() {
             : "Attendee Limit: There is no attendee limit for this event"}
         </p>
       </article>
-    </>
+    </main>
   );
 }
 
