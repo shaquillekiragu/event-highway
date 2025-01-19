@@ -69,6 +69,18 @@ In order to test the API endpoints on this server, run the following command:
 npm run test
 ```
 
+## Running the Database Locally
+
+To set and run the event_highway database, run the two following commands one at a time:
+
+```
+export PGDATABASE=event_highway
+npm run start
+```
+
+If you see this message in the console: ```PGDATABASE: event_highway Listening on 9090...```, you have successfully set up this project's backend.
+
+
 ## Running the Frontend Locally
 
 **Instructions:**
