@@ -1,0 +1,8 @@
+.welcomePage {
+  height: 50vh;
+}
+
+.welcomeContainer {
+  display: flex;
+  justify-content: center;
+}
