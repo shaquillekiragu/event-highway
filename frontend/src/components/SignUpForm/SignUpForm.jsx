@@ -9,7 +9,6 @@ function SignUpForm({
 }) {
   return (
     <>
-      <h3>Sign Up:</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email Address: </label>
         <input

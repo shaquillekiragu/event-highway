@@ -1,3 +1,42 @@
-.signUpPage {
+.signupPage {
   height: 50vh;
+}
+
+.signupContainer {
+  display: grid;
+  grid-template-columns: 35% 30% 35%;
+  width: 100%;
+}
+
+.signupLayerOne,
+.signupLayerTwo {
+  grid-column: 2/3;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+}
+
+.signupLayerOne {
+  margin-top: 5vh;
+}
+
+.signupLayerOne p {
+  text-wrap: nowrap;
+}
+
+.signupLayerTwo h3 {
+  margin-top: 1vh;
+  margin-bottom: 4vh;
+}
+
+.signupLayerThree {
+  grid-column: 2/3;
+  width: 100%;
+  height: fit-content;
+}
+
+.signupLayerThree button {
+  margin-left: 40%;
+  margin-top: 2.5vh;
 }

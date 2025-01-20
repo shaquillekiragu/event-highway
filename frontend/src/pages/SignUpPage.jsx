@@ -76,18 +76,24 @@ function SignUpPage() {
     );
   }
   return (
-    <main className="signUpPage">
-      <div className="thinBlackBanner"></div>
-      <p>Welcome to Event Highway!</p>
-      <SignUpForm
-        handleSubmit={handleSubmit}
-        handleFirstNameChange={handleFirstNameChange}
-        handleLastNameChange={handleLastNameChange}
-        handleDisplayNameChange={handleDisplayNameChange}
-        handleEmailChange={handleEmailChange}
-        handlePasswordChange={handlePasswordChange}
-        handleIsAdminChange={handleIsAdminChange}
-      />
+    <main className="signupContainer">
+      <div className="signupLayerOne">
+        <p>Welcome to Event Highway!</p>
+      </div>
+      <div className="signupLayerTwo">
+        <h3>Sign Up:</h3>
+      </div>
+      <article className="signupLayerThree">
+        <SignUpForm
+          handleSubmit={handleSubmit}
+          handleFirstNameChange={handleFirstNameChange}
+          handleLastNameChange={handleLastNameChange}
+          handleDisplayNameChange={handleDisplayNameChange}
+          handleEmailChange={handleEmailChange}
+          handlePasswordChange={handlePasswordChange}
+          handleIsAdminChange={handleIsAdminChange}
+        />
+      </article>
     </main>
   );
 }
