@@ -70,7 +70,7 @@ function LoginPage() {
   return (
     <main className="loginPage">
       <div className="thinBlackBanner"></div>
-      <article className="loginContainer">
+      <section className="loginContainer">
         <div className="loginLayerOne">
           <p>Welcome to Event Highway!</p>
         </div>
@@ -116,7 +116,7 @@ function LoginPage() {
         ) : (
           <></>
         )}
-      </article>
+      </section>
     </main>
   );
 }
