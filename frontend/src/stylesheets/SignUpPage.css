@@ -1,11 +1,8 @@
-.signupPage {
-  height: 50vh;
-}
-
 .signupContainer {
   display: grid;
   grid-template-columns: 35% 30% 35%;
   width: 100%;
+  height: 50vh;
 }
 
 .signupLayerOne,
