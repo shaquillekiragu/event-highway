@@ -1,3 +1,46 @@
 .loginPage {
   height: 50vh;
 }
+
+.loginContainer {
+  display: grid;
+  grid-template-columns: 35% 30% 35%;
+  width: 100%;
+}
+
+.loginLayerOne,
+.loginLayerTwo,
+.loginLayerFour {
+  grid-column: 2/3;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+}
+
+.loginLayerOne {
+  margin-top: 5vh;
+}
+
+.loginLayerOne p {
+  text-wrap: nowrap;
+}
+
+.loginLayerTwo h3 {
+  margin-top: 1vh;
+}
+
+.loginLayerThree {
+  grid-column: 2/3;
+  width: 100%;
+  height: fit-content;
+}
+
+.loginLayerThree button {
+  margin-left: 45%;
+  margin-top: 2.5vh;
+}
+
+.loginLayerFour {
+  margin-top: 2.5vh;
+}

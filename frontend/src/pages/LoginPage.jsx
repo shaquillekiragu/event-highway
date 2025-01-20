@@ -70,47 +70,53 @@ function LoginPage() {
   return (
     <main className="loginPage">
       <div className="thinBlackBanner"></div>
-      <p>Welcome to Event Highway!</p>
-      <h3>Login:</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email Address: </label>
-        <input
-          placeholder="Enter your email address..."
-          value={email}
-          id="email"
-          type="text"
-          onChange={handleEmailChange}
-          required
-        />
-        <br />
-        <label htmlFor="user_password">Password: </label>
-        <input
-          placeholder="Enter your password..."
-          value={user_password}
-          id="user_password"
-          type="password"
-          onChange={handlePasswordChange}
-          required
-        />
-        <br />
-        <button type="submit" className="logButton">
-          Login
-        </button>
-      </form>
-      {invalidEmailMsg ? (
-        <span id="invalidMsg">
-          Invalid email. Please enter in a valid email address.
-        </span>
-      ) : (
-        <></>
-      )}
-      {invalidPasswordMsg ? (
-        <span id="invalidMsg">
-          Incorrect password. Please enter the correct password.
-        </span>
-      ) : (
-        <></>
-      )}
+      <article className="loginContainer">
+        <div className="loginLayerOne">
+          <p>Welcome to Event Highway!</p>
+        </div>
+        <div className="loginLayerTwo">
+          <h3>Login:</h3>
+        </div>
+        <form onSubmit={handleSubmit} className="loginLayerThree">
+          <label htmlFor="email">Email Address: </label>
+          <input
+            placeholder="Enter your email address..."
+            value={email}
+            id="email"
+            type="text"
+            onChange={handleEmailChange}
+            required
+          />
+          <br />
+          <label htmlFor="user_password">Password: </label>
+          <input
+            placeholder="Enter your password..."
+            value={user_password}
+            id="user_password"
+            type="password"
+            onChange={handlePasswordChange}
+            required
+          />
+          <br />
+          <button type="submit" className="logButton">
+            Login
+          </button>
+        </form>
+        {invalidEmailMsg ? (
+          <span id="invalidMsg" className="loginLayerFour">
+            Invalid email. Please enter in a valid email address.
+          </span>
+        ) : (
+          <></>
+        )}
+        {invalidPasswordMsg ? (
+          <span id="invalidMsg" className="loginLayerFour">
+            Incorrect password. Please enter the correct password.
+          </span>
+        ) : (
+          <></>
+        )}
+      </article>
     </main>
   );
 }
