@@ -50,12 +50,12 @@ function Header() {
     return (
       <header>
         <div className="takingActionContainer">
-          <Link className="headerTitleLink" to="/events">
+          <Link className="headerTitleLink" to="/">
             <h1 className="event">Event</h1>
           </Link>
         </div>
         <div className="thickBlackBanner highwayContainer">
-          <Link className="headerTitleLink" to="/events">
+          <Link className="headerTitleLink" to="/">
             <h1 className="highway">Highway</h1>
           </Link>
         </div>
@@ -90,7 +90,7 @@ function Header() {
     return (
       <header>
         <div className="loggedOutContainer">
-          <Link className="headerTitleLink" to="/events">
+          <Link className="headerTitleLink" to="/">
             <h1 className="event">Event</h1>
           </Link>
           <button className="loginButton logButton" onClick={handleLoginClick}>
@@ -98,7 +98,7 @@ function Header() {
           </button>
         </div>
         <div className="blackBanner highwayContainer">
-          <Link className="headerTitleLink" to="/events">
+          <Link className="headerTitleLink" to="/">
             <h1 className="highway">Highway</h1>
           </Link>
         </div>
