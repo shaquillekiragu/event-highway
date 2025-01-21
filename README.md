@@ -116,9 +116,7 @@ Scroll to the bottom of this README file to access both test account you can use
 
 Follow this link to access the live site:
 
-```
 https://event-highway.netlify.app/
-```
 
 
 ## Test accounts for logging in
@@ -133,8 +131,8 @@ password: SecurePass123
 Test event administrator account:
 
 ```
-
-
+email: 
+password: 
 ```
 
 
