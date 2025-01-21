@@ -19,14 +19,6 @@ body {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-.thinBlackBanner {
-  background-color: black;
-  width: 100vw;
-  height: 6vh;
-  position: relative;
-  border-top: 1px solid white;
-}
-
 .blackBanner {
   background-color: black;
   width: 100vw;

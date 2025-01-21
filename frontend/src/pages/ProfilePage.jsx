@@ -30,15 +30,10 @@ function ProfilePage() {
   // const starredPassword = "*".repeat(passwordStarCount);
 
   if (isLoading) {
-    return (
-      <div className="thinBlackBanner">
-        <Loading page={"Profile"} />
-      </div>
-    );
+    return <Loading page={"Profile"} />;
   }
   return (
     <main>
-      <div className="thinBlackBanner"></div>
       <h2>Account Details:</h2>
       <p>First Name: {userInfo.first_name}</p>
       <p>Last Name: {userInfo.last_name}</p>

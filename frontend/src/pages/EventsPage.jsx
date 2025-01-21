@@ -34,16 +34,10 @@ function EventsPage() {
   console.log(eventsList, " <<< eventsList");
 
   if (isLoading) {
-    return (
-      <div className="thinBlackBanner">
-        <Loading page={"Events"} />
-      </div>
-    );
+    return <Loading page={"Events"} />;
   }
   return (
     <main>
-      <div className="thinBlackBanner"></div>
-      <br />
       <h1>Events</h1>
       <br />
       {/* <button onClick={handleProfileClick}>Profile Page</button> */}
