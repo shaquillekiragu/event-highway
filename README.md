@@ -123,13 +123,17 @@ https://event-highway.netlify.app/
 
 Here is a test user account:
 
-email: ```liam.thompson@yahoo.com```
-password: ```SecurePass123```
+email: ```liam.thompson@yahoo.com
+```
+password: ```SecurePass123
+```
 
 Test event administrator account:
 
-email: ``` ```
-password: ``` ```
+email: ```
+```
+password: ```
+```
 
 
 I hope you have an incredible experience with Event Highway!
