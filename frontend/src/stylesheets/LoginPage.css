@@ -31,7 +31,6 @@
 .loginLayerThree {
   grid-column: 2/3;
   width: 100%;
-  height: 30vh;
 }
 
 .loginLayerThree button {
@@ -41,4 +40,5 @@
 
 .loginLayerFour {
   margin-top: 2.5vh;
+  margin-bottom: 30vh;
 }
