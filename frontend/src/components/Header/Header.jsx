@@ -79,7 +79,7 @@ function Header() {
             Log Out
           </button>
         </div>
-        <div className="blackBanner highwayContainer">
+        <div className="thickBlackBanner highwayContainer">
           <Link className="headerTitleLink" to="/events">
             <h1 className="highway">Highway</h1>
           </Link>
@@ -97,7 +97,7 @@ function Header() {
             Login
           </button>
         </div>
-        <div className="blackBanner highwayContainer">
+        <div className="thickBlackBanner highwayContainer">
           <Link className="headerTitleLink" to="/">
             <h1 className="highway">Highway</h1>
           </Link>
