@@ -135,9 +135,13 @@ SecurePass123
 
 Test event administrator account:
 
-email: ```
+email:
 ```
-password: ```
+
+```
+password:
+```
+
 ```
 
 
