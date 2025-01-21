@@ -123,9 +123,14 @@ https://event-highway.netlify.app/
 
 Here is a test user account:
 
-email: ```liam.thompson@yahoo.com
+email:
 ```
-password: ```SecurePass123
+liam.thompson@yahoo.com
+```
+
+password:
+```
+SecurePass123
 ```
 
 Test event administrator account:
