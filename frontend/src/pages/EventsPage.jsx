@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import getEvents from "../api.js";
 import EventCard from "../components/EventCard/EventCard.jsx";
 import Loading from "../components/Loading/Loading.jsx";
@@ -8,12 +7,6 @@ import "../stylesheets/EventsPage.css";
 function EventsPage() {
   const [eventsList, setEventsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const navigate = useNavigate();
-
-  // function handleProfileClick() {
-  //   navigate("/profile/:user_id");
-  // }
 
   console.log("HELLO");
 
@@ -38,9 +31,9 @@ function EventsPage() {
   }
   return (
     <main>
+      <br />
       <h1>Events</h1>
       <br />
-      {/* <button onClick={handleProfileClick}>Profile Page</button> */}
       <ul className="gridContainer">
         {eventsList.map((event) => {
           console.log(event, " <<< event");
