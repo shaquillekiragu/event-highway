@@ -2,6 +2,20 @@ h1 {
   text-align: center;
 }
 
+.adminButtonHeader {
+  width: 50%;
+  margin-left: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.userButtonHeader {
+  width: 45%;
+  margin-left: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .gridContainer {
   display: grid;
   gap: 2vw;
