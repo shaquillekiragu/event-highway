@@ -6,8 +6,8 @@ import WelcomePage from "./pages/WelcomePage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import EventsPage from "./pages/EventsPage.jsx";
+import MyEventsPage from "./pages/MyEventsPage.jsx";
 import ViewEvent from "./pages/ViewEvent.jsx";
-import ProfilePage from "./pages/ProfilePage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
         <Route path="/events" element={<EventsPage />}></Route>
-        <Route path="/viewEvent/:event_id" element={<ViewEvent />}></Route>
-        {/* <Route path="/profile/:user_id" element={<ProfilePage />}></Route> */}
+        <Route path="/my-events" element={<MyEventsPage />}></Route>
+        <Route path="/view-event/:event_id" element={<ViewEvent />}></Route>
       </Routes>
       <Footer />
     </UserProvider>
