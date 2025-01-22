@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
 import { getUsers } from "../api.js";
+import fetchUserObject from "../utils.js";
 import Loading from "../components/Loading/Loading";
 import "../stylesheets/LoginPage.css";
 
 function LoginPage() {
+  console.log("HELLO");
   const [users, setUsers] = useState([]);
   const [email, setEmailAddress] = useState("");
   const [user_password, setUserPassword] = useState("");
@@ -21,6 +23,7 @@ function LoginPage() {
     async function fetchUsers() {
       try {
         const response = await getUsers();
+        console.log(response.data.users, " <<< r.d.users");
         setUsers(response.data.users);
         setIsLoading(false);
       } catch (err) {
@@ -30,6 +33,8 @@ function LoginPage() {
     }
     fetchUsers();
   }, []);
+
+  console.log(users, " <<< usersList");
 
   function handleEmailChange(event) {
     setEmailAddress(event.target.value);
@@ -41,31 +46,39 @@ function LoginPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setHasAttemptedLogin(true);
-    const isValidEmail = users.some((user) => {
-      return user.email === email;
-    });
-    const attemptedUser = users.filter((user) => {
-      return user.email === email;
-    });
-    if (!isValidEmail) {
-      setInvalidEmailMsg(true);
-    } else if (attemptedUser.user_password !== user_password) {
-      setInvalidPasswordMsg(true);
+    console.log(email, " <<< email");
+
+    if (!hasAttemptedLogin) {
+      setHasAttemptedLogin(true);
+      setInvalidEmailMsg(false);
+      setInvalidPasswordMsg(false);
+
+      const isValidEmail = users.some((user) => {
+        return user.email === email;
+      });
+
+      const attemptedUser = fetchUserObject(users, email);
+      console.log(attemptedUser, " <<< attemptedUser");
+
+      if (!isValidEmail) {
+        setInvalidEmailMsg(true);
+      } else if (attemptedUser.user_password !== user_password) {
+        setInvalidPasswordMsg(true);
+      } else {
+        setAuthUser({ email: email });
+        setIsLoggedIn(true);
+        setHasAttemptedLogin(false);
+        setInvalidMsg(false);
+        navigate("/events");
+      }
     } else {
-      setAuthUser({ email: email });
-      setIsLoggedIn(true);
-      setInvalidMsg(false);
-      navigate("/events");
+      setHasAttemptedLogin(false);
+      navigate("/login");
     }
   }
 
   if (isLoading && !hasAttemptedLogin) {
-    return (
-      <div className="thinBlackBanner">
-        <Loading page={"Login"} />
-      </div>
-    );
+    return <Loading page={"Login"} />;
   }
   return (
     <main className="loginContainer">
