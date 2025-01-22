@@ -22,8 +22,7 @@
 .layerOne,
 .layerTwo,
 .layerThree,
-.layerFour,
-.layerFive {
+.layerFour {
   width: 100%;
 }
 
@@ -32,47 +31,54 @@
   justify-content: space-between;
 }
 
+.layerOne .host {
+  color: blue;
+}
+
+.layerOne .category {
+  color: green;
+}
+
 .layerTwo {
   display: flex;
   justify-content: center;
 }
 
-/* .layerThree {
+.layerThree {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5vh 0;
+}
+
+.layerThree span {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.layerThree p {
+  margin: 0;
+}
+
+.layerThree .isFree {
+  margin: 2vh 0;
 }
 
 .layerFour {
+  display: flex;
+  justify-content: space-around;
 }
 
-.layerFive {
-} */
-
-@media (max-width: 699px) {
-  .title {
-    font-size: 1rem;
-  }
+.layerFour div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.title {
-  font-size: 1.4rem;
+.layerFour .eventStartLabel,
+.layerFour .eventEndLabel {
+  margin: 0 0 0.25vh 0;
 }
-
-/* .host {
-}
-
-.category {
-}
-
-.eventStart {
-}
-
-.eventEnd {
-}
-
-.isOnline {
-}
-
-.isFree {
-}
-
-.isLimit {
-} */

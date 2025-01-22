@@ -9,35 +9,62 @@ function EventCard({ event }) {
     <Link className="eventCardLink" to={path}>
       <article className="eventCard">
         <div className="layerOne">
-          <p className="host">Host: {event.host}</p>
-          <p className="category">Category: {event.category}</p>
+          <p className="host">
+            <strong>{event.host}</strong>
+          </p>
+          <p className="category">
+            <strong>{event.category}</strong>
+          </p>
         </div>
         <div className="layerTwo">
-          <h3 className="title">{event.event_name}</h3>
+          <h2 className="title">{event.event_name}</h2>
         </div>
         <div className="layerThree">
-          {/* <img className="thumbnail" src={event.thumbnail} alt="Event thumbnail" /> */}
+          <span>
+            <p className="isOnline">
+              <strong>
+                {event.is_online
+                  ? "This event is ONLINE"
+                  : `VENUE: ${event.venue}`}
+              </strong>
+            </p>
+          </span>
+          <span>
+            <p className="isFree">
+              <strong>
+                {event.is_free
+                  ? "This event is FREE"
+                  : `COST: £${event.cost_in_gbp}`}
+              </strong>
+            </p>
+          </span>
+          <span>
+            <p className="isLimit">
+              <strong>
+                {event.is_limit
+                  ? `ATTENDEE LIMIT: ${event.attendee_limit}`
+                  : "NO ATTENDEE LIMIT"}
+              </strong>
+            </p>
+          </span>
         </div>
         <div className="layerFour">
-          <p className="eventStart">
-            Event Start: {<FormatDateTime sqlTimestamp={event.event_start} />}
-          </p>
-          <p className="eventEnd">
-            Event Finish: {<FormatDateTime sqlTimestamp={event.event_end} />}
-          </p>
-        </div>
-        <div className="layerFive">
-          <p className="isOnline">
-            {event.is_online ? "ONLINE" : `VENUE: ${event.venue}`}
-          </p>
-          <p className="isFree">
-            {event.is_free ? "FREE" : `COST: ${event.cost_in_gbp}`}
-          </p>
-          <p className="isLimit">
-            {event.is_limit
-              ? `Attendee Limit: ${event.attendee_limit}`
-              : "No attendee limit"}
-          </p>
+          <div className="layerFourA">
+            <p className="eventStartLabel">Event Start:</p>
+            <p className="eventStart">
+              <strong>
+                {<FormatDateTime sqlTimestamp={event.event_start} />}
+              </strong>
+            </p>
+          </div>
+          <div className="layerFourB">
+            <p className="eventEndLabel">Event Finish:</p>
+            <p className="eventEnd">
+              <strong>
+                {<FormatDateTime sqlTimestamp={event.event_end} />}
+              </strong>
+            </p>
+          </div>
         </div>
       </article>
     </Link>
