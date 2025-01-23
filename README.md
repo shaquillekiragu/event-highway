@@ -4,6 +4,7 @@
 
 This project serves as a community-driven events platform, Event Highway, designed to allow users to browse and sign up for local events while integrating them seamlessly into their Google Calendar. Built using JavaScript, ReactJS, and Node.js, the platform provides a user-friendly interface for community members to discover events, register attendance, and add events to their calendars via the Google Calendar API. Staff members have additional functionalities such as secure sign-in, event creation, and management, ensuring the platform remains dynamic and flexible. The backend leverages Express.js to serve RESTful API endpoints and uses PostgreSQL as the database solution, with the backend server being run locally.
 <br>
+<br>
 
 ## Minimum Versions
 
@@ -90,6 +91,7 @@ To set and run the event_highway database, run the two following commands one at
 export PGDATABASE=event_highway
 npm run start
 ```
+<br>
 
 If you see this message in the console: ```PGDATABASE: event_highway Listening on 9090...```, you have successfully set up this project's backend.
 <br>
