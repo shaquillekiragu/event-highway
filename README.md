@@ -16,6 +16,7 @@ You will need to have these versions or newer for the following technologies in 
 ## Installation and Backend Setup
 
 **Instructions:**
+<br>
 
 1. Clone this repository:
 
@@ -65,6 +66,7 @@ npm run setup-dbs
 ```
 npm run seed
 ```
+<br>
 
 Installation is now complete.
 <br>
