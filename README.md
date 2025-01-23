@@ -95,6 +95,7 @@ npm run start
 
 If you see this message in the console: ```PGDATABASE: event_highway Listening on 9090...```, you have successfully set up this project's backend.
 <br>
+<br>
 
 ## Running the Frontend Locally
 
@@ -134,6 +135,7 @@ Scroll to the bottom of this README file to access both test account you can use
 Follow this link to access the live site:
 
 https://event-highway.netlify.app/
+<br>
 <br>
 
 ## Test accounts for logging in
