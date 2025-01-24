@@ -7,7 +7,14 @@ export function useAuth() {
 }
 
 export default function UserProvider({ children }) {
-  const [authUser, setAuthUser] = useState({});
+  const [authUser, setAuthUser] = useState({
+    first_name: null,
+    last_name: null,
+    display_name: null,
+    email: null,
+    user_password: null,
+    is_admin: null,
+  });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const value = {

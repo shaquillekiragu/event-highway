@@ -5,10 +5,11 @@ import "./Header.css";
 
 function Header() {
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const [isTakingLoginAction, setIsTakingLoginAction] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function handleLogoutClick(event) {
     event.preventDefault();
@@ -94,7 +95,7 @@ function Header() {
             <h1 className="event">Event</h1>
           </Link>
           <button className="loginButton logButton" onClick={handleLoginClick}>
-            Login
+            Welcome Page (Login)
           </button>
         </div>
         <div className="thickBlackBanner highwayContainer">

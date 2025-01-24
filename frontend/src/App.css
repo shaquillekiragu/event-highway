@@ -1,5 +1,12 @@
-* {
+html,
+body {
   box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 body {
@@ -8,7 +15,7 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
-  height: fit-content;
+  min-height: 100vh;
 }
 
 #root {
@@ -16,7 +23,7 @@ body {
 }
 
 .title {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 .blackBanner {
@@ -35,8 +42,8 @@ body {
 
 button {
   border: 1px solid black;
-  background-color: white !important;
-  color: black !important;
+  background-color: white;
+  color: black;
 }
 
 button:hover {
@@ -51,6 +58,6 @@ button:not(.logButton) {
   height: 3vh;
 }
 
-#invalidMsg {
+.invalidMsg {
   color: red;
 }

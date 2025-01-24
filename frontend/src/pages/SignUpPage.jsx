@@ -34,13 +34,20 @@ function SignUpPage() {
         is_admin
       );
       setHasPosted(true);
-      setAuthUser({ email: email });
+      setAuthUser({
+        first_name: first_name,
+        last_name: last_name,
+        display_name: display_name,
+        email: email,
+        user_password: user_password,
+        is_admin: is_admin,
+      });
       setIsLoggedIn(true);
       console.log(authUser, "authUser");
       console.log(isLoggedIn, "isLoggedIn");
       navigate("/events");
     } catch (err) {
-      console.error(err);
+      console.error(err, " << postUser error");
     }
   }
 
@@ -65,7 +72,7 @@ function SignUpPage() {
   }
 
   function handleIsAdminChange(event) {
-    setUserPassword(event.target.value);
+    setIsAdmin(event.target.value);
   }
 
   if (hasInputtedInfo && (!hasPosted || !isLoggedIn)) {

@@ -2,18 +2,15 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
 import { getUsers } from "../api.js";
-import fetchUserObject from "../utils.js";
 import Loading from "../components/Loading/Loading";
 import "../stylesheets/LoginPage.css";
 
 function LoginPage() {
-  console.log("HELLO");
   const [users, setUsers] = useState([]);
   const [email, setEmailAddress] = useState("");
   const [user_password, setUserPassword] = useState("");
   const [invalidEmailMsg, setInvalidEmailMsg] = useState(false);
   const [invalidPasswordMsg, setInvalidPasswordMsg] = useState(false);
-  const [hasAttemptedLogin, setHasAttemptedLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -49,7 +46,6 @@ function LoginPage() {
     console.log(email, " <<< email");
 
     if (!hasAttemptedLogin) {
-      setHasAttemptedLogin(true);
       setInvalidEmailMsg(false);
       setInvalidPasswordMsg(false);
 
@@ -57,27 +53,31 @@ function LoginPage() {
         return user.email === email;
       });
 
-      const attemptedUser = fetchUserObject(users, email);
-      console.log(attemptedUser, " <<< attemptedUser");
+      const attemptedUser = users.filter((user) => {
+        return user.email === email;
+      });
+
+      const isCorrectPassword =
+        attemptedUser[0].user_password === user_password;
 
       if (!isValidEmail) {
         setInvalidEmailMsg(true);
-      } else if (attemptedUser.user_password !== user_password) {
+        setInvalidPasswordMsg(false);
+      } else if (!isCorrectPassword) {
         setInvalidPasswordMsg(true);
+        setInvalidEmailMsg(false);
       } else {
-        setAuthUser({ email: email });
+        setAuthUser(attemptedUser[0]);
         setIsLoggedIn(true);
-        setHasAttemptedLogin(false);
         setInvalidMsg(false);
         navigate("/events");
       }
     } else {
-      setHasAttemptedLogin(false);
       navigate("/login");
     }
   }
 
-  if (isLoading && !hasAttemptedLogin) {
+  if (isLoading && !invalidEmailMsg && !invalidPasswordMsg && !isLoggedIn) {
     return <Loading page={"Login"} />;
   }
   return (
@@ -112,14 +112,14 @@ function LoginPage() {
         </button>
       </form>
       {invalidEmailMsg ? (
-        <span id="invalidMsg" className="loginLayerFour">
+        <span className="invalidMsg loginLayerFour">
           Invalid email. Please enter in a valid email address.
         </span>
       ) : (
         <></>
       )}
       {invalidPasswordMsg ? (
-        <span id="invalidMsg" className="loginLayerFour">
+        <span className="invalidMsg loginLayerFour">
           Incorrect password. Please enter the correct password.
         </span>
       ) : (

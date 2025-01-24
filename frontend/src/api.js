@@ -2,22 +2,24 @@ import axios from "axios";
 
 // GET:
 
-export default async function getEvents() {
+export async function getEvents() {
   try {
     const response = await axios.get("http://localhost:9090/api/events");
+    console.log(response.data, " <<< response data");
     if (response && response.data) {
+      return response;
     } else {
       console.error("No data found in the response.");
+      return null;
     }
-    console.log(response.data, " <<< response data");
-    return response;
   } catch (err) {
     console.error("Error fetching events:", err.message || err);
+    return null;
   }
 }
 
 export function getEvent(event_id) {
-  return axios.get(`http://localhost:9090/api/events/:${event_id}`);
+  return axios.get(`http://localhost:9090/api/events/${event_id}`);
 }
 
 export function getUsers() {
@@ -25,7 +27,7 @@ export function getUsers() {
 }
 
 export function getUser(user_id) {
-  return axios.get(`http://localhost:9090/api/users/:${user_id}`);
+  return axios.get(`http://localhost:9090/api/users/${user_id}`);
 }
 
 // POST:
@@ -107,7 +109,7 @@ export function patchEvent(
   attendee_limit,
   thumbnail
 ) {
-  return axios.patch(`http://localhost:9090/api/events/:${event_id}`, {
+  return axios.patch(`http://localhost:9090/api/events/${event_id}`, {
     publisher,
     host,
     event_name,
@@ -136,7 +138,7 @@ export function patchUser(
   user_password,
   is_admin
 ) {
-  return axios.patch(`http://localhost:9090/api/users/:${user_id}`, {
+  return axios.patch(`http://localhost:9090/api/users/${user_id}`, {
     first_name,
     last_name,
     display_name,
@@ -149,5 +151,8 @@ export function patchUser(
 // DELETE:
 
 export function deleteEvent(event_id) {
-  return axios.delete(`http://localhost:9090/api/events/:${event_id}`);
+  if (window.confirm("Are you sure you want to delete this event?")) {
+    return axios.delete(`http://localhost:9090/api/events/${event_id}`);
+  }
+  return null;
 }

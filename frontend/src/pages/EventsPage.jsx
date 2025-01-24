@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/UserContext";
-import getEvents from "../api.js";
 import EventCard from "../components/EventCard/EventCard.jsx";
+import { getEvents } from "../api.js";
 import Loading from "../components/Loading/Loading.jsx";
 import "../stylesheets/EventsPage.css";
 
@@ -10,8 +10,6 @@ function EventsPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
-
-  console.log("HELLO");
 
   useEffect(() => {
     async function fetchEvents() {
@@ -29,6 +27,26 @@ function EventsPage() {
 
   console.log(eventsList, " <<< eventsList");
 
+  function handleCreateClick() {
+    navigate("/create-event");
+  }
+
+  function handleMyEventsClick() {
+    navigate("/my-events");
+  }
+
+  const isAdmin = authUser?.is_admin || false;
+
+  const renderEventList = () => (
+    <ul className="gridContainer">
+      {eventsList.map((event) => (
+        <li key={event.event_id}>
+          <EventCard event={event} />
+        </li>
+      ))}
+    </ul>
+  );
+
   if (isLoading) {
     return <Loading page={"Events"} />;
   } else if (isLoggedIn && isAdmin) {
@@ -36,23 +54,13 @@ function EventsPage() {
       <main>
         <br />
         <header className="adminButtonHeader">
-          <button onClick={navigate("/events")}>Create Event</button>
-          <button onClick={navigate("/events")}>Update Event</button>
-          <button onClick={navigate("/events")}>My Events</button>
+          <button onClick={handleCreateClick}>Create Event</button>
+          <button onClick={handleMyEventsClick}>My Events</button>
         </header>
         <br />
         <h1>Events</h1>
         <br />
-        <ul className="gridContainer">
-          {eventsList.map((event) => {
-            console.log(event, " <<< event");
-            return (
-              <li key={event.event_id}>
-                <EventCard event={event} />
-              </li>
-            );
-          })}
-        </ul>
+        {renderEventList()}
       </main>
     );
   } else if (isLoggedIn) {
@@ -60,21 +68,12 @@ function EventsPage() {
       <main>
         <br />
         <header className="userButtonHeader">
-          <button onClick={navigate("/events")}>My Events</button>
+          <button onClick={handleMyEventsClick}>My Events</button>
         </header>
         <br />
         <h1>Events</h1>
         <br />
-        <ul className="gridContainer">
-          {eventsList.map((event) => {
-            console.log(event, " <<< event");
-            return (
-              <li key={event.event_id}>
-                <EventCard event={event} />
-              </li>
-            );
-          })}
-        </ul>
+        {renderEventList()}
       </main>
     );
   } else {
@@ -83,16 +82,7 @@ function EventsPage() {
         <br />
         <h1>Events</h1>
         <br />
-        <ul className="gridContainer">
-          {eventsList.map((event) => {
-            console.log(event, " <<< event");
-            return (
-              <li key={event.event_id}>
-                <EventCard event={event} />
-              </li>
-            );
-          })}
-        </ul>
+        {renderEventList()}
       </main>
     );
   }

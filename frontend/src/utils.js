@@ -1,5 +1,9 @@
-export default function fetchUserObject(usersList, userProperty) {
+export default function fetchUserObject(
+  usersList,
+  userObjProperty,
+  propertyValue
+) {
   return usersList.filter((user) => {
-    return (user[userProperty] = userProperty);
+    return user[userObjProperty] === propertyValue;
   });
 }
