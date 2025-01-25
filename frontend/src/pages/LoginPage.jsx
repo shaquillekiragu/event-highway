@@ -22,9 +22,9 @@ function LoginPage() {
         const response = await getUsers();
         console.log(response.data.users, " <<< r.d.users");
         setUsers(response.data.users);
-        setIsLoading(false);
       } catch (err) {
         console.error(err);
+      } finally {
         setIsLoading(false);
       }
     }
@@ -45,39 +45,27 @@ function LoginPage() {
     event.preventDefault();
     console.log(email, " <<< email");
 
-    if (!hasAttemptedLogin) {
-      setInvalidEmailMsg(false);
-      setInvalidPasswordMsg(false);
+    setInvalidEmailMsg(false);
+    setInvalidPasswordMsg(false);
 
-      const isValidEmail = users.some((user) => {
-        return user.email === email;
-      });
+    const attemptedUser = users.find((user) => user.email === email);
 
-      const attemptedUser = users.filter((user) => {
-        return user.email === email;
-      });
-
-      const isCorrectPassword =
-        attemptedUser[0].user_password === user_password;
-
-      if (!isValidEmail) {
-        setInvalidEmailMsg(true);
-        setInvalidPasswordMsg(false);
-      } else if (!isCorrectPassword) {
-        setInvalidPasswordMsg(true);
-        setInvalidEmailMsg(false);
-      } else {
-        setAuthUser(attemptedUser[0]);
-        setIsLoggedIn(true);
-        setInvalidMsg(false);
-        navigate("/events");
-      }
-    } else {
-      navigate("/login");
+    if (!attemptedUser) {
+      setInvalidEmailMsg(true);
+      return;
     }
+
+    if (attemptedUser.user_password !== user_password) {
+      setInvalidPasswordMsg(true);
+      return;
+    }
+
+    setAuthUser(attemptedUser);
+    setIsLoggedIn(true);
+    navigate("/events");
   }
 
-  if (isLoading && !invalidEmailMsg && !invalidPasswordMsg && !isLoggedIn) {
+  if (isLoading) {
     return <Loading page={"Login"} />;
   }
   return (
