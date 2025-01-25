@@ -1,3 +1,5 @@
+import "./SignUpForm.css";
+
 function SignUpForm({
   handleSubmit,
   handleEmailChange,
@@ -8,65 +10,90 @@ function SignUpForm({
   handleIsAdminChange,
 }) {
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email Address: </label>
+    <form onSubmit={handleSubmit} className="signupForm">
+      <div className="formGroup">
+        <label htmlFor="email">Email Address:</label>
         <input
           id="email"
-          type="text"
-          placeholder="Type here..."
+          type="email"
+          placeholder="Enter your email address"
           onChange={handleEmailChange}
           required
         />
-        <br />
-        <label htmlFor="password">Password: </label>
+      </div>
+
+      <div className="formGroup">
+        <label htmlFor="password">Password:</label>
         <input
           id="password"
           type="password"
-          placeholder="Type here..."
+          placeholder="Enter your password"
           onChange={handlePasswordChange}
           required
         />
-        <br />
-        <label htmlFor="first_name">First Name: </label>
+      </div>
+
+      <div className="formGroup">
+        <label htmlFor="first_name">First Name:</label>
         <input
           id="first_name"
           type="text"
-          placeholder="Type here..."
+          placeholder="Enter your first name"
           onChange={handleFirstNameChange}
           required
         />
-        <br />
-        <label htmlFor="last_name">Last Name: </label>
+      </div>
+
+      <div className="formGroup">
+        <label htmlFor="last_name">Last Name:</label>
         <input
           id="last_name"
           type="text"
-          placeholder="Type here... (optional)"
+          placeholder="Enter your last name (optional)"
           onChange={handleLastNameChange}
         />
-        <br />
-        <label htmlFor="display_name">Display Name: </label>
+      </div>
+
+      <div className="formGroup">
+        <label htmlFor="display_name">Display Name:</label>
         <input
           id="display_name"
           type="text"
-          placeholder="Type here..."
+          placeholder="Choose a display name"
           onChange={handleDisplayNameChange}
           required
         />
-        <br />
-        <label htmlFor="is_admin">Admin Status: </label>
-        <input
-          id="is_admin"
-          type="radio"
-          onChange={handleIsAdminChange}
-          required
-        />
-        <br />
-        <button type="submit" className="logButton">
-          Sign In!
-        </button>
-      </form>
-    </>
+      </div>
+
+      <fieldset className="formGroup">
+        <legend>Admin Status:</legend>
+        <div className="radioGroup">
+          <input
+            id="admin_yes"
+            type="radio"
+            name="is_admin"
+            value={true}
+            onChange={handleIsAdminChange}
+          />
+          <label htmlFor="admin_yes">Yes</label>
+        </div>
+        <div className="radioGroup">
+          <input
+            id="admin_no"
+            type="radio"
+            name="is_admin"
+            value={false}
+            onChange={handleIsAdminChange}
+            defaultChecked
+          />
+          <label htmlFor="admin_no">No</label>
+        </div>
+      </fieldset>
+
+      <button type="submit" className="submitButton">
+        Sign Up
+      </button>
+    </form>
   );
 }
 
