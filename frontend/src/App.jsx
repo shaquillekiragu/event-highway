@@ -8,6 +8,8 @@ import SignUpPage from "./pages/SignUpPage.jsx";
 import EventsPage from "./pages/EventsPage.jsx";
 import MyEventsPage from "./pages/MyEventsPage.jsx";
 import ViewEvent from "./pages/ViewEvent.jsx";
+import CreateEvent from "./pages/CreateEvent.jsx";
+import UpdateEvent from "./pages/UpdateEvent.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
