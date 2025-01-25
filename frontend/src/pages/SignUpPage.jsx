@@ -80,13 +80,10 @@ function SignUpPage() {
 
   return (
     <main className="signupContainer">
-      <div className="signupLayerOne">
-        <p>Welcome to Event Highway!</p>
-      </div>
-      <div className="signupLayerTwo">
+      <article className="signupLayerOne">
         <h3>Sign Up:</h3>
-      </div>
-      <article className="signupLayerThree">
+      </article>
+      <article className="signupLayerTwo">
         <SignUpForm
           handleSubmit={handleSubmit}
           handleFirstNameChange={handleFirstNameChange}
@@ -97,12 +94,14 @@ function SignUpPage() {
           handleIsAdminChange={handleIsAdminChange}
         />
       </article>
-      {isSubmitting && (
-        <p className="statusMessage">
-          <em>Signing you up...</em>
-        </p>
-      )}
-      {errorMessage && <p className="errorMessage">{errorMessage}</p>}
+      <article className="signupLayerThree">
+        {isSubmitting && (
+          <p className="statusMessage">
+            <em>Signing you up...</em>
+          </p>
+        )}
+        {errorMessage && <p className="errorMessage">{errorMessage}</p>}
+      </article>
     </main>
   );
 }
