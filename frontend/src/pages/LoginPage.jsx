@@ -70,9 +70,9 @@ function LoginPage() {
   }
   return (
     <main className="loginContainer">
-      <div className="loginLayerOne">
+      <article className="loginLayerOne">
         <h3>Login:</h3>
-      </div>
+      </article>
       <form onSubmit={handleSubmit} className="loginLayerTwo">
         <label htmlFor="email">Email Address: </label>
         <input
@@ -96,20 +96,22 @@ function LoginPage() {
           Login
         </button>
       </form>
-      {invalidEmailMsg ? (
-        <span className="invalidMsg loginLayerThree">
-          Invalid email. Please enter in a valid email address.
-        </span>
-      ) : (
-        <></>
-      )}
-      {invalidPasswordMsg ? (
-        <span className="invalidMsg loginLayerThree">
-          Incorrect password. Please enter the correct password.
-        </span>
-      ) : (
-        <></>
-      )}
+      <article className="loginLayerThree">
+        {invalidEmailMsg ? (
+          <span className="invalidMsg">
+            Invalid email. Please enter in a valid email address.
+          </span>
+        ) : (
+          <></>
+        )}
+        {invalidPasswordMsg ? (
+          <span className="invalidMsg">
+            Incorrect password. Please enter the correct password.
+          </span>
+        ) : (
+          <></>
+        )}
+      </article>
     </main>
   );
 }
