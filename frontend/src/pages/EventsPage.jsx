@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
 import EventCard from "../components/EventCard/EventCard.jsx";
 import { getEvents } from "../api.js";
@@ -10,6 +11,8 @@ function EventsPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchEvents() {
