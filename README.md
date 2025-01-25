@@ -157,11 +157,11 @@ Test event administrator account:
 
 email:
 ```
-
+iamironman@outlook.com
 ```
 password:
 ```
-
+iloveyou3000
 ```
 
 I hope you have an incredible experience with Event Highway!
