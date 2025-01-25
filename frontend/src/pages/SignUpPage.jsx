@@ -6,14 +6,14 @@ import SignUpForm from "../components/SignUpForm/SignUpForm.jsx";
 import "../stylesheets/SignUpPage.css";
 
 function SignUpPage() {
-  const [hasPosted, setHasPosted] = useState(true);
-  const [hasInputtedInfo, setHasInputtedInfo] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [display_name, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [user_password, setUserPassword] = useState("");
-  const [is_admin, setIsAdmin] = useState(null);
+  const [is_admin, setIsAdmin] = useState(false);
 
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
 
@@ -22,8 +22,8 @@ function SignUpPage() {
   async function handleSubmit(event) {
     try {
       event.preventDefault();
-      setHasInputtedInfo(true);
-      setHasPosted(false);
+      setIsSubmitting(true);
+      setErrorMessage(null);
 
       await postUser(
         first_name,
@@ -33,7 +33,7 @@ function SignUpPage() {
         user_password,
         is_admin
       );
-      setHasPosted(true);
+
       setAuthUser({
         first_name: first_name,
         last_name: last_name,
@@ -42,12 +42,15 @@ function SignUpPage() {
         user_password: user_password,
         is_admin: is_admin,
       });
+
       setIsLoggedIn(true);
       console.log(authUser, "authUser");
       console.log(isLoggedIn, "isLoggedIn");
       navigate("/events");
     } catch (err) {
       console.error(err, " << postUser error");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -72,16 +75,9 @@ function SignUpPage() {
   }
 
   function handleIsAdminChange(event) {
-    setIsAdmin(event.target.value);
+    setIsAdmin(event.target.checked);
   }
 
-  if (hasInputtedInfo && (!hasPosted || !isLoggedIn)) {
-    return (
-      <p>
-        <em>Signing you in...</em>
-      </p>
-    );
-  }
   return (
     <main className="signupContainer">
       <div className="signupLayerOne">
@@ -101,6 +97,12 @@ function SignUpPage() {
           handleIsAdminChange={handleIsAdminChange}
         />
       </article>
+      {isSubmitting && (
+        <p className="statusMessage">
+          <em>Signing you up...</em>
+        </p>
+      )}
+      {errorMessage && <p className="errorMessage">{errorMessage}</p>}
     </main>
   );
 }
