@@ -71,12 +71,9 @@ function LoginPage() {
   return (
     <main className="loginContainer">
       <div className="loginLayerOne">
-        <p>Welcome to Event Highway!</p>
-      </div>
-      <div className="loginLayerTwo">
         <h3>Login:</h3>
       </div>
-      <form onSubmit={handleSubmit} className="loginLayerThree">
+      <form onSubmit={handleSubmit} className="loginLayerTwo">
         <label htmlFor="email">Email Address: </label>
         <input
           placeholder="Enter your email address..."
@@ -100,14 +97,14 @@ function LoginPage() {
         </button>
       </form>
       {invalidEmailMsg ? (
-        <span className="invalidMsg loginLayerFour">
+        <span className="invalidMsg loginLayerThree">
           Invalid email. Please enter in a valid email address.
         </span>
       ) : (
         <></>
       )}
       {invalidPasswordMsg ? (
-        <span className="invalidMsg loginLayerFour">
+        <span className="invalidMsg loginLayerThree">
           Incorrect password. Please enter the correct password.
         </span>
       ) : (
