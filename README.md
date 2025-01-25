@@ -141,6 +141,7 @@ https://event-highway.netlify.app/
 ## Test accounts for logging in
 
 Here is a test user account:
+<br>
 
 email:
 ```
@@ -154,16 +155,16 @@ SecurePass123
 <br>
 
 Test event administrator account:
+<br>
 
 email:
 ```
-
+iamironman@outlook.com
 ```
 password:
 ```
-
+iloveyou3000
 ```
-
-I hope you have an incredible experience with Event Highway!
 <br>
+I hope you have an incredible experience with Event Highway!
 <br>

@@ -69,7 +69,6 @@ function Header() {
           <Link className="headerTitleLink" to="/events">
             <h1 className="event">Event</h1>
           </Link>
-          <Link className="profileButton">My Account</Link>
           <p className="userStatus">
             User logged in: <span>{authUser.display_name}</span>
           </p>
