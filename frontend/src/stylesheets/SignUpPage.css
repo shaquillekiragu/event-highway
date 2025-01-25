@@ -5,21 +5,13 @@
   min-height: 60vh;
 }
 
-.signupLayerOne,
 .signupLayerTwo {
   grid-column: 2/3;
   width: 100%;
   height: fit-content;
   display: flex;
   justify-content: center;
-}
-
-.signupLayerOne {
   margin-top: 5vh;
-}
-
-.signupLayerOne p {
-  text-wrap: nowrap;
 }
 
 .signupLayerTwo h3 {
