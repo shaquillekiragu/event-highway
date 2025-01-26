@@ -52,6 +52,8 @@ button:hover {
 
 .logButton {
   height: 5vh;
+  background-color: black;
+  color: white;
 }
 
 button:not(.logButton) {
