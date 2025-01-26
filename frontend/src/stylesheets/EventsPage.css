@@ -6,11 +6,11 @@ h1 {
   width: 50%;
   margin-left: 50%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .userButtonHeader {
-  width: 45%;
+  width: 30%;
   margin-left: 50%;
   display: flex;
   justify-content: flex-end;
