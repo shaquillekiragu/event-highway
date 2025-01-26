@@ -18,12 +18,20 @@
   color: black;
   position: relative;
   left: 3.5vw;
+  margin-bottom: 3vh;
 }
 
 .highway {
   color: white;
   position: relative;
   left: 4vw;
+}
+
+.takingActionContainer,
+.errorHeaderContainer,
+.loggedInContainer,
+.loggedOutContainer {
+  margin-top: 2vh;
 }
 
 .loggedOutContainer,
@@ -40,7 +48,7 @@
 .loggedInContainer {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   flex-wrap: nowrap;
   width: 95%;
   margin-right: 5%;
@@ -122,11 +130,6 @@
 .userStatus span {
   color: red;
 }
-
-/* .logoutButton {
-    position: relative;
-    right: 5vw;
-  } */
 
 .errorMessage {
   color: red;
