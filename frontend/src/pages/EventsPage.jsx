@@ -55,7 +55,6 @@ function EventsPage() {
   } else if (isLoggedIn && isAdmin) {
     return (
       <main>
-        <br />
         <header className="adminButtonHeader">
           <button onClick={handleCreateClick} className="logButton">
             Create Event
@@ -64,33 +63,26 @@ function EventsPage() {
             My Events
           </button>
         </header>
-        <br />
-        <h1>Events</h1>
-        <br />
+        <h1 className="eventsPageTitle">Events</h1>
         {renderEventList()}
       </main>
     );
   } else if (isLoggedIn) {
     return (
       <main>
-        <br />
         <header className="userButtonHeader">
           <button onClick={handleMyEventsClick} className="logButton">
             My Events
           </button>
         </header>
-        <br />
-        <h1>Events</h1>
-        <br />
+        <h1 className="eventsPageTitle">Events</h1>
         {renderEventList()}
       </main>
     );
   } else {
     return (
       <main>
-        <br />
-        <h1>Events</h1>
-        <br />
+        <h1 className="eventsPageTitle">Events</h1>
         {renderEventList()}
       </main>
     );
