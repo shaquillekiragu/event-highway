@@ -1,6 +1,12 @@
 .welcomeContainer {
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.welcomeSubcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
 }
 
@@ -15,11 +21,17 @@
 
 .welcomeLayerOne {
   margin-top: 5vh;
-  margin-bottom: 1.5vh;
+  margin-bottom: 4vh;
 }
 
 .welcomeLayerTwo {
-  margin-bottom: 2.5vh;
+  display: flex;
+  gap: 1vw;
+  margin-bottom: 4vh;
+}
+
+.welcomeLayerTwo button {
+  width: 6vw;
 }
 
 .welcomeLayerThree {
