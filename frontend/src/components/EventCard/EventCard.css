@@ -12,7 +12,7 @@
 
 .eventCard {
   border: 1px solid black;
-  border-radius: 10%;
+  border-radius: 5%;
   width: 100%;
   height: 100%;
   padding: 2.5vw;
@@ -31,34 +31,30 @@
   justify-content: space-between;
 }
 
-.layerOne .host {
+.layerOne .host strong {
   color: blue;
 }
 
-.layerOne .category {
+.layerOne .category strong {
   color: green;
 }
 
-.layerTwo {
+.layerTwo,
+.layerThree,
+.layerThree p,
+.layerFour section {
   display: flex;
   justify-content: center;
 }
 
 .layerThree {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   margin: 5vh 0;
 }
 
-.layerThree span {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
 .layerThree p {
+  width: 100%;
   margin: 0;
 }
 
@@ -72,9 +68,7 @@
 }
 
 .layerFour section {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 

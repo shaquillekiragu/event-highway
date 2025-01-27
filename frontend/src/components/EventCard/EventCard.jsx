@@ -6,54 +6,56 @@ function EventCard({ event }) {
   const path = `/events/${event.event_id}`;
 
   return (
-    <Link className="eventCardLink" to={path}>
+    <Link
+      className="eventCardLink"
+      to={path}
+      aria-label={`View details for event: ${event.event_name}`}
+    >
       <article className="eventCard">
         <section className="layerOne">
           <p className="host">
-            <strong>{event.host}</strong>
+            Host: <strong>{event.host}</strong>
           </p>
           <p className="category">
-            <strong>{event.category}</strong>
+            Category: <strong>{event.category}</strong>
           </p>
         </section>
         <section className="layerTwo">
           <h2 className="title">{event.event_name}</h2>
         </section>
         <section className="layerThree">
-          <span>
-            <p className="isOnline">
-              <strong>
-                {event.is_online
-                  ? "This event is ONLINE"
-                  : `VENUE: ${event.venue}`}
-              </strong>
-            </p>
-          </span>
-          <span>
-            <p className="isFree">
-              <strong>
-                {event.is_free
-                  ? "This event is FREE"
-                  : `COST: £${event.cost_in_gbp}`}
-              </strong>
-            </p>
-          </span>
-          <span>
-            <p className="isLimit">
-              <strong>
-                {event.is_limit
-                  ? `ATTENDEE LIMIT: ${event.attendee_limit}`
-                  : "NO ATTENDEE LIMIT"}
-              </strong>
-            </p>
-          </span>
+          <p className="isOnline">
+            <strong>
+              {event.is_online
+                ? "This event is ONLINE"
+                : `VENUE: ${event.venue}`}
+            </strong>
+          </p>
+          <p className="isFree">
+            <strong>
+              {event.is_free
+                ? "This event is FREE"
+                : `COST: £${event.cost_in_gbp}`}
+            </strong>
+          </p>
+          <p className="isLimit">
+            <strong>
+              {event.is_limit
+                ? `ATTENDEE LIMIT: ${event.attendee_limit}`
+                : "NO ATTENDEE LIMIT"}
+            </strong>
+          </p>
         </section>
         <section className="layerFour">
           <section className="layerFourA">
             <p className="eventStartLabel">Event Start:</p>
             <p className="eventStart">
               <strong>
-                {<FormatDateTime sqlTimestamp={event.event_start} />}
+                {event.event_start ? (
+                  <FormatDateTime sqlTimestamp={event.event_start} />
+                ) : (
+                  "TBD"
+                )}
               </strong>
             </p>
           </section>
@@ -61,7 +63,11 @@ function EventCard({ event }) {
             <p className="eventEndLabel">Event Finish:</p>
             <p className="eventEnd">
               <strong>
-                {<FormatDateTime sqlTimestamp={event.event_end} />}
+                {event.event_end ? (
+                  <FormatDateTime sqlTimestamp={event.event_end} />
+                ) : (
+                  "TBD"
+                )}
               </strong>
             </p>
           </section>
