@@ -1,10 +1,10 @@
 import "../stylesheets/CreateEvent.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postEvent } from "../api";
 import { useAuth } from "../contexts/UserContext";
+import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
-import Loading from "../components/Loading/Loading";
+import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
 
 function CreateEvent() {
   const { authUser } = useAuth();
@@ -75,29 +75,23 @@ function CreateEvent() {
   }
 
   if (!authUser.is_admin) {
-    return (
-      <main className="notAdmin">
-        <h1>Sign in as an event administrator to access this page...</h1>
-      </main>
-    );
+    return <NotAnAdmin />;
   }
   return (
     <main className="createEventContainer">
-      <article className="createEventSubcontainer">
-        <header className="createEventLayerOne">
-          <h2>Create a New Event</h2>
-        </header>
-        <section className="createEventLayerTwo">
-          <CreateEventForm
-            eventData={eventData}
-            handleSubmit={handleSubmit}
-            handleChange={handleChange}
-          />
-        </section>
-        <section className="createEventLayerThree">
-          {error && <p className="errorMessage">{error}</p>}
-        </section>
-      </article>
+      <header className="createEventLayerOne">
+        <h2>Create a New Event</h2>
+      </header>
+      <section className="createEventLayerTwo">
+        <CreateEventForm
+          eventData={eventData}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+        />
+      </section>
+      <section className="createEventLayerThree">
+        {error && <p className="errorMessage">{error}</p>}
+      </section>
     </main>
   );
 }

@@ -1,6 +1,10 @@
-.notAdmin {
+.createEventContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+}
+
+.createEventLayerOne {
+  margin-top: 5vh;
 }
