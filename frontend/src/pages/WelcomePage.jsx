@@ -14,18 +14,18 @@ function WelcomePage() {
   return (
     <main className="welcomeContainer">
       <article className="welcomeSubcontainer">
-        <div className="welcomeLayerOne">
+        <header className="welcomeLayerOne">
           <h2>Welcome to Event Highway!</h2>
-        </div>
-        <div className="welcomeLayerTwo">
+        </header>
+        <section className="welcomeLayerTwo">
           <button onClick={handleLoginClick} className="logButton">
             Login
           </button>
           <button onClick={handleSignupClick} className="logButton">
             Sign Up!
           </button>
-        </div>
-        <div className="welcomeLayerThree">
+        </section>
+        <section className="welcomeLayerThree">
           <label htmlFor="proceed">Proceed without logging in: </label>
           <button
             onClick={() => {
@@ -35,7 +35,7 @@ function WelcomePage() {
           >
             Proceed
           </button>
-        </div>
+        </section>
       </article>
     </main>
   );

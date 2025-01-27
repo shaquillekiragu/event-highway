@@ -71,7 +71,7 @@
   justify-content: space-around;
 }
 
-.layerFour div {
+.layerFour section {
   display: flex;
   flex-direction: column;
   justify-content: center;

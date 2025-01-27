@@ -11,7 +11,7 @@ function SignUpForm({
 }) {
   return (
     <form onSubmit={handleSubmit} className="signupForm">
-      <div className="formGroup">
+      <section className="formGroup">
         <label htmlFor="email">Email Address:</label>
         <input
           id="email"
@@ -20,9 +20,9 @@ function SignUpForm({
           onChange={handleEmailChange}
           required
         />
-      </div>
+      </section>
 
-      <div className="formGroup">
+      <section className="formGroup">
         <label htmlFor="password">Password:</label>
         <input
           id="password"
@@ -31,9 +31,9 @@ function SignUpForm({
           onChange={handlePasswordChange}
           required
         />
-      </div>
+      </section>
 
-      <div className="formGroup">
+      <section className="formGroup">
         <label htmlFor="first_name">First Name:</label>
         <input
           id="first_name"
@@ -42,9 +42,9 @@ function SignUpForm({
           onChange={handleFirstNameChange}
           required
         />
-      </div>
+      </section>
 
-      <div className="formGroup">
+      <section className="formGroup">
         <label htmlFor="last_name">Last Name:</label>
         <input
           id="last_name"
@@ -52,9 +52,9 @@ function SignUpForm({
           placeholder="Enter your last name (optional)"
           onChange={handleLastNameChange}
         />
-      </div>
+      </section>
 
-      <div className="formGroup">
+      <section className="formGroup">
         <label htmlFor="display_name">Display Name:</label>
         <input
           id="display_name"
@@ -63,11 +63,11 @@ function SignUpForm({
           onChange={handleDisplayNameChange}
           required
         />
-      </div>
+      </section>
 
       <fieldset className="formGroup">
         <legend>Admin Status:</legend>
-        <div className="radioGroup">
+        <section className="radioGroup">
           <input
             id="admin_yes"
             type="radio"
@@ -76,8 +76,8 @@ function SignUpForm({
             onChange={handleIsAdminChange}
           />
           <label htmlFor="admin_yes">Yes</label>
-        </div>
-        <div className="radioGroup">
+        </section>
+        <section className="radioGroup">
           <input
             id="admin_no"
             type="radio"
@@ -87,7 +87,7 @@ function SignUpForm({
             defaultChecked
           />
           <label htmlFor="admin_no">No</label>
-        </div>
+        </section>
       </fieldset>
 
       <button type="submit" className="submitButton">

@@ -36,36 +36,36 @@ function Header() {
   if (isTakingLoginAction && isLoggedIn) {
     return (
       <header>
-        <div className="errorHeaderContainer">
+        <section className="errorHeaderContainer">
           <h1 className="event">Event</h1>
           <p className="errorMessage">
             LOGIN STATE ERROR. PLEASE REFRESH PAGE...
           </p>
-        </div>
-        <div className="thickblackBanner highwayContainer">
+        </section>
+        <section className="thickblackBanner highwayContainer">
           <h1 className="highway">Highway</h1>
-        </div>
+        </section>
       </header>
     );
   } else if (isTakingLoginAction) {
     return (
       <header>
-        <div className="takingActionContainer">
+        <section className="takingActionContainer">
           <Link className="headerTitleLink" to="/">
             <h1 className="event">Event</h1>
           </Link>
-        </div>
-        <div className="thickBlackBanner highwayContainer">
+        </section>
+        <section className="thickBlackBanner highwayContainer">
           <Link className="headerTitleLink" to="/">
             <h1 className="highway">Highway</h1>
           </Link>
-        </div>
+        </section>
       </header>
     );
   } else if (isLoggedIn) {
     return (
       <header>
-        <div className="loggedInContainer">
+        <section className="loggedInContainer">
           <Link className="headerTitleLink" to="/events">
             <h1 className="event">Event</h1>
           </Link>
@@ -78,30 +78,30 @@ function Header() {
           >
             Log Out
           </button>
-        </div>
-        <div className="thickBlackBanner highwayContainer">
+        </section>
+        <section className="thickBlackBanner highwayContainer">
           <Link className="headerTitleLink" to="/events">
             <h1 className="highway">Highway</h1>
           </Link>
-        </div>
+        </section>
       </header>
     );
   } else {
     return (
       <header>
-        <div className="loggedOutContainer">
+        <section className="loggedOutContainer">
           <Link className="headerTitleLink" to="/events">
             <h1 className="event">Event</h1>
           </Link>
           <button className="loginButton logButton" onClick={handleLoginClick}>
             Welcome Page (Login)
           </button>
-        </div>
-        <div className="thickBlackBanner highwayContainer">
+        </section>
+        <section className="thickBlackBanner highwayContainer">
           <Link className="headerTitleLink" to="/events">
             <h1 className="highway">Highway</h1>
           </Link>
-        </div>
+        </section>
       </header>
     );
   }

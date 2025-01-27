@@ -81,10 +81,10 @@ function SignUpPage() {
   return (
     <main className="signupContainer">
       <article className="signupSubcontainer">
-        <div className="signupLayerOne">
-          <h3>Sign Up:</h3>
-        </div>
-        <div className="signupLayerTwo">
+        <header className="signupLayerOne">
+          <h2>Sign Up:</h2>
+        </header>
+        <section className="signupLayerTwo">
           <SignUpForm
             handleSubmit={handleSubmit}
             handleFirstNameChange={handleFirstNameChange}
@@ -94,15 +94,15 @@ function SignUpPage() {
             handlePasswordChange={handlePasswordChange}
             handleIsAdminChange={handleIsAdminChange}
           />
-        </div>
-        <div className="signupLayerThree">
+        </section>
+        <section className="signupLayerThree">
           {isSubmitting && (
             <p className="statusMessage">
               <em>Signing you up...</em>
             </p>
           )}
           {errorMessage && <p className="errorMessage">{errorMessage}</p>}
-        </div>
+        </section>
       </article>
     </main>
   );

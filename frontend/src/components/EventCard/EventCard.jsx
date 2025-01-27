@@ -8,18 +8,18 @@ function EventCard({ event }) {
   return (
     <Link className="eventCardLink" to={path}>
       <article className="eventCard">
-        <div className="layerOne">
+        <section className="layerOne">
           <p className="host">
             <strong>{event.host}</strong>
           </p>
           <p className="category">
             <strong>{event.category}</strong>
           </p>
-        </div>
-        <div className="layerTwo">
+        </section>
+        <section className="layerTwo">
           <h2 className="title">{event.event_name}</h2>
-        </div>
-        <div className="layerThree">
+        </section>
+        <section className="layerThree">
           <span>
             <p className="isOnline">
               <strong>
@@ -47,25 +47,25 @@ function EventCard({ event }) {
               </strong>
             </p>
           </span>
-        </div>
-        <div className="layerFour">
-          <div className="layerFourA">
+        </section>
+        <section className="layerFour">
+          <section className="layerFourA">
             <p className="eventStartLabel">Event Start:</p>
             <p className="eventStart">
               <strong>
                 {<FormatDateTime sqlTimestamp={event.event_start} />}
               </strong>
             </p>
-          </div>
-          <div className="layerFourB">
+          </section>
+          <section className="layerFourB">
             <p className="eventEndLabel">Event Finish:</p>
             <p className="eventEnd">
               <strong>
                 {<FormatDateTime sqlTimestamp={event.event_end} />}
               </strong>
             </p>
-          </div>
-        </div>
+          </section>
+        </section>
       </article>
     </Link>
   );
