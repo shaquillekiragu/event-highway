@@ -14,7 +14,7 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
-  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+  const { setAuthUser, setIsLoggedIn } = useAuth();
 
   useEffect(() => {
     async function fetchUsers() {

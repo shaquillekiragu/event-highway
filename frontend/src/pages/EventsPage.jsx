@@ -11,7 +11,7 @@ function EventsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+  const { authUser, isLoggedIn } = useAuth();
 
   const navigate = useNavigate();
 
