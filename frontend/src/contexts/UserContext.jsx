@@ -16,12 +16,15 @@ export default function UserProvider({ children }) {
     is_admin: null,
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [myEvents, setMyEvents] = useState([]);
 
   const value = {
     authUser,
     setAuthUser,
     isLoggedIn,
     setIsLoggedIn,
+    myEvents,
+    setMyEvents,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
