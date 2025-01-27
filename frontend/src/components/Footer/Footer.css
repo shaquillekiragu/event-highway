@@ -2,13 +2,12 @@ footer {
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
+  width: 100vw;
+  height: 25vh;
   background-color: black;
   color: white;
   position: relative;
   bottom: 0;
-  width: 100vw;
-  height: 25vh;
-  margin-top: 10vh;
 }
 
 footer p {
