@@ -1,7 +1,9 @@
 .loadingComponent {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  min-height: 50vh;
-  margin-top: 10vh;
+  height: 100vh;
+  margin-top: 10%;
+  font-size: 1.5rem;
 }

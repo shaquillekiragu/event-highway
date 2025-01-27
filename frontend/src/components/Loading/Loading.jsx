@@ -3,8 +3,8 @@ import "./Loading.css";
 function Loading({ page }) {
   return (
     <article className="loadingComponent">
-      <p>
-        <em>{page} page loading...</em>
+      <p aria-live="polite">
+        <em>{`${page || ""} `}Page loading...</em>
       </p>
     </article>
   );
