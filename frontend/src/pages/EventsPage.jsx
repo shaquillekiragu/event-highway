@@ -9,10 +9,13 @@ import "../stylesheets/EventsPage.css";
 function EventsPage() {
   const [eventsList, setEventsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
 
   const navigate = useNavigate();
+
+  const isAdmin = authUser?.is_admin || false;
 
   useEffect(() => {
     async function fetchEvents() {
@@ -23,6 +26,9 @@ function EventsPage() {
         setIsLoading(false);
       } catch (err) {
         console.error(err, " << fetchEvents error");
+        setError("Failed to load events. Please try again later.");
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchEvents();
@@ -38,8 +44,6 @@ function EventsPage() {
     navigate("/my-events");
   }
 
-  const isAdmin = authUser?.is_admin || false;
-
   const renderEventList = () => (
     <ul className="gridContainer">
       {eventsList.map((event) => (
@@ -52,6 +56,13 @@ function EventsPage() {
 
   if (isLoading) {
     return <Loading page={"Events"} />;
+  } else if (error) {
+    return (
+      <main>
+        <h1 className="eventsPageTitle">Events</h1>
+        <p className="errorText">{error}</p>
+      </main>
+    );
   } else if (isLoggedIn && isAdmin) {
     return (
       <main>

@@ -1,5 +1,5 @@
 .eventsPageTitle {
-  margin: 6vh 0;
+  margin: 10vh 0 6vh 0;
 }
 
 .adminButtonHeader {
@@ -22,7 +22,7 @@
   display: grid;
   gap: 2vw;
   padding: 0;
-  margin: 0 auto;
+  margin: 0 auto 10vh auto;
 }
 
 .gridContainer li {
@@ -40,5 +40,12 @@
   .gridContainer {
     grid-template-columns: 50% 50%;
     width: 80%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .gridContainer {
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    width: 90%;
   }
 }
