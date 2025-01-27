@@ -41,6 +41,11 @@ function CreateEvent() {
     event.preventDefault();
     setIsLoading(true);
 
+    const currentDate = new Date();
+    const dateTime = `${currentDate.getDay()}/${currentDate.getMonth()}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+
+    console.log(dateTime, " <<< dateTime");
+
     try {
       const response = await postEvent(
         authUser.display_name,
@@ -49,7 +54,7 @@ function CreateEvent() {
         eventData.event_start,
         eventData.event_end,
         eventData.event_description,
-        eventData.created_at,
+        dateTime,
         eventData.category,
         eventData.is_online,
         eventData.venue,
