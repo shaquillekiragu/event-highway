@@ -1,8 +1,16 @@
 .signupContainer {
-  display: grid;
-  grid-template-columns: 35% 30% 35%;
+  display: flex;
+  justify-content: center;
   width: 100%;
   min-height: 60vh;
+}
+
+.signupSubcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .signupLayerOne {
@@ -34,4 +42,7 @@
 }
 
 .signupLayerThree {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

@@ -80,27 +80,29 @@ function SignUpPage() {
 
   return (
     <main className="signupContainer">
-      <article className="signupLayerOne">
-        <h3>Sign Up:</h3>
-      </article>
-      <article className="signupLayerTwo">
-        <SignUpForm
-          handleSubmit={handleSubmit}
-          handleFirstNameChange={handleFirstNameChange}
-          handleLastNameChange={handleLastNameChange}
-          handleDisplayNameChange={handleDisplayNameChange}
-          handleEmailChange={handleEmailChange}
-          handlePasswordChange={handlePasswordChange}
-          handleIsAdminChange={handleIsAdminChange}
-        />
-      </article>
-      <article className="signupLayerThree">
-        {isSubmitting && (
-          <p className="statusMessage">
-            <em>Signing you up...</em>
-          </p>
-        )}
-        {errorMessage && <p className="errorMessage">{errorMessage}</p>}
+      <article className="signupSubcontainer">
+        <div className="signupLayerOne">
+          <h3>Sign Up:</h3>
+        </div>
+        <div className="signupLayerTwo">
+          <SignUpForm
+            handleSubmit={handleSubmit}
+            handleFirstNameChange={handleFirstNameChange}
+            handleLastNameChange={handleLastNameChange}
+            handleDisplayNameChange={handleDisplayNameChange}
+            handleEmailChange={handleEmailChange}
+            handlePasswordChange={handlePasswordChange}
+            handleIsAdminChange={handleIsAdminChange}
+          />
+        </div>
+        <div className="signupLayerThree">
+          {isSubmitting && (
+            <p className="statusMessage">
+              <em>Signing you up...</em>
+            </p>
+          )}
+          {errorMessage && <p className="errorMessage">{errorMessage}</p>}
+        </div>
       </article>
     </main>
   );
