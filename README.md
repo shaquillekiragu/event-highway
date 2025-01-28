@@ -25,10 +25,8 @@ You will need to have these versions or newer for the following technologies in 
 https://github.com/shaquillekiragu/event-highway.git
 ```
 
+2. Once you've opened the repository, at the repository's root create a `.env.test` and `.env.development` file, and declare the variable below in each .env file, assigning the corresponding values to each variable as shown below.
 <br>
-
-2. Once you've opened the repo, at the repository's root create a `.env.test` and `.env.development` file, and declare the variable below in each .env file, assigning the corresponding values to each variable as shown below.
-   <br>
 
 .env.test:
 
