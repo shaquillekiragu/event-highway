@@ -367,7 +367,7 @@ describe("/api/events/:event_id", () => {
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(404);
-    expect(msg).toBe("event not found");
+    expect(msg).toBe("Event not found");
   });
   test("DELETE 204 - Responds with a 204 status code for the deleted event with the given event_id", async () => {
     await request(app).delete("/api/events/1").expect(204);
