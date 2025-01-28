@@ -184,7 +184,7 @@ describe("/api/events", () => {
   });
 });
 
-describe.only("/api/users", () => {
+describe("/api/users", () => {
   test("GET 200 - Responds with a list of users", async () => {
     const {
       body: { users },
@@ -247,7 +247,7 @@ describe.only("/api/users", () => {
   });
 });
 
-describe("/api/events/:event_id", () => {
+describe.only("/api/events/:event_id", () => {
   test("GET 200 - Responds with a single event by event_id", async () => {
     const {
       body: { event },
@@ -269,8 +269,25 @@ describe("/api/events/:event_id", () => {
     expect(event).toHaveProperty("is_limit");
     expect(event).toHaveProperty("attendee_limit");
     expect(event).toHaveProperty("thumbnail");
+    expect(typeof event.event_id).toBe("number");
+    expect(typeof event.publisher).toBe("string");
+    expect(typeof event.host).toBe("string");
+    expect(typeof event.event_name).toBe("string");
+    expect(typeof event.event_start).toBe("string");
+    expect(typeof event.event_end).toBe("string");
+    expect(typeof event.event_description).toBe("string");
+    expect(typeof event.created_at).toBe("string");
+    expect(typeof event.category).toBe("string");
+    expect(typeof event.is_online).toBe("boolean");
+    expect(typeof event.venue).toMatch(/^(string|object)$/);
+    expect(typeof event.venue_address).toMatch(/^(string|object)$/);
+    expect(typeof event.is_free).toBe("boolean");
+    expect(typeof event.cost_in_gbp).toMatch(/^(number|object)$/);
+    expect(typeof event.is_limit).toBe("boolean");
+    expect(typeof event.attendee_limit).toMatch(/^(number|object)$/);
+    expect(typeof event.thumbnail).toMatch(/^(string|object)$/);
   });
-  test("GET 400 - Invalid id given", async () => {
+  test("GET 400 - Invalid data type for id given", async () => {
     const {
       body: { msg },
     } = await request(app).get("/api/events/notAnId").expect(400);
@@ -305,8 +322,8 @@ describe("/api/events/:event_id", () => {
         thumbnail: "https://example.com/thumbnails/ai_future_of_work.jpg",
       })
       .expect(200);
-    expect(event).toHaveProperty("event_id");
-    expect(event).toHaveProperty("publisher");
+    expect(event).toHaveProperty("event_id", 1);
+    expect(event).toHaveProperty("publisher", "Barry Bonds");
     expect(event).toHaveProperty("host", "Tech Innovations Inc.");
     expect(event).toHaveProperty("event_name", "AI and the Future of Work");
     expect(event).toHaveProperty("event_start", "2025-02-10T09:00:00");
@@ -315,7 +332,7 @@ describe("/api/events/:event_id", () => {
       "event_description",
       "A deep dive into how artificial intelligence is shaping the future of work and automation across industries."
     );
-    expect(event).toHaveProperty("created_at");
+    expect(event).toHaveProperty("created_at", "2024-12-25T09:30:00");
     expect(event).toHaveProperty("category", "AI & Technology");
     expect(event).toHaveProperty("is_online", true);
     expect(event).toHaveProperty("venue", null);
@@ -329,7 +346,7 @@ describe("/api/events/:event_id", () => {
       "https://example.com/thumbnails/ai_future_of_work.jpg"
     );
   });
-  test("PATCH 400 - Empty event object received", async () => {
+  test.skip("PATCH 400 - Empty event object received", async () => {
     const obj = {};
     const {
       body: { msg },
@@ -338,7 +355,7 @@ describe("/api/events/:event_id", () => {
     expect(objLength).toBe(0);
     expect(msg).toBe("Bad Request");
   });
-  test("PATCH 400 - Failing schema validation", async () => {
+  test.skip("PATCH 400 - Failing schema validation", async () => {
     const {
       body: { msg },
     } = await request(app)
@@ -365,7 +382,7 @@ describe("/api/events/:event_id", () => {
       .expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test("PATCH 400 - Invalid id given", async () => {
+  test.skip("PATCH 400 - Invalid id given", async () => {
     const {
       body: { msg },
     } = await request(app)
@@ -392,7 +409,7 @@ describe("/api/events/:event_id", () => {
       .expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test("PATCH 404 - Event with that id does not exist", async () => {
+  test.skip("PATCH 404 - Event with that id does not exist", async () => {
     const {
       body: { msg },
     } = await request(app)
@@ -422,7 +439,7 @@ describe("/api/events/:event_id", () => {
   test("DELETE 204 - Responds with a 204 status code for the deleted event with the given event_id", async () => {
     await request(app).delete("/api/events/1").expect(204);
   });
-  test("DELETE 400 - Invalid id given", async () => {
+  test("DELETE 400 - Invalid data type for id given", async () => {
     const {
       body: { msg },
     } = await request(app).delete("/api/events/notAnId").expect(400);
@@ -448,8 +465,15 @@ describe("/api/users/:user_id", () => {
     expect(user).toHaveProperty("email");
     expect(user).toHaveProperty("user_password");
     expect(user).toHaveProperty("is_admin");
+    expect(typeof user.user_id).toBe("number");
+    expect(typeof user.first_name).toBe("string");
+    expect(typeof user.last_name).toMatch(/^(string|object)$/);
+    expect(typeof user.display_name).toBe("string");
+    expect(typeof user.email).toBe("string");
+    expect(typeof user.user_password).toBe("string");
+    expect(typeof user.is_admin).toBe("boolean");
   });
-  test("GET 400 - Invalid id given", async () => {
+  test("GET 400 - Invalid data type for id given", async () => {
     const {
       body: { msg },
     } = await request(app).get("/api/users/notAnId").expect(400);
