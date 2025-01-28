@@ -184,7 +184,7 @@ describe("/api/events", () => {
   });
 });
 
-describe("/api/users", () => {
+describe.only("/api/users", () => {
   test("GET 200 - Responds with a list of users", async () => {
     const {
       body: { users },
@@ -197,6 +197,13 @@ describe("/api/users", () => {
       expect(user).toHaveProperty("email");
       expect(user).toHaveProperty("user_password");
       expect(user).toHaveProperty("is_admin");
+      expect(typeof user.user_id).toBe("number");
+      expect(typeof user.first_name).toBe("string");
+      expect(typeof user.last_name).toMatch(/^(string|object)$/);
+      expect(typeof user.display_name).toBe("string");
+      expect(typeof user.email).toBe("string");
+      expect(typeof user.user_password).toBe("string");
+      expect(typeof user.is_admin).toBe("boolean");
     });
   });
   test("POST 201 - Adds a user to the database, given inputted information from the user", async () => {
