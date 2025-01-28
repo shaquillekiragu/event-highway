@@ -1,7 +1,8 @@
 .welcomeContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 10vh;
   min-height: 75vh;
 }
 
@@ -9,7 +10,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 5vh;
+  gap: 5vh;
+  padding: 5vh 20vw 10vh 20vw;
   border: 1px solid black;
   border-radius: 2%;
 }
@@ -19,29 +21,34 @@
 .welcomeLayerThree {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
 }
 
 .welcomeLayerOne {
-  margin-bottom: 4vh;
+  font-size: 2rem;
+}
+
+.welcomeLayerOne h1 {
+  margin-bottom: 3vh;
 }
 
 .welcomeLayerTwo {
-  display: flex;
-  gap: 1vw;
-  margin-bottom: 4vh;
-}
-
-.welcomeLayerTwo button {
-  width: 6vw;
+  flex-direction: column;
+  gap: 2vh;
 }
 
 .welcomeLayerThree {
-  display: flex;
-  align-items: center;
+  font-size: 1.25rem;
+}
+
+.welcomeLayerTwo button,
+.welcomeLayerThree button {
+  width: 15vw;
+  font-size: 1.5rem;
 }
 
 .welcomeLayerThree button {
-  margin-left: 1vh;
+  margin-left: 1vw;
 }
