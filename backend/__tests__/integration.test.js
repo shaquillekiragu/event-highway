@@ -28,7 +28,7 @@ describe("/api", () => {
   });
 });
 
-describe.only("/api/events", () => {
+describe("/api/events", () => {
   test("GET 200 - Responds with a list of events", async () => {
     const {
       body: { events },
@@ -51,6 +51,23 @@ describe.only("/api/events", () => {
       expect(event).toHaveProperty("is_limit");
       expect(event).toHaveProperty("attendee_limit");
       expect(event).toHaveProperty("thumbnail");
+      expect(typeof event.event_id).toBe("number");
+      expect(typeof event.publisher).toBe("string");
+      expect(typeof event.host).toBe("string");
+      expect(typeof event.event_name).toBe("string");
+      expect(typeof event.event_start).toBe("string");
+      expect(typeof event.event_end).toBe("string");
+      expect(typeof event.event_description).toBe("string");
+      expect(typeof event.created_at).toBe("string");
+      expect(typeof event.category).toBe("string");
+      expect(typeof event.is_online).toBe("boolean");
+      expect(typeof event.venue).toMatch(/^(string|object)$/);
+      expect(typeof event.venue_address).toMatch(/^(string|object)$/);
+      expect(typeof event.is_free).toBe("boolean");
+      expect(typeof event.cost_in_gbp).toMatch(/^(number|object)$/);
+      expect(typeof event.is_limit).toBe("boolean");
+      expect(typeof event.attendee_limit).toMatch(/^(number|object)$/);
+      expect(typeof event.thumbnail).toMatch(/^(string|object)$/);
     });
   });
   test("GET 200 - Responds with a list if all events if no query given after query character", async () => {
@@ -75,6 +92,23 @@ describe.only("/api/events", () => {
       expect(event).toHaveProperty("is_limit");
       expect(event).toHaveProperty("attendee_limit");
       expect(event).toHaveProperty("thumbnail");
+      expect(typeof event.event_id).toBe("number");
+      expect(typeof event.publisher).toBe("string");
+      expect(typeof event.host).toBe("string");
+      expect(typeof event.event_name).toBe("string");
+      expect(typeof event.event_start).toBe("string");
+      expect(typeof event.event_end).toBe("string");
+      expect(typeof event.event_description).toBe("string");
+      expect(typeof event.created_at).toBe("string");
+      expect(typeof event.category).toBe("string");
+      expect(typeof event.is_online).toBe("boolean");
+      expect(typeof event.venue).toMatch(/^(string|object)$/);
+      expect(typeof event.venue_address).toMatch(/^(string|object)$/);
+      expect(typeof event.is_free).toBe("boolean");
+      expect(typeof event.cost_in_gbp).toMatch(/^(number|object)$/);
+      expect(typeof event.is_limit).toBe("boolean");
+      expect(typeof event.attendee_limit).toMatch(/^(number|object)$/);
+      expect(typeof event.thumbnail).toMatch(/^(string|object)$/);
     });
   });
   test("POST 201 - Adds an event to the database, given inputted information from the user", async () => {
@@ -130,20 +164,22 @@ describe.only("/api/events", () => {
       "https://example.com/thumbnails/digital_future_conference.jpg"
     );
   });
-  test.only("POST 400 - Empty events object received", async () => {
+  test("POST 400 - Empty events object received", async () => {
     const obj = {};
     const {
       body: { msg },
     } = await request(app).post("/api/events").send(obj).expect(400);
+    const objLength = Object.keys(obj).length;
+    expect(objLength).toBe(0);
     expect(msg).toBe("Bad Request");
   });
   test("POST 400 - Failing schema validation", async () => {
+    const obj = { publisher: "Ye" };
     const {
       body: { msg },
-    } = await request(app)
-      .post("/api/events")
-      .send({ publisher: "Ye" })
-      .expect(400);
+    } = await request(app).post("/api/events").send(obj).expect(400);
+    const objLength = Object.keys(obj).length;
+    expect(objLength).not.toBe(16);
     expect(msg).toBe("Bad Request");
   });
 });
@@ -199,7 +235,7 @@ describe("/api/users", () => {
       body: { msg },
     } = await request(app).post("/api/users").send(obj).expect(400);
     const objLength = Object.keys(obj).length;
-    expect(objLength).not.toBe(16);
+    expect(objLength).not.toBe(6);
     expect(msg).toBe("Bad Request");
   });
 });
@@ -287,9 +323,12 @@ describe("/api/events/:event_id", () => {
     );
   });
   test("PATCH 400 - Empty event object received", async () => {
+    const obj = {};
     const {
       body: { msg },
-    } = await request(app).patch("/api/events/1").send({}).expect(400);
+    } = await request(app).patch("/api/events/1").send(obj).expect(400);
+    const objLength = Object.keys(obj).length;
+    expect(objLength).toBe(0);
     expect(msg).toBe("Bad Request");
   });
   test("PATCH 400 - Failing schema validation", async () => {
