@@ -1,6 +1,8 @@
 const { Pool } = require("pg");
 
-require("dotenv").config();
+require("dotenv").config({
+  path: process.env.NODE_ENV === "test" ? ".env.test" : ".env.development",
+});
 
 if (!process.env.PGDATABASE) {
   throw new Error("PGDATABASE not set");

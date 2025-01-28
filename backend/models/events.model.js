@@ -1,4 +1,4 @@
-const db = require("../db/connection");
+const db = require("../database/connection");
 
 async function fetchEvents() {
   try {
@@ -126,32 +126,30 @@ async function updateEvent(
     console.log(is_free, " <<< is_free updateEvent model");
     const { rows } = await db.query(
       `UPDATE events
-     SET 
-      host = $2,
-      event_name = $3,
-      event_start = $4,
-      event_end = $5,
-      event_description = $6,
-      category = $7,
-      is_online = $8,
-      venue = $9,
-      venue_address = $10,
-      is_free = $11,
-      cost_in_gbp = $12,
-      is_limit = $13,
-      attendee_limit = $14,
-      thumbnail = $15
-    WHERE event_id = $1
-    RETURNING *;`,
+        SET 
+        host = $2,
+        event_name = $3,
+        event_start = $4,
+        event_end = $5,
+        event_description = $6,
+        category = $7,
+        is_online = $8,
+        venue = $9,
+        venue_address = $10,
+        is_free = $11,
+        cost_in_gbp = $12,
+        is_limit = $13,
+        attendee_limit = $14,
+        thumbnail = $15
+        WHERE event_id = $1
+        RETURNING *;`,
       [
         event_id,
-        publisher,
         host,
         event_name,
         event_start,
         event_end,
         event_description,
-        created_at,
         category,
         is_online,
         venue,

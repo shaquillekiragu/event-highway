@@ -1,4 +1,4 @@
-function FormatDateTime({ sqlTimestamp }) {
+function FormatDatetimeFrontend({ sqlTimestamp }) {
   const date = new Date(sqlTimestamp);
 
   const formattedDate = date.toLocaleDateString();
@@ -6,10 +6,8 @@ function FormatDateTime({ sqlTimestamp }) {
     hour: "2-digit",
     minute: "2-digit",
   });
-  // console.log(formattedDate, " <<< formattedDate");
-  // console.log(formattedTime, " <<< formattedTime");
 
   return <span>{`${formattedDate} ${formattedTime}`}</span>;
 }
 
-export default FormatDateTime;
+export default FormatDatetimeFrontend;

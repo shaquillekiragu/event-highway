@@ -5,12 +5,16 @@ import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
+const {
+  formatDatetimeForDB,
+  currentDatetimeForDB,
+} = require("../components/FormatDatetime/databaseDatetimeFunctions");
 
 function CreateEvent() {
-  const { authUser } = useAuth();
-
   const [eventData, setEventData] = useState({});
   const [error, setError] = useState("");
+
+  const { authUser } = useAuth();
 
   const navigate = useNavigate();
 
@@ -26,20 +30,24 @@ function CreateEvent() {
     event.preventDefault();
     setIsLoading(true);
 
-    const currentDate = new Date();
-    const dateTime = `${currentDate.getDay()}/${currentDate.getMonth()}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+    const formattedEventStart = formatDatetimeForDB(eventData.event_start);
+    const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
 
-    console.log(dateTime, " <<< dateTime");
+    console.log(formattedEventStart, " <<< formattedEventStart");
+    console.log(formattedEventEnd, " <<< formattedEventEnd");
+
+    const createdAt = currentDatetimeForDB();
+    console.log(createdAt, " <<< createdAt");
 
     try {
       const response = await postEvent(
         authUser.display_name,
         eventData.host,
         eventData.event_name,
-        eventData.event_start,
-        eventData.event_end,
+        formattedEventStart,
+        formattedEventEnd,
         eventData.event_description,
-        dateTime,
+        createdAt,
         eventData.category,
         eventData.is_online,
         eventData.venue,

@@ -246,19 +246,5 @@
         "is_admin": false
       }
     }
-  },
-  "PATCH /api/user/:user_id": {
-    "description": "Serves a single user object that has been fetched using a user_id",
-    "queries": [],
-    "exampleResponse": {
-      "user": {
-        "first_name": "Liam",
-        "last_name": "Thompson",
-        "display_name": "Liam Thompson",
-        "email": "liam.thompson@yahoo.com",
-        "user_password": "SecurePass123",
-        "is_admin": false
-      }
-    }
   }
 }

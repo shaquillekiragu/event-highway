@@ -1,4 +1,4 @@
-const db = require("../db/connection");
+const db = require("../database/connection");
 
 async function fetchUsers() {
   try {
@@ -54,48 +54,4 @@ async function insertUser(
   }
 }
 
-async function updateUser(
-  user_id,
-  first_name,
-  last_name,
-  display_name,
-  email,
-  user_password,
-  is_admin
-) {
-  try {
-    const { rows } = await db.query(
-      `UPDATE users
-      SET 
-      first_name = $2,
-      last_name = $3,
-      display_name = $4,
-      email = $5,
-      user_password = $6,
-      is_admin = $7
-     WHERE user_id = $1
-     RETURNING *;`,
-      [
-        user_id,
-        first_name,
-        last_name,
-        display_name,
-        email,
-        user_password,
-        is_admin,
-      ]
-    );
-    if (!rows.length) {
-      return Promise.reject({
-        status: 404,
-        msg: "User not found",
-      });
-    }
-    return rows[0];
-  } catch (err) {
-    console.error(err, " << updateUser model error");
-    throw err;
-  }
-}
-
-module.exports = { fetchUsers, fetchUser, insertUser, updateUser };
+module.exports = { fetchUsers, fetchUser, insertUser };

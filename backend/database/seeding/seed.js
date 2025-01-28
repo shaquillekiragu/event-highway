@@ -60,14 +60,18 @@ const seed = async ({ eventsData, usersData }) => {
     );
 
     const formattedEventData = eventsData.map((event) => {
+      const formattedEventStart = event.event_start.slice(0, 19);
+      const formattedEventEnd = event.event_end.slice(0, 19);
+      const formattedCreatedAt = event.created_at.slice(0, 19);
+
       return [
         event.publisher,
         event.host,
         event.event_name,
-        event.event_start,
-        event.event_end,
+        formattedEventStart,
+        formattedEventEnd,
         event.event_description,
-        event.created_at,
+        formattedCreatedAt,
         event.category,
         event.is_online,
         event.venue,

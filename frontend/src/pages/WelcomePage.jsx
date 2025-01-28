@@ -15,7 +15,7 @@ function WelcomePage() {
     <main className="welcomeContainer">
       <article className="welcomeSubcontainer">
         <header className="welcomeLayerOne">
-          <h2>Welcome to Event Highway!</h2>
+          <h1>Welcome to Event Highway!</h1>
         </header>
         <section className="welcomeLayerTwo">
           <button onClick={handleLoginClick} className="logButton">
