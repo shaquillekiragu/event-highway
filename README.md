@@ -69,7 +69,7 @@ npm run setup-dbs
 6. And now seed the databases with this command:
 
 ```
-PGDATABASE=event_highway NODE_ENV=development npm run seed
+npm run seed
 ```
 
 <br>
@@ -83,7 +83,7 @@ Installation is now complete.
 In order to test the API endpoints on this server, run the following commands:
 
 ```
-PGDATABASE=event_highway_test NODE_ENV=test npm run test
+npm run test
 ```
 <br>
 
@@ -102,7 +102,6 @@ Then run the first command again.
 To set and run the event_highway database, run the two following commands one at a time:
 
 ```
-export PGDATABASE=event_highway
 npm run start
 ```
 
