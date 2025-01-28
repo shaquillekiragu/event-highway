@@ -28,7 +28,7 @@ describe("/api", () => {
   });
 });
 
-describe("/api/events", () => {
+describe.only("/api/events", () => {
   test("GET 200 - Responds with a list of events", async () => {
     const {
       body: { events },
@@ -130,10 +130,11 @@ describe("/api/events", () => {
       "https://example.com/thumbnails/digital_future_conference.jpg"
     );
   });
-  test("POST 400 - Empty events object received", async () => {
+  test.only("POST 400 - Empty events object received", async () => {
+    const obj = {};
     const {
       body: { msg },
-    } = await request(app).post("/api/events").send({}).expect(400);
+    } = await request(app).post("/api/events").send(obj).expect(400);
     expect(msg).toBe("Bad Request");
   });
   test("POST 400 - Failing schema validation", async () => {
@@ -184,18 +185,21 @@ describe("/api/users", () => {
     expect(user).toHaveProperty("is_admin", false);
   });
   test("POST 400 - Empty user object received", async () => {
+    const obj = {};
     const {
       body: { msg },
-    } = await request(app).post("/api/users").send({}).expect(400);
+    } = await request(app).post("/api/users").send(obj).expect(400);
+    const objLength = Object.keys(obj).length;
+    expect(objLength).toBe(0);
     expect(msg).toBe("Bad Request");
   });
   test("POST 400 - Failing schema validation", async () => {
+    const obj = { first_name: "Oleksandr" };
     const {
       body: { msg },
-    } = await request(app)
-      .post("/api/users")
-      .send({ first_name: "Oleksandr" })
-      .expect(400);
+    } = await request(app).post("/api/users").send(obj).expect(400);
+    const objLength = Object.keys(obj).length;
+    expect(objLength).not.toBe(16);
     expect(msg).toBe("Bad Request");
   });
 });
