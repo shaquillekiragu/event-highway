@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getEvent } from "../api";
+import FormatDateTime from "../components/FormatDateTime";
 import Loading from "../components/Loading/Loading.jsx";
 import "../stylesheets/ViewEvent.css";
 
@@ -31,7 +32,6 @@ function ViewEvent() {
   return (
     <main>
       <h2>{event.event_name}</h2>
-      {/* <img src={event.thumbnail} alt="Event thumbnail" /> */}
       <p>Date posted: {<FormatDateTime sqlTimestamp={event.created_at} />}</p>
       <p>Publisher: {event.publisher}</p>
       <p>Category: {event.category}</p>
