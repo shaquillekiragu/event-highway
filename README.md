@@ -12,7 +12,7 @@ You will need to have these versions or newer for the following technologies in 
 
 - Node.js - **v20.9.0** or newer
 - PostgreSQL - **v20.x** or later
-<br>
+  <br>
 
 ## Installation and Backend Setup
 
@@ -24,10 +24,11 @@ You will need to have these versions or newer for the following technologies in 
 ```
 https://github.com/shaquillekiragu/event-highway.git
 ```
+
 <br>
 
 2. Once you've opened the repo, at the repository's root create a `.env.test` and `.env.development` file, and declare the variable below in each .env file, assigning the corresponding values to each variable as shown below.
-<br>
+   <br>
 
 .env.test:
 
@@ -40,6 +41,7 @@ PGDATABASE=event_highway_test
 ```
 PGDATABASE=event_highway
 ```
+
 <br>
 
 3. Now you need to open the change directory into the backend folder. Do this by running the following command:
@@ -47,6 +49,7 @@ PGDATABASE=event_highway
 ```
 cd backend
 ```
+
 <br>
 
 4. Now you need to install all of the required dependencies for the backend locally. Run this command:
@@ -54,6 +57,7 @@ cd backend
 ```
 npm install
 ```
+
 <br>
 
 5. Next, create the test and development databases by running:
@@ -61,13 +65,15 @@ npm install
 ```
 npm run setup-dbs
 ```
+
 <br>
 
 6. And now seed the databases with this command:
 
 ```
-npm run seed
+NODE_ENV=development npm run seed
 ```
+
 <br>
 
 Installation is now complete.
@@ -76,11 +82,23 @@ Installation is now complete.
 
 ## Testing
 
-In order to test the API endpoints on this server, run the following command:
+In order to test the API endpoints on this server, run the following commands:
 
 ```
-npm run test
+export PGDATABASE=event_highway_test
 ```
+
+```
+NODE_ENV=test npm run test
+```
+
+If this fails, try running:
+
+```
+createdb event_highway_test
+```
+
+Then run "NODE_ENV=test npm run test" again.
 <br>
 
 ## Running the Database Locally
@@ -91,9 +109,10 @@ To set and run the event_highway database, run the two following commands one at
 export PGDATABASE=event_highway
 npm run start
 ```
+
 <br>
 
-If you see this message in the console: ```PGDATABASE: event_highway Listening on 9090...```, you have successfully set up this project's backend.
+If you see this message in the console: `PGDATABASE: event_highway Listening on 9090...`, you have successfully set up this project's backend.
 <br>
 <br>
 
@@ -107,6 +126,7 @@ If you see this message in the console: ```PGDATABASE: event_highway Listening o
 cd ..
 cd frontend
 ```
+
 <br>
 
 2. Now you'll need to install all of the required repository dependencies for the frontend. Run:
@@ -114,6 +134,7 @@ cd frontend
 ```
 npm install
 ```
+
 <br>
 
 3. And lastly, to open the vite app in a browser, run:
@@ -121,14 +142,15 @@ npm install
 ```
 npm run dev
 ```
+
 <br>
 
 4. Open the provided localhost URL in your browser.
-<br>
+   <br>
 
 5. You should now be able to view the welcome page for Event Highway! You can proceed to use the website without being logged in, but this will only allow you to view events that are currently listed on the site. To access more features, you'll need to either create an account, or login to an existing account.
-Scroll to the bottom of this README file to access both test account you can use for accessing additional features by logging in, both as a user or as an event admin.
-<br>
+   Scroll to the bottom of this README file to access both test account you can use for accessing additional features by logging in, both as a user or as an event admin.
+   <br>
 
 ## Link to the Deployed Frontend
 
@@ -144,27 +166,34 @@ Here is a test user account:
 <br>
 
 email:
+
 ```
 liam.thompson@yahoo.com
 ```
 
 password:
+
 ```
 SecurePass123
 ```
+
 <br>
 
 Test event administrator account:
 <br>
 
 email:
+
 ```
 iamironman@outlook.com
 ```
+
 password:
+
 ```
 iloveyou3000
 ```
+
 <br>
 I hope you have an incredible experience with Event Highway!
 <br>
