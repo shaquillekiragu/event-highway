@@ -91,6 +91,7 @@ export PGDATABASE=event_highway_test
 ```
 NODE_ENV=test npm run test
 ```
+<br>
 
 If this fails, try running:
 
@@ -99,6 +100,7 @@ createdb event_highway_test
 ```
 
 Then run "NODE_ENV=test npm run test" again.
+<br>
 <br>
 
 ## Running the Database Locally
