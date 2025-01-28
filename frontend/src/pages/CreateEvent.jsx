@@ -7,25 +7,10 @@ import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
 
 function CreateEvent() {
-  const { authUser } = useAuth();
-
   const [eventData, setEventData] = useState({});
-  // const [publisher, setPublisher] = useState("");
-  // const [host, setHost] = useState("");
-  // const [event_name, setEventName] = useState("");
-  // const [event_start, setEventStart] = useState("");
-  // const [event_end, setEventEnd] = useState("");
-  // const [event_description, setDescription] = useState("");
-  // const [created_at, setCreatedAt] = useState("");
-  // const [category, setCategory] = useState("");
-  // const [is_online, setIsOnline] = useState(true);
-  // const [venue, setVenue] = useState(null);
-  // const [venue_address, setAddress] = useState(null);
-  // const [is_free, setIsFree] = useState(true);
-  // const [cost_in_gbp, setCost] = useState(null);
-  // const [is_limit, setIsLimit] = useState(false);
-  // const [attendee_limit, setAttendeeLimit] = useState(null);
   const [error, setError] = useState("");
+
+  const { authUser } = useAuth();
 
   const navigate = useNavigate();
 
@@ -47,7 +32,6 @@ function CreateEvent() {
     const currentTime = `T${currentDateTime.getHours()}:${currentDateTime.getMinutes()}:00`;
 
     const dateTime = `${currentDate}${currentTime}`;
-
     console.log(dateTime, " <<< dateTime");
 
     try {

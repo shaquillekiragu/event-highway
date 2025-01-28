@@ -6,8 +6,6 @@ function FormatDateTime({ sqlTimestamp }) {
     hour: "2-digit",
     minute: "2-digit",
   });
-  // console.log(formattedDate, " <<< formattedDate");
-  // console.log(formattedTime, " <<< formattedTime");
 
   return <span>{`${formattedDate} ${formattedTime}`}</span>;
 }
