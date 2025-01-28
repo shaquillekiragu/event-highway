@@ -25,10 +25,8 @@ You will need to have these versions or newer for the following technologies in 
 https://github.com/shaquillekiragu/event-highway.git
 ```
 
+2. Once you've opened the repository, at the repository's root create a `.env.test` and `.env.development` file, and declare the variable below in each .env file, assigning the corresponding values to each variable as shown below.
 <br>
-
-2. Once you've opened the repo, at the repository's root create a `.env.test` and `.env.development` file, and declare the variable below in each .env file, assigning the corresponding values to each variable as shown below.
-   <br>
 
 .env.test:
 
@@ -71,7 +69,7 @@ npm run setup-dbs
 6. And now seed the databases with this command:
 
 ```
-NODE_ENV=development npm run seed
+PGDATABASE=event_highway NODE_ENV=development npm run seed
 ```
 
 <br>
@@ -85,11 +83,7 @@ Installation is now complete.
 In order to test the API endpoints on this server, run the following commands:
 
 ```
-export PGDATABASE=event_highway_test
-```
-
-```
-NODE_ENV=test npm run test
+PGDATABASE=event_highway_test NODE_ENV=test npm run test
 ```
 <br>
 
@@ -99,7 +93,7 @@ If this fails, try running:
 createdb event_highway_test
 ```
 
-Then run "NODE_ENV=test npm run test" again.
+Then run the first command again.
 <br>
 <br>
 
