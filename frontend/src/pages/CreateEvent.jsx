@@ -6,6 +6,7 @@ import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
 const {
+  formatDatetimeForDB,
   currentDatetimeForDB,
 } = require("../components/FormatDatetime/databaseDatetimeFunctions");
 
@@ -29,15 +30,22 @@ function CreateEvent() {
     event.preventDefault();
     setIsLoading(true);
 
+    const formattedEventStart = formatDatetimeForDB(eventData.event_start);
+    const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
+
+    console.log(formattedEventStart, " <<< formattedEventStart");
+    console.log(formattedEventEnd, " <<< formattedEventEnd");
+
     const createdAt = currentDatetimeForDB();
+    console.log(createdAt, " <<< createdAt");
 
     try {
       const response = await postEvent(
         authUser.display_name,
         eventData.host,
         eventData.event_name,
-        eventData.event_start,
-        eventData.event_end,
+        formattedEventStart,
+        formattedEventEnd,
         eventData.event_description,
         createdAt,
         eventData.category,
