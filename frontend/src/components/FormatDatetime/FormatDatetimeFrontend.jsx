@@ -1,4 +1,4 @@
-function FormatDateTime({ sqlTimestamp }) {
+function FormatDatetimeFrontend({ sqlTimestamp }) {
   const date = new Date(sqlTimestamp);
 
   const formattedDate = date.toLocaleDateString();
@@ -10,4 +10,4 @@ function FormatDateTime({ sqlTimestamp }) {
   return <span>{`${formattedDate} ${formattedTime}`}</span>;
 }
 
-export default FormatDateTime;
+export default FormatDatetimeFrontend;

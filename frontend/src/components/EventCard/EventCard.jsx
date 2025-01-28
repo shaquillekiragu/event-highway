@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import FormatDateTime from "../FormatDateTime";
+import FormatDatetimeFrontend from "../FormatDatetime/FormatDatetimeFrontend";
 import "./EventCard.css";
 
 function EventCard({ event }) {
@@ -52,7 +52,7 @@ function EventCard({ event }) {
             <p className="eventStart">
               <strong>
                 {event.event_start ? (
-                  <FormatDateTime sqlTimestamp={event.event_start} />
+                  <FormatDatetimeFrontend sqlTimestamp={event.event_start} />
                 ) : (
                   "TBD"
                 )}
@@ -64,7 +64,7 @@ function EventCard({ event }) {
             <p className="eventEnd">
               <strong>
                 {event.event_end ? (
-                  <FormatDateTime sqlTimestamp={event.event_end} />
+                  <FormatDatetimeFrontend sqlTimestamp={event.event_end} />
                 ) : (
                   "TBD"
                 )}

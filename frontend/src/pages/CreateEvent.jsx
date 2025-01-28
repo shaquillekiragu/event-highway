@@ -5,6 +5,9 @@ import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
+const {
+  currentDatetimeForDB,
+} = require("../components/FormatDatetime/databaseDatetimeFunctions");
 
 function CreateEvent() {
   const [eventData, setEventData] = useState({});
@@ -26,13 +29,7 @@ function CreateEvent() {
     event.preventDefault();
     setIsLoading(true);
 
-    const currentDateTime = new Date();
-
-    const currentDate = `${currentDateTime.getFullYear()}-${currentDateTime.getMonth()}-${currentDateTime.getDay()}`;
-    const currentTime = `T${currentDateTime.getHours()}:${currentDateTime.getMinutes()}:00`;
-
-    const dateTime = `${currentDate}${currentTime}`;
-    console.log(dateTime, " <<< dateTime");
+    const createdAt = currentDatetimeForDB();
 
     try {
       const response = await postEvent(
@@ -42,7 +39,7 @@ function CreateEvent() {
         eventData.event_start,
         eventData.event_end,
         eventData.event_description,
-        dateTime,
+        createdAt,
         eventData.category,
         eventData.is_online,
         eventData.venue,
