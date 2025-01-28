@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getEvent } from "../api";
-import FormatDateTime from "../components/FormatDateTime";
+import FormatDatetimeFrontend from "../components/FormatDatetime/FormatDatetimeFrontend";
 import Loading from "../components/Loading/Loading.jsx";
 import "../stylesheets/ViewEvent.css";
 
@@ -32,11 +32,20 @@ function ViewEvent() {
   return (
     <main>
       <h2>{event.event_name}</h2>
-      <p>Date posted: {<FormatDateTime sqlTimestamp={event.created_at} />}</p>
+      <p>
+        Date posted:{" "}
+        {<FormatDatetimeFrontend sqlTimestamp={event.created_at} />}
+      </p>
       <p>Publisher: {event.publisher}</p>
       <p>Category: {event.category}</p>
-      <p>Event Start: {<FormatDateTime sqlTimestamp={event.event_start} />}</p>
-      <p>Event Finish: {<FormatDateTime sqlTimestamp={event.event_end} />}</p>
+      <p>
+        Event Start:{" "}
+        {<FormatDatetimeFrontend sqlTimestamp={event.event_start} />}
+      </p>
+      <p>
+        Event Finish:{" "}
+        {<FormatDatetimeFrontend sqlTimestamp={event.event_end} />}
+      </p>
       <p>Host: {event.host}</p>
       <p>Description: {event.event_description}</p>
       <p>

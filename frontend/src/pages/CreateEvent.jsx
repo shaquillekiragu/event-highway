@@ -5,10 +5,10 @@ import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
-const {
+import {
   formatDatetimeForDB,
   currentDatetimeForDB,
-} = require("../components/FormatDatetime/databaseDatetimeFunctions");
+} from "../components/FormatDatetime/databaseDatetimeFunctions";
 
 function CreateEvent() {
   const [eventData, setEventData] = useState({});
