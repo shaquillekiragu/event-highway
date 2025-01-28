@@ -1,8 +1,8 @@
 const request = require("supertest");
 const app = require("../app.js");
-const db = require("../db/connection.js");
-const seed = require("../db/seeding/seed.js");
-const data = require("../db/data/testData/index.js");
+const db = require("../database/connection.js");
+const seed = require("../database/seeding/seed.js");
+const data = require("../database/data/testData/index.js");
 const endpointsList = require("../endpoints.json");
 
 beforeEach(() => {
