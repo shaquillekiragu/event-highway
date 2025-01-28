@@ -73,31 +73,29 @@ async function postEvent(request, response, next) {
   }
 }
 
-async function validatePublisher(publisher) {
-  const { rows } = await db.query(
-    `SELECT * FROM users WHERE display_name = $1;`,
-    [publisher]
-  );
-  if (!rows.length) {
-    throw {
-      status: 400,
-      msg: `Invalid publisher: ${publisher} does not exist.`,
-    };
-  }
-}
+// async function validatePublisher(publisher) {
+//   const { rows } = await db.query(
+//     `SELECT * FROM users WHERE display_name = $1;`,
+//     [publisher]
+//   );
+//   if (!rows.length) {
+//     throw {
+//       status: 400,
+//       msg: `Invalid publisher: ${publisher} does not exist.`,
+//     };
+//   }
+// }
 
 async function patchEvent(request, response, next) {
   try {
     const { event_id } = request.params;
     console.log(event_id, " <<< event_id patchEvent controller");
     const {
-      publisher,
       host,
       event_name,
       event_start,
       event_end,
       event_description,
-      created_at,
       category,
       is_online,
       venue,
@@ -109,18 +107,13 @@ async function patchEvent(request, response, next) {
       thumbnail,
     } = request.body;
 
-    console.log(publisher, " <<< publisher patchEvent controller");
-    await validatePublisher(publisher);
-
     const event = await updateEvent(
       event_id,
-      publisher,
       host,
       event_name,
       event_start,
       event_end,
       event_description,
-      created_at,
       category,
       is_online,
       venue,
