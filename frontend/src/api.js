@@ -129,25 +129,6 @@ export function patchEvent(
   });
 }
 
-export function patchUser(
-  user_id,
-  first_name,
-  last_name,
-  display_name,
-  email,
-  user_password,
-  is_admin
-) {
-  return axios.patch(`http://localhost:9090/api/users/${user_id}`, {
-    first_name,
-    last_name,
-    display_name,
-    email,
-    user_password,
-    is_admin,
-  });
-}
-
 // DELETE:
 
 export function deleteEvent(event_id) {
