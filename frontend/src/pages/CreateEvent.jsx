@@ -41,8 +41,12 @@ function CreateEvent() {
     event.preventDefault();
     setIsLoading(true);
 
-    const currentDate = new Date();
-    const dateTime = `${currentDate.getDay()}/${currentDate.getMonth()}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+    const currentDateTime = new Date();
+
+    const currentDate = `${currentDateTime.getFullYear()}-${currentDateTime.getMonth()}-${currentDateTime.getDay()}`;
+    const currentTime = `T${currentDateTime.getHours()}:${currentDateTime.getMinutes()}:00`;
+
+    const dateTime = `${currentDate}${currentTime}`;
 
     console.log(dateTime, " <<< dateTime");
 
