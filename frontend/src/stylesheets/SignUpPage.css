@@ -1,11 +1,10 @@
-.signupContainer {
+.signupPageContainer {
   display: flex;
   justify-content: center;
   width: 100%;
-  min-height: 60vh;
 }
 
-.signupSubcontainer {
+.signupContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,11 +18,7 @@
   display: flex;
   justify-content: center;
   margin-top: 5vh;
-}
-
-.signupLayerOne h3 {
-  margin-top: 1vh;
-  margin-bottom: 4vh;
+  margin-bottom: 2vh;
 }
 
 .signupLayerTwo {
@@ -36,7 +31,7 @@
   align-self: center;
   width: 50%;
   margin-left: 40%;
-  margin-top: 2.5vh;
+  margin-top: 3.5vh;
 }
 
 .signupLayerThree {

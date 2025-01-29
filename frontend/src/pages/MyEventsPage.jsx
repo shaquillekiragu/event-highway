@@ -6,7 +6,7 @@ function MyEventsPage() {
   const { myEvents } = useAuth();
 
   return (
-    <main className="myEventsContainer">
+    <main className="fullPageHeight myEventsContainer">
       <section className="myEventsLayerOne">
         <h1>My Events</h1>
       </section>

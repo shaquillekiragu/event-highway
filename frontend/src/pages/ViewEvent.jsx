@@ -71,7 +71,7 @@ function ViewEvent() {
     return <Loading page={"View Event"} />;
   }
   return (
-    <main className="viewEventContainer">
+    <main className="partPageHeight viewEventContainer">
       {isLoggedIn ? (
         <section className="viewLayerOne">
           <button onClick={handleEventSignup}>Sign up for this event!</button>

@@ -1,12 +1,11 @@
-.welcomeContainer {
+.welcomePageContainer {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   margin-top: 10vh;
-  min-height: 75vh;
 }
 
-.welcomeSubcontainer {
+.welcomeContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;

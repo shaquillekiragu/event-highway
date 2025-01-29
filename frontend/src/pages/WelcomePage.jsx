@@ -12,8 +12,8 @@ function WelcomePage() {
   }
 
   return (
-    <main className="welcomeContainer">
-      <article className="welcomeSubcontainer">
+    <main className="partPageHeight welcomePageContainer">
+      <article className="welcomeContainer">
         <header className="welcomeLayerOne">
           <h1>Welcome to Event Highway!</h1>
         </header>

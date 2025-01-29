@@ -79,8 +79,8 @@ function SignUpPage() {
   }
 
   return (
-    <main className="signupContainer">
-      <article className="signupSubcontainer">
+    <main className="partPageHeight signupPageContainer">
+      <article className="signupContainer">
         <header className="signupLayerOne">
           <h2>Sign Up:</h2>
         </header>
