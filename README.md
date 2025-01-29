@@ -163,30 +163,30 @@ Here is a test user account:
 email:
 
 ```
-liam.thompson@yahoo.com
+amelia.walker@gmail.com
 ```
 
 password:
 
 ```
-SecurePass123
+AmeliaPass123
 ```
 
 <br>
 
-Test event administrator account:
+And below is a test administrator account:
 <br>
 
 email:
 
 ```
-iamironman@outlook.com
+henry.brown@outlook.com
 ```
 
 password:
 
 ```
-iloveyou3000
+Henry456
 ```
 
 <br>
