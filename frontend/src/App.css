@@ -22,6 +22,14 @@ body {
   height: fit-content;
 }
 
+.fullPageHeight {
+  min-height: 100vh;
+}
+
+.partPageHeight {
+  min-height: 75vh;
+}
+
 h1 {
   text-align: center;
 }

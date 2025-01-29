@@ -76,7 +76,7 @@ function CreateEvent() {
     return <NotAnAdmin />;
   }
   return (
-    <main className="createEventContainer">
+    <main className="createEventContainer fullPageHeight">
       <header className="createEventLayerOne">
         <h2>Create a New Event</h2>
       </header>
