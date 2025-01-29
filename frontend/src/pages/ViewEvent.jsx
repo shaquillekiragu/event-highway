@@ -88,8 +88,8 @@ function ViewEvent() {
       </section>
       {authUser.is_admin ? (
         <section className="viewLayerTwo">
-          <button onClick={handleUpdateClick}></button>
-          <button onClick={handleDeleteClick}></button>
+          <button onClick={handleUpdateClick}>Update Event</button>
+          <button onClick={handleDeleteClick}>Delete Event</button>
         </section>
       ) : (
         <></>
