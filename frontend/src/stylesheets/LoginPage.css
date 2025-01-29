@@ -43,17 +43,8 @@
 .loginLayerTwo button {
   align-self: center;
   width: 50%;
-  height: 6vh;
   padding: 0.75rem;
-  font-size: 1rem;
-  background-color: black;
-  color: white;
-  border: none;
   margin-top: 2.5vh;
-}
-
-.loginLayerTwo button:hover {
-  cursor: pointer;
 }
 
 .loginLayerThree {
@@ -73,7 +64,6 @@
   }
 
   .loginLayerTwo button {
-    font-size: 0.9rem;
     padding: 0.5rem;
   }
 }

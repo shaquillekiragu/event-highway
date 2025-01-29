@@ -47,19 +47,12 @@ h1 {
 button {
   background-color: black;
   color: white;
+  height: 6vh;
   font-size: 1.25rem;
 }
 
 button:hover {
   cursor: pointer;
-}
-
-.logButton {
-  height: 5vh;
-}
-
-button:not(.logButton) {
-  height: 3vh;
 }
 
 .invalidMsg {

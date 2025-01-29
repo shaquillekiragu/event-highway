@@ -72,10 +72,7 @@ function Header() {
           <p className="userStatus">
             User logged in: <span>{authUser.display_name}</span>
           </p>
-          <button
-            className="logoutButton logButton"
-            onClick={handleLogoutClick}
-          >
+          <button className="logoutButton" onClick={handleLogoutClick}>
             Log Out
           </button>
         </section>
@@ -93,7 +90,7 @@ function Header() {
           <Link className="headerTitleLink" to="/events">
             <h1 className="event">Event</h1>
           </Link>
-          <button className="loginButton logButton" onClick={handleLoginClick}>
+          <button className="loginButton" onClick={handleLoginClick}>
             Welcome Page (Login)
           </button>
         </section>

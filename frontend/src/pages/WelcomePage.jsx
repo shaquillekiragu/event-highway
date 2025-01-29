@@ -18,12 +18,8 @@ function WelcomePage() {
           <h1>Welcome to Event Highway!</h1>
         </header>
         <section className="welcomeLayerTwo">
-          <button onClick={handleLoginClick} className="logButton">
-            Login
-          </button>
-          <button onClick={handleSignupClick} className="logButton">
-            Sign Up!
-          </button>
+          <button onClick={handleLoginClick}>Login</button>
+          <button onClick={handleSignupClick}>Sign Up!</button>
         </section>
         <section className="welcomeLayerThree">
           <label htmlFor="proceed">Proceed without logging in: </label>
@@ -31,7 +27,6 @@ function WelcomePage() {
             onClick={() => {
               navigate("/events");
             }}
-            className="logButton"
           >
             Proceed
           </button>

@@ -92,9 +92,7 @@ function LoginPage() {
           onChange={handlePasswordChange}
           required
         />
-        <button type="submit" className="logButton">
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
       <section className="loginLayerThree">
         {invalidEmailMsg ? (

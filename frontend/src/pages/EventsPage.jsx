@@ -67,12 +67,8 @@ function EventsPage() {
     return (
       <main>
         <header className="adminButtonHeader">
-          <button onClick={handleCreateClick} className="logButton">
-            Create Event
-          </button>
-          <button onClick={handleMyEventsClick} className="logButton">
-            My Events
-          </button>
+          <button onClick={handleCreateClick}>Create Event</button>
+          <button onClick={handleMyEventsClick}>My Events</button>
         </header>
         <h1 className="eventsPageTitle">Events</h1>
         {renderEventList()}
@@ -82,9 +78,7 @@ function EventsPage() {
     return (
       <main>
         <header className="userButtonHeader">
-          <button onClick={handleMyEventsClick} className="logButton">
-            My Events
-          </button>
+          <button onClick={handleMyEventsClick}>My Events</button>
         </header>
         <h1 className="eventsPageTitle">Events</h1>
         {renderEventList()}
