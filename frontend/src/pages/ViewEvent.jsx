@@ -30,6 +30,11 @@ function ViewEvent() {
 
   console.log(event, " <<< event");
 
+  function handleEventSignup() {
+    if (window.confirm("Are you sure you want to sign up for this event?")) {
+    }
+  }
+
   function handleUpdateClick() {
     navigate(`/update-event/${event.event_id}`);
   }
@@ -53,7 +58,10 @@ function ViewEvent() {
   return (
     <main className="viewEventContainer">
       <section className="viewLayerOne">
-        <h2>{event.event_name}</h2>
+        <button onClick={handleEventSignup}>Sign up for this event!</button>
+      </section>
+      <section className="viewLayerTwo">
+        <h1>{event.event_name}</h1>
         <p>
           Date posted:{" "}
           {<FormatDatetimeFrontend sqlTimestamp={event.created_at} />}
@@ -87,7 +95,7 @@ function ViewEvent() {
         </p>
       </section>
       {authUser.is_admin ? (
-        <section className="viewLayerTwo">
+        <section className="viewLayerThree">
           <button onClick={handleUpdateClick}>Update Event</button>
           <button onClick={handleDeleteClick}>Delete Event</button>
         </section>

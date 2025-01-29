@@ -7,18 +7,26 @@
   margin: 7.5vh 15%;
 }
 
-.viewEventContainer h2 {
+.viewLayerOne {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.viewLayerTwo h1 {
   text-align: center;
+  font-size: 1.5rem !important;
   margin-bottom: 7.5vh;
 }
 
-.viewLayerTwo {
+.viewLayerThree {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 3vh;
 }
 
-.viewLayerTwo button {
+.viewLayerThree button {
   height: 4vh !important;
   font-size: 1rem !important;
 }
