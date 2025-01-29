@@ -11,7 +11,7 @@ function ViewEvent() {
   const [event, setEvent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const { authUser, isLoggedIn } = useAuth();
+  const { authUser, isLoggedIn, myEvents, setMyEvents } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,6 +32,16 @@ function ViewEvent() {
 
   function handleEventSignup() {
     if (window.confirm("Are you sure you want to sign up for this event?")) {
+      const isAlreadyPresent = myEvents.some((myEvent) => {
+        return myEvent.event_id === event.event_id;
+      });
+
+      if (!isAlreadyPresent) {
+        setMyEvents.push((prevEvents) => [...prevEvents, event]);
+        alert("You're now signed up for this event!");
+      } else {
+        alert("You've already signed up for this event");
+      }
     }
   }
 
