@@ -1,0 +1,17 @@
+// console.log({
+//   event_id: typeof event_id,
+//   host: typeof host,
+//   event_name: typeof event_name,
+//   event_start: typeof event_start,
+//   event_end: typeof event_end,
+//   event_description: typeof event_description,
+//   category: typeof category,
+//   is_online: typeof is_online,
+//   venue: typeof venue,
+//   venue_address: typeof venue_address,
+//   is_free: typeof is_free,
+//   cost_in_gbp: typeof cost_in_gbp,
+//   is_limit: typeof is_limit,
+//   attendee_limit: typeof attendee_limit,
+//   thumbnail: typeof thumbnail,
+// });
