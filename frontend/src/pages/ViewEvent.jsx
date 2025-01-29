@@ -30,14 +30,16 @@ function ViewEvent() {
 
   console.log(event, " <<< event");
 
-  function handleEventSignup() {
+  function handleEventSignup(event) {
+    event.preventDefault();
+
     if (window.confirm("Are you sure you want to sign up for this event?")) {
       const isAlreadyPresent = myEvents.some((myEvent) => {
         return myEvent.event_id === event.event_id;
       });
 
       if (!isAlreadyPresent) {
-        setMyEvents.push((prevEvents) => [...prevEvents, event]);
+        setMyEvents((prevEvents) => [...prevEvents, event]);
         alert("You're now signed up for this event!");
       } else {
         alert("You've already signed up for this event");
@@ -45,11 +47,14 @@ function ViewEvent() {
     }
   }
 
-  function handleUpdateClick() {
+  function handleUpdateClick(event) {
+    event.preventDefault();
     navigate(`/update-event/${event.event_id}`);
   }
 
-  async function handleDeleteClick() {
+  async function handleDeleteClick(event) {
+    event.preventDefault();
+
     if (window.confirm("Are you sure you want to delete this event?")) {
       try {
         await deleteEvent(event.event_id);

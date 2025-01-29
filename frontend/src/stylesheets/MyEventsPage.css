@@ -1,0 +1,53 @@
+.myEventsContainer {
+  margin-top: 7.5vh;
+}
+
+.myEventsLayerOne,
+.myEventsLayerTwoA,
+.myEventsLayerTwoB {
+  width: 100%;
+}
+
+.myEventsLayerOne h1 {
+  text-align: center;
+  font-size: 1.5rem !important;
+  margin-bottom: 7.5vh;
+}
+
+.myEventsLayerTwoB {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gridContainer {
+  display: grid;
+  gap: 2vw;
+  padding: 0;
+  margin: 0 auto 10vh auto;
+}
+
+.gridContainer li {
+  list-style: none;
+}
+
+@media (max-width: 999px) {
+  .gridContainer {
+    grid-template-columns: 100%;
+    width: 60%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .gridContainer {
+    grid-template-columns: 50% 50%;
+    width: 80%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .gridContainer {
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    width: 90%;
+  }
+}
