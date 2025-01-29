@@ -32,7 +32,7 @@ function EventsPage() {
       }
     }
     fetchEvents();
-  }, []);
+  }, [eventsList]);
 
   console.log(eventsList, " <<< eventsList");
 

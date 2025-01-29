@@ -55,15 +55,20 @@ function ViewEvent() {
   async function handleDeleteClick(event) {
     event.preventDefault();
 
-    if (window.confirm("Are you sure you want to delete this event?")) {
-      try {
-        await deleteEvent(event.event_id);
-        alert("Event successfully deleted.");
-        navigate("/events");
-      } catch (err) {
-        console.error("Error deleting event:", err);
-        alert("Failed to delete the event. Please try again.");
-      }
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this event?"
+    );
+    if (!confirmation) {
+      return;
+    }
+
+    try {
+      await deleteEvent(event.event_id);
+      alert("Event successfully deleted.");
+      navigate("/events");
+    } catch (err) {
+      console.error("Error deleting event:", err);
+      alert("Failed to delete the event. Please try again.");
     }
   }
 
