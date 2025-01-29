@@ -11,7 +11,7 @@ function ViewEvent() {
   const [event, setEvent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const { authUser } = useAuth();
+  const { authUser, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,9 +57,13 @@ function ViewEvent() {
   }
   return (
     <main className="viewEventContainer">
-      <section className="viewLayerOne">
-        <button onClick={handleEventSignup}>Sign up for this event!</button>
-      </section>
+      {isLoggedIn ? (
+        <section className="viewLayerOne">
+          <button onClick={handleEventSignup}>Sign up for this event!</button>
+        </section>
+      ) : (
+        <></>
+      )}
       <section className="viewLayerTwo">
         <h1>{event.event_name}</h1>
         <p>
@@ -94,7 +98,7 @@ function ViewEvent() {
             : "Attendee Limit: There is no attendee limit for this event"}
         </p>
       </section>
-      {authUser.is_admin ? (
+      {isLoggedIn && authUser.is_admin ? (
         <section className="viewLayerThree">
           <button onClick={handleUpdateClick}>Update Event</button>
           <button onClick={handleDeleteClick}>Delete Event</button>
