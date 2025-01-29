@@ -247,7 +247,7 @@ describe("/api/users", () => {
   });
 });
 
-describe.only("/api/events/:event_id", () => {
+describe("/api/events/:event_id", () => {
   test("GET 200 - Responds with a single event by event_id", async () => {
     const {
       body: { event },
@@ -326,13 +326,16 @@ describe.only("/api/events/:event_id", () => {
     expect(event).toHaveProperty("publisher", "Barry Bonds");
     expect(event).toHaveProperty("host", "Tech Innovations Inc.");
     expect(event).toHaveProperty("event_name", "AI and the Future of Work");
-    expect(event).toHaveProperty("event_start", "2025-02-10T09:00:00");
-    expect(event).toHaveProperty("event_end", "2025-02-10T15:00:00");
+    expect(event).toHaveProperty("event_start");
+    expect(event.event_start).toMatch(/^2025-02-10T09:00:00(\.000Z)?$/);
+    expect(event).toHaveProperty("event_end");
+    expect(event.event_end).toMatch(/^2025-02-10T15:00:00(\.000Z)?$/);
     expect(event).toHaveProperty(
       "event_description",
       "A deep dive into how artificial intelligence is shaping the future of work and automation across industries."
     );
-    expect(event).toHaveProperty("created_at", "2024-12-25T09:30:00");
+    expect(event).toHaveProperty("created_at");
+    expect(event.created_at).toMatch(/^2024-12-25T09:30:00(\.000Z)?$/);
     expect(event).toHaveProperty("category", "AI & Technology");
     expect(event).toHaveProperty("is_online", true);
     expect(event).toHaveProperty("venue", null);
@@ -346,7 +349,7 @@ describe.only("/api/events/:event_id", () => {
       "https://example.com/thumbnails/ai_future_of_work.jpg"
     );
   });
-  test.skip("PATCH 400 - Empty event object received", async () => {
+  test("PATCH 400 - Empty event object received", async () => {
     const obj = {};
     const {
       body: { msg },
@@ -355,7 +358,7 @@ describe.only("/api/events/:event_id", () => {
     expect(objLength).toBe(0);
     expect(msg).toBe("Bad Request");
   });
-  test.skip("PATCH 400 - Failing schema validation", async () => {
+  test("PATCH 400 - Failing schema validation", async () => {
     const {
       body: { msg },
     } = await request(app)
@@ -382,7 +385,7 @@ describe.only("/api/events/:event_id", () => {
       .expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test.skip("PATCH 400 - Invalid id given", async () => {
+  test("PATCH 400 - Invalid data type for id given", async () => {
     const {
       body: { msg },
     } = await request(app)
@@ -409,7 +412,7 @@ describe.only("/api/events/:event_id", () => {
       .expect(400);
     expect(msg).toBe("Bad Request");
   });
-  test.skip("PATCH 404 - Event with that id does not exist", async () => {
+  test("PATCH 404 - Event with that id does not exist", async () => {
     const {
       body: { msg },
     } = await request(app)

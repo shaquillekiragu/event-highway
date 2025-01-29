@@ -3,7 +3,7 @@ const db = require("../database/connection");
 async function fetchEvents() {
   try {
     const { rows } = await db.query(`SELECT * FROM events;`);
-    if (!rows.length) {
+    if (!rows || !rows.length) {
       return Promise.reject({ status: 404, msg: "Events not found" });
     }
     return rows;
@@ -15,18 +15,12 @@ async function fetchEvents() {
 
 async function fetchEvent(event_id) {
   try {
-    if (!event_id) {
-      return Promise.reject({
-        status: 400,
-        msg: "Event Id not provided",
-      });
-    }
     const { rows } = await db.query(
       `SELECT * FROM events
       WHERE event_id = $1`,
       [event_id]
     );
-    if (!rows.length) {
+    if (!rows || !rows.length) {
       return Promise.reject({ status: 404, msg: "Event not found" });
     }
     return rows[0];
@@ -55,9 +49,37 @@ async function insertEvent(
   thumbnail
 ) {
   try {
-    if (!publisher) {
+    if (
+      !publisher ||
+      typeof publisher !== "string" ||
+      (host !== undefined && typeof host !== "string") ||
+      (event_name !== undefined && typeof event_name !== "string") ||
+      (event_start !== undefined && typeof event_start !== "string") ||
+      (event_end !== undefined && typeof event_end !== "string") ||
+      (event_description !== undefined &&
+        typeof event_description !== "string") ||
+      (created_at !== undefined && typeof created_at !== "string") ||
+      (category !== undefined && typeof category !== "string") ||
+      (is_online !== undefined && typeof is_online !== "boolean") ||
+      (venue !== undefined && venue !== null && typeof venue !== "string") ||
+      (venue_address !== undefined &&
+        venue_address !== null &&
+        typeof venue_address !== "string") ||
+      (is_free !== undefined && typeof is_free !== "boolean") ||
+      (cost_in_gbp !== undefined &&
+        cost_in_gbp !== null &&
+        typeof cost_in_gbp !== "number") ||
+      (is_limit !== undefined && typeof is_limit !== "boolean") ||
+      (attendee_limit !== undefined &&
+        attendee_limit !== null &&
+        typeof attendee_limit !== "number") ||
+      (thumbnail !== undefined &&
+        thumbnail !== null &&
+        typeof thumbnail !== "string")
+    ) {
       return Promise.reject({ status: 400, msg: "Bad Request" });
     }
+
     const trimmedPublisher = publisher.trim();
 
     const userResult = await db.query(
@@ -123,7 +145,35 @@ async function updateEvent(
   thumbnail
 ) {
   try {
-    console.log(is_free, " <<< is_free updateEvent model");
+    if (
+      (event_id !== undefined && typeof event_id !== "string") ||
+      (host !== undefined && typeof host !== "string") ||
+      (event_name !== undefined && typeof event_name !== "string") ||
+      (event_start !== undefined && typeof event_start !== "string") ||
+      (event_end !== undefined && typeof event_end !== "string") ||
+      (event_description !== undefined &&
+        typeof event_description !== "string") ||
+      (category !== undefined && typeof category !== "string") ||
+      (is_online !== undefined && typeof is_online !== "boolean") ||
+      (venue !== undefined && venue !== null && typeof venue !== "string") ||
+      (venue_address !== undefined &&
+        venue_address !== null &&
+        typeof venue_address !== "string") ||
+      (is_free !== undefined && typeof is_free !== "boolean") ||
+      (cost_in_gbp !== undefined &&
+        cost_in_gbp !== null &&
+        typeof cost_in_gbp !== "number") ||
+      (is_limit !== undefined && typeof is_limit !== "boolean") ||
+      (attendee_limit !== undefined &&
+        attendee_limit !== null &&
+        typeof attendee_limit !== "number") ||
+      (thumbnail !== undefined &&
+        thumbnail !== null &&
+        typeof thumbnail !== "string")
+    ) {
+      return Promise.reject({ status: 400, msg: "Bad Request" });
+    }
+
     const { rows } = await db.query(
       `UPDATE events
         SET 
@@ -162,7 +212,7 @@ async function updateEvent(
       ]
     );
     console.log(rows[0], " <<< rows[0] updateEvent model");
-    if (!rows.length) {
+    if (!rows || !rows.length) {
       return Promise.reject({
         status: 404,
         msg: "Event not found",
@@ -183,7 +233,7 @@ async function removeEvent(event_id) {
       RETURNING *;`,
       [event_id]
     );
-    if (!rows.length) {
+    if (!rows || !rows.length) {
       return Promise.reject({
         status: 404,
         msg: "Event not found",

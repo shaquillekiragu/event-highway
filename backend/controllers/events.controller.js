@@ -73,23 +73,9 @@ async function postEvent(request, response, next) {
   }
 }
 
-// async function validatePublisher(publisher) {
-//   const { rows } = await db.query(
-//     `SELECT * FROM users WHERE display_name = $1;`,
-//     [publisher]
-//   );
-//   if (!rows.length) {
-//     throw {
-//       status: 400,
-//       msg: `Invalid publisher: ${publisher} does not exist.`,
-//     };
-//   }
-// }
-
 async function patchEvent(request, response, next) {
   try {
     const { event_id } = request.params;
-    console.log(event_id, " <<< event_id patchEvent controller");
     const {
       host,
       event_name,
