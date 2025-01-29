@@ -34,7 +34,18 @@ function ViewEvent() {
     navigate(`/update-event/${event.event_id}`);
   }
 
-  function handleDeleteClick() {}
+  async function handleDeleteClick() {
+    if (window.confirm("Are you sure you want to delete this event?")) {
+      try {
+        await deleteEvent(event.event_id);
+        alert("Event successfully deleted.");
+        navigate("/events");
+      } catch (err) {
+        console.error("Error deleting event:", err);
+        alert("Failed to delete the event. Please try again.");
+      }
+    }
+  }
 
   if (isLoading) {
     return <Loading page={"View Event"} />;
@@ -75,7 +86,7 @@ function ViewEvent() {
             : "Attendee Limit: There is no attendee limit for this event"}
         </p>
       </section>
-      {authUser.isadmin ? (
+      {authUser.is_admin ? (
         <section className="viewLayerTwo">
           <button onClick={handleUpdateClick}></button>
           <button onClick={handleDeleteClick}></button>
