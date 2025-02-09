@@ -1,0 +1,10 @@
+.updateEventContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.updateEventLayerOne {
+  margin-top: 5vh;
+}
