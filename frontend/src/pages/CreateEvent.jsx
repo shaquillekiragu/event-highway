@@ -55,7 +55,8 @@ function CreateEvent() {
         eventData.is_free,
         eventData.cost_in_gbp,
         eventData.is_limit,
-        eventData.attendee_limit
+        eventData.attendee_limit,
+        eventData.thumbnail
       );
 
       console.log(response, " <<< response");
