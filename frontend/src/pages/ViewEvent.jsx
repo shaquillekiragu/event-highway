@@ -49,7 +49,7 @@ function ViewEvent() {
 
   function handleUpdateClick(event) {
     event.preventDefault();
-    navigate(`/update-event/${event.event_id}`);
+    navigate(`/update-event/${event.event_id}`, { state: { event: event } });
   }
 
   async function handleDeleteClick(event) {
