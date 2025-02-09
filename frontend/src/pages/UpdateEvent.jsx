@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/UserContext";
 import { patchEvent } from "../api";
 import UpdateEventForm from "../components/UpdateEventForm/UpdateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
-import { formatDatetimeForDB } from "../components/FormatDatetime/databaseDatetimeFunctions";
+import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
 
 function UpdateEvent() {
   const { event_id } = useParams();

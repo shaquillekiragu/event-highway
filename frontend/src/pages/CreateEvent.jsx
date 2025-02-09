@@ -5,17 +5,14 @@ import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
-import {
-  formatDatetimeForDB,
-  currentDatetimeForDB,
-} from "../components/FormatDatetime/databaseDatetimeFunctions";
+import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
+import { currentDatetimeForDB } from "../components/FormatDatetime/dbDatetimeFunctions";
 
 function CreateEvent() {
   const [eventData, setEventData] = useState({});
   const [error, setError] = useState("");
 
   const { authUser } = useAuth();
-
   const navigate = useNavigate();
 
   function handleChange(event) {

@@ -1,4 +1,13 @@
-function currentDatetimeForDB() {
+export default function formatDatetimeForDB(datetime) {
+  const formattedDatetime = datetime.replace(
+    /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/,
+    "$3-$2-$1T$4:$5:00"
+  );
+  console.log(formattedDatetime, " << formattedDatetime");
+  return formattedDatetime;
+}
+
+export function currentDatetimeForDB() {
   const currentDatetime = new Date();
 
   const currentDate = `${currentDatetime.getFullYear()}-${currentDatetime.getMonth()}-${currentDatetime.getDay()}`;
@@ -9,14 +18,3 @@ function currentDatetimeForDB() {
 
   return datetime;
 }
-
-function formatDatetimeForDB(datetime) {
-  const formattedDatetime = datetime.replace(
-    /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/,
-    "$3-$2-$1T$4:$5:00"
-  );
-  console.log(formattedDatetime, " << formattedDatetime");
-  return formattedDatetime;
-}
-
-export { currentDatetimeForDB, formatDatetimeForDB };
