@@ -110,7 +110,7 @@ function ViewEvent() {
         <p>
           {event.is_free
             ? "Price: This event is free"
-            : `Price: The price for this event is: ${event.cost_in_gbp}`}
+            : `Price: The price for this event is: £${event.cost_in_gbp}`}
         </p>
         <p>
           {event.is_limit
