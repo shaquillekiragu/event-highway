@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 export const UserContext = createContext();
 
@@ -7,16 +7,23 @@ export function useAuth() {
 }
 
 export default function UserProvider({ children }) {
-  const [authUser, setAuthUser] = useState({
-    first_name: null,
-    last_name: null,
-    display_name: null,
-    email: null,
-    user_password: null,
-    is_admin: null,
+  const [authUser, setAuthUser] = useState(() => {
+    const savedUser = localStorage.getItem("authUser");
+    return savedUser ? JSON.parse(savedUser) : null;
   });
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [myEvents, setMyEvents] = useState([]);
+
+  useEffect(() => {
+    if (authUser) {
+      localStorage.setItem("authUser", JSON.stringify(authUser));
+      setIsLoggedIn(true);
+    } else {
+      localStorage.removeItem("authUser");
+      setIsLoggedIn(false);
+    }
+  }, [authUser]);
 
   const value = {
     authUser,

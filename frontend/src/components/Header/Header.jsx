@@ -13,7 +13,8 @@ function Header() {
 
   function handleLogoutClick(event) {
     event.preventDefault();
-    setAuthUser({});
+    setAuthUser(null);
+    localStorage.removeItem("authUser");
     setIsLoggedIn(false);
     navigate("/events");
   }
