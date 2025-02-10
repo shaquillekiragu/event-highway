@@ -40,7 +40,8 @@ function Header() {
         <section className="errorHeaderContainer">
           <h1 className="event">Event</h1>
           <p className="errorMessage">
-            LOGIN STATE ERROR. PLEASE REFRESH PAGE...
+            LOGIN STATE ERROR. You are logged in whilst taking a login action.
+            Please click <Link to="/events">HERE</Link>...
           </p>
         </section>
         <section className="thickblackBanner highwayContainer">
