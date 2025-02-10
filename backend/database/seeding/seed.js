@@ -91,9 +91,9 @@ const seed = async ({ eventsData, usersData }) => {
     );
 
     await db.query(eventsInsertQuery);
-  } catch (error) {
-    console.error(error, "<< seed.js async function error");
-    throw error;
+  } catch (err) {
+    console.error(err, "<< seed.js async function error");
+    throw err;
   }
 };
 
