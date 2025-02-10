@@ -28,6 +28,42 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
       </div>
 
       <div className="formGroup">
+        <label htmlFor="event_start">Event Start Time</label>
+        <input
+          type="datetime-local"
+          id="event_start"
+          name="event_start"
+          value={eventData.event_start}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="formGroup">
+        <label htmlFor="event_end">Event End Time</label>
+        <input
+          type="datetime-local"
+          id="event_end"
+          name="event_end"
+          value={eventData.event_end}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="formGroup">
+        <label htmlFor="event_description">Description</label>
+        <input
+          type="text"
+          id="event_description"
+          name="event_description"
+          value={eventData.event_description}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="formGroup">
         <label htmlFor="category">Category</label>
         <input
           type="text"
@@ -40,19 +76,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
       </div>
 
       <div className="formGroup">
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          value={eventData.event_description}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div className="formGroup">
-        <label htmlFor="is_online">Is this event online?</label>
+        <label htmlFor="is_online">Is this event online? (Tick if yes)</label>
         <input
           type="checkbox"
           id="is_online"
@@ -75,11 +99,11 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
       </div>
 
       <div className="formGroup">
-        <label htmlFor="venue">Venue Address (If offline event)</label>
+        <label htmlFor="venue_address">Venue Address (If offline event)</label>
         <input
           type="text"
-          id="venue"
-          name="venue"
+          id="venue_address"
+          name="venue_address"
           value={eventData.venue_address}
           onChange={handleChange}
           disabled={eventData.is_online}
@@ -87,7 +111,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
       </div>
 
       <div className="formGroup">
-        <label htmlFor="is_free">Is this event free?</label>
+        <label htmlFor="is_free">Is this event free? (Tick if yes)</label>
         <input
           type="checkbox"
           id="is_free"
@@ -110,6 +134,19 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
       </div>
 
       <div className="formGroup">
+        <label htmlFor="is_limit">
+          Is there a limit on the number of attendees? (Tick if yes)
+        </label>
+        <input
+          type="checkbox"
+          id="is_limit"
+          name="is_limit"
+          checked={eventData.is_limit}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="formGroup">
         <label htmlFor="attendee_limit">Attendee Limit</label>
         <input
           type="number"
@@ -118,30 +155,6 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
           value={eventData.attendee_limit}
           onChange={handleChange}
           disabled={!eventData.is_limit}
-        />
-      </div>
-
-      <div className="formGroup">
-        <label htmlFor="event_start">Event Start Time</label>
-        <input
-          type="datetime-local"
-          id="event_start"
-          name="event_start"
-          value={eventData.event_start}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div className="formGroup">
-        <label htmlFor="event_end">Event End Time</label>
-        <input
-          type="datetime-local"
-          id="event_end"
-          name="event_end"
-          value={eventData.event_end}
-          onChange={handleChange}
-          required
         />
       </div>
 
