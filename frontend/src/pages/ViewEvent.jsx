@@ -8,7 +8,7 @@ import "../stylesheets/ViewEvent.css";
 
 function ViewEvent() {
   const { event_id } = useParams();
-  const [event, setEvent] = useState({});
+  const [eventObj, seteventObj] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const { authUser, isLoggedIn, myEvents, setMyEvents } = useAuth();
@@ -18,7 +18,7 @@ function ViewEvent() {
     async function fetchEventView() {
       try {
         const response = await getEvent(event_id);
-        setEvent(response.data.event);
+        seteventObj(response.data.event);
         setIsLoading(false);
       } catch (err) {
         console.error(err);
@@ -28,18 +28,18 @@ function ViewEvent() {
     fetchEventView();
   }, [event_id]);
 
-  console.log(event, " <<< event");
+  console.log(eventObj, " <<< eventObj");
 
   function handleEventSignup(event) {
     event.preventDefault();
 
     if (window.confirm("Are you sure you want to sign up for this event?")) {
       const isAlreadyPresent = myEvents.some((myEvent) => {
-        return myEvent.event_id === event.event_id;
+        return myEvent.event_id === eventObj.event_id;
       });
 
       if (!isAlreadyPresent) {
-        setMyEvents((prevEvents) => [...prevEvents, event]);
+        setMyEvents((prevEvents) => [...prevEvents, eventObj]);
         alert("You're now signed up for this event!");
       } else {
         alert("You've already signed up for this event");
@@ -49,7 +49,9 @@ function ViewEvent() {
 
   function handleUpdateClick(event) {
     event.preventDefault();
-    navigate(`/update-event/${event.event_id}`, { state: { event: event } });
+    navigate(`/update-event/${eventObj.event_id}`, {
+      state: { eventObj: eventObj },
+    });
   }
 
   async function handleDeleteClick(event) {
@@ -63,7 +65,7 @@ function ViewEvent() {
     }
 
     try {
-      await deleteEvent(event.event_id);
+      await deleteEvent(eventObj.event_id);
       alert("Event successfully deleted.");
       navigate("/events");
     } catch (err) {
@@ -85,36 +87,36 @@ function ViewEvent() {
         <></>
       )}
       <section className="viewLayerTwo">
-        <h1>{event.event_name}</h1>
+        <h1>{eventObj.event_name}</h1>
         <p>
           Date posted:{" "}
-          {<FormatDatetimeFrontend sqlTimestamp={event.created_at} />}
+          {<FormatDatetimeFrontend sqlTimestamp={eventObj.created_at} />}
         </p>
-        <p>Publisher: {event.publisher}</p>
-        <p>Category: {event.category}</p>
+        <p>Publisher: {eventObj.publisher}</p>
+        <p>Category: {eventObj.category}</p>
         <p>
           Event Start:{" "}
-          {<FormatDatetimeFrontend sqlTimestamp={event.event_start} />}
+          {<FormatDatetimeFrontend sqlTimestamp={eventObj.event_start} />}
         </p>
         <p>
           Event Finish:{" "}
-          {<FormatDatetimeFrontend sqlTimestamp={event.event_end} />}
+          {<FormatDatetimeFrontend sqlTimestamp={eventObj.event_end} />}
         </p>
-        <p>Host: {event.host}</p>
-        <p>Description: {event.event_description}</p>
+        <p>Host: {eventObj.host}</p>
+        <p>Description: {eventObj.event_description}</p>
         <p>
-          {event.is_online
+          {eventObj.is_online
             ? "Venue: This event is online"
-            : `Venue: The venue for this event is: ${event.venue}, ${event.venue_address}`}
+            : `Venue: The venue for this event is: ${eventObj.venue}, ${eventObj.venue_address}`}
         </p>
         <p>
-          {event.is_free
+          {eventObj.is_free
             ? "Price: This event is free"
-            : `Price: The price for this event is: £${event.cost_in_gbp}`}
+            : `Price: The price for this event is: £${eventObj.cost_in_gbp}`}
         </p>
         <p>
-          {event.is_limit
-            ? `Attendee Limit: The attendee limit for this event is: ${event.attendee_limit}`
+          {eventObj.is_limit
+            ? `Attendee Limit: The attendee limit for this event is: ${eventObj.attendee_limit}`
             : "Attendee Limit: There is no attendee limit for this event"}
         </p>
       </section>
