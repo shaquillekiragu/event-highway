@@ -9,8 +9,26 @@ import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunction
 import { currentDatetimeForDB } from "../components/FormatDatetime/dbDatetimeFunctions";
 
 function CreateEvent() {
-  const [eventData, setEventData] = useState({});
+  const [eventData, setEventData] = useState({
+    publisher: "",
+    host: "",
+    event_name: "",
+    event_start: "",
+    event_end: "",
+    event_description: "",
+    createdAt: "",
+    category: "",
+    is_online: true,
+    venue: "",
+    venue_address: "",
+    is_free: true,
+    cost_in_gbp: 0,
+    is_limit: false,
+    attendee_limit: 0,
+    thumbnail: "",
+  });
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { authUser } = useAuth();
   const navigate = useNavigate();
