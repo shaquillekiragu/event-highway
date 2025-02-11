@@ -1,3 +1,12 @@
 .updateEventForm {
-  margin: 5vh 0;
+  margin: 2.5vh 0 5vh 0;
+}
+
+.updateEventForm .formGroup {
+  margin-bottom: 3.5vh;
+}
+
+.updateEventForm .submitButton {
+  margin-top: 1.5vh;
+  height: 7vh !important;
 }
