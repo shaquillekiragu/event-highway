@@ -135,7 +135,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
 
       <div className="formGroup">
         <label htmlFor="is_limit">
-          Is there a limit on the number of attendees? (Tick if yes)
+          Is there an attendee limit? (Tick if yes)
         </label>
         <input
           type="checkbox"
