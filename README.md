@@ -102,6 +102,11 @@ Then run the first command again.
 To set and run the event_highway database, run the two following commands one at a time:
 
 ```
+export PGDATABASE=event_highway
+```
+<br>
+
+```
 npm run start
 ```
 
