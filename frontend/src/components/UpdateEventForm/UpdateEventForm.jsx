@@ -28,6 +28,42 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
       </div>
 
       <div className="formGroup">
+        <label htmlFor="event_start">Event Start Time</label>
+        <input
+          type="datetime-local"
+          id="event_start"
+          name="event_start"
+          value={eventData.event_start || ""}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="formGroup">
+        <label htmlFor="event_end">Event End Time</label>
+        <input
+          type="datetime-local"
+          id="event_end"
+          name="event_end"
+          value={eventData.event_end || ""}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="formGroup">
+        <label htmlFor="event_description">Description</label>
+        <input
+          type="text"
+          id="event_description"
+          name="event_description"
+          value={eventData.event_description || ""}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="formGroup">
         <label htmlFor="category">Category</label>
         <input
           type="text"
@@ -40,19 +76,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
       </div>
 
       <div className="formGroup">
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          id="description"
-          name="event_description"
-          value={eventData.event_description || ""}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div className="formGroup">
-        <label htmlFor="is_online">Is this event online?</label>
+        <label htmlFor="is_online">Is this event online? (Tick if yes)</label>
         <input
           type="checkbox"
           id="is_online"
@@ -75,7 +99,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
       </div>
 
       <div className="formGroup">
-        <label htmlFor="venue">Venue Address (If offline event)</label>
+        <label htmlFor="venue_address">Venue Address (If offline event)</label>
         <input
           type="text"
           id="venue_address"
@@ -87,7 +111,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
       </div>
 
       <div className="formGroup">
-        <label htmlFor="is_free">Is this event free?</label>
+        <label htmlFor="is_free">Is this event free? (Tick if yes)</label>
         <input
           type="checkbox"
           id="is_free"
@@ -103,9 +127,22 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="number"
           id="cost_in_gbp"
           name="cost_in_gbp"
-          value={eventData.cost_in_gbp || ""}
+          value={eventData.cost_in_gbp || 0}
           onChange={handleChange}
           disabled={eventData.is_free}
+        />
+      </div>
+
+      <div className="formGroup">
+        <label htmlFor="is_limit">
+          Is there an attendee limit? (Tick if yes)
+        </label>
+        <input
+          type="checkbox"
+          id="is_limit"
+          name="is_limit"
+          checked={eventData.is_limit || false}
+          onChange={handleChange}
         />
       </div>
 
@@ -115,33 +152,9 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="number"
           id="attendee_limit"
           name="attendee_limit"
-          value={eventData.attendee_limit || ""}
+          value={eventData.attendee_limit || 0}
           onChange={handleChange}
           disabled={!eventData.is_limit}
-        />
-      </div>
-
-      <div className="formGroup">
-        <label htmlFor="event_start">Event Start Time</label>
-        <input
-          type="datetime-local"
-          id="event_start"
-          name="event_start"
-          value={eventData.event_start || ""}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div className="formGroup">
-        <label htmlFor="event_end">Event End Time</label>
-        <input
-          type="datetime-local"
-          id="event_end"
-          name="event_end"
-          value={eventData.event_end || ""}
-          onChange={handleChange}
-          required
         />
       </div>
 
