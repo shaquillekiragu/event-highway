@@ -75,7 +75,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <div className="formGroup">
+      <fieldset className="formGroup">
         <label htmlFor="is_online">Is this event online? (Tick if yes)</label>
         <input
           type="checkbox"
@@ -84,7 +84,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           checked={eventData.is_online || false}
           onChange={handleChange}
         />
-      </div>
+      </fieldset>
 
       <div className="formGroup">
         <label htmlFor="venue">Venue Name (If offline event)</label>
@@ -110,7 +110,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <div className="formGroup">
+      <fieldset className="formGroup">
         <label htmlFor="is_free">Is this event free? (Tick if yes)</label>
         <input
           type="checkbox"
@@ -119,7 +119,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           checked={eventData.is_free || false}
           onChange={handleChange}
         />
-      </div>
+      </fieldset>
 
       <div className="formGroup">
         <label htmlFor="cost_in_gbp">Cost (If not free)</label>
@@ -133,7 +133,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <div className="formGroup">
+      <fieldset className="formGroup">
         <label htmlFor="is_limit">
           Is there an attendee limit? (Tick if yes)
         </label>
@@ -144,7 +144,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           checked={eventData.is_limit || false}
           onChange={handleChange}
         />
-      </div>
+      </fieldset>
 
       <div className="formGroup">
         <label htmlFor="attendee_limit">Attendee Limit</label>
