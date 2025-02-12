@@ -21,10 +21,10 @@ function UpdateEvent() {
       event_description: "",
       createdAt: "",
       category: "",
-      is_online: true,
+      is_online: false,
       venue: "",
       venue_address: "",
-      is_free: true,
+      is_free: false,
       cost_in_gbp: 0,
       is_limit: false,
       attendee_limit: 0,
@@ -37,20 +37,6 @@ function UpdateEvent() {
   const { authUser } = useAuth();
   const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     async function fetchEvent() {
-  //       try {
-  //         const response = await getEvent(event_id);
-  //         setEventData(response.data.event);
-  //       } catch (error) {
-  //         setError("Failed to fetch event data.");
-  //       } finally {
-  //         setIsLoading(false);
-  //       }
-  //     }
-  //     fetchEvent();
-  //   }, [event_id]);
-
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
     setEventData((prevState) => ({
@@ -60,23 +46,30 @@ function UpdateEvent() {
   }
 
   async function handleSubmit(event) {
-    event.preventDefault();
-    setIsLoading(true);
-
-    const formattedEventStart = formatDatetimeForDB(eventData.event_start);
-    const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
-    const formattedCreatedAt = formatDatetimeForDB(eventData.created_at);
-
     try {
+      event.preventDefault();
+      setIsLoading(true);
+
+      console.log(eventData.event_start, " <<< event_start");
+      console.log(eventData.event_end, " <<< event_end");
+      console.log(eventData.created_at, " <<< created_at");
+
+      // const formattedEventStart = formatDatetimeForDB(eventData.event_start);
+      // const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
+      // const formattedCreatedAt = formatDatetimeForDB(eventData.created_at);
+
       const response = await patchEvent(
         event_id,
         authUser.display_name,
         eventData.host,
         eventData.event_name,
-        formattedEventStart,
-        formattedEventEnd,
+        eventData.event_start,
+        eventData.event_end,
+        // formattedEventStart,
+        // formattedEventEnd,
         eventData.event_description,
-        formattedCreatedAt,
+        // formattedCreatedAt,
+        eventData.created_at,
         eventData.category,
         eventData.is_online,
         eventData.venue,

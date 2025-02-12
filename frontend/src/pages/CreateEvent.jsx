@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
-import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
+// import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
 import { currentDatetimeForDB } from "../components/FormatDatetime/dbDatetimeFunctions";
 
 function CreateEvent() {
@@ -42,25 +42,48 @@ function CreateEvent() {
   }
 
   async function handleSubmit(event) {
-    event.preventDefault();
-    setIsLoading(true);
-
-    const formattedEventStart = formatDatetimeForDB(eventData.event_start);
-    const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
-
-    console.log(formattedEventStart, " <<< formattedEventStart");
-    console.log(formattedEventEnd, " <<< formattedEventEnd");
-
-    const createdAt = currentDatetimeForDB();
-    console.log(createdAt, " <<< createdAt");
-
     try {
+      event.preventDefault();
+      setIsLoading(true);
+
+      // const formattedEventStart = formatDatetimeForDB(eventData.event_start);
+      // const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
+
+      // console.log(formattedEventStart, " <<< formattedEventStart");
+      // console.log(formattedEventEnd, " <<< formattedEventEnd");
+
+      const createdAt = currentDatetimeForDB();
+      console.log(createdAt, " <<< createdAt");
+
+      console.log([
+        typeof authUser.display_name,
+        typeof eventData.host,
+        typeof eventData.event_name,
+        typeof eventData.event_start,
+        typeof eventData.event_end,
+        // typeof formattedEventStart,
+        // typeof formattedEventEnd,
+        typeof eventData.event_description,
+        typeof createdAt,
+        typeof eventData.category,
+        typeof eventData.is_online,
+        typeof eventData.venue,
+        typeof eventData.venue_address,
+        typeof eventData.is_free,
+        typeof eventData.cost_in_gbp,
+        typeof eventData.is_limit,
+        typeof eventData.attendee_limit,
+        typeof eventData.thumbnail,
+      ]);
+
       const response = await postEvent(
         authUser.display_name,
         eventData.host,
         eventData.event_name,
-        formattedEventStart,
-        formattedEventEnd,
+        eventData.event_start,
+        eventData.event_end,
+        // formattedEventStart,
+        // formattedEventEnd,
         eventData.event_description,
         createdAt,
         eventData.category,
