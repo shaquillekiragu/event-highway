@@ -22,7 +22,6 @@ function EventsPage() {
       try {
         const response = await getEvents();
         setEventsList(response.data.events);
-        console.log(response.data.events, " <<< response.data.events");
         setIsLoading(false);
       } catch (err) {
         console.error(err, " << fetchEvents error");
@@ -33,8 +32,6 @@ function EventsPage() {
     }
     fetchEvents();
   }, [eventsList]);
-
-  console.log(eventsList, " <<< eventsList");
 
   function handleCreateClick() {
     navigate("/create-event");

@@ -44,8 +44,6 @@ function SignUpPage() {
       });
 
       setIsLoggedIn(true);
-      console.log(authUser, "authUser");
-      console.log(isLoggedIn, "isLoggedIn");
       navigate("/events");
     } catch (err) {
       console.error(err, " << postUser error");

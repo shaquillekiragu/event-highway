@@ -28,8 +28,6 @@ function ViewEvent() {
     fetchEventView();
   }, [event_id]);
 
-  console.log(eventObj, " <<< eventObj");
-
   function handleEventSignup(event) {
     event.preventDefault();
 
