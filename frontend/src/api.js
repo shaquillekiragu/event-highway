@@ -5,7 +5,6 @@ import axios from "axios";
 export async function getEvents() {
   try {
     const response = await axios.get("http://localhost:9090/api/events");
-    console.log(response.data, " <<< response data");
     if (response && response.data) {
       return response;
     } else {
