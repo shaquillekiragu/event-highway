@@ -9,7 +9,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="text"
           id="event_name"
           name="event_name"
-          value={eventData.event_name || ""}
+          value={eventData.event_name}
           onChange={handleChange}
           required
         />
@@ -21,7 +21,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="text"
           id="host"
           name="host"
-          value={eventData.host || ""}
+          value={eventData.host}
           onChange={handleChange}
           required
         />
@@ -33,7 +33,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="datetime-local"
           id="event_start"
           name="event_start"
-          value={eventData.event_start || ""}
+          value={eventData.event_start}
           onChange={handleChange}
           required
         />
@@ -45,7 +45,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="datetime-local"
           id="event_end"
           name="event_end"
-          value={eventData.event_end || ""}
+          value={eventData.event_end}
           onChange={handleChange}
           required
         />
@@ -57,7 +57,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="text"
           id="event_description"
           name="event_description"
-          value={eventData.event_description || ""}
+          value={eventData.event_description}
           onChange={handleChange}
           required
         />
@@ -69,7 +69,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="text"
           id="category"
           name="category"
-          value={eventData.category || ""}
+          value={eventData.category}
           onChange={handleChange}
           required
         />
@@ -81,7 +81,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="checkbox"
           id="is_online"
           name="is_online"
-          checked={eventData.is_online || false}
+          checked={eventData.is_online}
           onChange={handleChange}
         />
       </fieldset>
@@ -92,7 +92,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="text"
           id="venue"
           name="venue"
-          value={eventData.venue || ""}
+          value={eventData.venue}
           onChange={handleChange}
           disabled={eventData.is_online}
         />
@@ -104,7 +104,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="text"
           id="venue_address"
           name="venue_address"
-          value={eventData.venue_address || ""}
+          value={eventData.venue_address}
           onChange={handleChange}
           disabled={eventData.is_online}
         />
@@ -116,7 +116,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="checkbox"
           id="is_free"
           name="is_free"
-          checked={eventData.is_free || false}
+          checked={eventData.is_free}
           onChange={handleChange}
         />
       </fieldset>
@@ -127,7 +127,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="number"
           id="cost_in_gbp"
           name="cost_in_gbp"
-          value={eventData.cost_in_gbp || 0}
+          value={eventData.cost_in_gbp}
           onChange={handleChange}
           disabled={eventData.is_free}
         />
@@ -141,7 +141,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="checkbox"
           id="is_limit"
           name="is_limit"
-          checked={eventData.is_limit || false}
+          checked={eventData.is_limit}
           onChange={handleChange}
         />
       </fieldset>
@@ -152,7 +152,7 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
           type="number"
           id="attendee_limit"
           name="attendee_limit"
-          value={eventData.attendee_limit || 0}
+          value={eventData.attendee_limit}
           onChange={handleChange}
           disabled={!eventData.is_limit}
         />
