@@ -14,6 +14,24 @@ https://event-highway.netlify.app/
 <br>
 <br>
 
+## Tech Stack
+
+**Frontend:**
+
+- HTML & CSS
+- Javascript
+- ReactJS
+- Axios
+
+**Backend:**
+
+- Node.js
+- ExpressJS
+- PostgreSQL
+- Jest
+- Supertest
+  <br>
+
 ## Minimum Versions
 
 You will need to have these versions or newer for the following technologies in order to run this project:
