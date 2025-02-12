@@ -6,6 +6,14 @@ This project serves as a community-driven events platform, Event Highway, design
 <br>
 <br>
 
+## Link to the Deployed Frontend
+
+Follow this link to access the live site:
+
+https://event-highway.netlify.app/
+<br>
+<br>
+
 ## Minimum Versions
 
 You will need to have these versions or newer for the following technologies in order to run this project:
@@ -149,14 +157,6 @@ npm run dev
 5. You should now be able to view the welcome page for Event Highway! You can proceed to use the website without being logged in, but this will only allow you to view events that are currently listed on the site. To access more features, you'll need to either create an account, or login to an existing account.
    Scroll to the bottom of this README file to access both test account you can use for accessing additional features by logging in, both as a user or as an event admin.
    <br>
-
-## Link to the Deployed Frontend
-
-Follow this link to access the live site:
-
-https://event-highway.netlify.app/
-<br>
-<br>
 
 ## Test accounts for logging in
 
