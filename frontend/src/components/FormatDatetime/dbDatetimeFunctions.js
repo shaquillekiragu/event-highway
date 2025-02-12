@@ -2,6 +2,7 @@ export default function formatDatetimeForDB(datetime) {
   const formattedDatetime = datetime.replace(
     /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/,
     "$3-$2-$1T$4:$5:00"
+    // Causing an error upon patchEvent due to var value of undefined.
   );
   console.log(formattedDatetime, " << formattedDatetime");
   return formattedDatetime;
