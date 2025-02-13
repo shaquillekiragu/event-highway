@@ -4,7 +4,7 @@ import axios from "axios";
 
 export async function getEvents() {
   try {
-    const response = await axios.get("http://localhost:9091/api/events");
+    const response = await axios.get("http://localhost:9090/api/events");
     if (response && response.data) {
       return response;
     } else {
@@ -20,7 +20,7 @@ export async function getEvents() {
 export async function getEvent(event_id) {
   try {
     const response = await axios.get(
-      `http://localhost:9091/api/events/${event_id}`
+      `http://localhost:9090/api/events/${event_id}`
     );
     return response;
   } catch (err) {
@@ -31,7 +31,7 @@ export async function getEvent(event_id) {
 
 export async function getUsers() {
   try {
-    const response = await axios.get("http://localhost:9091/api/users");
+    const response = await axios.get("http://localhost:9090/api/users");
     return response;
   } catch (err) {
     console.error("Error fetching users:", err.message || err);
@@ -42,7 +42,7 @@ export async function getUsers() {
 export async function getUser(user_id) {
   try {
     const response = await axios.get(
-      `http://localhost:9091/api/users/${user_id}`
+      `http://localhost:9090/api/users/${user_id}`
     );
     return response;
   } catch (err) {
@@ -72,7 +72,7 @@ export async function postEvent(
   thumbnail
 ) {
   try {
-    const response = await axios.post("http://localhost:9091/api/events", {
+    const response = await axios.post("http://localhost:9090/api/events", {
       publisher,
       host,
       event_name,
@@ -106,7 +106,7 @@ export async function postUser(
   is_admin
 ) {
   try {
-    const response = await axios.post("http://localhost:9091/api/users", {
+    const response = await axios.post("http://localhost:9090/api/users", {
       first_name,
       last_name,
       display_name,
@@ -144,7 +144,7 @@ export async function patchEvent(
 ) {
   try {
     const response = await axios.patch(
-      `http://localhost:9091/api/events/${event_id}`,
+      `http://localhost:9090/api/events/${event_id}`,
       {
         publisher,
         host,
@@ -176,7 +176,7 @@ export async function patchEvent(
 export async function deleteEvent(event_id) {
   try {
     const response = await axios.delete(
-      `http://localhost:9091/api/events/${event_id}`
+      `http://localhost:9090/api/events/${event_id}`
     );
     return response;
   } catch (err) {
