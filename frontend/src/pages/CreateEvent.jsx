@@ -34,6 +34,8 @@ function CreateEvent() {
   const navigate = useNavigate();
 
   function handleChange(event) {
+    // console.log(event.target.value, " <<< value")
+    console.log(typeof event.target.value, " <<< typeof value");
     const { name, value, type, checked } = event.target;
     setEventData((prevState) => ({
       ...prevState,
