@@ -98,7 +98,7 @@ function LoginPage() {
         <section className="loginLayerThree">
           {invalidEmailMsg ? (
             <span className="invalidMsg">
-              Invalid email. Please enter in a valid email address.
+              User not found. Please enter in a valid email address.
             </span>
           ) : (
             <></>
