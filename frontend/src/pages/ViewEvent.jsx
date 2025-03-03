@@ -9,10 +9,13 @@ import "../stylesheets/ViewEvent.css";
 function ViewEvent() {
   const { event_id } = useParams();
   const [eventObj, seteventObj] = useState({});
+  const [hasSignedUp, setHasSignedUp] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const { authUser, isLoggedIn, myEvents, setMyEvents } = useAuth();
   const navigate = useNavigate();
+
+  console.log(hasSignedUp, "<<<");
 
   useEffect(() => {
     async function fetchEventView() {
@@ -26,7 +29,7 @@ function ViewEvent() {
       }
     }
     fetchEventView();
-  }, [event_id]);
+  }, [event_id, hasSignedUp]);
 
   function handleEventSignup(event) {
     event.preventDefault();
@@ -39,8 +42,37 @@ function ViewEvent() {
       if (!isAlreadyPresent) {
         setMyEvents((prevEvents) => [...prevEvents, eventObj]);
         alert("You're now signed up for this event!");
+        setHasSignedUp(true);
       } else {
         alert("You've already signed up for this event");
+      }
+    }
+  }
+
+  function handleEventRemoval(event) {
+    event.preventDefault();
+
+    if (
+      window.confirm(
+        "Are you sure you want to remove this event from your My Events list?"
+      )
+    ) {
+      const isPresent = myEvents.some((myEvent) => {
+        return myEvent.event_id === eventObj.event_id;
+      });
+
+      if (isPresent) {
+        const newMyEventsList = myEvents.filter((myEvent) => {
+          return myEvent.event_id !== eventObj.event_id;
+        });
+
+        setMyEvents(newMyEventsList);
+        alert("This event is no longer listed in your My Events list.");
+        setHasSignedUp(false);
+      } else {
+        alert(
+          "ERROR: This event is not listed on your My Events list already. Click 'Ok' and refresh the page"
+        );
       }
     }
   }
@@ -79,7 +111,13 @@ function ViewEvent() {
     <main className="partPageHeight viewEventContainer">
       {isLoggedIn ? (
         <section className="viewLayerOne">
-          <button onClick={handleEventSignup}>Sign up for this event!</button>
+          {hasSignedUp === false ? (
+            <button onClick={handleEventSignup}>Sign up for this event!</button>
+          ) : (
+            <button onClick={handleEventRemoval}>
+              I'm no longer attending this event...
+            </button>
+          )}
         </section>
       ) : (
         <></>
