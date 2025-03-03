@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "listen.js",
   "scripts": {
     "test": "PGDATABASE=event_highway_test NODE_ENV=test jest",
     "setup-dbs": "psql -f ./database/setup.sql",
