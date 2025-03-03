@@ -14,6 +14,41 @@ https://event-highway.netlify.app/
 <br>
 <br>
 
+## Test accounts for logging in
+
+Here is a test user account:
+<br>
+
+email:
+
+```
+amelia.walker@gmail.com
+```
+
+password:
+
+```
+AmeliaPass123
+```
+
+<br>
+
+And below is a test administrator account:
+<br>
+
+email:
+
+```
+henry.brown@outlook.com
+```
+
+password:
+
+```
+Henry456
+```
+<br>
+
 ## Tech Stack
 
 **Frontend:**
@@ -176,40 +211,5 @@ npm run dev
    Scroll to the bottom of this README file to access both test account you can use for accessing additional features by logging in, both as a user or as an event admin.
    <br>
 
-## Test accounts for logging in
-
-Here is a test user account:
-<br>
-
-email:
-
-```
-amelia.walker@gmail.com
-```
-
-password:
-
-```
-AmeliaPass123
-```
-
-<br>
-
-And below is a test administrator account:
-<br>
-
-email:
-
-```
-henry.brown@outlook.com
-```
-
-password:
-
-```
-Henry456
-```
-
-<br>
 I hope you have an incredible experience with Event Highway!
 <br>
