@@ -1,10 +1,15 @@
 import axios from "axios";
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://event-highway.onrender.com"
+    : "http://localhost:9090";
+
 // GET:
 
 export async function getEvents() {
   try {
-    const response = await axios.get("http://localhost:9090/api/events");
+    const response = await axios.get(`${API_URL}/api/events`);
     if (response && response.data) {
       return response;
     } else {
@@ -19,9 +24,7 @@ export async function getEvents() {
 
 export async function getEvent(event_id) {
   try {
-    const response = await axios.get(
-      `http://localhost:9090/api/events/${event_id}`
-    );
+    const response = await axios.get(`${API_URL}/api/events/${event_id}`);
     return response;
   } catch (err) {
     console.error("Error fetching event:", err.message || err);
@@ -31,7 +34,7 @@ export async function getEvent(event_id) {
 
 export async function getUsers() {
   try {
-    const response = await axios.get("http://localhost:9090/api/users");
+    const response = await axios.get(`${API_URL}/api/users`);
     return response;
   } catch (err) {
     console.error("Error fetching users:", err.message || err);
@@ -41,9 +44,7 @@ export async function getUsers() {
 
 export async function getUser(user_id) {
   try {
-    const response = await axios.get(
-      `http://localhost:9090/api/users/${user_id}`
-    );
+    const response = await axios.get(`${API_URL}/api/users/${user_id}`);
     return response;
   } catch (err) {
     console.error("Error fetching user:", err.message || err);
@@ -72,7 +73,7 @@ export async function postEvent(
   thumbnail
 ) {
   try {
-    const response = await axios.post("http://localhost:9090/api/events", {
+    const response = await axios.post(`${API_URL}/api/events`, {
       publisher,
       host,
       event_name,
@@ -106,7 +107,7 @@ export async function postUser(
   is_admin
 ) {
   try {
-    const response = await axios.post("http://localhost:9090/api/users", {
+    const response = await axios.post(`${API_URL}/api/users`, {
       first_name,
       last_name,
       display_name,
@@ -143,27 +144,24 @@ export async function patchEvent(
   thumbnail
 ) {
   try {
-    const response = await axios.patch(
-      `http://localhost:9090/api/events/${event_id}`,
-      {
-        publisher,
-        host,
-        event_name,
-        event_start,
-        event_end,
-        event_description,
-        created_at,
-        category,
-        is_online,
-        venue,
-        venue_address,
-        is_free,
-        cost_in_gbp,
-        is_limit,
-        attendee_limit,
-        thumbnail,
-      }
-    );
+    const response = await axios.patch(`${API_URL}/api/events/${event_id}`, {
+      publisher,
+      host,
+      event_name,
+      event_start,
+      event_end,
+      event_description,
+      created_at,
+      category,
+      is_online,
+      venue,
+      venue_address,
+      is_free,
+      cost_in_gbp,
+      is_limit,
+      attendee_limit,
+      thumbnail,
+    });
     return response;
   } catch (err) {
     console.error("Error patching event:", err.message || err);
@@ -175,9 +173,7 @@ export async function patchEvent(
 
 export async function deleteEvent(event_id) {
   try {
-    const response = await axios.delete(
-      `http://localhost:9090/api/events/${event_id}`
-    );
+    const response = await axios.delete(`${API_URL}/api/events/${event_id}`);
     return response;
   } catch (err) {
     console.error("Error deleting event:", err.message || err);
