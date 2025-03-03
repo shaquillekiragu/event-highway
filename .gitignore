@@ -1,5 +1,6 @@
 # Logs
 .env.*
+netlify_instructions.txt
 logs
 *.log
 npm-debug.log*
