@@ -9,13 +9,23 @@ import "../stylesheets/ViewEvent.css";
 function ViewEvent() {
   const { event_id } = useParams();
   const [eventObj, seteventObj] = useState({});
-  const [hasSignedUp, setHasSignedUp] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const { authUser, isLoggedIn, myEvents, setMyEvents } = useAuth();
   const navigate = useNavigate();
 
-  console.log(hasSignedUp, "<<<");
+  const [hasSignedUp, setHasSignedUp] = useState(null);
+
+  useEffect(() => {
+    if (myEvents.length === 0) {
+      setHasSignedUp(false);
+    } else {
+      const isSigned = myEvents.some((myEvent) => {
+        return myEvent.event_id === eventObj.event_id;
+      });
+      setHasSignedUp(isSigned);
+    }
+  }, [myEvents, eventObj.event_id]);
 
   useEffect(() => {
     async function fetchEventView() {
@@ -29,23 +39,17 @@ function ViewEvent() {
       }
     }
     fetchEventView();
-  }, [event_id, hasSignedUp]);
+  }, [event_id]);
 
   function handleEventSignup(event) {
     event.preventDefault();
 
-    if (window.confirm("Are you sure you want to sign up for this event?")) {
-      const isAlreadyPresent = myEvents.some((myEvent) => {
-        return myEvent.event_id === eventObj.event_id;
-      });
+    if (hasSignedUp) alert("You've already signed up for this event");
 
-      if (!isAlreadyPresent) {
-        setMyEvents((prevEvents) => [...prevEvents, eventObj]);
-        alert("You're now signed up for this event!");
-        setHasSignedUp(true);
-      } else {
-        alert("You've already signed up for this event");
-      }
+    if (window.confirm("Are you sure you want to sign up for this event?")) {
+      setMyEvents((prevEvents) => [...prevEvents, eventObj]);
+      alert("You're now signed up for this event!");
+      setHasSignedUp(true);
     }
   }
 
@@ -57,11 +61,7 @@ function ViewEvent() {
         "Are you sure you want to remove this event from your My Events list?"
       )
     ) {
-      const isPresent = myEvents.some((myEvent) => {
-        return myEvent.event_id === eventObj.event_id;
-      });
-
-      if (isPresent) {
+      if (hasSignedUp === true) {
         const newMyEventsList = myEvents.filter((myEvent) => {
           return myEvent.event_id !== eventObj.event_id;
         });
