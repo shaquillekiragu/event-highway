@@ -5,10 +5,8 @@ import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
-import {
-  currentDatetimeForDB,
-  stringToNum,
-} from "../components/FormatDatetime/dbDatetimeFunctions";
+import { currentDatetimeForDB } from "../components/FormatDatetime/dbDatetimeFunctions";
+import stringToNum from "../utils";
 
 function CreateEvent() {
   const [eventData, setEventData] = useState({
@@ -87,6 +85,10 @@ function CreateEvent() {
     <main className="createEventContainer fullPageHeight">
       <header className="createEventLayerOne">
         <h2>Create a New Event</h2>
+        <p>
+          (If event is created but all field show "undefined", refresh the page
+          or switch from and back to this event page)
+        </p>
       </header>
       <section className="createEventLayerTwo">
         <CreateEventForm
