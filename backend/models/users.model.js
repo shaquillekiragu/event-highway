@@ -4,7 +4,7 @@ async function fetchUsers() {
   try {
     const { rows } = await db.query(`SELECT * FROM users`);
     if (!rows || !rows.length) {
-      return Promise.reject({ status: 404, msg: "Users not found" });
+      throw { status: 404, msg: "Users not found" };
     }
     return rows;
   } catch (err) {
@@ -21,7 +21,7 @@ async function fetchUser(user_id) {
       [user_id]
     );
     if (!rows || !rows.length) {
-      return Promise.reject({ status: 404, msg: "User not found" });
+      throw { status: 404, msg: "User not found" };
     }
     return rows[0];
   } catch (err) {
@@ -47,7 +47,7 @@ async function insertUser(
       (user_password !== undefined && typeof user_password !== "string") ||
       (is_admin !== undefined && typeof is_admin !== "boolean")
     ) {
-      return Promise.reject({ status: 400, msg: "Bad Request" });
+      throw { status: 400, msg: "Bad Request" };
     }
     const { rows } = await db.query(
       `INSERT INTO users

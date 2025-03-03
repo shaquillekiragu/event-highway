@@ -4,7 +4,7 @@ async function fetchEvents() {
   try {
     const { rows } = await db.query(`SELECT * FROM events;`);
     if (!rows || !rows.length) {
-      return Promise.reject({ status: 404, msg: "Events not found" });
+      throw { status: 404, msg: "Events not found" };
     }
     return rows;
   } catch (err) {
@@ -21,7 +21,7 @@ async function fetchEvent(event_id) {
       [event_id]
     );
     if (!rows || !rows.length) {
-      return Promise.reject({ status: 404, msg: "Event not found" });
+      throw { status: 404, msg: "Event not found" };
     }
     return rows[0];
   } catch (err) {
@@ -51,119 +51,119 @@ async function insertEvent(
   try {
     function validateInsertEventArguments() {
       if (!publisher || typeof publisher !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid publisher: must be a non-empty string",
-        });
+        };
       }
       if (host !== undefined && typeof host !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid host: must be a string",
-        });
+        };
       }
       if (event_name !== undefined && typeof event_name !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid event_name: must be a string",
-        });
+        };
       }
       if (event_start !== undefined && typeof event_start !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid event_start: must be a string in ISO format",
-        });
+        };
       }
       if (event_end !== undefined && typeof event_end !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid event_end: must be a string in ISO format",
-        });
+        };
       }
       if (
         event_description !== undefined &&
         typeof event_description !== "string"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid event_description: must be a string",
-        });
+        };
       }
       if (created_at !== undefined && typeof created_at !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid created_at: must be a string in ISO format",
-        });
+        };
       }
       if (category !== undefined && typeof category !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid category: must be a string",
-        });
+        };
       }
       if (is_online !== undefined && typeof is_online !== "boolean") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid is_online: must be a boolean",
-        });
+        };
       }
       if (venue !== undefined && venue !== null && typeof venue !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid venue: must be a string or null",
-        });
+        };
       }
       if (
         venue_address !== undefined &&
         venue_address !== null &&
         typeof venue_address !== "string"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid venue_address: must be a string or null",
-        });
+        };
       }
       if (is_free !== undefined && typeof is_free !== "boolean") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid is_free: must be a boolean",
-        });
+        };
       }
       if (
         cost_in_gbp !== undefined &&
         cost_in_gbp !== null &&
         typeof cost_in_gbp !== "number"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid cost_in_gbp: must be a number or null",
-        });
+        };
       }
       if (is_limit !== undefined && typeof is_limit !== "boolean") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid is_limit: must be a boolean",
-        });
+        };
       }
       if (
         attendee_limit !== undefined &&
         attendee_limit !== null &&
         typeof attendee_limit !== "number"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid attendee_limit: must be a number or null",
-        });
+        };
       }
       if (
         thumbnail !== undefined &&
         thumbnail !== null &&
         typeof thumbnail !== "string"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid thumbnail: must be a string or null",
-        });
+        };
       }
     }
     validateInsertEventArguments();
@@ -235,113 +235,113 @@ async function updateEvent(
   try {
     function validateUpdateEventArguments() {
       if (event_id !== undefined && typeof event_id !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid event_id: must be a string",
-        });
+        };
       }
       if (host !== undefined && typeof host !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid host: must be a string",
-        });
+        };
       }
       if (event_name !== undefined && typeof event_name !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid event_name: must be a string",
-        });
+        };
       }
       if (event_start !== undefined && typeof event_start !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid event_start: must be a string in ISO format",
-        });
+        };
       }
       if (event_end !== undefined && typeof event_end !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid event_end: must be a string in ISO format",
-        });
+        };
       }
       if (
         event_description !== undefined &&
         typeof event_description !== "string"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid event_description: must be a string",
-        });
+        };
       }
       if (category !== undefined && typeof category !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid category: must be a string",
-        });
+        };
       }
       if (is_online !== undefined && typeof is_online !== "boolean") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid is_online: must be a boolean",
-        });
+        };
       }
       if (venue !== undefined && venue !== null && typeof venue !== "string") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid venue: must be a string or null",
-        });
+        };
       }
       if (
         venue_address !== undefined &&
         venue_address !== null &&
         typeof venue_address !== "string"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid venue_address: must be a string or null",
-        });
+        };
       }
       if (is_free !== undefined && typeof is_free !== "boolean") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid is_free: must be a boolean",
-        });
+        };
       }
       if (
         cost_in_gbp !== undefined &&
         cost_in_gbp !== null &&
         typeof cost_in_gbp !== "number"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid cost_in_gbp: must be a number or null",
-        });
+        };
       }
       if (is_limit !== undefined && typeof is_limit !== "boolean") {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid is_limit: must be a boolean",
-        });
+        };
       }
       if (
         attendee_limit !== undefined &&
         attendee_limit !== null &&
         typeof attendee_limit !== "number"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid attendee_limit: must be a number or null",
-        });
+        };
       }
       if (
         thumbnail !== undefined &&
         thumbnail !== null &&
         typeof thumbnail !== "string"
       ) {
-        return Promise.reject({
+        throw {
           status: 400,
           msg: "Invalid thumbnail: must be a string or null",
-        });
+        };
       }
     }
     validateUpdateEventArguments();
@@ -385,10 +385,10 @@ async function updateEvent(
     );
     console.log(rows[0], " <<< rows[0] updateEvent model");
     if (!rows || !rows.length) {
-      return Promise.reject({
+      throw {
         status: 404,
         msg: "Event not found",
-      });
+      };
     }
     return rows[0];
   } catch (err) {
@@ -406,10 +406,10 @@ async function removeEvent(event_id) {
       [event_id]
     );
     if (!rows || !rows.length) {
-      return Promise.reject({
+      throw {
         status: 404,
         msg: "Event not found",
-      });
+      };
     }
     return rows[0];
   } catch (err) {
