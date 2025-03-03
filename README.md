@@ -47,7 +47,6 @@ password:
 ```
 Henry456
 ```
-<br>
 
 ## Tech Stack
 
@@ -180,7 +179,6 @@ If you see this message in the console: `PGDATABASE: event_highway Listening on 
 **Instructions:**
 
 1. Now that the backend has been setup and tested, to open the project UI you'll need to change directory into the frontend directory. Do this by running the following commands:
-<br>
 
 ```
 cd ..
