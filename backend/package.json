@@ -5,7 +5,7 @@
   "scripts": {
     "test": "PGDATABASE=event_highway_test NODE_ENV=test jest",
     "setup-dbs": "psql -f ./database/setup.sql",
-    "seed": "PGDATABASE=event_highway NODE_ENV=development node ./database/seeding/run-seed.js",
+    "seed": "PGDATABASE=event_highway node ./database/seeding/run-seed.js",
     "start": "node listen.js",
     "seed-prod": "NODE_ENV=production npm run seed"
   },
