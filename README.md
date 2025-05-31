@@ -138,6 +138,23 @@ Installation is now complete.
 <br>
 <br>
 
+## Running the Database Locally
+
+To set and run the event_highway database, run the two following commands one at a time:
+
+```
+export PGDATABASE=event_highway
+```
+```
+npm run start
+```
+
+<br>
+
+If you see this message in the console: `PGDATABASE: event_highway Listening on 9090...`, you have successfully set up this project's backend.
+<br>
+<br>
+
 ## Testing
 
 In order to test the API endpoints on this server, run the following commands:
@@ -154,23 +171,6 @@ createdb event_highway_test
 ```
 
 Then run the first command again.
-<br>
-<br>
-
-## Running the Database Locally
-
-To set and run the event_highway database, run the two following commands one at a time:
-
-```
-export PGDATABASE=event_highway
-```
-```
-npm run start
-```
-
-<br>
-
-If you see this message in the console: `PGDATABASE: event_highway Listening on 9090...`, you have successfully set up this project's backend.
 <br>
 <br>
 
