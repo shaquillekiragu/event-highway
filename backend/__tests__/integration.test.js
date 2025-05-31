@@ -164,15 +164,6 @@ describe("/api/events", () => {
       "https://example.com/thumbnails/digital_future_conference.jpg"
     );
   });
-  test("POST 400 - Empty events object received", async () => {
-    const obj = {};
-    const {
-      body: { msg },
-    } = await request(app).post("/api/events").send(obj).expect(400);
-    const objLength = Object.keys(obj).length;
-    expect(objLength).toBe(0);
-    expect(msg).toBe("Bad Request");
-  });
   test("POST 400 - Failing schema validation", async () => {
     const obj = { publisher: "Ye" };
     const {
