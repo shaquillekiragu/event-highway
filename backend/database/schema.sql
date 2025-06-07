@@ -1,3 +1,13 @@
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(20),
+    display_name VARCHAR(40) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    user_password VARCHAR(20) NOT NULL,
+    is_admin BOOLEAN NOT NULL
+);
+
 CREATE TABLE events (
     event_id SERIAL PRIMARY KEY,
     publisher VARCHAR(40) NOT NULL REFERENCES users(display_name),
@@ -17,8 +27,3 @@ CREATE TABLE events (
     attendee_limit INT,
     thumbnail VARCHAR(250)
 );
-
-INSERT INTO events (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail)
-VALUES
-(),
-();
