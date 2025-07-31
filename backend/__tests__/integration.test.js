@@ -456,11 +456,21 @@ describe("/api/events/:event_id", () => {
   });
 });
 
-describe("/api/users/:user_id", () => {
+/**
+ * Test suite for the /api/users/:user_id endpoint
+ * Checks that the endpoint correctly returns a user object with all required properties and their correct data types when a valid user_id is provided
+ */
+describe.only("/api/users/:user_id", () => {
+  /**
+   * Test case: Successful user retrieval
+   * Checks that the endpoint correctly returns a user object with all required properties and their correct data types when a valid user_id is provided
+   */
   test("GET 200 - Responds with a single user by user_id", async () => {
     const {
       body: { user },
     } = await request(app).get("/api/users/1").expect(200);
+
+    // Check that all required user object properties exist
     expect(user).toHaveProperty("user_id");
     expect(user).toHaveProperty("first_name");
     expect(user).toHaveProperty("last_name");
@@ -468,6 +478,8 @@ describe("/api/users/:user_id", () => {
     expect(user).toHaveProperty("email");
     expect(user).toHaveProperty("user_password");
     expect(user).toHaveProperty("is_admin");
+
+    // Check that each property's data type is correct
     expect(typeof user.user_id).toBe("number");
     expect(typeof user.first_name).toBe("string");
     expect(typeof user.last_name).toMatch(/^(string|object)$/);
@@ -476,12 +488,22 @@ describe("/api/users/:user_id", () => {
     expect(typeof user.user_password).toBe("string");
     expect(typeof user.is_admin).toBe("boolean");
   });
+
+  /**
+   * Test case: Invalid user_id format
+   * Checks that the endpoint returns a 400 Bad Request error, when a non-numeric user_id is provided and is invalid
+   */
   test("GET 400 - Invalid data type for id given", async () => {
     const {
       body: { msg },
     } = await request(app).get("/api/users/notAnId").expect(400);
     expect(msg).toBe("Bad Request");
   });
+
+  /**
+   * Test case: Non-existent user
+   * Checks that the endpoint returns a 404 Not Found error, when a valid numeric user_id is provided but no user exists with that ID
+   */
   test("GET 404 - User with that id does not exist", async () => {
     const {
       body: { msg },
