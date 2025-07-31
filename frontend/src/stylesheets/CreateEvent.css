@@ -6,5 +6,10 @@
 }
 
 .createEventLayerOne {
+  text-align: center;
   margin-top: 5vh;
+}
+
+.createEventLayerThree {
+  margin-bottom: 5vh;
 }

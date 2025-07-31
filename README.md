@@ -14,6 +14,40 @@ https://event-highway.netlify.app/
 <br>
 <br>
 
+## Test accounts for logging in
+
+**Here is a test user account:**
+<br>
+
+email:
+
+```
+amelia.walker@gmail.com
+```
+
+password:
+
+```
+AmeliaPass123
+```
+
+<br>
+
+**And below is a test administrator account:**
+<br>
+
+email:
+
+```
+henry.brown@outlook.com
+```
+
+password:
+
+```
+Henry456
+```
+
 ## Tech Stack
 
 **Frontend:**
@@ -104,6 +138,23 @@ Installation is now complete.
 <br>
 <br>
 
+## Running the Database Locally
+
+To set and run the event_highway database, run the two following commands one at a time:
+
+```
+export PGDATABASE=event_highway
+```
+```
+npm run start
+```
+
+<br>
+
+If you see this message in the console: `PGDATABASE: event_highway Listening on 9090...`, you have successfully set up this project's backend.
+<br>
+<br>
+
 ## Testing
 
 In order to test the API endpoints on this server, run the following commands:
@@ -120,23 +171,6 @@ createdb event_highway_test
 ```
 
 Then run the first command again.
-<br>
-<br>
-
-## Running the Database Locally
-
-To set and run the event_highway database, run the two following commands one at a time:
-
-```
-export PGDATABASE=event_highway
-```
-```
-npm run start
-```
-
-<br>
-
-If you see this message in the console: `PGDATABASE: event_highway Listening on 9090...`, you have successfully set up this project's backend.
 <br>
 <br>
 
@@ -166,50 +200,14 @@ npm install
 ```
 npm run dev
 ```
-
 <br>
 
 4. Open the provided localhost URL in your browser.
-   <br>
+   <br><br>
 
 5. You should now be able to view the welcome page for Event Highway! You can proceed to use the website without being logged in, but this will only allow you to view events that are currently listed on the site. To access more features, you'll need to either create an account, or login to an existing account.
    Scroll to the bottom of this README file to access both test account you can use for accessing additional features by logging in, both as a user or as an event admin.
    <br>
-
-## Test accounts for logging in
-
-Here is a test user account:
-<br>
-
-email:
-
-```
-amelia.walker@gmail.com
-```
-
-password:
-
-```
-AmeliaPass123
-```
-
-<br>
-
-And below is a test administrator account:
-<br>
-
-email:
-
-```
-henry.brown@outlook.com
-```
-
-password:
-
-```
-Henry456
-```
-
 <br>
 I hope you have an incredible experience with Event Highway!
 <br>

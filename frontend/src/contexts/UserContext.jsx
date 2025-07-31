@@ -13,7 +13,11 @@ export default function UserProvider({ children }) {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [myEvents, setMyEvents] = useState([]);
+
+  const [myEvents, setMyEvents] = useState(() => {
+    const savedEvents = localStorage.getItem("myEvents");
+    return savedEvents ? JSON.parse(savedEvents) : [];
+  });
 
   useEffect(() => {
     if (authUser) {
@@ -23,7 +27,13 @@ export default function UserProvider({ children }) {
       localStorage.removeItem("authUser");
       setIsLoggedIn(false);
     }
-  }, [authUser]);
+
+    if (myEvents.length) {
+      localStorage.setItem("myEvents", JSON.stringify(myEvents));
+    } else {
+      localStorage.removeItem("myEvents");
+    }
+  }, [authUser, myEvents]);
 
   const value = {
     authUser,

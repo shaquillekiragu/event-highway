@@ -5,8 +5,8 @@ import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
-// import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
 import { currentDatetimeForDB } from "../components/FormatDatetime/dbDatetimeFunctions";
+import stringToNum from "../utils";
 
 function CreateEvent() {
   const [eventData, setEventData] = useState({
@@ -34,8 +34,6 @@ function CreateEvent() {
   const navigate = useNavigate();
 
   function handleChange(event) {
-    // console.log(event.target.value, " <<< value")
-    console.log(typeof event.target.value, " <<< typeof value");
     const { name, value, type, checked } = event.target;
     setEventData((prevState) => ({
       ...prevState,
@@ -47,36 +45,7 @@ function CreateEvent() {
     try {
       event.preventDefault();
       setIsLoading(true);
-
-      // const formattedEventStart = formatDatetimeForDB(eventData.event_start);
-      // const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
-
-      // console.log(formattedEventStart, " <<< formattedEventStart");
-      // console.log(formattedEventEnd, " <<< formattedEventEnd");
-
       const createdAt = currentDatetimeForDB();
-      console.log(createdAt, " <<< createdAt");
-
-      console.log([
-        typeof authUser.display_name,
-        typeof eventData.host,
-        typeof eventData.event_name,
-        typeof eventData.event_start,
-        typeof eventData.event_end,
-        // typeof formattedEventStart,
-        // typeof formattedEventEnd,
-        typeof eventData.event_description,
-        typeof createdAt,
-        typeof eventData.category,
-        typeof eventData.is_online,
-        typeof eventData.venue,
-        typeof eventData.venue_address,
-        typeof eventData.is_free,
-        typeof eventData.cost_in_gbp,
-        typeof eventData.is_limit,
-        typeof eventData.attendee_limit,
-        typeof eventData.thumbnail,
-      ]);
 
       const response = await postEvent(
         authUser.display_name,
@@ -84,8 +53,6 @@ function CreateEvent() {
         eventData.event_name,
         eventData.event_start,
         eventData.event_end,
-        // formattedEventStart,
-        // formattedEventEnd,
         eventData.event_description,
         createdAt,
         eventData.category,
@@ -93,13 +60,11 @@ function CreateEvent() {
         eventData.venue,
         eventData.venue_address,
         eventData.is_free,
-        eventData.cost_in_gbp,
+        stringToNum(eventData.cost_in_gbp),
         eventData.is_limit,
-        eventData.attendee_limit,
+        stringToNum(eventData.attendee_limit),
         eventData.thumbnail
       );
-
-      console.log(response, " <<< response");
 
       if (response.status === 201) {
         navigate(`/events/${response.data.event_id}`);
@@ -120,6 +85,10 @@ function CreateEvent() {
     <main className="createEventContainer fullPageHeight">
       <header className="createEventLayerOne">
         <h2>Create a New Event</h2>
+        <p>
+          (If event is created but all field show "undefined", refresh the page
+          or switch from and back to this event page)
+        </p>
       </header>
       <section className="createEventLayerTwo">
         <CreateEventForm

@@ -6,6 +6,7 @@ import { patchEvent } from "../api";
 import UpdateEventForm from "../components/UpdateEventForm/UpdateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
 import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
+import stringToNum from "../utils";
 
 function UpdateEvent() {
   const { event_id } = useParams();
@@ -75,9 +76,9 @@ function UpdateEvent() {
         eventData.venue,
         eventData.venue_address,
         eventData.is_free,
-        eventData.cost_in_gbp,
+        stringToNum(eventData.cost_in_gbp),
         eventData.is_limit,
-        eventData.attendee_limit,
+        stringToNum(eventData.attendee_limit),
         eventData.thumbnail
       );
 

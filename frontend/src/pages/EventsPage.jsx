@@ -24,7 +24,6 @@ function EventsPage() {
         setEventsList(response.data.events);
         setIsLoading(false);
       } catch (err) {
-        console.error(err, " << fetchEvents error");
         setError("Failed to load events. Please try again later.");
       } finally {
         setIsLoading(false);

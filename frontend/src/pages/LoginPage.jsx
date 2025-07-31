@@ -43,7 +43,6 @@ function LoginPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(email, " <<< email");
 
     setInvalidEmailMsg(false);
     setInvalidPasswordMsg(false);

@@ -2,13 +2,36 @@ const express = require("express");
 const app = express();
 
 const cors = require("cors");
+
 app.use(
   cors({
-    origin: "*",
+    origin:
+      process.env.NODE_ENV === "production"
+        ? "https://event-highway.netlify.app"
+        : "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
+// const allowedOrigins = [
+//   'http://127.0.0.1:5173',  // Local development URL (adjust if needed)
+//   'https://event-highway.netlify.app',  // Hosted frontend URL
+// ];
+
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (allowedOrigins.includes(origin) || !origin) {  // Handle localhost/no origin (for development)
+//       callback(null, true);
+//     } else {
+//       callback(new Error('CORS not allowed'));
+//     }
+//   },
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// };
+
+// app.use(cors(corsOptions));
 
 const healthcheck = require("./controllers/healthcheck.controller");
 const getApi = require("./controllers/api.controller");

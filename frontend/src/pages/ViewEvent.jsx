@@ -14,6 +14,19 @@ function ViewEvent() {
   const { authUser, isLoggedIn, myEvents, setMyEvents } = useAuth();
   const navigate = useNavigate();
 
+  const [hasSignedUp, setHasSignedUp] = useState(null);
+
+  useEffect(() => {
+    if (myEvents.length === 0) {
+      setHasSignedUp(false);
+    } else {
+      const isSigned = myEvents.some((myEvent) => {
+        return myEvent.event_id === eventObj.event_id;
+      });
+      setHasSignedUp(isSigned);
+    }
+  }, [myEvents, eventObj.event_id]);
+
   useEffect(() => {
     async function fetchEventView() {
       try {
@@ -31,16 +44,35 @@ function ViewEvent() {
   function handleEventSignup(event) {
     event.preventDefault();
 
-    if (window.confirm("Are you sure you want to sign up for this event?")) {
-      const isAlreadyPresent = myEvents.some((myEvent) => {
-        return myEvent.event_id === eventObj.event_id;
-      });
+    if (hasSignedUp) alert("You've already signed up for this event");
 
-      if (!isAlreadyPresent) {
-        setMyEvents((prevEvents) => [...prevEvents, eventObj]);
-        alert("You're now signed up for this event!");
+    if (window.confirm("Are you sure you want to sign up for this event?")) {
+      setMyEvents((prevEvents) => [...prevEvents, eventObj]);
+      alert("You're now signed up for this event!");
+      setHasSignedUp(true);
+    }
+  }
+
+  function handleEventRemoval(event) {
+    event.preventDefault();
+
+    if (
+      window.confirm(
+        "Are you sure you want to remove this event from your My Events list?"
+      )
+    ) {
+      if (hasSignedUp === true) {
+        const newMyEventsList = myEvents.filter((myEvent) => {
+          return myEvent.event_id !== eventObj.event_id;
+        });
+
+        setMyEvents(newMyEventsList);
+        alert("This event is no longer listed in your My Events list.");
+        setHasSignedUp(false);
       } else {
-        alert("You've already signed up for this event");
+        alert(
+          "ERROR: This event is not listed on your My Events list already. Click 'Ok' and refresh the page"
+        );
       }
     }
   }
@@ -79,7 +111,13 @@ function ViewEvent() {
     <main className="partPageHeight viewEventContainer">
       {isLoggedIn ? (
         <section className="viewLayerOne">
-          <button onClick={handleEventSignup}>Sign up for this event!</button>
+          {hasSignedUp === false ? (
+            <button onClick={handleEventSignup}>Sign up for this event!</button>
+          ) : (
+            <button onClick={handleEventRemoval}>
+              I'm no longer attending this event...
+            </button>
+          )}
         </section>
       ) : (
         <></>
