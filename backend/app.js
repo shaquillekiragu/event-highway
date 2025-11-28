@@ -78,28 +78,23 @@ app.all("*", (request, response) => {
 
 // ERROR HANDLING:
 
-app.use((err, request, response, next) => {
-  //   console.log(err, " < error 1");
-  //   console.log(err.status, " < error status 1");
-  //   console.log(err.msg, " < error msg 1");
-  if (err.status && err.msg) {
-    return response.status(err.status).send({ msg: err.msg });
+app.use((error, request, response, next) => {
+  if (error.status && error.msg) {
+    return response.status(error.status).send({ msg: error.msg });
   }
-  next(err);
+  next(error);
 });
 
-app.use((err, request, response, next) => {
-  //   console.log(err, " < error 2");
-  //   console.log(err.code, " < error code 2");
-  if (err.code === "22P02" || err.code === "23502") {
+app.use((error, request, response, next) => {
+  if (error.code === "22P02" || error.code === "23502") {
     return response.status(400).send({ msg: "Bad Request" });
-  } else if (err.code === "23503") {
+  } else if (error.code === "23503") {
     return response.status(404).send({ msg: "Not Found" });
   }
-  next(err);
+  next(error);
 });
 
-app.use((err, request, response) => {
+app.use((error, request, response) => {
   return response.status(500).send({ message: "Internal server error" });
 });
 
