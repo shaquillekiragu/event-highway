@@ -220,5 +220,137 @@ npm run dev
 You should now be able to view the welcome page for Event Highway! You can proceed to use the website without being logged in, but this will only allow you to view events that are currently listed on the site. To access more features, you'll need to either create an account, or login to an existing account. There are two test account for each account type at the top of the readme file.
 <br>
 <br>
-I hope you have an incredible experience with Event Highway!
-<br>
+
+## Deploying the Database to Render
+
+This guide will walk you through deploying your PostgreSQL database to Render, a managed database hosting service.
+
+### Step 1: Create a Render Account
+
+1. Go to [render.com](https://render.com) and sign up for a free account
+2. Verify your email address
+
+### Step 2: Create a PostgreSQL Database
+
+1. In the Render dashboard, click **"New +"** button
+2. Select **"PostgreSQL"** from the dropdown
+3. Configure your database:
+   - **Name**: `event-highway-db` (or any name you prefer)
+   - **Database**: Leave as default (will be auto-generated)
+   - **User**: Leave as default (will be auto-generated)
+   - **Region**: Choose the region closest to your users
+   - **PostgreSQL Version**: Select **14** or **15** (recommended)
+   - **Plan**: Select **Free** for development (256 MB RAM, 1 GB storage)
+4. Click **"Create Database"**
+
+### Step 3: Get Your Connection String
+
+1. Once the database is created, click on it to open the database dashboard
+2. Find the **"Connections"** section
+3. Copy the **"Internal Database URL"** (if deploying backend to Render) or **"External Connection String"** (if backend is elsewhere)
+   - The connection string looks like: `postgresql://user:password@hostname:port/database`
+4. **Important**: Save this connection string securely - you won't be able to see the password again!
+
+### Step 4: Set Up Database Schema
+
+You have two options to set up your database schema:
+
+**Option A: Using psql (Recommended for first-time setup)**
+
+1. Install PostgreSQL client tools if you haven't already
+2. Connect to your Render database using the external connection string:
+   ```bash
+   psql "postgresql://user:password@hostname:port/database"
+   ```
+3. Run the production schema file:
+
+   ```bash
+   # From your project root
+   psql "your-render-connection-string" -f backend/database/schema-production.sql
+   ```
+
+   Or manually copy and paste the contents of `backend/database/schema-production.sql` into psql.
+
+4. Exit psql: `\q`
+
+**Option B: Using a Migration Script**
+
+1. Set the `DATABASE_URL` environment variable:
+   ```bash
+   export DATABASE_URL="postgresql://user:password@hostname:port/database"
+   ```
+2. Create a production seed script or modify the existing one to work with `DATABASE_URL`
+
+### Step 5: Seed the Production Database
+
+1. Set your `DATABASE_URL` environment variable:
+   ```bash
+   export DATABASE_URL="your-render-connection-string"
+   ```
+2. Run the seed script:
+   ```bash
+   cd backend
+   NODE_ENV=production npm run seed-prod
+   ```
+
+**Note**: Make sure your seed script handles the `DATABASE_URL` format correctly. The connection.js file is already configured to use `DATABASE_URL` in production mode.
+
+### Step 6: Configure Your Backend for Production
+
+When deploying your backend (to Render, Heroku, Railway, etc.), set the following environment variable:
+
+- **`DATABASE_URL`**: Your Render database connection string
+- **`NODE_ENV`**: Set to `production`
+
+The backend will automatically:
+
+- Use the `DATABASE_URL` for database connections
+- Enable SSL (required by Render)
+- Use appropriate connection pool settings
+
+### Important Notes
+
+- **Free Tier Limitations**:
+
+  - 256 MB RAM, 1 GB storage
+  - Database expires after 90 days of inactivity
+  - For production, consider upgrading to a paid plan
+
+- **Security**:
+
+  - Never commit your `DATABASE_URL` to version control
+  - Use environment variables in your hosting platform
+  - The connection string contains sensitive credentials
+
+- **Backups**:
+
+  - Render provides automatic daily backups on paid plans
+  - Free tier doesn't include backups - export your data regularly
+
+- **Connection Limits**:
+  - Free tier: Limited concurrent connections
+  - Production: Consider connection pooling (already configured in connection.js)
+
+### Troubleshooting
+
+**Connection Issues:**
+
+- Make sure you're using the correct connection string (internal vs external)
+- Verify SSL is enabled (already configured in connection.js)
+- Check that your IP is allowed (Render allows all IPs by default for external connections)
+
+**Schema Issues:**
+
+- Ensure you've run the schema creation commands
+- Verify table names match your code exactly
+- Check that foreign key constraints are set up correctly
+
+**Seeding Issues:**
+
+- Make sure `NODE_ENV=production` is set
+- Verify `DATABASE_URL` is correctly formatted
+- Check that seed data matches your schema constraints
+  <br>
+  <br>
+  I hope you have an incredible experience with Event Highway!
+  <br>
