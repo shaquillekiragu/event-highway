@@ -451,7 +451,7 @@ describe("/api/events/:event_id", () => {
  * Test suite for the /api/users/:user_id endpoint
  * Checks that the endpoint correctly returns a user object with all required properties and their correct data types when a valid user_id is provided
  */
-describe.only("/api/users/:user_id", () => {
+describe("/api/users/:user_id", () => {
   /**
    * Test case: Successful user retrieval
    * Checks that the endpoint correctly returns a user object with all required properties and their correct data types when a valid user_id is provided
