@@ -22,7 +22,7 @@ const config = {};
 
 if (ENV === "production") {
   config.connectionString = process.env.DATABASE_URL;
-  config.max = 2;
+  config.max = 15;
   config.ssl = { rejectUnauthorized: false };
   config.family = 4;
 }
