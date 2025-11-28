@@ -217,9 +217,10 @@ npm run dev
 4. Open the provided localhost URL in your browser.
    <br><br>
 
-5. You should now be able to view the welcome page for Event Highway! You can proceed to use the website without being logged in, but this will only allow you to view events that are currently listed on the site. To access more features, you'll need to either create an account, or login to an existing account.
-   Scroll to the bottom of this README file to access both test account you can use for accessing additional features by logging in, both as a user or as an event admin.
-   <br>
-   <br>
-   I hope you have an incredible experience with Event Highway!
-   <br>
+You should now be able to view the welcome page for Event Highway! You can proceed to use the website without being logged in, but this will only allow you to view events that are currently listed on the site. To access more features, you'll need to either create an account, or login to an existing account.
+<br>
+Scroll to the bottom of this README file to access both test account you can use for accessing additional features by logging in, both as a user or as an event admin.
+<br>
+<br>
+I hope you have an incredible experience with Event Highway!
+<br>
