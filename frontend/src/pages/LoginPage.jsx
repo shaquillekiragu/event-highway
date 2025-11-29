@@ -20,7 +20,7 @@ function LoginPage() {
     async function fetchUsers() {
       try {
         const response = await getUsers();
-        console.log(response.data.users, " <<< r.d.users");
+        // console.log(response.data.users, " <<< r.d.users");
         setUsers(response.data.users);
       } catch (err) {
         console.error(err);
@@ -31,7 +31,7 @@ function LoginPage() {
     fetchUsers();
   }, []);
 
-  console.log(users, " <<< usersList");
+  // console.log(users, " <<< usersList");
 
   function handleEmailChange(event) {
     setEmailAddress(event.target.value);

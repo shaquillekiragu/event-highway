@@ -147,7 +147,8 @@ To start the backend server, run the following commands:
 **Option 1: Set environment variable in the same command:**
 
 ```
-PGDATABASE=event_highway npm run start
+PGDATABASE=event_highway
+npm run start
 ```
 
 **Option 2: Set environment variable separately (persists in current terminal session):**

@@ -51,9 +51,9 @@ function UpdateEvent() {
       event.preventDefault();
       setIsLoading(true);
 
-      console.log(eventData.event_start, " <<< event_start");
-      console.log(eventData.event_end, " <<< event_end");
-      console.log(eventData.created_at, " <<< created_at");
+      // console.log(eventData.event_start, " <<< event_start");
+      // console.log(eventData.event_end, " <<< event_end");
+      // console.log(eventData.created_at, " <<< created_at");
 
       // const formattedEventStart = formatDatetimeForDB(eventData.event_start);
       // const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
