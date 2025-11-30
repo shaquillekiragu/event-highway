@@ -1,4 +1,3 @@
-import "../stylesheets/UpdateEvent.css";
 import { useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";

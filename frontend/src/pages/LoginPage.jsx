@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
 import { getUsers } from "../api.js";
 import Loading from "../components/Loading/Loading";
-import "../stylesheets/LoginPage.css";
 
 function LoginPage() {
   const [users, setUsers] = useState([]);
@@ -68,12 +67,15 @@ function LoginPage() {
     return <Loading page={"Login"} />;
   }
   return (
-    <main className="min-h-[75vh] loginPageContainer">
-      <article className="loginContainer">
-        <header className="loginLayerOne">
-          <h2>Login:</h2>
+    <main className="min-h-[75vh] flex justify-center items-center">
+      <article className="flex flex-col items-center w-full p-2 sm:p-4 box-border relative -top-[10vh]">
+        <header>
+          <h2 className="text-xl sm:text-2xl m-0">Login:</h2>
         </header>
-        <form onSubmit={handleSubmit} className="loginLayerTwo">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 w-full max-w-[400px] [&_label]:font-bold [&_input]:p-2 sm:[&_input]:p-3 [&_input]:border [&_input]:border-solid [&_input]:border-[#ccc] [&_input]:rounded [&_input]:text-base [&_input]:w-full [&_button]:self-center [&_button]:w-1/2 [&_button]:p-2 sm:[&_button]:p-3 [&_button]:mt-[2.5vh]"
+        >
           <label htmlFor="email">Email Address: </label>
           <input
             placeholder="Enter your email address..."
@@ -94,7 +96,7 @@ function LoginPage() {
           />
           <button type="submit">Login</button>
         </form>
-        <section className="loginLayerThree">
+        <section className="text-center text-sm text-[#666]">
           {invalidEmailMsg ? (
             <span className="text-red-500">
               User not found. Please enter in a valid email address.

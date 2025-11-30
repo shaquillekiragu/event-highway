@@ -1,4 +1,3 @@
-import "../stylesheets/CreateEvent.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
@@ -82,22 +81,22 @@ function CreateEvent() {
     return <NotAnAdmin />;
   }
   return (
-    <main className="createEventContainer min-h-screen">
-      <header className="createEventLayerOne">
+    <main className="min-h-screen flex flex-col justify-center items-center">
+      <header className="text-center mt-[5vh]">
         <h2>Create a New Event</h2>
         <p>
           (If event is created but all field show "undefined", refresh the page
           or switch from and back to this event page)
         </p>
       </header>
-      <section className="createEventLayerTwo">
+      <section>
         <CreateEventForm
           eventData={eventData}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
         />
       </section>
-      <section className="createEventLayerThree">
+      <section className="mb-[5vh]">
         {error && <p className="errorMessage">{error}</p>}
       </section>
     </main>

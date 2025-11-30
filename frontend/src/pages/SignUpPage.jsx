@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
 import { postUser } from "../api";
 import SignUpForm from "../components/SignUpForm.jsx";
-import "../stylesheets/SignUpPage.css";
 
 function SignUpPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);

@@ -4,7 +4,6 @@ import { getEvent, deleteEvent } from "../api";
 import { useAuth } from "../contexts/UserContext.jsx";
 import FormatDatetimeFrontend from "../components/FormatDatetime/FormatDatetimeFrontend";
 import Loading from "../components/Loading/Loading.jsx";
-import "../stylesheets/ViewEvent.css";
 
 function ViewEvent() {
   const { event_id } = useParams();
@@ -124,7 +123,7 @@ function ViewEvent() {
       )}
 
       <section className="flex flex-col gap-3 text-2xl">
-        <h1 className="text-center !text-3xl mb-15">{eventObj.event_name}</h1>
+        <h1 className="text-center text-3xl mb-15">{eventObj.event_name}</h1>
         <p>
           Date posted:{" "}
           {<FormatDatetimeFrontend sqlTimestamp={eventObj.created_at} />}
@@ -159,7 +158,7 @@ function ViewEvent() {
       </section>
 
       {isLoggedIn && authUser.is_admin ? (
-        <section className="w-full flex justify-between mt-6 *:h-8">
+        <section className="w-full flex justify-between mt-6 [&_button]:h-8">
           <button onClick={handleUpdateClick}>Update Event</button>
           <button onClick={handleDeleteClick}>Delete Event</button>
         </section>
