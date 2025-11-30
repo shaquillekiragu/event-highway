@@ -116,7 +116,10 @@ function SignUpForm({
         </section>
       </fieldset>
 
-      <button type="submit" className="w-1/2 self-center ml-[40%] mt-7 p-3">
+      <button
+        type="submit"
+        className="w-1/2 h-[6vh] self-center ml-[40%] mt-7 p-3 bg-black text-white text-xl hover:cursor-pointer"
+      >
         Sign Up
       </button>
     </form>

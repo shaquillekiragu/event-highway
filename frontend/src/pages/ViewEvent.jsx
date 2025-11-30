@@ -111,9 +111,17 @@ function ViewEvent() {
       {isLoggedIn ? (
         <section className="w-full flex justify-end">
           {hasSignedUp === false ? (
-            <button onClick={handleEventSignup}>Sign up for this event!</button>
+            <button
+              onClick={handleEventSignup}
+              className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+            >
+              Sign up for this event!
+            </button>
           ) : (
-            <button onClick={handleEventRemoval}>
+            <button
+              onClick={handleEventRemoval}
+              className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+            >
               I'm no longer attending this event...
             </button>
           )}
@@ -159,8 +167,18 @@ function ViewEvent() {
 
       {isLoggedIn && authUser.is_admin ? (
         <section className="w-full flex justify-between mt-6 [&_button]:h-8">
-          <button onClick={handleUpdateClick}>Update Event</button>
-          <button onClick={handleDeleteClick}>Delete Event</button>
+          <button
+            onClick={handleUpdateClick}
+            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+          >
+            Update Event
+          </button>
+          <button
+            onClick={handleDeleteClick}
+            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+          >
+            Delete Event
+          </button>
         </section>
       ) : (
         <></>

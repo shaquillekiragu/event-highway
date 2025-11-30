@@ -62,8 +62,18 @@ function EventsPage() {
     return (
       <main className="min-h-screen">
         <header className="flex justify-around w-1/2 mt-[4vh] ml-[50%]">
-          <button onClick={handleCreateClick}>Create Event</button>
-          <button onClick={handleMyEventsClick}>My Events</button>
+          <button
+            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+            onClick={handleCreateClick}
+          >
+            Create Event
+          </button>
+          <button
+            onClick={handleMyEventsClick}
+            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+          >
+            My Events
+          </button>
         </header>
         <h1 className="my-[10vh] mb-[6vh] text-center">Events</h1>
         {renderEventList()}
@@ -73,7 +83,12 @@ function EventsPage() {
     return (
       <main className="min-h-screen">
         <header className="flex justify-end w-[30%] mt-[4vh] ml-[50%]">
-          <button onClick={handleMyEventsClick}>My Events</button>
+          <button
+            onClick={handleMyEventsClick}
+            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+          >
+            My Events
+          </button>
         </header>
         <h1 className="my-[10vh] mb-[6vh] text-center">Events</h1>
         {renderEventList()}

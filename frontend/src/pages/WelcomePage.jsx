@@ -19,10 +19,16 @@ function WelcomePage() {
           </h1>
         </header>
         <section className="flex-col gap-4">
-          <button onClick={handleLoginClick} className="w-30">
+          <button
+            onClick={handleLoginClick}
+            className="w-30 h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+          >
             Login
           </button>
-          <button onClick={handleSignupClick} className="w-30">
+          <button
+            onClick={handleSignupClick}
+            className="w-30 h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+          >
             Sign Up!
           </button>
         </section>
@@ -32,7 +38,7 @@ function WelcomePage() {
             onClick={() => {
               navigate("/events");
             }}
-            className="w-30"
+            className="w-30 h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
           >
             Proceed
           </button>

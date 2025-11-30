@@ -94,7 +94,12 @@ function LoginPage() {
             onChange={handlePasswordChange}
             required
           />
-          <button type="submit">Login</button>
+          <button
+            type="submit"
+            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+          >
+            Login
+          </button>
         </form>
         <section className="text-center text-sm text-[#666]">
           {invalidEmailMsg ? (

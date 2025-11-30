@@ -156,7 +156,10 @@ function UpdateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <button type="submit" className="mt-[1.5vh] h-[7vh]">
+      <button
+        type="submit"
+        className="mt-[1.5vh] h-[7vh] bg-black text-white text-xl hover:cursor-pointer"
+      >
         Update Event
       </button>
     </form>

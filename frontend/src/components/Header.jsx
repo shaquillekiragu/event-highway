@@ -83,7 +83,10 @@ function Header() {
           <p className="whitespace-nowrap relative m-0 max-[599px]:invisible max-[599px]:right-[5vw] [&_span]:visible [&_span]:text-red">
             User logged in: <span>{authUser.display_name}</span>
           </p>
-          <button className="m-0 relative" onClick={handleLogoutClick}>
+          <button
+            className="h-[6vh] m-0 relative bg-black text-white text-xl hover:cursor-pointer"
+            onClick={handleLogoutClick}
+          >
             Log Out
           </button>
         </section>
@@ -106,7 +109,7 @@ function Header() {
             </h1>
           </Link>
           <button
-            className="m-0 relative left-[8vw] lg:left-[10vw]"
+            className="h-[6vh] m-0 relative left-[8vw] lg:left-[10vw] bg-black text-white text-xl hover:cursor-pointer"
             onClick={handleLoginClick}
           >
             Welcome Page (Login)
