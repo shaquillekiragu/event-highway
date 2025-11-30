@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getEvent, deleteEvent } from "../api";
 import { useAuth } from "../contexts/UserContext.jsx";
 import FormatDatetimeFrontend from "../components/FormatDatetime/FormatDatetimeFrontend";
-import Loading from "../components/Loading/Loading.jsx";
+import Loading from "../components/Loading.jsx";
 
 function ViewEvent() {
   const { event_id } = useParams();

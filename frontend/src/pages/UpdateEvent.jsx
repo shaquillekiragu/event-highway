@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
 import { patchEvent } from "../api";
-import UpdateEventForm from "../components/UpdateEventForm/UpdateEventForm";
-import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
+import UpdateEventForm from "../components/UpdateEventForm";
+import NotAnAdmin from "../components/NotAnAdmin";
 import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
 import stringToNum from "../utils";
 

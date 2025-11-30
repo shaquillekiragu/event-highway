@@ -1,5 +1,5 @@
 import { useAuth } from "../contexts/UserContext";
-import EventCard from "../components/EventCard/EventCard";
+import EventCard from "../components/EventCard";
 
 function MyEventsPage() {
   const { myEvents } = useAuth();

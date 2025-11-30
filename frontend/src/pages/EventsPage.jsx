@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
-import EventCard from "../components/EventCard/EventCard.jsx";
+import EventCard from "../components/EventCard.jsx";
 import { getEvents } from "../api.js";
-import Loading from "../components/Loading/Loading.jsx";
+import Loading from "../components/Loading.jsx";
 
 function EventsPage() {
   const [eventsList, setEventsList] = useState([]);

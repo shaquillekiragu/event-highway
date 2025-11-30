@@ -24,10 +24,6 @@ body {
   height: fit-content;
 }
 
-.title {
-  font-family: Georgia, "Times New Roman", serif;
-}
-
 button {
   background-color: black;
   color: white;
@@ -38,17 +34,3 @@ button {
 button:hover {
   cursor: pointer;
 }
-
-/* .blackBanner {
-  background-color: black;
-  width: 100vw;
-  height: 10vh;
-  position: relative;
-}
-
-.thickBlackBanner {
-  background-color: black;
-  width: 100vw;
-  height: 15vh;
-  position: relative;
-} */

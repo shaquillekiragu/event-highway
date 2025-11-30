@@ -1,9 +1,7 @@
-import "./CreateEventForm.css";
-
 function CreateEventForm({ eventData, handleSubmit, handleChange }) {
   return (
-    <form onSubmit={handleSubmit} className="createEventForm">
-      <div className="formGroup">
+    <form onSubmit={handleSubmit} className="my-[2.5vh] mb-[5vh]">
+      <div className="mb-[3.5vh]">
         <label htmlFor="event_name">Event Name</label>
         <input
           type="text"
@@ -15,7 +13,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <div className="formGroup">
+      <div className="mb-[3.5vh]">
         <label htmlFor="host">Host</label>
         <input
           type="text"
@@ -27,7 +25,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <div className="formGroup">
+      <div className="mb-[3.5vh]">
         <label htmlFor="event_start">Event Start Time</label>
         <input
           type="datetime-local"
@@ -39,7 +37,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <div className="formGroup">
+      <div className="mb-[3.5vh]">
         <label htmlFor="event_end">Event End Time</label>
         <input
           type="datetime-local"
@@ -51,7 +49,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <div className="formGroup">
+      <div className="mb-[3.5vh]">
         <label htmlFor="event_description">Description</label>
         <input
           type="text"
@@ -63,7 +61,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <div className="formGroup">
+      <div className="mb-[3.5vh]">
         <label htmlFor="category">Category</label>
         <input
           type="text"
@@ -75,7 +73,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <fieldset className="formGroup">
+      <fieldset className="mb-[3.5vh]">
         <label htmlFor="is_online">Is this event online? (Tick if yes)</label>
         <input
           type="checkbox"
@@ -86,7 +84,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </fieldset>
 
-      <div className="formGroup">
+      <div className="mb-[3.5vh]">
         <label htmlFor="venue">Venue Name (If offline event)</label>
         <input
           type="text"
@@ -98,7 +96,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <div className="formGroup">
+      <div className="mb-[3.5vh]">
         <label htmlFor="venue_address">Venue Address (If offline event)</label>
         <input
           type="text"
@@ -110,7 +108,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <fieldset className="formGroup">
+      <fieldset className="mb-[3.5vh]">
         <label htmlFor="is_free">Is this event free? (Tick if yes)</label>
         <input
           type="checkbox"
@@ -121,7 +119,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </fieldset>
 
-      <div className="formGroup">
+      <div className="mb-[3.5vh]">
         <label htmlFor="cost_in_gbp">Cost (If not free)</label>
         <input
           type="number"
@@ -133,7 +131,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <fieldset className="formGroup">
+      <fieldset className="mb-[3.5vh]">
         <label htmlFor="is_limit">
           Is there an attendee limit? (Tick if yes)
         </label>
@@ -146,7 +144,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </fieldset>
 
-      <div className="formGroup">
+      <div className="mb-[3.5vh]">
         <label htmlFor="attendee_limit">Attendee Limit</label>
         <input
           type="number"
@@ -158,7 +156,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
         />
       </div>
 
-      <button type="submit" className="submitButton">
+      <button type="submit" className="mt-[1.5vh] h-[7vh]">
         Create Event
       </button>
     </form>

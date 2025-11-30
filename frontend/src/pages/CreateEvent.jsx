@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
-import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
-import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
+import CreateEventForm from "../components/CreateEventForm";
+import NotAnAdmin from "../components/NotAnAdmin";
 import { currentDatetimeForDB } from "../components/FormatDatetime/dbDatetimeFunctions";
 import stringToNum from "../utils";
 
