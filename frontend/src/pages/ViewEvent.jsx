@@ -108,9 +108,9 @@ function ViewEvent() {
     return <Loading page={"View Event"} />;
   }
   return (
-    <main className="partPageHeight viewEventContainer">
+    <main className="min-h-[75vh] flex flex-col justify-center items-center gap-10 my-15 mx-[15%]">
       {isLoggedIn ? (
-        <section className="viewLayerOne">
+        <section className="w-full flex justify-end">
           {hasSignedUp === false ? (
             <button onClick={handleEventSignup}>Sign up for this event!</button>
           ) : (
@@ -122,8 +122,9 @@ function ViewEvent() {
       ) : (
         <></>
       )}
-      <section className="viewLayerTwo">
-        <h1>{eventObj.event_name}</h1>
+
+      <section className="flex flex-col gap-3 text-2xl">
+        <h1 className="text-center !text-3xl mb-15">{eventObj.event_name}</h1>
         <p>
           Date posted:{" "}
           {<FormatDatetimeFrontend sqlTimestamp={eventObj.created_at} />}
@@ -156,8 +157,9 @@ function ViewEvent() {
             : "Attendee Limit: There is no attendee limit for this event"}
         </p>
       </section>
+
       {isLoggedIn && authUser.is_admin ? (
-        <section className="viewLayerThree">
+        <section className="w-full flex justify-between mt-6 *:h-8">
           <button onClick={handleUpdateClick}>Update Event</button>
           <button onClick={handleDeleteClick}>Delete Event</button>
         </section>

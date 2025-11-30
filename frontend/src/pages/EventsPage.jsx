@@ -55,35 +55,35 @@ function EventsPage() {
   } else if (error) {
     return (
       <main className="pagePageHeight">
-        <h1 className="eventsPageTitle">Events</h1>
+        <h1 className="eventsPageTitle text-center">Events</h1>
         <p className="errorText">{error}</p>
       </main>
     );
   } else if (isLoggedIn && isAdmin) {
     return (
-      <main className="fullPageHeight">
+      <main className="min-h-screen">
         <header className="adminButtonHeader">
           <button onClick={handleCreateClick}>Create Event</button>
           <button onClick={handleMyEventsClick}>My Events</button>
         </header>
-        <h1 className="eventsPageTitle">Events</h1>
+        <h1 className="eventsPageTitle text-center">Events</h1>
         {renderEventList()}
       </main>
     );
   } else if (isLoggedIn) {
     return (
-      <main className="fullPageHeight">
+      <main className="min-h-screen">
         <header className="userButtonHeader">
           <button onClick={handleMyEventsClick}>My Events</button>
         </header>
-        <h1 className="eventsPageTitle">Events</h1>
+        <h1 className="eventsPageTitle text-center">Events</h1>
         {renderEventList()}
       </main>
     );
   } else {
     return (
-      <main className="fullPageHeight">
-        <h1 className="eventsPageTitle">Events</h1>
+      <main className="min-h-screen">
+        <h1 className="eventsPageTitle text-center">Events</h1>
         {renderEventList()}
       </main>
     );

@@ -98,11 +98,11 @@ function UpdateEvent() {
     return <NotAnAdmin />;
   }
   return (
-    <main className="updateEventContainer fullPageHeight">
-      <header className="updateEventLayerOne">
+    <main className="min-h-screen flex flex-col justify-center items-center">
+      <header className="mt-10">
         <h2>Update Event</h2>
       </header>
-      <section className="updateEventLayerTwo">
+      <section className="mt-10">
         {isLoading ? (
           <p>Loading...</p>
         ) : (
@@ -113,7 +113,7 @@ function UpdateEvent() {
           />
         )}
       </section>
-      <section className="updateEventLayerThree">
+      <section className="mb-10">
         {error && <p className="errorMessage">{error}</p>}
       </section>
     </main>

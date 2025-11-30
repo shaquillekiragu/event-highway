@@ -38,14 +38,14 @@ function Header() {
     return (
       <header>
         <section className="errorHeaderContainer">
-          <h1 className="event">Event</h1>
+          <h1 className="event text-center">Event</h1>
           <p className="errorMessage">
             LOGIN STATE ERROR. You are logged in whilst taking a login action.
             Please click <Link to="/events">HERE</Link>...
           </p>
         </section>
-        <section className="thickblackBanner highwayContainer">
-          <h1 className="highway">Highway</h1>
+        <section className="w-screen h-[15vh] relative highwayContainer">
+          <h1 className="highway text-center">Highway</h1>
         </section>
       </header>
     );
@@ -54,12 +54,12 @@ function Header() {
       <header>
         <section className="takingActionContainer">
           <Link className="headerTitleLink" to="/">
-            <h1 className="event">Event</h1>
+            <h1 className="event text-center">Event</h1>
           </Link>
         </section>
-        <section className="thickBlackBanner highwayContainer">
+        <section className="w-screen h-[15vh] relative highwayContainer">
           <Link className="headerTitleLink" to="/">
-            <h1 className="highway">Highway</h1>
+            <h1 className="highway text-center">Highway</h1>
           </Link>
         </section>
       </header>
@@ -69,7 +69,7 @@ function Header() {
       <header>
         <section className="loggedInContainer">
           <Link className="headerTitleLink" to="/events">
-            <h1 className="event">Event</h1>
+            <h1 className="event text-center">Event</h1>
           </Link>
           <p className="userStatus">
             User logged in: <span>{authUser.display_name}</span>
@@ -78,9 +78,9 @@ function Header() {
             Log Out
           </button>
         </section>
-        <section className="thickBlackBanner highwayContainer">
+        <section className="w-screen h-[15vh] relative highwayContainer">
           <Link className="headerTitleLink" to="/events">
-            <h1 className="highway">Highway</h1>
+            <h1 className="highway text-center">Highway</h1>
           </Link>
         </section>
       </header>
@@ -90,15 +90,15 @@ function Header() {
       <header>
         <section className="loggedOutContainer">
           <Link className="headerTitleLink" to="/events">
-            <h1 className="event">Event</h1>
+            <h1 className="event text-center">Event</h1>
           </Link>
           <button className="loginButton" onClick={handleLoginClick}>
             Welcome Page (Login)
           </button>
         </section>
-        <section className="thickBlackBanner highwayContainer">
+        <section className="w-screen h-[15vh] relative highwayContainer">
           <Link className="headerTitleLink" to="/events">
-            <h1 className="highway">Highway</h1>
+            <h1 className="highway text-center">Highway</h1>
           </Link>
         </section>
       </header>

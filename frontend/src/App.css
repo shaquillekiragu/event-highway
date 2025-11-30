@@ -24,34 +24,8 @@ body {
   height: fit-content;
 }
 
-.fullPageHeight {
-  min-height: 100vh;
-}
-
-.partPageHeight {
-  min-height: 75vh;
-}
-
-h1 {
-  text-align: center;
-}
-
 .title {
   font-family: Georgia, "Times New Roman", serif;
-}
-
-.blackBanner {
-  background-color: black;
-  width: 100vw;
-  height: 10vh;
-  position: relative;
-}
-
-.thickBlackBanner {
-  background-color: black;
-  width: 100vw;
-  height: 15vh;
-  position: relative;
 }
 
 button {
@@ -65,6 +39,16 @@ button:hover {
   cursor: pointer;
 }
 
-.invalidMsg {
-  color: red;
+/* .blackBanner {
+  background-color: black;
+  width: 100vw;
+  height: 10vh;
+  position: relative;
 }
+
+.thickBlackBanner {
+  background-color: black;
+  width: 100vw;
+  height: 15vh;
+  position: relative;
+} */

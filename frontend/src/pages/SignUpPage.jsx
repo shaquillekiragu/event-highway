@@ -77,12 +77,12 @@ function SignUpPage() {
   }
 
   return (
-    <main className="partPageHeight signupPageContainer">
-      <article className="signupContainer">
-        <header className="signupLayerOne">
+    <main className="w-full min-h-[75vh] flex justify-center">
+      <article className="w-full flex flex-col justify-center">
+        <header className="col-start-2 col-end-3 w-full h-fit flex justify-center mt-10 mb-4">
           <h2>Sign Up:</h2>
         </header>
-        <section className="signupLayerTwo">
+        <section className="col-start-2 col-end-3 w-full h-fit">
           <SignUpForm
             handleSubmit={handleSubmit}
             handleFirstNameChange={handleFirstNameChange}
@@ -93,7 +93,7 @@ function SignUpPage() {
             handleIsAdminChange={handleIsAdminChange}
           />
         </section>
-        <section className="signupLayerThree">
+        <section className="flex flex-col justify-center m-10">
           {isSubmitting && (
             <p className="statusMessage">
               <em>Signing you up...</em>

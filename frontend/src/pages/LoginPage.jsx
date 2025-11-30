@@ -68,7 +68,7 @@ function LoginPage() {
     return <Loading page={"Login"} />;
   }
   return (
-    <main className="partPageHeight loginPageContainer">
+    <main className="min-h-[75vh] loginPageContainer">
       <article className="loginContainer">
         <header className="loginLayerOne">
           <h2>Login:</h2>
@@ -96,14 +96,14 @@ function LoginPage() {
         </form>
         <section className="loginLayerThree">
           {invalidEmailMsg ? (
-            <span className="invalidMsg">
+            <span className="text-red-500">
               User not found. Please enter in a valid email address.
             </span>
           ) : (
             <></>
           )}
           {invalidPasswordMsg ? (
-            <span className="invalidMsg">
+            <span className="text-red-500">
               Incorrect password. Please enter the correct password.
             </span>
           ) : (

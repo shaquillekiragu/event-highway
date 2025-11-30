@@ -6,9 +6,9 @@ function MyEventsPage() {
   const { myEvents } = useAuth();
 
   return (
-    <main className="fullPageHeight myEventsContainer">
+    <main className="min-h-screen myEventsContainer">
       <section className="myEventsLayerOne">
-        <h1>My Events</h1>
+        <h1 className="text-center">My Events</h1>
       </section>
       {myEvents.length ? (
         <ul className="gridContainer myEventsLayerTwoA">
@@ -20,7 +20,7 @@ function MyEventsPage() {
         </ul>
       ) : (
         <section className="myEventsLayerTwoB">
-          <h1 className="noEventsMsg">
+          <h1 className="noEventsMsg text-center">
             You're currently signed up to no events...
           </h1>
         </section>

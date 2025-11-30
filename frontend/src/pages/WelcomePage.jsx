@@ -12,23 +12,28 @@ function WelcomePage() {
   }
 
   return (
-    <main className="partPageHeight welcomePageContainer">
-      <article className="welcomeContainer">
-        <header className="welcomeLayerOne">
-          <h1>Welcome to Event Highway!</h1>
+    <main className="min-h-[75vh] flex justify-center mt-20">
+      <article className="flex flex-col justify-center gap-10 pt-10 pb-20 px-40 border rounded-lg *:w-full *:h-full *:flex *:justify-center *:items-center">
+        <header className="">
+          <h1 className="mb-6 text-[32px] text-center">
+            Welcome to Event Highway!
+          </h1>
         </header>
-        <section className="welcomeLayerTwo">
-          <button onClick={handleLoginClick} className="!bg-red-300">
+        <section className="flex-col gap-4">
+          <button onClick={handleLoginClick} className="w-30">
             Login
           </button>
-          <button onClick={handleSignupClick}>Sign Up!</button>
+          <button onClick={handleSignupClick} className="w-30">
+            Sign Up!
+          </button>
         </section>
-        <section className="welcomeLayerThree">
+        <section className="text-xl ml-2">
           <label htmlFor="proceed">Proceed without logging in: </label>
           <button
             onClick={() => {
               navigate("/events");
             }}
+            className="w-30"
           >
             Proceed
           </button>
