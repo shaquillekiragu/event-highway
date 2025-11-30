@@ -45,7 +45,7 @@ function Header() {
             Please click <Link to="/events">HERE</Link>...
           </p>
         </section>
-        <section className="w-screen h-[15vh] relative flex justify-between items-center">
+        <section className="w-screen h-[15vh] bg-black relative flex justify-between items-center">
           <h1 className="text-[8vh] m-0 text-white relative left-[4vw] text-center">
             Highway
           </h1>
