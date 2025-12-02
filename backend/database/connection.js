@@ -36,11 +36,9 @@ if (ENV === "production") {
   config.idleTimeoutMillis = 20000; // Close idle clients after 20 seconds
   config.connectionTimeoutMillis = 10000; // Return an error after 10 seconds if connection could not be established
   config.allowExitOnIdle = false; // Don't close all connections when idle
-  // Render requires SSL but doesn't provide CA cert, so we disable verification
-  // For other providers, you may want to set rejectUnauthorized: true
-  config.ssl = process.env.DATABASE_URL?.includes("render.com")
-    ? { rejectUnauthorized: false }
-    : { rejectUnauthorized: true };
+  // Production databases (Render, Heroku, etc.) typically use self-signed certificates
+  // Disable SSL verification to allow connections (required for Render databases)
+  config.ssl = { rejectUnauthorized: false };
 } else {
   // Development/Test: Use PGDATABASE
   if (process.env.PGDATABASE) {
