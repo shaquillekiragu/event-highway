@@ -20,8 +20,8 @@ if (ENV === "production") {
   config.connectionString = process.env.DATABASE_URL;
   // Conservative pool size for Render (free tier typically allows 4-10 connections)
   config.max = 10; // Maximum number of clients in the pool
-  config.min = 1; // Minimum number of clients to keep in the pool
-  config.idleTimeoutMillis = 30000; // Close idle clients after 30 seconds (default is 10s)
+  config.min = 0; // Don't pre-create connections (create on-demand only)
+  config.idleTimeoutMillis = 20000; // Close idle clients after 20 seconds
   config.connectionTimeoutMillis = 10000; // Return an error after 10 seconds if connection could not be established
   config.allowExitOnIdle = false; // Don't close all connections when idle
   // Render requires SSL but doesn't provide CA cert, so we disable verification
