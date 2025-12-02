@@ -18,7 +18,12 @@ const config = {};
 if (ENV === "production") {
   // Production: Use DATABASE_URL from environment (e.g., Render, Heroku)
   config.connectionString = process.env.DATABASE_URL;
-  config.max = 15; // Connection pool size
+  // Conservative pool size for Render (free tier typically allows 4-10 connections)
+  config.max = 10; // Maximum number of clients in the pool
+  config.min = 1; // Minimum number of clients to keep in the pool
+  config.idleTimeoutMillis = 30000; // Close idle clients after 30 seconds (default is 10s)
+  config.connectionTimeoutMillis = 10000; // Return an error after 10 seconds if connection could not be established
+  config.allowExitOnIdle = false; // Don't close all connections when idle
   // Render requires SSL but doesn't provide CA cert, so we disable verification
   // For other providers, you may want to set rejectUnauthorized: true
   config.ssl = process.env.DATABASE_URL?.includes("render.com")
@@ -29,6 +34,30 @@ if (ENV === "production") {
   if (process.env.PGDATABASE) {
     config.database = process.env.PGDATABASE;
   }
+  // Development pool settings (smaller pool)
+  config.max = 5;
+  config.min = 1;
+  config.idleTimeoutMillis = 30000;
+  config.connectionTimeoutMillis = 5000;
 }
 
-module.exports = new Pool(config);
+const pool = new Pool(config);
+
+// Handle pool errors
+pool.on("error", (err) => {
+  console.error("Unexpected error on idle client", err);
+  process.exit(-1);
+});
+
+// Log pool events in development
+if (ENV !== "production") {
+  pool.on("connect", () => {
+    console.log("New client connected to database");
+  });
+
+  pool.on("remove", () => {
+    console.log("Client removed from pool");
+  });
+}
+
+module.exports = pool;
