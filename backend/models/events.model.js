@@ -8,16 +8,47 @@ async function fetchEvents() {
     // Return empty array if no events found (more RESTful than throwing 404)
     return rows;
   } catch (err) {
-    console.error(err, " << fetchEvents model error");
+    console.error("fetchEvents model error:", {
+      message: err.message,
+      code: err.code,
+      detail: err.detail,
+      hint: err.hint,
+      position: err.position,
+      stack: err.stack,
+    });
+
     // Re-throw with proper error structure if it's not already structured
     if (err.status && err.msg) {
       throw err;
     }
-    // Database connection or query errors
+
+    // Check for specific PostgreSQL errors
+    if (err.code === "42P01") {
+      // Table does not exist
+      throw {
+        status: 500,
+        msg: "Database table 'events' does not exist. Please run the database schema migration.",
+        originalError: err.message,
+        code: err.code,
+      };
+    }
+
+    if (err.code === "3D000") {
+      // Database does not exist
+      throw {
+        status: 500,
+        msg: "Database does not exist. Please check your DATABASE_URL configuration.",
+        originalError: err.message,
+        code: err.code,
+      };
+    }
+
+    // Generic database connection or query errors
     throw {
       status: 500,
       msg: "Database error: Failed to fetch events",
       originalError: err.message || err.toString(),
+      code: err.code,
     };
   }
 }
