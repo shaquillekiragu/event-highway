@@ -11,7 +11,6 @@ async function getEvents(request, response, next) {
     const events = await fetchEvents();
     return response.status(200).send({ events });
   } catch (err) {
-    console.error("Error in getEvents controller:", err);
     next(err);
   }
 }

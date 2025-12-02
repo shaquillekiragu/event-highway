@@ -3,22 +3,10 @@ const { Pool } = require("pg");
 const ENV = process.env.NODE_ENV || "development";
 require("dotenv").config({ path: `${__dirname}/../../.env.${ENV}` });
 
-// Log environment info
+// Only log debug info in development
 if (ENV !== "production") {
   console.log("Loaded env file:", `${__dirname}/../../.env.${ENV}`);
   console.log("Environment:", ENV);
-} else {
-  // In production, log that we're using DATABASE_URL (but not the actual URL for security)
-  console.log("Production environment detected");
-  console.log("DATABASE_URL is", process.env.DATABASE_URL ? "SET" : "NOT SET");
-  if (process.env.DATABASE_URL) {
-    // Log connection string info without exposing credentials
-    const url = new URL(process.env.DATABASE_URL);
-    console.log(
-      `Connecting to database at: ${url.hostname}:${url.port || 5432}`
-    );
-    console.log(`Database name: ${url.pathname.slice(1)}`);
-  }
 }
 
 if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
@@ -53,17 +41,10 @@ if (ENV === "production") {
 
 const pool = new Pool(config);
 
-// Handle pool errors (critical - log in all environments)
+// Handle pool errors
 pool.on("error", (err) => {
-  console.error("CRITICAL: Unexpected error on idle database client", {
-    message: err.message,
-    code: err.code,
-    stack: err.stack,
-  });
-  // Don't exit in production - let the app handle it gracefully
-  if (ENV !== "production") {
-    process.exit(-1);
-  }
+  console.error("Unexpected error on idle client", err);
+  process.exit(-1);
 });
 
 // Log pool events in development

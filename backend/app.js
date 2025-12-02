@@ -95,24 +95,7 @@ app.use((error, request, response, next) => {
 });
 
 app.use((error, request, response) => {
-  // Log the full error for debugging (especially important in production)
-  console.error("Unhandled error:", {
-    message: error.message,
-    stack: error.stack,
-    code: error.code,
-    status: error.status,
-    msg: error.msg,
-    originalError: error.originalError,
-    fullError: error,
-  });
-  return response.status(500).send({
-    message: "Internal server error",
-    // In development, include more error details
-    ...(process.env.NODE_ENV !== "production" && {
-      error: error.message,
-      details: error.originalError,
-    }),
-  });
+  return response.status(500).send({ message: "Internal server error" });
 });
 
 module.exports = app;
