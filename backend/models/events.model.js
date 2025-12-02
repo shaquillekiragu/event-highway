@@ -2,14 +2,23 @@ const db = require("../database/connection");
 
 async function fetchEvents() {
   try {
-    const { rows } = await db.query(`SELECT * FROM events;`);
-    if (!rows || !rows.length) {
-      throw { status: 404, msg: "Events not found" };
-    }
+    const { rows } = await db.query(
+      `SELECT * FROM events ORDER BY created_at DESC;`
+    );
+    // Return empty array if no events found (more RESTful than throwing 404)
     return rows;
   } catch (err) {
     console.error(err, " << fetchEvents model error");
-    throw err;
+    // Re-throw with proper error structure if it's not already structured
+    if (err.status && err.msg) {
+      throw err;
+    }
+    // Database connection or query errors
+    throw {
+      status: 500,
+      msg: "Database error: Failed to fetch events",
+      originalError: err.message || err.toString(),
+    };
   }
 }
 
