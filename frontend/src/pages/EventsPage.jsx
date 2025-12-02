@@ -20,8 +20,11 @@ function EventsPage() {
     async function fetchEvents() {
       try {
         const response = await getEvents();
-        setEventsList(response.data.events);
-        setIsLoading(false);
+        if (response && response.data && response.data.events) {
+          setEventsList(response.data.events);
+        } else {
+          setError("Failed to load events. Please try again later.");
+        }
       } catch (err) {
         setError("Failed to load events. Please try again later.");
       } finally {
@@ -29,7 +32,7 @@ function EventsPage() {
       }
     }
     fetchEvents();
-  }, [eventsList]);
+  }, []);
 
   function handleCreateClick() {
     navigate("/create-event");
