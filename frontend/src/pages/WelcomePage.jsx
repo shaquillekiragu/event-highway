@@ -12,7 +12,7 @@ function WelcomePage() {
 
   return (
     <main className="min-h-[75vh] flex justify-center mt-20">
-      <article className="flex flex-col justify-center gap-10 pt-10 pb-20 px-40 border rounded-lg *:w-full *:h-full *:flex *:justify-center *:items-center">
+      <article className="flex flex-col justify-center gap-5 pt-5 pb-10 px-20 border rounded-lg *:w-full *:h-full *:flex *:justify-center *:items-center">
         <header className="">
           <h1 className="mb-6 text-[32px] text-center">
             Welcome to Event Highway!
