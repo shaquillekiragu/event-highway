@@ -17,7 +17,9 @@ function WelcomePage() {
           <h1 className="mb-4 text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
             Welcome to Event Highway!
           </h1>
-          <p className="text-gray-600 text-lg">Discover and book amazing events in your area</p>
+          <p className="text-gray-600 text-lg">
+            Discover and book amazing events in your area
+          </p>
         </header>
         <section className="flex flex-col gap-4 w-full">
           <button

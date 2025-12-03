@@ -14,7 +14,10 @@ function SignUpForm({
     >
       <div className="grid grid-cols-2 gap-5">
         <section className="flex flex-col">
-          <label htmlFor="first_name" className="mb-2 font-semibold text-gray-700 text-sm">
+          <label
+            htmlFor="first_name"
+            className="mb-2 font-semibold text-gray-700 text-sm"
+          >
             First Name
           </label>
           <input
@@ -28,7 +31,10 @@ function SignUpForm({
         </section>
 
         <section className="flex flex-col">
-          <label htmlFor="last_name" className="mb-2 font-semibold text-gray-700 text-sm">
+          <label
+            htmlFor="last_name"
+            className="mb-2 font-semibold text-gray-700 text-sm"
+          >
             Last Name
           </label>
           <input
@@ -42,7 +48,10 @@ function SignUpForm({
       </div>
 
       <section className="flex flex-col">
-        <label htmlFor="display_name" className="mb-2 font-semibold text-gray-700 text-sm">
+        <label
+          htmlFor="display_name"
+          className="mb-2 font-semibold text-gray-700 text-sm"
+        >
           Display Name
         </label>
         <input
@@ -56,7 +65,10 @@ function SignUpForm({
       </section>
 
       <section className="flex flex-col">
-        <label htmlFor="email" className="mb-2 font-semibold text-gray-700 text-sm">
+        <label
+          htmlFor="email"
+          className="mb-2 font-semibold text-gray-700 text-sm"
+        >
           Email Address
         </label>
         <input
@@ -70,7 +82,10 @@ function SignUpForm({
       </section>
 
       <section className="flex flex-col">
-        <label htmlFor="password" className="mb-2 font-semibold text-gray-700 text-sm">
+        <label
+          htmlFor="password"
+          className="mb-2 font-semibold text-gray-700 text-sm"
+        >
           Password
         </label>
         <input
@@ -84,7 +99,9 @@ function SignUpForm({
       </section>
 
       <fieldset className="p-5 border border-gray-300 rounded-lg bg-gray-50">
-        <legend className="mb-3 font-semibold text-gray-700 text-sm px-2">Admin Status</legend>
+        <legend className="mb-3 font-semibold text-gray-700 text-sm px-2">
+          Admin Status
+        </legend>
         <div className="flex items-center gap-6">
           <section className="flex items-center gap-2">
             <input
