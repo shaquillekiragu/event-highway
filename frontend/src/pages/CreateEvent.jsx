@@ -81,23 +81,26 @@ function CreateEvent() {
     return <NotAnAdmin />;
   }
   return (
-    <main className="min-h-screen flex flex-col justify-center items-center">
-      <header className="text-center mt-[5vh]">
-        <h2>Create a New Event</h2>
-        <p>
-          (If event is created but all field show "undefined", refresh the page
-          or switch from and back to this event page)
+    <main className="min-h-screen flex flex-col justify-center items-center py-12 px-8">
+      <header className="text-center mb-8">
+        <h2 className="text-4xl font-bold text-gray-800 mb-3">
+          Create a New Event
+        </h2>
+        <p className="text-gray-600 text-sm">
+          Fill out the form below to create your event
         </p>
       </header>
-      <section>
+      <section className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
         <CreateEventForm
           eventData={eventData}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
         />
       </section>
-      <section className="mb-[5vh]">
-        {error && <p className="errorMessage">{error}</p>}
+      <section className="mt-6 min-h-8">
+        {error && (
+          <p className="text-center text-red-600 font-medium">{error}</p>
+        )}
       </section>
     </main>
   );

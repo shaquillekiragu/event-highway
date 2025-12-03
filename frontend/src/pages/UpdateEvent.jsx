@@ -97,13 +97,14 @@ function UpdateEvent() {
     return <NotAnAdmin />;
   }
   return (
-    <main className="min-h-screen flex flex-col justify-center items-center">
-      <header className="mt-10">
-        <h2>Update Event</h2>
+    <main className="min-h-screen flex flex-col justify-center items-center py-12 px-8">
+      <header className="text-center mb-8">
+        <h2 className="text-4xl font-bold text-gray-800 mb-3">Update Event</h2>
+        <p className="text-gray-600 text-sm">Modify the event details below</p>
       </header>
-      <section className="mt-10">
+      <section className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
         {isLoading ? (
-          <p>Loading...</p>
+          <p className="text-center text-indigo-600 font-medium">Loading...</p>
         ) : (
           <UpdateEventForm
             eventData={eventData}
@@ -112,8 +113,10 @@ function UpdateEvent() {
           />
         )}
       </section>
-      <section className="mb-10">
-        {error && <p className="errorMessage">{error}</p>}
+      <section className="mt-6 min-h-8">
+        {error && (
+          <p className="text-center text-red-600 font-medium">{error}</p>
+        )}
       </section>
     </main>
   );

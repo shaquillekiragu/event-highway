@@ -43,7 +43,7 @@ function EventsPage() {
   }
 
   const renderEventList = () => (
-    <ul className="grid gap-[2vw] p-0 mx-auto mb-[10vh] grid-cols-1 w-[60%] lg:grid-cols-2 lg:w-[80%] xl:grid-cols-3 xl:w-[90%]">
+    <ul className="grid gap-6 p-0 mx-auto mb-16 grid-cols-3 w-full max-w-xl">
       {eventsList.map((event) => (
         <li key={event.event_id} className="list-none">
           <EventCard event={event} />
@@ -63,44 +63,50 @@ function EventsPage() {
     );
   } else if (isLoggedIn && isAdmin) {
     return (
-      <main className="min-h-screen">
-        <header className="flex justify-around w-1/2 mt-[4vh] ml-[50%]">
+      <main className="min-h-screen py-8 px-8">
+        <header className="flex justify-end gap-4 mb-8">
           <button
-            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+            className="h-12 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-lg hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
             onClick={handleCreateClick}
           >
             Create Event
           </button>
           <button
             onClick={handleMyEventsClick}
-            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+            className="h-12 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg rounded-lg hover:from-purple-700 hover:to-pink-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
           >
             My Events
           </button>
         </header>
-        <h1 className="my-[10vh] mb-[6vh] text-center">Events</h1>
+        <h1 className="text-5xl font-bold text-gray-800 mb-12 text-center">
+          Discover Events
+        </h1>
         {renderEventList()}
       </main>
     );
   } else if (isLoggedIn) {
     return (
-      <main className="min-h-screen">
-        <header className="flex justify-end w-[30%] mt-[4vh] ml-[50%]">
+      <main className="min-h-screen py-8 px-8">
+        <header className="flex justify-end mb-8">
           <button
             onClick={handleMyEventsClick}
-            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+            className="h-12 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg rounded-lg hover:from-purple-700 hover:to-pink-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
           >
             My Events
           </button>
         </header>
-        <h1 className="my-[10vh] mb-[6vh] text-center">Events</h1>
+        <h1 className="text-5xl font-bold text-gray-800 mb-12 text-center">
+          Discover Events
+        </h1>
         {renderEventList()}
       </main>
     );
   } else {
     return (
-      <main className="min-h-screen">
-        <h1 className="my-[10vh] mb-[6vh] text-center">Events</h1>
+      <main className="min-h-screen py-8 px-8">
+        <h1 className="text-5xl font-bold text-gray-800 mb-12 text-center">
+          Discover Events
+        </h1>
         {renderEventList()}
       </main>
     );

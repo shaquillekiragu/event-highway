@@ -6,68 +6,66 @@ function EventCard({ event }) {
 
   return (
     <Link
-      className="w-full h-full no-underline text-black hover:[&_.title]:underline hover:[&_.title]:text-[rgb(50,50,50)]"
+      className="w-full h-full no-underline block"
       to={path}
       aria-label={`View details for event: ${event.event_name}`}
     >
-      <article className="border border-black rounded-[5%] w-full h-full p-[2.5vw] m-0">
-        <section className="w-full flex justify-between">
-          <p className="[&_strong]:text-blue">
-            Host: <strong>{event.host}</strong>
+      <article className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 w-full h-full p-6 m-0 border border-gray-200 hover:border-indigo-300 hover:-translate-y-1">
+        <section className="w-full flex justify-between mb-4">
+          <p className="text-sm text-gray-600">
+            Host: <strong className="text-indigo-600 font-semibold">{event.host}</strong>
           </p>
-          <p className="[&_strong]:text-green">
-            Category: <strong>{event.category}</strong>
-          </p>
-        </section>
-        <section className="w-full flex justify-center">
-          <h2 className="font-serif title">{event.event_name}</h2>
-        </section>
-        <section className="w-full flex flex-col items-center my-[5vh]">
-          <p className="w-full m-0 flex justify-center">
-            <strong>
-              {event.is_online
-                ? "This event is ONLINE"
-                : `VENUE: ${event.venue}`}
-            </strong>
-          </p>
-          <p className="w-full m-0 flex justify-center my-[2vh]">
-            <strong>
-              {event.is_free
-                ? "This event is FREE"
-                : `COST: £${event.cost_in_gbp}`}
-            </strong>
-          </p>
-          <p className="w-full m-0 flex justify-center">
-            <strong>
-              {event.is_limit
-                ? `ATTENDEE LIMIT: ${event.attendee_limit}`
-                : "NO ATTENDEE LIMIT"}
-            </strong>
+          <p className="text-sm text-gray-600">
+            Category: <strong className="text-purple-600 font-semibold">{event.category}</strong>
           </p>
         </section>
-        <section className="w-full flex justify-around">
+        <section className="w-full flex justify-center mb-6">
+          <h2 className="font-bold text-xl text-gray-800 title line-clamp-2 text-center">{event.event_name}</h2>
+        </section>
+        <section className="w-full flex flex-col items-center my-6 space-y-3">
+          <div className="w-full flex justify-center">
+            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+              event.is_online 
+                ? "bg-blue-100 text-blue-700" 
+                : "bg-gray-100 text-gray-700"
+            }`}>
+              {event.is_online ? "🌐 ONLINE" : `📍 ${event.venue}`}
+            </span>
+          </div>
+          <div className="w-full flex justify-center">
+            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+              event.is_free 
+                ? "bg-green-100 text-green-700" 
+                : "bg-yellow-100 text-yellow-700"
+            }`}>
+              {event.is_free ? "🆓 FREE" : `💰 £${event.cost_in_gbp}`}
+            </span>
+          </div>
+          <div className="w-full flex justify-center">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">
+              {event.is_limit ? `👥 Limit: ${event.attendee_limit}` : "👥 No Limit"}
+            </span>
+          </div>
+        </section>
+        <section className="w-full flex justify-around pt-4 border-t border-gray-200">
           <section className="flex flex-col items-center">
-            <p className="m-0 mb-[0.25vh]">Event Start:</p>
-            <p>
-              <strong>
-                {event.event_start ? (
-                  <FormatDatetimeFrontend sqlTimestamp={event.event_start} />
-                ) : (
-                  "TBD"
-                )}
-              </strong>
+            <p className="m-0 mb-1 text-xs text-gray-500 font-medium">Event Start</p>
+            <p className="text-sm font-semibold text-gray-700">
+              {event.event_start ? (
+                <FormatDatetimeFrontend sqlTimestamp={event.event_start} />
+              ) : (
+                "TBD"
+              )}
             </p>
           </section>
           <section className="flex flex-col items-center">
-            <p className="m-0 mb-[0.25vh]">Event Finish:</p>
-            <p>
-              <strong>
-                {event.event_end ? (
-                  <FormatDatetimeFrontend sqlTimestamp={event.event_end} />
-                ) : (
-                  "TBD"
-                )}
-              </strong>
+            <p className="m-0 mb-1 text-xs text-gray-500 font-medium">Event Finish</p>
+            <p className="text-sm font-semibold text-gray-700">
+              {event.event_end ? (
+                <FormatDatetimeFrontend sqlTimestamp={event.event_end} />
+              ) : (
+                "TBD"
+              )}
             </p>
           </section>
         </section>

@@ -5,12 +5,17 @@ function MyEventsPage() {
   const { myEvents } = useAuth();
 
   return (
-    <main className="min-h-screen mt-[7.5vh]">
-      <section className="w-full">
-        <h1 className="text-center text-2xl mb-[7.5vh]">My Events</h1>
+    <main className="min-h-screen py-8 px-8">
+      <section className="w-full mb-12">
+        <h1 className="text-5xl font-bold text-gray-800 mb-2 text-center">
+          My Events
+        </h1>
+        <p className="text-gray-600 text-center">
+          Events you're registered for
+        </p>
       </section>
       {myEvents.length ? (
-        <ul className="grid gap-[2vw] p-0 mx-auto mb-[10vh] grid-cols-1 w-[60%] lg:grid-cols-2 lg:w-[80%] xl:grid-cols-3 xl:w-[90%]">
+        <ul className="grid gap-6 p-0 mx-auto mb-16 grid-cols-3 w-full max-w-300">
           {myEvents.map((event) => (
             <li key={event.event_id} className="list-none">
               <EventCard event={event} />
@@ -18,10 +23,14 @@ function MyEventsPage() {
           ))}
         </ul>
       ) : (
-        <section className="w-full flex justify-center items-center">
-          <h1 className="noEventsMsg text-center">
+        <section className="w-full flex flex-col justify-center items-center py-20">
+          <div className="text-6xl mb-4">📅</div>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-2 text-center">
+            No events yet
+          </h2>
+          <p className="text-gray-500 text-center">
             You're currently signed up to no events...
-          </h1>
+          </p>
         </section>
       )}
     </main>

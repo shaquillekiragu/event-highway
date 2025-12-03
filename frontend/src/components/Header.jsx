@@ -35,18 +35,22 @@ function Header() {
 
   if (isTakingLoginAction && isLoggedIn) {
     return (
-      <header>
-        <section className="flex justify-start items-center w-full h-[12vh] min-h-fit gap-[20vw]">
-          <h1 className="text-[8vh] m-0 text-black relative left-[3.5vw] my-[3vh] text-center">
+      <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
+        <section className="flex items-center w-full h-20 min-h-fit gap-20 px-8">
+          <h1 className="text-5xl m-0 text-white font-bold tracking-tight">
             Event
           </h1>
-          <p className="m-0 relative text-red">
+          <p className="m-0 relative text-red-200 bg-red-500/20 px-4 py-2 rounded-lg border border-red-400">
             LOGIN STATE ERROR. You are logged in whilst taking a login action.
-            Please click <Link to="/events">HERE</Link>...
+            Please click{" "}
+            <Link to="/events" className="underline font-semibold text-white">
+              HERE
+            </Link>
+            ...
           </p>
         </section>
-        <section className="w-screen h-[15vh] bg-black relative flex justify-between items-center">
-          <h1 className="text-[8vh] m-0 text-white relative left-[4vw] text-center">
+        <section className="w-full h-24 bg-gradient-to-r from-indigo-700 to-purple-700 relative flex justify-between items-center px-8">
+          <h1 className="text-5xl m-0 text-white font-bold tracking-tight">
             Highway
           </h1>
         </section>
@@ -54,17 +58,17 @@ function Header() {
     );
   } else if (isTakingLoginAction) {
     return (
-      <header>
-        <section className="flex justify-start items-center w-full h-[12vh] min-h-fit">
+      <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
+        <section className="flex items-center w-full h-20 min-h-fit px-8">
           <Link className="no-underline" to="/">
-            <h1 className="text-[8vh] m-0 text-black relative left-[3.5vw] my-[3vh] text-center">
+            <h1 className="text-5xl m-0 text-white font-bold tracking-tight hover:opacity-90 transition-opacity">
               Event
             </h1>
           </Link>
         </section>
-        <section className="w-screen h-[15vh] relative flex justify-between items-center">
+        <section className="w-full h-24 bg-gradient-to-r from-indigo-700 to-purple-700 relative flex justify-between items-center px-8">
           <Link className="no-underline" to="/">
-            <h1 className="text-[8vh] m-0 text-white relative left-[4vw] text-center">
+            <h1 className="text-5xl m-0 text-white font-bold tracking-tight hover:opacity-90 transition-opacity">
               Highway
             </h1>
           </Link>
@@ -73,26 +77,28 @@ function Header() {
     );
   } else if (isLoggedIn) {
     return (
-      <header>
-        <section className="flex justify-between items-center flex-nowrap w-[95%] mr-[5%]">
+      <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
+        <section className="flex justify-between items-center w-full px-8 h-20">
           <Link className="no-underline" to="/events">
-            <h1 className="text-[8vh] m-0 text-black relative left-[3.5vw] my-[3vh] text-center">
+            <h1 className="text-5xl m-0 text-white font-bold tracking-tight hover:opacity-90 transition-opacity">
               Event
             </h1>
           </Link>
-          <p className="whitespace-nowrap relative m-0 max-[599px]:invisible max-[599px]:right-[5vw] [&_span]:visible [&_span]:text-red">
-            User logged in: <span>{authUser.display_name}</span>
-          </p>
-          <button
-            className="h-[6vh] m-0 relative bg-black text-white text-xl hover:cursor-pointer"
-            onClick={handleLogoutClick}
-          >
-            Log Out
-          </button>
+          <div className="flex items-center gap-6">
+            <p className="whitespace-nowrap relative m-0 invisible sm:visible right-[5vw] sm:right-0 text-white [&_span]:visible [&_span]:text-yellow-200 [&_span]:font-semibold">
+              User logged in: <span>{authUser.display_name}</span>
+            </p>
+            <button
+              className="h-12 px-6 m-0 relative bg-white text-indigo-700 font-semibold text-lg rounded-lg hover:bg-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer"
+              onClick={handleLogoutClick}
+            >
+              Log Out
+            </button>
+          </div>
         </section>
-        <section className="w-screen h-[15vh] relative flex justify-between items-center">
+        <section className="w-full h-24 bg-gradient-to-r from-indigo-700 to-purple-700 relative flex justify-between items-center px-8">
           <Link className="no-underline" to="/events">
-            <h1 className="text-[8vh] m-0 text-white relative left-[4vw] text-center">
+            <h1 className="text-5xl m-0 text-white font-bold tracking-tight hover:opacity-90 transition-opacity">
               Highway
             </h1>
           </Link>
@@ -101,23 +107,23 @@ function Header() {
     );
   } else {
     return (
-      <header>
-        <section className="flex justify-start items-center w-full h-[12vh] min-h-fit max-[599px]:gap-[20vw] min-[600px]:max-[1079px]:gap-[15vw] lg:gap-[8vw]">
+      <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
+        <section className="flex justify-between items-center w-full h-20 min-h-fit gap-[20vw] sm:gap-[15vw] lg:gap-8 px-8">
           <Link className="no-underline" to="/events">
-            <h1 className="text-[8vh] m-0 text-black relative left-[3.5vw] my-[3vh] text-center">
+            <h1 className="text-5xl m-0 text-white font-bold tracking-tight hover:opacity-90 transition-opacity">
               Event
             </h1>
           </Link>
           <button
-            className="h-[6vh] m-0 relative left-[8vw] lg:left-[10vw] bg-black text-white text-xl hover:cursor-pointer"
+            className="h-12 px-6 m-0 relative bg-white text-indigo-700 font-semibold text-lg rounded-lg hover:bg-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer"
             onClick={handleLoginClick}
           >
             Welcome Page (Login)
           </button>
         </section>
-        <section className="w-screen h-[15vh] relative flex justify-between items-center">
+        <section className="w-full h-24 bg-gradient-to-r from-indigo-700 to-purple-700 relative flex justify-between items-center px-8">
           <Link className="no-underline" to="/events">
-            <h1 className="text-[8vh] m-0 text-white relative left-[4vw] text-center">
+            <h1 className="text-5xl m-0 text-white font-bold tracking-tight hover:opacity-90 transition-opacity">
               Highway
             </h1>
           </Link>

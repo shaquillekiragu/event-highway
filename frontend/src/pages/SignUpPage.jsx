@@ -76,12 +76,19 @@ function SignUpPage() {
   }
 
   return (
-    <main className="w-full min-h-[75vh] flex justify-center">
-      <article className="w-full flex flex-col justify-center">
-        <header className="col-start-2 col-end-3 w-full h-fit flex justify-center mt-10 mb-4">
-          <h2>Sign Up:</h2>
+    <main className="w-full min-h-[75vh] flex justify-center items-center py-16 px-8">
+      <article className="w-full max-w-2xl flex flex-col justify-center bg-white rounded-2xl shadow-2xl p-10 border border-gray-200">
+        <header className="w-full h-fit flex justify-center mb-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              Create Account
+            </h2>
+            <p className="text-gray-600">
+              Join Event Highway and start discovering events
+            </p>
+          </div>
         </header>
-        <section className="col-start-2 col-end-3 w-full h-fit">
+        <section className="w-full h-fit">
           <SignUpForm
             handleSubmit={handleSubmit}
             handleFirstNameChange={handleFirstNameChange}
@@ -92,13 +99,17 @@ function SignUpPage() {
             handleIsAdminChange={handleIsAdminChange}
           />
         </section>
-        <section className="flex flex-col justify-center m-10">
+        <section className="flex flex-col justify-center mt-6 min-h-8">
           {isSubmitting && (
-            <p className="statusMessage">
+            <p className="text-center text-indigo-600 font-medium">
               <em>Signing you up...</em>
             </p>
           )}
-          {errorMessage && <p className="errorMessage">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="text-center text-red-600 font-medium">
+              {errorMessage}
+            </p>
+          )}
         </section>
       </article>
     </main>

@@ -67,54 +67,57 @@ function LoginPage() {
     return <Loading page={"Login"} />;
   }
   return (
-    <main className="min-h-[75vh] flex justify-center items-center">
-      <article className="flex flex-col items-center w-full p-2 sm:p-4 box-border relative -top-[10vh]">
-        <header>
-          <h2 className="text-xl sm:text-2xl m-0">Login:</h2>
+    <main className="min-h-[75vh] flex justify-center items-center py-16 px-8">
+      <article className="flex flex-col items-center w-full max-w-md bg-white rounded-2xl shadow-2xl p-10 border border-gray-200">
+        <header className="mb-8">
+          <h2 className="text-3xl font-bold text-gray-800 m-0">Login</h2>
+          <p className="text-gray-600 mt-2">
+            Welcome back! Please login to your account.
+          </p>
         </header>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 w-full max-w-[400px] [&_label]:font-bold [&_input]:p-2 sm:[&_input]:p-3 [&_input]:border [&_input]:border-solid [&_input]:border-[#ccc] [&_input]:rounded [&_input]:text-base [&_input]:w-full [&_button]:self-center [&_button]:w-1/2 [&_button]:p-2 sm:[&_button]:p-3 [&_button]:mt-[2.5vh]"
+          className="flex flex-col gap-5 w-full [&_label]:font-semibold [&_label]:text-gray-700 [&_label]:text-sm [&_input]:p-4 [&_input]:border [&_input]:border-gray-300 [&_input]:rounded-lg [&_input]:text-base [&_input]:w-full [&_input]:focus:outline-none [&_input]:focus:ring-2 [&_input]:focus:ring-indigo-500 [&_input]:focus:border-transparent [&_input]:transition-all"
         >
-          <label htmlFor="email">Email Address: </label>
-          <input
-            placeholder="Enter your email address..."
-            value={email}
-            id="email"
-            type="text"
-            onChange={handleEmailChange}
-            required
-          />
-          <label htmlFor="user_password">Password: </label>
-          <input
-            placeholder="Enter your password..."
-            value={user_password}
-            id="user_password"
-            type="password"
-            onChange={handlePasswordChange}
-            required
-          />
+          <div>
+            <label htmlFor="email">Email Address</label>
+            <input
+              placeholder="Enter your email address..."
+              value={email}
+              id="email"
+              type="text"
+              onChange={handleEmailChange}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="user_password">Password</label>
+            <input
+              placeholder="Enter your password..."
+              value={user_password}
+              id="user_password"
+              type="password"
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
           <button
             type="submit"
-            className="h-[6vh] bg-black text-white text-xl hover:cursor-pointer"
+            className="h-14 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-lg hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transition-all duration-200 cursor-pointer mt-2"
           >
             Login
           </button>
         </form>
-        <section className="text-center text-sm text-[#666]">
-          {invalidEmailMsg ? (
-            <span className="text-red-500">
-              User not found. Please enter in a valid email address.
+        <section className="text-center text-sm text-red-600 mt-4 min-h-5">
+          {invalidEmailMsg && (
+            <span className="block">
+              User not found. Please enter a valid email address.
             </span>
-          ) : (
-            <></>
           )}
-          {invalidPasswordMsg ? (
-            <span className="text-red-500">
+          {invalidPasswordMsg && (
+            <span className="block">
               Incorrect password. Please enter the correct password.
             </span>
-          ) : (
-            <></>
           )}
         </section>
       </article>
