@@ -184,6 +184,7 @@ createdb event_highway_test
 
 Then run the first command again.
 <br>
+<br>
 
 ## Running the Frontend Locally
 
