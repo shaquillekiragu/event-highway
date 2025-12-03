@@ -43,7 +43,7 @@ function EventsPage() {
   }
 
   const renderEventList = () => (
-    <ul className="grid gap-6 p-0 mx-auto mb-16 grid-cols-3 w-full max-w-xl">
+    <ul className="grid gap-6 p-0 mx-auto mb-16 grid-cols-3 w-full max-w-300">
       {eventsList.map((event) => (
         <li key={event.event_id} className="list-none">
           <EventCard event={event} />
