@@ -71,7 +71,7 @@ Henry456
 You will need to have these versions or newer for the following technologies in order to run this project:
 
 - Node.js - **v20.9.0** or newer
-- PostgreSQL - **v20.x** or later
+- PostgreSQL - **v12.x** or later (tested with v14.15 locally by developer)
   <br>
 
 ## Installation and Backend Setup
@@ -86,7 +86,7 @@ https://github.com/shaquillekiragu/event-highway.git
 ```
 
 2. Once you've opened the repository, at the repository's root create a `.env.test` and `.env.development` file, and declare the variable below in each .env file, assigning the corresponding values to each variable as shown below.
-<br>
+   <br>
 
 .env.test:
 
@@ -124,6 +124,8 @@ npm install
 npm run setup-dbs
 ```
 
+**Note:** This command connects to the default `postgres` database to create the new databases. Make sure PostgreSQL is running and you have permission to create databases.
+
 <br>
 
 6. And now seed the databases with this command:
@@ -138,20 +140,29 @@ Installation is now complete.
 <br>
 <br>
 
-## Running the Database Locally
+## Running the Backend Server
 
-To set and run the event_highway database, run the two following commands one at a time:
+To start the backend server, run the following commands:
+
+**Option 1: Set environment variable in the same command:**
+
+```
+PGDATABASE=event_highway
+npm run start
+```
+
+**Option 2: Set environment variable separately (persists in current terminal session):**
 
 ```
 export PGDATABASE=event_highway
-```
-```
 npm run start
 ```
 
 <br>
 
-If you see this message in the console: `PGDATABASE: event_highway Listening on 9090...`, you have successfully set up this project's backend.
+If you see this message in the console: `Listening on 9090...`, you have successfully started the backend server.
+
+**Note:** Make sure PostgreSQL is running on your system. The server will connect to the `event_highway` database.
 <br>
 <br>
 
@@ -162,6 +173,7 @@ In order to test the API endpoints on this server, run the following commands:
 ```
 npm run test
 ```
+
 <br>
 
 If this fails, try running:
@@ -200,14 +212,14 @@ npm install
 ```
 npm run dev
 ```
+
 <br>
 
 4. Open the provided localhost URL in your browser.
    <br><br>
 
-5. You should now be able to view the welcome page for Event Highway! You can proceed to use the website without being logged in, but this will only allow you to view events that are currently listed on the site. To access more features, you'll need to either create an account, or login to an existing account.
-   Scroll to the bottom of this README file to access both test account you can use for accessing additional features by logging in, both as a user or as an event admin.
-   <br>
+You should now be able to view the welcome page for Event Highway! You can proceed to use the website without being logged in, but this will only allow you to view events that are currently listed on the site. To access more features, you'll need to either create an account, or login to an existing account. There are two test account for each account type at the top of the readme file.
+<br>
 <br>
 I hope you have an incredible experience with Event Highway!
 <br>

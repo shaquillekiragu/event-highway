@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
-import EventCard from "../components/EventCard/EventCard.jsx";
+import EventCard from "../components/EventCard.jsx";
 import { getEvents } from "../api.js";
-import Loading from "../components/Loading/Loading.jsx";
-import "../stylesheets/EventsPage.css";
+import Loading from "../components/Loading.jsx";
 
 function EventsPage() {
   const [eventsList, setEventsList] = useState([]);
@@ -21,8 +20,11 @@ function EventsPage() {
     async function fetchEvents() {
       try {
         const response = await getEvents();
-        setEventsList(response.data.events);
-        setIsLoading(false);
+        if (response && response.data && response.data.events) {
+          setEventsList(response.data.events);
+        } else {
+          setError("Failed to load events. Please try again later.");
+        }
       } catch (err) {
         setError("Failed to load events. Please try again later.");
       } finally {
@@ -30,7 +32,7 @@ function EventsPage() {
       }
     }
     fetchEvents();
-  }, [eventsList]);
+  }, []);
 
   function handleCreateClick() {
     navigate("/create-event");
@@ -41,9 +43,9 @@ function EventsPage() {
   }
 
   const renderEventList = () => (
-    <ul className="gridContainer">
+    <ul className="grid gap-6 p-0 mx-auto mb-16 grid-cols-3 w-full max-w-300">
       {eventsList.map((event) => (
-        <li key={event.event_id}>
+        <li key={event.event_id} className="list-none">
           <EventCard event={event} />
         </li>
       ))}
@@ -55,35 +57,56 @@ function EventsPage() {
   } else if (error) {
     return (
       <main className="pagePageHeight">
-        <h1 className="eventsPageTitle">Events</h1>
+        <h1 className="my-[10vh] mb-[6vh] text-center">Events</h1>
         <p className="errorText">{error}</p>
       </main>
     );
   } else if (isLoggedIn && isAdmin) {
     return (
-      <main className="fullPageHeight">
-        <header className="adminButtonHeader">
-          <button onClick={handleCreateClick}>Create Event</button>
-          <button onClick={handleMyEventsClick}>My Events</button>
+      <main className="min-h-screen py-8 px-8">
+        <header className="flex justify-end gap-4 mb-8">
+          <button
+            className="h-12 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-lg hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+            onClick={handleCreateClick}
+          >
+            Create Event
+          </button>
+          <button
+            onClick={handleMyEventsClick}
+            className="h-12 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg rounded-lg hover:from-purple-700 hover:to-pink-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+          >
+            My Events
+          </button>
         </header>
-        <h1 className="eventsPageTitle">Events</h1>
+        <h1 className="text-5xl font-bold text-gray-800 mb-12 text-center">
+          Discover Events
+        </h1>
         {renderEventList()}
       </main>
     );
   } else if (isLoggedIn) {
     return (
-      <main className="fullPageHeight">
-        <header className="userButtonHeader">
-          <button onClick={handleMyEventsClick}>My Events</button>
+      <main className="min-h-screen py-8 px-8">
+        <header className="flex justify-end mb-8">
+          <button
+            onClick={handleMyEventsClick}
+            className="h-12 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg rounded-lg hover:from-purple-700 hover:to-pink-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+          >
+            My Events
+          </button>
         </header>
-        <h1 className="eventsPageTitle">Events</h1>
+        <h1 className="text-5xl font-bold text-gray-800 mb-12 text-center">
+          Discover Events
+        </h1>
         {renderEventList()}
       </main>
     );
   } else {
     return (
-      <main className="fullPageHeight">
-        <h1 className="eventsPageTitle">Events</h1>
+      <main className="min-h-screen py-8 px-8">
+        <h1 className="text-5xl font-bold text-gray-800 mb-12 text-center">
+          Discover Events
+        </h1>
         {renderEventList()}
       </main>
     );

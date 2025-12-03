@@ -383,7 +383,6 @@ async function updateEvent(
         thumbnail,
       ]
     );
-    console.log(rows[0], " <<< rows[0] updateEvent model");
     if (!rows || !rows.length) {
       throw {
         status: 404,

@@ -3,8 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getEvent, deleteEvent } from "../api";
 import { useAuth } from "../contexts/UserContext.jsx";
 import FormatDatetimeFrontend from "../components/FormatDatetime/FormatDatetimeFrontend";
-import Loading from "../components/Loading/Loading.jsx";
-import "../stylesheets/ViewEvent.css";
+import Loading from "../components/Loading.jsx";
 
 function ViewEvent() {
   const { event_id } = useParams();
@@ -108,62 +107,138 @@ function ViewEvent() {
     return <Loading page={"View Event"} />;
   }
   return (
-    <main className="partPageHeight viewEventContainer">
-      {isLoggedIn ? (
-        <section className="viewLayerOne">
+    <main className="min-h-[75vh] flex flex-col items-center gap-8 py-12 px-8 max-w-4xl mx-auto">
+      {isLoggedIn && (
+        <section className="w-full flex justify-end mb-4">
           {hasSignedUp === false ? (
-            <button onClick={handleEventSignup}>Sign up for this event!</button>
+            <button
+              onClick={handleEventSignup}
+              className="h-12 px-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold text-lg rounded-lg hover:from-green-600 hover:to-emerald-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+            >
+              Sign up for this event!
+            </button>
           ) : (
-            <button onClick={handleEventRemoval}>
-              I'm no longer attending this event...
+            <button
+              onClick={handleEventRemoval}
+              className="h-12 px-6 bg-gradient-to-r from-red-500 to-pink-600 text-white font-semibold text-lg rounded-lg hover:from-red-600 hover:to-pink-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+            >
+              Cancel Registration
             </button>
           )}
         </section>
-      ) : (
-        <></>
       )}
-      <section className="viewLayerTwo">
-        <h1>{eventObj.event_name}</h1>
-        <p>
-          Date posted:{" "}
-          {<FormatDatetimeFrontend sqlTimestamp={eventObj.created_at} />}
-        </p>
-        <p>Publisher: {eventObj.publisher}</p>
-        <p>Category: {eventObj.category}</p>
-        <p>
-          Event Start:{" "}
-          {<FormatDatetimeFrontend sqlTimestamp={eventObj.event_start} />}
-        </p>
-        <p>
-          Event Finish:{" "}
-          {<FormatDatetimeFrontend sqlTimestamp={eventObj.event_end} />}
-        </p>
-        <p>Host: {eventObj.host}</p>
-        <p>Description: {eventObj.event_description}</p>
-        <p>
-          {eventObj.is_online
-            ? "Venue: This event is online"
-            : `Venue: The venue for this event is: ${eventObj.venue}, ${eventObj.venue_address}`}
-        </p>
-        <p>
-          {eventObj.is_free
-            ? "Price: This event is free"
-            : `Price: The price for this event is: £${eventObj.cost_in_gbp}`}
-        </p>
-        <p>
-          {eventObj.is_limit
-            ? `Attendee Limit: The attendee limit for this event is: ${eventObj.attendee_limit}`
-            : "Attendee Limit: There is no attendee limit for this event"}
-        </p>
-      </section>
-      {isLoggedIn && authUser.is_admin ? (
-        <section className="viewLayerThree">
-          <button onClick={handleUpdateClick}>Update Event</button>
-          <button onClick={handleDeleteClick}>Delete Event</button>
-        </section>
-      ) : (
-        <></>
-      )}
+
+      <article className="w-full bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
+        <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
+          {eventObj.event_name}
+        </h1>
+
+        <div className="grid grid-cols-2 gap-6 mb-8">
+          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-lg border border-indigo-100">
+            <p className="text-sm text-gray-600 mb-1">Category</p>
+            <p className="text-lg font-semibold text-indigo-700">
+              {eventObj.category}
+            </p>
+          </div>
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-100">
+            <p className="text-sm text-gray-600 mb-1">Host</p>
+            <p className="text-lg font-semibold text-purple-700">
+              {eventObj.host}
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-4 mb-8">
+          <div className="flex gap-3">
+            <span className="text-gray-500 font-medium min-w-35">
+              Event Start:
+            </span>
+            <span className="text-gray-800 font-semibold">
+              {eventObj.event_start ? (
+                <FormatDatetimeFrontend sqlTimestamp={eventObj.event_start} />
+              ) : (
+                "TBD"
+              )}
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-gray-500 font-medium min-w-35">
+              Event Finish:
+            </span>
+            <span className="text-gray-800 font-semibold">
+              {eventObj.event_end ? (
+                <FormatDatetimeFrontend sqlTimestamp={eventObj.event_end} />
+              ) : (
+                "TBD"
+              )}
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-gray-500 font-medium min-w-35">
+              Date posted:
+            </span>
+            <span className="text-gray-800">
+              {<FormatDatetimeFrontend sqlTimestamp={eventObj.created_at} />}
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-gray-500 font-medium min-w-35">
+              Publisher:
+            </span>
+            <span className="text-gray-800">{eventObj.publisher}</span>
+          </div>
+        </div>
+
+        <div className="bg-gray-50 p-6 rounded-lg mb-8">
+          <p className="text-sm text-gray-600 mb-2 font-medium">Description</p>
+          <p className="text-gray-800 leading-relaxed">
+            {eventObj.event_description}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-3 gap-4 mb-8">
+          <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-100">
+            <p className="text-xs text-gray-600 mb-1">Venue</p>
+            <p className="text-sm font-semibold text-blue-700">
+              {eventObj.is_online ? "🌐 Online" : eventObj.venue}
+            </p>
+            {!eventObj.is_online && (
+              <p className="text-xs text-gray-600 mt-1">
+                {eventObj.venue_address}
+              </p>
+            )}
+          </div>
+          <div className="text-center p-4 bg-green-50 rounded-lg border border-green-100">
+            <p className="text-xs text-gray-600 mb-1">Price</p>
+            <p className="text-sm font-semibold text-green-700">
+              {eventObj.is_free ? "🆓 Free" : `£${eventObj.cost_in_gbp}`}
+            </p>
+          </div>
+          <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-100">
+            <p className="text-xs text-gray-600 mb-1">Attendee Limit</p>
+            <p className="text-sm font-semibold text-purple-700">
+              {eventObj.is_limit ? eventObj.attendee_limit : "Unlimited"}
+            </p>
+          </div>
+        </div>
+
+        {isLoggedIn && authUser.is_admin && (
+          <section className="w-full flex justify-between gap-4 pt-6 border-t border-gray-200">
+            <button
+              onClick={handleUpdateClick}
+              className="flex-1 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-lg hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+            >
+              Update Event
+            </button>
+            <button
+              onClick={handleDeleteClick}
+              className="flex-1 h-12 bg-gradient-to-r from-red-500 to-pink-600 text-white font-semibold text-lg rounded-lg hover:from-red-600 hover:to-pink-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+            >
+              Delete Event
+            </button>
+          </section>
+        )}
+      </article>
     </main>
   );
 }

@@ -4,7 +4,7 @@ export default function formatDatetimeForDB(datetime) {
     "$3-$2-$1T$4:$5:00"
     // Causing an error upon patchEvent due to var value of undefined.
   );
-  console.log(formattedDatetime, " << formattedDatetime");
+  // console.log(formattedDatetime, " << formattedDatetime");
   return formattedDatetime;
 }
 
@@ -15,7 +15,7 @@ export function currentDatetimeForDB() {
   const currentTime = `T${currentDatetime.getHours()}:${currentDatetime.getMinutes()}:00`;
 
   const datetime = `${currentDate}${currentTime}`;
-  console.log(datetime, " <<< dateTime");
+  // console.log(datetime, " <<< dateTime");
 
   return datetime;
 }

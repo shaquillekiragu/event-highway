@@ -1,10 +1,9 @@
-import "../stylesheets/UpdateEvent.css";
 import { useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
 import { patchEvent } from "../api";
-import UpdateEventForm from "../components/UpdateEventForm/UpdateEventForm";
-import NotAnAdmin from "../components/NotAnAdmin/NotAnAdmin";
+import UpdateEventForm from "../components/UpdateEventForm";
+import NotAnAdmin from "../components/NotAnAdmin";
 import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
 import stringToNum from "../utils";
 
@@ -51,9 +50,9 @@ function UpdateEvent() {
       event.preventDefault();
       setIsLoading(true);
 
-      console.log(eventData.event_start, " <<< event_start");
-      console.log(eventData.event_end, " <<< event_end");
-      console.log(eventData.created_at, " <<< created_at");
+      // console.log(eventData.event_start, " <<< event_start");
+      // console.log(eventData.event_end, " <<< event_end");
+      // console.log(eventData.created_at, " <<< created_at");
 
       // const formattedEventStart = formatDatetimeForDB(eventData.event_start);
       // const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
@@ -98,13 +97,14 @@ function UpdateEvent() {
     return <NotAnAdmin />;
   }
   return (
-    <main className="updateEventContainer fullPageHeight">
-      <header className="updateEventLayerOne">
-        <h2>Update Event</h2>
+    <main className="min-h-screen flex flex-col justify-center items-center py-12 px-8">
+      <header className="text-center mb-8">
+        <h2 className="text-4xl font-bold text-gray-800 mb-3">Update Event</h2>
+        <p className="text-gray-600 text-sm">Modify the event details below</p>
       </header>
-      <section className="updateEventLayerTwo">
+      <section className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
         {isLoading ? (
-          <p>Loading...</p>
+          <p className="text-center text-indigo-600 font-medium">Loading...</p>
         ) : (
           <UpdateEventForm
             eventData={eventData}
@@ -113,8 +113,10 @@ function UpdateEvent() {
           />
         )}
       </section>
-      <section className="updateEventLayerThree">
-        {error && <p className="errorMessage">{error}</p>}
+      <section className="mt-6 min-h-8">
+        {error && (
+          <p className="text-center text-red-600 font-medium">{error}</p>
+        )}
       </section>
     </main>
   );

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL =
   process.env.NODE_ENV === "production"
-    ? "https://event-highway.onrender.com"
+    ? "https://event-highway-backend.onrender.com"
     : "http://localhost:9090";
 
 // GET:

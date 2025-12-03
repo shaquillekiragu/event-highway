@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
 import { postUser } from "../api";
-import SignUpForm from "../components/SignUpForm/SignUpForm.jsx";
-import "../stylesheets/SignUpPage.css";
+import SignUpForm from "../components/SignUpForm.jsx";
 
 function SignUpPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -77,12 +76,19 @@ function SignUpPage() {
   }
 
   return (
-    <main className="partPageHeight signupPageContainer">
-      <article className="signupContainer">
-        <header className="signupLayerOne">
-          <h2>Sign Up:</h2>
+    <main className="w-full min-h-[75vh] flex justify-center items-center py-16 px-8">
+      <article className="w-full max-w-2xl flex flex-col justify-center bg-white rounded-2xl shadow-2xl p-10 border border-gray-200">
+        <header className="w-full h-fit flex justify-center mb-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              Create Account
+            </h2>
+            <p className="text-gray-600">
+              Join Event Highway and start discovering events
+            </p>
+          </div>
         </header>
-        <section className="signupLayerTwo">
+        <section className="w-full h-fit">
           <SignUpForm
             handleSubmit={handleSubmit}
             handleFirstNameChange={handleFirstNameChange}
@@ -93,13 +99,17 @@ function SignUpPage() {
             handleIsAdminChange={handleIsAdminChange}
           />
         </section>
-        <section className="signupLayerThree">
+        <section className="flex flex-col justify-center mt-6 min-h-8">
           {isSubmitting && (
-            <p className="statusMessage">
+            <p className="text-center text-indigo-600 font-medium">
               <em>Signing you up...</em>
             </p>
           )}
-          {errorMessage && <p className="errorMessage">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="text-center text-red-600 font-medium">
+              {errorMessage}
+            </p>
+          )}
         </section>
       </article>
     </main>
