@@ -104,7 +104,7 @@ function UpdateEvent() {
       </header>
       <section className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
         {isLoading ? (
-          <p className="text-center text-indigo-600 font-medium">Loading...</p>
+          <p className="text-center text-blue-600 font-medium">Loading...</p>
         ) : (
           <UpdateEventForm
             eventData={eventData}

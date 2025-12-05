@@ -3,26 +3,36 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div className="grid grid-cols-2 gap-5">
         <div className="flex flex-col">
-          <label htmlFor="event_name" className="mb-2 font-semibold text-gray-700 text-sm">Event Name</label>
+          <label
+            htmlFor="event_name"
+            className="mb-2 font-semibold text-gray-700 text-sm"
+          >
+            Event Name
+          </label>
           <input
             type="text"
             id="event_name"
             name="event_name"
             value={eventData.event_name}
             onChange={handleChange}
-            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             required
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="host" className="mb-2 font-semibold text-gray-700 text-sm">Host</label>
+          <label
+            htmlFor="host"
+            className="mb-2 font-semibold text-gray-700 text-sm"
+          >
+            Host
+          </label>
           <input
             type="text"
             id="host"
             name="host"
             value={eventData.host}
             onChange={handleChange}
-            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             required
           />
         </div>
@@ -30,53 +40,73 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
 
       <div className="grid grid-cols-2 gap-5">
         <div className="flex flex-col">
-          <label htmlFor="event_start" className="mb-2 font-semibold text-gray-700 text-sm">Event Start Time</label>
+          <label
+            htmlFor="event_start"
+            className="mb-2 font-semibold text-gray-700 text-sm"
+          >
+            Event Start Time
+          </label>
           <input
             type="datetime-local"
             id="event_start"
             name="event_start"
             value={eventData.event_start}
             onChange={handleChange}
-            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             required
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="event_end" className="mb-2 font-semibold text-gray-700 text-sm">Event End Time</label>
+          <label
+            htmlFor="event_end"
+            className="mb-2 font-semibold text-gray-700 text-sm"
+          >
+            Event End Time
+          </label>
           <input
             type="datetime-local"
             id="event_end"
             name="event_end"
             value={eventData.event_end}
             onChange={handleChange}
-            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             required
           />
         </div>
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="category" className="mb-2 font-semibold text-gray-700 text-sm">Category</label>
+        <label
+          htmlFor="category"
+          className="mb-2 font-semibold text-gray-700 text-sm"
+        >
+          Category
+        </label>
         <input
           type="text"
           id="category"
           name="category"
           value={eventData.category}
           onChange={handleChange}
-          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
           required
         />
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="event_description" className="mb-2 font-semibold text-gray-700 text-sm">Description</label>
+        <label
+          htmlFor="event_description"
+          className="mb-2 font-semibold text-gray-700 text-sm"
+        >
+          Description
+        </label>
         <textarea
           id="event_description"
           name="event_description"
           value={eventData.event_description}
           onChange={handleChange}
           rows="4"
-          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
+          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
           required
         />
       </div>
@@ -89,15 +119,22 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
             name="is_online"
             checked={eventData.is_online}
             onChange={handleChange}
-            className="w-5 h-5 text-indigo-600 focus:ring-indigo-500 rounded"
+            className="w-5 h-5 text-blue-600 focus:ring-blue-500 rounded"
           />
-          <span className="font-semibold text-gray-700">This event is online</span>
+          <span className="font-semibold text-gray-700">
+            This event is online
+          </span>
         </label>
       </div>
 
       <div className="grid grid-cols-2 gap-5">
         <div className="flex flex-col">
-          <label htmlFor="venue" className="mb-2 font-semibold text-gray-700 text-sm">Venue Name</label>
+          <label
+            htmlFor="venue"
+            className="mb-2 font-semibold text-gray-700 text-sm"
+          >
+            Venue Name
+          </label>
           <input
             type="text"
             id="venue"
@@ -105,11 +142,16 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
             value={eventData.venue}
             onChange={handleChange}
             disabled={eventData.is_online}
-            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="venue_address" className="mb-2 font-semibold text-gray-700 text-sm">Venue Address</label>
+          <label
+            htmlFor="venue_address"
+            className="mb-2 font-semibold text-gray-700 text-sm"
+          >
+            Venue Address
+          </label>
           <input
             type="text"
             id="venue_address"
@@ -117,7 +159,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
             value={eventData.venue_address}
             onChange={handleChange}
             disabled={eventData.is_online}
-            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
           />
         </div>
       </div>
@@ -130,14 +172,21 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
             name="is_free"
             checked={eventData.is_free}
             onChange={handleChange}
-            className="w-5 h-5 text-indigo-600 focus:ring-indigo-500 rounded"
+            className="w-5 h-5 text-blue-600 focus:ring-blue-500 rounded"
           />
-          <span className="font-semibold text-gray-700">This event is free</span>
+          <span className="font-semibold text-gray-700">
+            This event is free
+          </span>
         </label>
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="cost_in_gbp" className="mb-2 font-semibold text-gray-700 text-sm">Cost (GBP)</label>
+        <label
+          htmlFor="cost_in_gbp"
+          className="mb-2 font-semibold text-gray-700 text-sm"
+        >
+          Cost (GBP)
+        </label>
         <input
           type="number"
           id="cost_in_gbp"
@@ -145,7 +194,7 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
           value={eventData.cost_in_gbp}
           onChange={handleChange}
           disabled={eventData.is_free}
-          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
 
@@ -157,14 +206,21 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
             name="is_limit"
             checked={eventData.is_limit}
             onChange={handleChange}
-            className="w-5 h-5 text-indigo-600 focus:ring-indigo-500 rounded"
+            className="w-5 h-5 text-blue-600 focus:ring-blue-500 rounded"
           />
-          <span className="font-semibold text-gray-700">Set attendee limit</span>
+          <span className="font-semibold text-gray-700">
+            Set attendee limit
+          </span>
         </label>
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="attendee_limit" className="mb-2 font-semibold text-gray-700 text-sm">Attendee Limit</label>
+        <label
+          htmlFor="attendee_limit"
+          className="mb-2 font-semibold text-gray-700 text-sm"
+        >
+          Attendee Limit
+        </label>
         <input
           type="number"
           id="attendee_limit"
@@ -172,13 +228,13 @@ function CreateEventForm({ eventData, handleSubmit, handleChange }) {
           value={eventData.attendee_limit}
           onChange={handleChange}
           disabled={!eventData.is_limit}
-          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
 
       <button
         type="submit"
-        className="mt-6 h-14 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-lg hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+        className="mt-6 h-14 w-full bg-gradient-to-r from-blue-600 to-teal-600 text-white font-semibold text-lg rounded-lg hover:from-blue-700 hover:to-teal-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
       >
         Create Event
       </button>

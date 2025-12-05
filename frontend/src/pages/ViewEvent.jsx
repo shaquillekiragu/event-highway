@@ -134,15 +134,15 @@ function ViewEvent() {
         </h1>
 
         <div className="grid grid-cols-2 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-lg border border-indigo-100">
+          <div className="bg-gradient-to-br from-blue-50 to-teal-50 p-4 rounded-lg border border-blue-100">
             <p className="text-sm text-gray-600 mb-1">Category</p>
-            <p className="text-lg font-semibold text-indigo-700">
+            <p className="text-lg font-semibold text-blue-700">
               {eventObj.category}
             </p>
           </div>
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-100">
+          <div className="bg-gradient-to-br from-teal-50 to-cyan-50 p-4 rounded-lg border border-teal-100">
             <p className="text-sm text-gray-600 mb-1">Host</p>
-            <p className="text-lg font-semibold text-purple-700">
+            <p className="text-lg font-semibold text-teal-700">
               {eventObj.host}
             </p>
           </div>
@@ -214,9 +214,9 @@ function ViewEvent() {
               {eventObj.is_free ? "🆓 Free" : `£${eventObj.cost_in_gbp}`}
             </p>
           </div>
-          <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-100">
+          <div className="text-center p-4 bg-teal-50 rounded-lg border border-teal-100">
             <p className="text-xs text-gray-600 mb-1">Attendee Limit</p>
-            <p className="text-sm font-semibold text-purple-700">
+            <p className="text-sm font-semibold text-teal-700">
               {eventObj.is_limit ? eventObj.attendee_limit : "Unlimited"}
             </p>
           </div>
@@ -226,7 +226,7 @@ function ViewEvent() {
           <section className="w-full flex justify-between gap-4 pt-6 border-t border-gray-200">
             <button
               onClick={handleUpdateClick}
-              className="flex-1 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-lg hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+              className="flex-1 h-12 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-semibold text-lg rounded-lg hover:from-blue-700 hover:to-teal-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
             >
               Update Event
             </button>

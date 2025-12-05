@@ -25,7 +25,7 @@ function SignUpForm({
             type="text"
             placeholder="Enter your first name"
             onChange={handleFirstNameChange}
-            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             required
           />
         </section>
@@ -42,7 +42,7 @@ function SignUpForm({
             type="text"
             placeholder="Enter your last name (optional)"
             onChange={handleLastNameChange}
-            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
           />
         </section>
       </div>
@@ -59,7 +59,7 @@ function SignUpForm({
           type="text"
           placeholder="Choose a display name"
           onChange={handleDisplayNameChange}
-          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
           required
         />
       </section>
@@ -76,7 +76,7 @@ function SignUpForm({
           type="email"
           placeholder="Enter your email address"
           onChange={handleEmailChange}
-          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
           required
         />
       </section>
@@ -93,7 +93,7 @@ function SignUpForm({
           type="password"
           placeholder="Enter your password"
           onChange={handlePasswordChange}
-          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+          className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
           required
         />
       </section>
@@ -110,7 +110,7 @@ function SignUpForm({
               name="is_admin"
               value={true}
               onChange={handleIsAdminChange}
-              className="w-4 h-4 text-indigo-600 focus:ring-indigo-500"
+              className="w-4 h-4 text-blue-600 focus:ring-blue-500"
             />
             <label htmlFor="admin_yes" className="font-medium text-gray-700">
               Yes
@@ -123,7 +123,7 @@ function SignUpForm({
               name="is_admin"
               value={false}
               onChange={handleIsAdminChange}
-              className="w-4 h-4 text-indigo-600 focus:ring-indigo-500"
+              className="w-4 h-4 text-blue-600 focus:ring-blue-500"
               defaultChecked
             />
             <label htmlFor="admin_no" className="font-medium text-gray-700">
@@ -135,7 +135,7 @@ function SignUpForm({
 
       <button
         type="submit"
-        className="w-full h-14 mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-lg hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+        className="w-full h-14 mt-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-semibold text-lg rounded-lg hover:from-blue-700 hover:to-teal-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
       >
         Sign Up
       </button>

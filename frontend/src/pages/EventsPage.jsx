@@ -66,14 +66,14 @@ function EventsPage() {
       <main className="min-h-screen py-8 px-8">
         <header className="flex justify-end gap-4 mb-8">
           <button
-            className="h-12 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-lg hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+            className="h-12 px-6 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-semibold text-lg rounded-lg hover:from-blue-700 hover:to-teal-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
             onClick={handleCreateClick}
           >
             Create Event
           </button>
           <button
             onClick={handleMyEventsClick}
-            className="h-12 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg rounded-lg hover:from-purple-700 hover:to-pink-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+            className="h-12 px-6 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-semibold text-lg rounded-lg hover:from-blue-700 hover:to-teal-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
           >
             My Events
           </button>
@@ -90,7 +90,7 @@ function EventsPage() {
         <header className="flex justify-end mb-8">
           <button
             onClick={handleMyEventsClick}
-            className="h-12 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg rounded-lg hover:from-purple-700 hover:to-pink-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
+            className="h-12 px-6 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-semibold text-lg rounded-lg hover:from-blue-700 hover:to-teal-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
           >
             My Events
           </button>

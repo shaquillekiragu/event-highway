@@ -101,7 +101,7 @@ function SignUpPage() {
         </section>
         <section className="flex flex-col justify-center mt-6 min-h-8">
           {isSubmitting && (
-            <p className="text-center text-indigo-600 font-medium">
+            <p className="text-center text-blue-600 font-medium">
               <em>Signing you up...</em>
             </p>
           )}

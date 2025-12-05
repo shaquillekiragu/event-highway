@@ -74,7 +74,7 @@ function LoginPage() {
         </header>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-5 w-full [&_label]:font-semibold [&_label]:text-gray-700 [&_label]:text-sm [&_input]:p-4 [&_input]:border [&_input]:border-gray-300 [&_input]:rounded-lg [&_input]:text-base [&_input]:w-full [&_input]:focus:outline-none [&_input]:focus:ring-2 [&_input]:focus:ring-indigo-500 [&_input]:focus:border-transparent [&_input]:transition-all"
+          className="flex flex-col gap-5 w-full [&_label]:font-semibold [&_label]:text-gray-700 [&_label]:text-sm [&_input]:p-4 [&_input]:border [&_input]:border-gray-300 [&_input]:rounded-lg [&_input]:text-base [&_input]:w-full [&_input]:focus:outline-none [&_input]:focus:ring-2 [&_input]:focus:ring-blue-500 [&_input]:focus:border-transparent [&_input]:transition-all"
         >
           <div>
             <label htmlFor="email">Email Address</label>
@@ -100,7 +100,7 @@ function LoginPage() {
           </div>
           <button
             type="submit"
-            className="h-14 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-lg hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transition-all duration-200 cursor-pointer mt-2"
+            className="h-14 w-full bg-gradient-to-r from-blue-600 to-teal-600 text-white font-semibold text-lg rounded-lg hover:from-blue-700 hover:to-teal-700 hover:shadow-lg transition-all duration-200 cursor-pointer mt-2"
           >
             Login
           </button>
