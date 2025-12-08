@@ -13,9 +13,9 @@ function WelcomePage() {
 
   return (
     <main className="min-h-[75vh] flex justify-center items-center gap-16 py-16 px-8">
-      <div className="">
+      {/* <div className="">
         <p className=""></p>
-      </div>
+      </div> */}
       <article className="flex flex-col justify-center items-center gap-8 pt-12 pb-16 px-16 bg-white rounded-2xl shadow-2xl border border-gray-200 max-w-2xl w-full h-fit">
         <header className="text-center">
           <h1 className="py-2 mb-4 text-5xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
