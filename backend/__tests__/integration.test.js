@@ -70,6 +70,7 @@ describe("/api/events", () => {
       expect(typeof event.thumbnail).toMatch(/^(string|object)$/);
     });
   });
+
   test("GET 200 - Responds with a list if all events if no query given after query character", async () => {
     const {
       body: { events },
@@ -111,6 +112,7 @@ describe("/api/events", () => {
       expect(typeof event.thumbnail).toMatch(/^(string|object)$/);
     });
   });
+
   test("POST 201 - Adds an event to the database, given inputted information from the user", async () => {
     const {
       body: { event },
@@ -164,6 +166,7 @@ describe("/api/events", () => {
       "https://example.com/thumbnails/digital_future_conference.jpg"
     );
   });
+
   test("POST 400 - Failing schema validation", async () => {
     const obj = { publisher: "Ye" };
     const {
@@ -197,6 +200,7 @@ describe("/api/users", () => {
       expect(typeof user.is_admin).toBe("boolean");
     });
   });
+
   test("POST 201 - Adds a user to the database, given inputted information from the user", async () => {
     const {
       body: { user },
@@ -218,6 +222,7 @@ describe("/api/users", () => {
     expect(user).toHaveProperty("user_password", "usyk987");
     expect(user).toHaveProperty("is_admin", false);
   });
+
   test("POST 400 - Empty user object received", async () => {
     const obj = {};
     const {
@@ -227,6 +232,7 @@ describe("/api/users", () => {
     expect(objLength).toBe(0);
     expect(msg).toBe("Bad Request");
   });
+
   test("POST 400 - Failing schema validation", async () => {
     const obj = { first_name: "Oleksandr" };
     const {
@@ -278,18 +284,21 @@ describe("/api/events/:event_id", () => {
     expect(typeof event.attendee_limit).toMatch(/^(number|object)$/);
     expect(typeof event.thumbnail).toMatch(/^(string|object)$/);
   });
+
   test("GET 400 - Invalid data type for id given", async () => {
     const {
       body: { msg },
     } = await request(app).get("/api/events/notAnId").expect(400);
     expect(msg).toBe("Bad Request");
   });
+
   test("GET 404 - Event with that id does not exist", async () => {
     const {
       body: { msg },
     } = await request(app).get("/api/events/999").expect(404);
     expect(msg).toBe("Event not found");
   });
+
   test("PATCH 200 - Responds with an event with correctly updated event property values", async () => {
     const {
       body: { event },
@@ -340,6 +349,7 @@ describe("/api/events/:event_id", () => {
       "https://example.com/thumbnails/ai_future_of_work.jpg"
     );
   });
+
   test("PATCH 400 - Empty event object received", async () => {
     const obj = {};
     const {
@@ -349,6 +359,7 @@ describe("/api/events/:event_id", () => {
     expect(objLength).toBe(0);
     expect(msg).toBe("Bad Request");
   });
+
   test("PATCH 400 - Failing schema validation", async () => {
     const {
       body: { msg },
@@ -376,6 +387,7 @@ describe("/api/events/:event_id", () => {
       .expect(400);
     // expect(msg).toBe("Bad Request");
   });
+
   test("PATCH 400 - Invalid data type for id given", async () => {
     const {
       body: { msg },
@@ -403,6 +415,7 @@ describe("/api/events/:event_id", () => {
       .expect(400);
     expect(msg).toBe("Bad Request");
   });
+
   test("PATCH 404 - Event with that id does not exist", async () => {
     const {
       body: { msg },
@@ -430,15 +443,18 @@ describe("/api/events/:event_id", () => {
       .expect(404);
     expect(msg).toBe("Event not found");
   });
+
   test("DELETE 204 - Responds with a 204 status code for the deleted event with the given event_id", async () => {
     await request(app).delete("/api/events/1").expect(204);
   });
+
   test("DELETE 400 - Invalid data type for id given", async () => {
     const {
       body: { msg },
     } = await request(app).delete("/api/events/notAnId").expect(400);
     expect(msg).toBe("Bad Request");
   });
+
   test("DELETE 404 - Event with that id does not exist", async () => {
     const {
       body: { msg },
@@ -447,21 +463,12 @@ describe("/api/events/:event_id", () => {
   });
 });
 
-/**
- * Test suite for the /api/users/:user_id endpoint
- * Checks that the endpoint correctly returns a user object with all required properties and their correct data types when a valid user_id is provided
- */
 describe("/api/users/:user_id", () => {
-  /**
-   * Test case: Successful user retrieval
-   * Checks that the endpoint correctly returns a user object with all required properties and their correct data types when a valid user_id is provided
-   */
   test("GET 200 - Responds with a single user by user_id", async () => {
     const {
       body: { user },
     } = await request(app).get("/api/users/1").expect(200);
 
-    // Check that all required user object properties exist
     expect(user).toHaveProperty("user_id");
     expect(user).toHaveProperty("first_name");
     expect(user).toHaveProperty("last_name");
@@ -470,7 +477,6 @@ describe("/api/users/:user_id", () => {
     expect(user).toHaveProperty("user_password");
     expect(user).toHaveProperty("is_admin");
 
-    // Check that each property's data type is correct
     expect(typeof user.user_id).toBe("number");
     expect(typeof user.first_name).toBe("string");
     expect(typeof user.last_name).toMatch(/^(string|object)$/);
@@ -480,10 +486,6 @@ describe("/api/users/:user_id", () => {
     expect(typeof user.is_admin).toBe("boolean");
   });
 
-  /**
-   * Test case: Invalid user_id format
-   * Checks that the endpoint returns a 400 Bad Request error, when a non-numeric user_id is provided and is invalid
-   */
   test("GET 400 - Invalid data type for id given", async () => {
     const {
       body: { msg },
@@ -491,10 +493,6 @@ describe("/api/users/:user_id", () => {
     expect(msg).toBe("Bad Request");
   });
 
-  /**
-   * Test case: Non-existent user
-   * Checks that the endpoint returns a 404 Not Found error, when a valid numeric user_id is provided but no user exists with that ID
-   */
   test("GET 404 - User with that id does not exist", async () => {
     const {
       body: { msg },
