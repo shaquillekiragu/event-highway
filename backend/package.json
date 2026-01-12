@@ -1,30 +1,31 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "listen.js",
-  "scripts": {
-    "test": "PGDATABASE=event_highway_test NODE_ENV=test jest",
-    "setup-dbs": "psql -d postgres -f ./database/setup.sql",
-    "seed": "PGDATABASE=event_highway node ./database/seeding/run-seed.js",
-    "start": "node listen.js",
-    "seed-prod": "NODE_ENV=production npm run seed"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "nodemon": "^3.1.9",
-    "pg": "^8.13.1",
-    "pg-format": "^1.0.4"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0",
-    "jest-extended": "^4.0.2",
-    "jest-sorted": "^1.0.15",
-    "supertest": "^7.0.0"
-  }
+	"name": "backend",
+	"version": "1.0.0",
+	"main": "listen.js",
+	"scripts": {
+		"test": "PGDATABASE=event_highway_test NODE_ENV=test jest",
+		"setup-dbs": "psql -d postgres -f ./database/setup.sql",
+		"seed": "PGDATABASE=event_highway node ./database/seeding/run-seed.js",
+		"start": "node listen.js",
+		"seed-prod": "NODE_ENV=production npm run seed"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.7",
+		"express": "^4.21.2",
+		"nodemon": "^3.1.9",
+		"pg": "^8.13.1",
+		"pg-format": "^1.0.4"
+	},
+	"devDependencies": {
+		"jest": "^29.7.0",
+		"jest-extended": "^4.0.2",
+		"jest-sorted": "^1.0.15",
+		"prettier": "^3.0.0",
+		"supertest": "^7.0.0"
+	}
 }
