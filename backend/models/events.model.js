@@ -1,353 +1,353 @@
 const db = require("../database/connection");
 
 async function fetchEvents() {
-  try {
-    const { rows } = await db.query(`SELECT * FROM events;`);
-    if (!rows || !rows.length) {
-      throw { status: 404, msg: "Events not found" };
-    }
-    return rows;
-  } catch (err) {
-    console.error(err, " << fetchEvents model error");
-    throw err;
-  }
+	try {
+		const { rows } = await db.query(`SELECT * FROM events;`);
+		if (!rows || !rows.length) {
+			throw { status: 404, msg: "Events not found" };
+		}
+		return rows;
+	} catch (err) {
+		console.error(err, " << fetchEvents model error");
+		throw err;
+	}
 }
 
 async function fetchEvent(event_id) {
-  try {
-    const { rows } = await db.query(
-      `SELECT * FROM events
+	try {
+		const { rows } = await db.query(
+			`SELECT * FROM events
       WHERE event_id = $1`,
-      [event_id]
-    );
-    if (!rows || !rows.length) {
-      throw { status: 404, msg: "Event not found" };
-    }
-    return rows[0];
-  } catch (err) {
-    console.error(err, " << fetchEvent model error");
-    throw err;
-  }
+			[event_id]
+		);
+		if (!rows || !rows.length) {
+			throw { status: 404, msg: "Event not found" };
+		}
+		return rows[0];
+	} catch (err) {
+		console.error(err, " << fetchEvent model error");
+		throw err;
+	}
 }
 
 async function insertEvent(
-  publisher,
-  host,
-  event_name,
-  event_start,
-  event_end,
-  event_description,
-  created_at,
-  category,
-  is_online,
-  venue,
-  venue_address,
-  is_free,
-  cost_in_gbp,
-  is_limit,
-  attendee_limit,
-  thumbnail
+	publisher,
+	host,
+	event_name,
+	event_start,
+	event_end,
+	event_description,
+	created_at,
+	category,
+	is_online,
+	venue,
+	venue_address,
+	is_free,
+	cost_in_gbp,
+	is_limit,
+	attendee_limit,
+	thumbnail
 ) {
-  try {
-    function validateInsertEventArguments() {
-      if (!publisher || typeof publisher !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid publisher: must be a non-empty string",
-        };
-      }
-      if (host !== undefined && typeof host !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid host: must be a string",
-        };
-      }
-      if (event_name !== undefined && typeof event_name !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid event_name: must be a string",
-        };
-      }
-      if (event_start !== undefined && typeof event_start !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid event_start: must be a string in ISO format",
-        };
-      }
-      if (event_end !== undefined && typeof event_end !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid event_end: must be a string in ISO format",
-        };
-      }
-      if (
-        event_description !== undefined &&
-        typeof event_description !== "string"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid event_description: must be a string",
-        };
-      }
-      if (created_at !== undefined && typeof created_at !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid created_at: must be a string in ISO format",
-        };
-      }
-      if (category !== undefined && typeof category !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid category: must be a string",
-        };
-      }
-      if (is_online !== undefined && typeof is_online !== "boolean") {
-        throw {
-          status: 400,
-          msg: "Invalid is_online: must be a boolean",
-        };
-      }
-      if (venue !== undefined && venue !== null && typeof venue !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid venue: must be a string or null",
-        };
-      }
-      if (
-        venue_address !== undefined &&
-        venue_address !== null &&
-        typeof venue_address !== "string"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid venue_address: must be a string or null",
-        };
-      }
-      if (is_free !== undefined && typeof is_free !== "boolean") {
-        throw {
-          status: 400,
-          msg: "Invalid is_free: must be a boolean",
-        };
-      }
-      if (
-        cost_in_gbp !== undefined &&
-        cost_in_gbp !== null &&
-        typeof cost_in_gbp !== "number"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid cost_in_gbp: must be a number or null",
-        };
-      }
-      if (is_limit !== undefined && typeof is_limit !== "boolean") {
-        throw {
-          status: 400,
-          msg: "Invalid is_limit: must be a boolean",
-        };
-      }
-      if (
-        attendee_limit !== undefined &&
-        attendee_limit !== null &&
-        typeof attendee_limit !== "number"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid attendee_limit: must be a number or null",
-        };
-      }
-      if (
-        thumbnail !== undefined &&
-        thumbnail !== null &&
-        typeof thumbnail !== "string"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid thumbnail: must be a string or null",
-        };
-      }
-    }
-    validateInsertEventArguments();
+	try {
+		function validateInsertEventArguments() {
+			if (!publisher || typeof publisher !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid publisher: must be a non-empty string",
+				};
+			}
+			if (host !== undefined && typeof host !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid host: must be a string",
+				};
+			}
+			if (event_name !== undefined && typeof event_name !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid event_name: must be a string",
+				};
+			}
+			if (event_start !== undefined && typeof event_start !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid event_start: must be a string in ISO format",
+				};
+			}
+			if (event_end !== undefined && typeof event_end !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid event_end: must be a string in ISO format",
+				};
+			}
+			if (
+				event_description !== undefined &&
+				typeof event_description !== "string"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid event_description: must be a string",
+				};
+			}
+			if (created_at !== undefined && typeof created_at !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid created_at: must be a string in ISO format",
+				};
+			}
+			if (category !== undefined && typeof category !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid category: must be a string",
+				};
+			}
+			if (is_online !== undefined && typeof is_online !== "boolean") {
+				throw {
+					status: 400,
+					msg: "Invalid is_online: must be a boolean",
+				};
+			}
+			if (venue !== undefined && venue !== null && typeof venue !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid venue: must be a string or null",
+				};
+			}
+			if (
+				venue_address !== undefined &&
+				venue_address !== null &&
+				typeof venue_address !== "string"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid venue_address: must be a string or null",
+				};
+			}
+			if (is_free !== undefined && typeof is_free !== "boolean") {
+				throw {
+					status: 400,
+					msg: "Invalid is_free: must be a boolean",
+				};
+			}
+			if (
+				cost_in_gbp !== undefined &&
+				cost_in_gbp !== null &&
+				typeof cost_in_gbp !== "number"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid cost_in_gbp: must be a number or null",
+				};
+			}
+			if (is_limit !== undefined && typeof is_limit !== "boolean") {
+				throw {
+					status: 400,
+					msg: "Invalid is_limit: must be a boolean",
+				};
+			}
+			if (
+				attendee_limit !== undefined &&
+				attendee_limit !== null &&
+				typeof attendee_limit !== "number"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid attendee_limit: must be a number or null",
+				};
+			}
+			if (
+				thumbnail !== undefined &&
+				thumbnail !== null &&
+				typeof thumbnail !== "string"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid thumbnail: must be a string or null",
+				};
+			}
+		}
+		validateInsertEventArguments();
 
-    const trimmedPublisher = publisher.trim();
+		const trimmedPublisher = publisher.trim();
 
-    const userResult = await db.query(
-      `SELECT display_name FROM users WHERE display_name = $1;`,
-      [trimmedPublisher]
-    );
+		const userResult = await db.query(
+			`SELECT display_name FROM users WHERE display_name = $1;`,
+			[trimmedPublisher]
+		);
 
-    if (!userResult.rows.length) {
-      throw {
-        status: 400,
-        msg: `Invalid publisher: ${publisher} does not exist in users table.`,
-      };
-    }
+		if (!userResult.rows.length) {
+			throw {
+				status: 400,
+				msg: `Invalid publisher: ${publisher} does not exist in users table.`,
+			};
+		}
 
-    const display_name = userResult.rows[0].display_name;
-    const { rows } = await db.query(
-      `INSERT INTO events
+		const display_name = userResult.rows[0].display_name;
+		const { rows } = await db.query(
+			`INSERT INTO events
       (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail)
       VALUES
       ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
       RETURNING *;`,
-      [
-        display_name,
-        host,
-        event_name,
-        event_start,
-        event_end,
-        event_description,
-        created_at,
-        category,
-        is_online,
-        venue,
-        venue_address,
-        is_free,
-        cost_in_gbp,
-        is_limit,
-        attendee_limit,
-        thumbnail,
-      ]
-    );
-    return rows[0];
-  } catch (err) {
-    console.error(err, " << insertEvent model error");
-    throw err;
-  }
+			[
+				display_name,
+				host,
+				event_name,
+				event_start,
+				event_end,
+				event_description,
+				created_at,
+				category,
+				is_online,
+				venue,
+				venue_address,
+				is_free,
+				cost_in_gbp,
+				is_limit,
+				attendee_limit,
+				thumbnail,
+			]
+		);
+		return rows[0];
+	} catch (err) {
+		console.error(err, " << insertEvent model error");
+		throw err;
+	}
 }
 
 async function updateEvent(
-  event_id,
-  host,
-  event_name,
-  event_start,
-  event_end,
-  event_description,
-  category,
-  is_online,
-  venue,
-  venue_address,
-  is_free,
-  cost_in_gbp,
-  is_limit,
-  attendee_limit,
-  thumbnail
+	event_id,
+	host,
+	event_name,
+	event_start,
+	event_end,
+	event_description,
+	category,
+	is_online,
+	venue,
+	venue_address,
+	is_free,
+	cost_in_gbp,
+	is_limit,
+	attendee_limit,
+	thumbnail
 ) {
-  try {
-    function validateUpdateEventArguments() {
-      if (event_id !== undefined && typeof event_id !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid event_id: must be a string",
-        };
-      }
-      if (host !== undefined && typeof host !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid host: must be a string",
-        };
-      }
-      if (event_name !== undefined && typeof event_name !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid event_name: must be a string",
-        };
-      }
-      if (event_start !== undefined && typeof event_start !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid event_start: must be a string in ISO format",
-        };
-      }
-      if (event_end !== undefined && typeof event_end !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid event_end: must be a string in ISO format",
-        };
-      }
-      if (
-        event_description !== undefined &&
-        typeof event_description !== "string"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid event_description: must be a string",
-        };
-      }
-      if (category !== undefined && typeof category !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid category: must be a string",
-        };
-      }
-      if (is_online !== undefined && typeof is_online !== "boolean") {
-        throw {
-          status: 400,
-          msg: "Invalid is_online: must be a boolean",
-        };
-      }
-      if (venue !== undefined && venue !== null && typeof venue !== "string") {
-        throw {
-          status: 400,
-          msg: "Invalid venue: must be a string or null",
-        };
-      }
-      if (
-        venue_address !== undefined &&
-        venue_address !== null &&
-        typeof venue_address !== "string"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid venue_address: must be a string or null",
-        };
-      }
-      if (is_free !== undefined && typeof is_free !== "boolean") {
-        throw {
-          status: 400,
-          msg: "Invalid is_free: must be a boolean",
-        };
-      }
-      if (
-        cost_in_gbp !== undefined &&
-        cost_in_gbp !== null &&
-        typeof cost_in_gbp !== "number"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid cost_in_gbp: must be a number or null",
-        };
-      }
-      if (is_limit !== undefined && typeof is_limit !== "boolean") {
-        throw {
-          status: 400,
-          msg: "Invalid is_limit: must be a boolean",
-        };
-      }
-      if (
-        attendee_limit !== undefined &&
-        attendee_limit !== null &&
-        typeof attendee_limit !== "number"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid attendee_limit: must be a number or null",
-        };
-      }
-      if (
-        thumbnail !== undefined &&
-        thumbnail !== null &&
-        typeof thumbnail !== "string"
-      ) {
-        throw {
-          status: 400,
-          msg: "Invalid thumbnail: must be a string or null",
-        };
-      }
-    }
-    validateUpdateEventArguments();
+	try {
+		function validateUpdateEventArguments() {
+			if (event_id !== undefined && typeof event_id !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid event_id: must be a string",
+				};
+			}
+			if (host !== undefined && typeof host !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid host: must be a string",
+				};
+			}
+			if (event_name !== undefined && typeof event_name !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid event_name: must be a string",
+				};
+			}
+			if (event_start !== undefined && typeof event_start !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid event_start: must be a string in ISO format",
+				};
+			}
+			if (event_end !== undefined && typeof event_end !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid event_end: must be a string in ISO format",
+				};
+			}
+			if (
+				event_description !== undefined &&
+				typeof event_description !== "string"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid event_description: must be a string",
+				};
+			}
+			if (category !== undefined && typeof category !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid category: must be a string",
+				};
+			}
+			if (is_online !== undefined && typeof is_online !== "boolean") {
+				throw {
+					status: 400,
+					msg: "Invalid is_online: must be a boolean",
+				};
+			}
+			if (venue !== undefined && venue !== null && typeof venue !== "string") {
+				throw {
+					status: 400,
+					msg: "Invalid venue: must be a string or null",
+				};
+			}
+			if (
+				venue_address !== undefined &&
+				venue_address !== null &&
+				typeof venue_address !== "string"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid venue_address: must be a string or null",
+				};
+			}
+			if (is_free !== undefined && typeof is_free !== "boolean") {
+				throw {
+					status: 400,
+					msg: "Invalid is_free: must be a boolean",
+				};
+			}
+			if (
+				cost_in_gbp !== undefined &&
+				cost_in_gbp !== null &&
+				typeof cost_in_gbp !== "number"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid cost_in_gbp: must be a number or null",
+				};
+			}
+			if (is_limit !== undefined && typeof is_limit !== "boolean") {
+				throw {
+					status: 400,
+					msg: "Invalid is_limit: must be a boolean",
+				};
+			}
+			if (
+				attendee_limit !== undefined &&
+				attendee_limit !== null &&
+				typeof attendee_limit !== "number"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid attendee_limit: must be a number or null",
+				};
+			}
+			if (
+				thumbnail !== undefined &&
+				thumbnail !== null &&
+				typeof thumbnail !== "string"
+			) {
+				throw {
+					status: 400,
+					msg: "Invalid thumbnail: must be a string or null",
+				};
+			}
+		}
+		validateUpdateEventArguments();
 
-    const { rows } = await db.query(
-      `UPDATE events
+		const { rows } = await db.query(
+			`UPDATE events
         SET 
         host = $2,
         event_name = $3,
@@ -365,62 +365,62 @@ async function updateEvent(
         thumbnail = $15
         WHERE event_id = $1
         RETURNING *;`,
-      [
-        event_id,
-        host,
-        event_name,
-        event_start,
-        event_end,
-        event_description,
-        category,
-        is_online,
-        venue,
-        venue_address,
-        is_free,
-        cost_in_gbp,
-        is_limit,
-        attendee_limit,
-        thumbnail,
-      ]
-    );
-    if (!rows || !rows.length) {
-      throw {
-        status: 404,
-        msg: "Event not found",
-      };
-    }
-    return rows[0];
-  } catch (err) {
-    console.error(err, " << updateEvent model error");
-    throw err;
-  }
+			[
+				event_id,
+				host,
+				event_name,
+				event_start,
+				event_end,
+				event_description,
+				category,
+				is_online,
+				venue,
+				venue_address,
+				is_free,
+				cost_in_gbp,
+				is_limit,
+				attendee_limit,
+				thumbnail,
+			]
+		);
+		if (!rows || !rows.length) {
+			throw {
+				status: 404,
+				msg: "Event not found",
+			};
+		}
+		return rows[0];
+	} catch (err) {
+		console.error(err, " << updateEvent model error");
+		throw err;
+	}
 }
 
 async function removeEvent(event_id) {
-  try {
-    const { rows } = await db.query(
-      `DELETE FROM events
+	try {
+		const { rows } = await db.query(
+			`DELETE FROM events
       WHERE event_id = $1
       RETURNING *;`,
-      [event_id]
-    );
-    if (!rows || !rows.length) {
-      throw {
-        status: 404,
-        msg: "Event not found",
-      };
-    }
-    return rows[0];
-  } catch (err) {
-    console.error(err, " << removeEvent model error");
-    throw err;
-  }
+			[event_id]
+		);
+		if (!rows || !rows.length) {
+			throw {
+				status: 404,
+				msg: "Event not found",
+			};
+		}
+		return rows[0];
+	} catch (err) {
+		console.error(err, " << removeEvent model error");
+		throw err;
+	}
 }
 
 module.exports = {
-  fetchEvents,
-  fetchEvent,
-  insertEvent,
-  updateEvent,
-  removeEvent,
+	fetchEvents,
+	fetchEvent,
+	insertEvent,
+	updateEvent,
+	removeEvent,
 };

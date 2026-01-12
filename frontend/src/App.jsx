@@ -13,22 +13,22 @@ import UpdateEvent from "./pages/UpdateEvent.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
-  return (
-    <UserProvider>
-      <Header />
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/events" element={<EventsPage />} />
-        <Route path="/my-events" element={<MyEventsPage />} />
-        <Route path="/events/:event_id" element={<ViewEvent />} />
-        <Route path="/create-event" element={<CreateEvent />} />
-        <Route path="/update-event/:event_id" element={<UpdateEvent />} />
-      </Routes>
-      <Footer />
-    </UserProvider>
-  );
+	return (
+		<UserProvider>
+			<Header />
+			<Routes>
+				<Route path="/" element={<WelcomePage />} />
+				<Route path="/login" element={<LoginPage />} />
+				<Route path="/signup" element={<SignUpPage />} />
+				<Route path="/events" element={<EventsPage />} />
+				<Route path="/my-events" element={<MyEventsPage />} />
+				<Route path="/events/:event_id" element={<ViewEvent />} />
+				<Route path="/create-event" element={<CreateEvent />} />
+				<Route path="/update-event/:event_id" element={<UpdateEvent />} />
+			</Routes>
+			<Footer />
+		</UserProvider>
+	);
 }
 
 export default App;

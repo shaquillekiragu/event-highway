@@ -4,31 +4,31 @@ const app = express();
 const cors = require("cors");
 
 app.use(
-  cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? "https://event-highway.netlify.app"
-        : "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
+	cors({
+		origin:
+			process.env.NODE_ENV === "production"
+				? "https://event-highway.netlify.app"
+				: "*",
+		methods: ["GET", "POST", "PUT", "DELETE"],
+		credentials: true,
+	})
 );
 
 const healthcheck = require("./controllers/healthcheck.controller");
 const getApi = require("./controllers/api.controller");
 
 const {
-  getEvents,
-  getEvent,
-  postEvent,
-  patchEvent,
-  deleteEvent,
+	getEvents,
+	getEvent,
+	postEvent,
+	patchEvent,
+	deleteEvent,
 } = require("./controllers/events.controller");
 
 const {
-  getUsers,
-  getUser,
-  postUser,
+	getUsers,
+	getUser,
+	postUser,
 } = require("./controllers/users.controller");
 
 app.use(express.json());
@@ -54,29 +54,29 @@ app.post("/api/users", postUser);
 app.get("/api/users/:user_id", getUser);
 
 app.all("*", (request, response) => {
-  return response.status(404).send({ msg: "Endpoint not found" });
+	return response.status(404).send({ msg: "Endpoint not found" });
 });
 
 // ERROR HANDLING:
 
 app.use((error, request, response, next) => {
-  if (error.status && error.msg) {
-    return response.status(error.status).send({ msg: error.msg });
-  }
-  next(error);
+	if (error.status && error.msg) {
+		return response.status(error.status).send({ msg: error.msg });
+	}
+	next(error);
 });
 
 app.use((error, request, response, next) => {
-  if (error.code === "22P02" || error.code === "23502") {
-    return response.status(400).send({ msg: "Bad Request" });
-  } else if (error.code === "23503") {
-    return response.status(404).send({ msg: "Not Found" });
-  }
-  next(error);
+	if (error.code === "22P02" || error.code === "23502") {
+		return response.status(400).send({ msg: "Bad Request" });
+	} else if (error.code === "23503") {
+		return response.status(404).send({ msg: "Not Found" });
+	}
+	next(error);
 });
 
 app.use((error, request, response) => {
-  return response.status(500).send({ message: "Internal server error" });
+	return response.status(500).send({ message: "Internal server error" });
 });
 
 module.exports = app;

@@ -7,13 +7,13 @@ import App from "./App.jsx";
 const rootElement = document.getElementById("root");
 
 if (rootElement) {
-  createRoot(rootElement).render(
-    <StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </StrictMode>
-  );
+	createRoot(rootElement).render(
+		<StrictMode>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</StrictMode>
+	);
 } else {
-  console.error("Root element not found");
+	console.error("Root element not found");
 }
