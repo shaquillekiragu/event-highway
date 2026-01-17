@@ -80,7 +80,7 @@ Henry456
   - nodemon (v3.1.9)
   - Prettier (v3.0.0)
 
-**Deployment & Hosting:**
+### Deployment & Hosting:
 
 - **Frontend:** Netlify
 - **Backend:** Render
