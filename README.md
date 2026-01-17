@@ -61,7 +61,7 @@ Henry456
 
 ### Backend:
 
-- **Runtime:** Node.js (v20.9.0+)
+- **Runtime:** Node.js (v22.0.0+)
 - **Framework:** Express.js (v4.21.2)
 - **Language:** JavaScript
 - **Database:**
@@ -90,7 +90,7 @@ Henry456
 
 You will need to have these versions or newer for the following technologies in order to run this project:
 
-- Node.js - **v20.9.0** or newer
+- Node.js - **v22.0.0** or newer
 - PostgreSQL - **v12.x** or later (tested with v14.15 locally by developer)
   <br>
 
