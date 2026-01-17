@@ -1,6 +1,3 @@
--- Production Schema for Event Highway
--- Use this schema when setting up your production database on Render or other hosting services
--- Note: This schema matches what seed.js creates, including UNIQUE constraints
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
     first_name VARCHAR(20) NOT NULL,
@@ -8,9 +5,9 @@ CREATE TABLE IF NOT EXISTS users (
     display_name VARCHAR(40) NOT NULL UNIQUE,
     email VARCHAR(50) NOT NULL UNIQUE,
     user_password VARCHAR(255) NOT NULL,
-    -- Increased size for hashed passwords
     is_admin BOOLEAN NOT NULL
 );
+
 CREATE TABLE IF NOT EXISTS events (
     event_id SERIAL PRIMARY KEY,
     publisher VARCHAR(40) NOT NULL REFERENCES users(display_name),
@@ -30,7 +27,7 @@ CREATE TABLE IF NOT EXISTS events (
     attendee_limit INT,
     thumbnail VARCHAR(250)
 );
--- Create indexes for better query performance
+
 CREATE INDEX IF NOT EXISTS idx_events_publisher ON events(publisher);
 CREATE INDEX IF NOT EXISTS idx_events_category ON events(category);
 CREATE INDEX IF NOT EXISTS idx_events_start ON events(event_start);

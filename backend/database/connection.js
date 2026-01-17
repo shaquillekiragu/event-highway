@@ -1,7 +1,13 @@
 const { Pool } = require("pg");
 
-const ENV = process.env.NODE_ENV || "development";
-require("dotenv").config({ path: `${__dirname}/../../.env.${ENV}` });
+const hasExplicitDatabaseUrl = !!process.env.DATABASE_URL;
+const isProductionDatabase = hasExplicitDatabaseUrl && process.env.DATABASE_URL.includes("neon.tech");
+
+const ENV = process.env.NODE_ENV || (isProductionDatabase ? "production" : "development");
+
+if (!hasExplicitDatabaseUrl) {
+	require("dotenv").config({ path: `${__dirname}/../../.env.${ENV}` });
+}
 
 if (ENV !== "production") {
 	console.log("Loaded env file:", `${__dirname}/../../.env.${ENV}`);
@@ -14,7 +20,7 @@ if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
 
 const config = {};
 
-if (ENV === "production") {
+if (ENV === "production" || process.env.DATABASE_URL) {
 	config.connectionString = process.env.DATABASE_URL;
 	config.max = 10;
 	config.min = 0;
