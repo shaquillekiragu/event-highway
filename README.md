@@ -52,19 +52,41 @@ Henry456
 
 **Frontend:**
 
-- HTML & CSS
-- Javascript
-- ReactJS
-- Axios
+- **Languages:** HTML, CSS, JavaScript
+- **Framework:** ReactJS (v18.3.1)
+- **Build Tool:** Vite (v6.0.1)
+- **Routing:** React Router DOM (v7.0.2)
+- **HTTP Client:** Axios (v1.7.9)
+- **Styling:** Tailwind CSS (v4.1.17)
 
 **Backend:**
 
-- Node.js
-- ExpressJS
-- PostgreSQL
-- Jest
-- Supertest
-  <br>
+- **Runtime:** Node.js (v20.9.0+)
+- **Framework:** Express.js (v4.21.2)
+- **Language:** JavaScript
+- **Database:**
+  - PostgreSQL (v12.x+)
+  - SQL (query language)
+  - pg (v8.13.1) - PostgreSQL client
+  - pg-format (v1.0.4) - SQL formatting
+- **Environment Management:** dotenv (v16.4.7)
+- **CORS:** cors (v2.8.5)
+- **Testing:**
+  - Jest (v29.7.0)
+  - Supertest (v7.0.0)
+  - jest-extended (v4.0.2)
+  - jest-sorted (v1.0.15)
+- **Development Tools:**
+  - nodemon (v3.1.9)
+  - Prettier (v3.0.0)
+
+**Deployment & Hosting:**
+
+- **Frontend:** Netlify
+- **Backend:** Render
+- **Database:** Neon
+
+<br>
 
 ## Minimum Versions
 
