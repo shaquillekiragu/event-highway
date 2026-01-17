@@ -50,7 +50,7 @@ Henry456
 
 ## Tech Stack
 
-**Frontend:**
+### Frontend:
 
 - **Languages:** HTML, CSS, JavaScript
 - **Framework:** ReactJS (v18.3.1)
@@ -59,7 +59,7 @@ Henry456
 - **HTTP Client:** Axios (v1.7.9)
 - **Styling:** Tailwind CSS (v4.1.17)
 
-**Backend:**
+### Backend:
 
 - **Runtime:** Node.js (v20.9.0+)
 - **Framework:** Express.js (v4.21.2)
@@ -85,8 +85,6 @@ Henry456
 - **Frontend:** Netlify
 - **Backend:** Render
 - **Database:** Neon
-
-<br>
 
 ## Minimum Versions
 
