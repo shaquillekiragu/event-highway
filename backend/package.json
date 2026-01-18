@@ -1,12 +1,12 @@
 {
 	"name": "backend",
 	"version": "1.0.0",
-	"main": "listen.js",
+	"main": "src/listen.js",
 	"scripts": {
 		"test": "PGDATABASE=event_highway_test NODE_ENV=test jest",
-		"setup-dbs": "psql -d postgres -f ./database/setup.sql",
-		"seed": "PGDATABASE=event_highway node ./database/seeding/run-seed.js",
-		"start": "node listen.js",
+		"setup-dbs": "psql -d postgres -f ./src/database/db-setup.sql",
+		"seed": "PGDATABASE=event_highway node ./src/database/seeding/run-seed.js",
+		"start": "node src/listen.js",
 		"seed-prod": "NODE_ENV=production npm run seed"
 	},
 	"keywords": [],

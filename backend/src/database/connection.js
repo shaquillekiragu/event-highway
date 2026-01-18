@@ -6,11 +6,11 @@ const isProductionDatabase = hasExplicitDatabaseUrl && process.env.DATABASE_URL.
 const ENV = process.env.NODE_ENV || (isProductionDatabase ? "production" : "development");
 
 if (!hasExplicitDatabaseUrl) {
-	require("dotenv").config({ path: `${__dirname}/../../.env.${ENV}` });
+	require("dotenv").config({ path: `${__dirname}/../../../.env.${ENV}` });
 }
 
 if (ENV !== "production") {
-	console.log("Loaded env file:", `${__dirname}/../../.env.${ENV}`);
+	console.log("Loaded env file:", `${__dirname}/../../../.env.${ENV}`);
 	console.log("Environment:", ENV);
 }
 

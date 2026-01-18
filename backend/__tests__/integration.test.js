@@ -1,9 +1,9 @@
 const request = require("supertest");
-const app = require("../app.js");
-const db = require("../database/connection.js");
-const seed = require("../database/seeding/seed.js");
-const data = require("../database/data/testData/index.js");
-const endpointsList = require("../endpoints.json");
+const app = require("../src/app.js");
+const db = require("../src/database/connection.js");
+const seed = require("../src/database/seeding/seed.js");
+const data = require("../src/database/data/testData/index.js");
+const endpointsList = require("../src/endpoints.json");
 
 beforeEach(() => {
 	return seed(data);
