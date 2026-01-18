@@ -9,8 +9,10 @@ beforeEach(() => {
 	return seed(data);
 });
 
-afterAll(() => {
-	return db.end();
+afterAll(async () => {
+	// Remove event listeners to prevent logging after tests complete
+	db.removeAllListeners();
+	await db.end();
 });
 
 describe("/api/healthcheck", () => {

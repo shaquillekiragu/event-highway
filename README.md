@@ -191,6 +191,7 @@ If you see this message in the console: `Listening on 9090...`, you have success
 In order to test the API endpoints on this server, run the following commands:
 
 ```
+export PGDATABASE=event_highway_test
 npm run test
 ```
 

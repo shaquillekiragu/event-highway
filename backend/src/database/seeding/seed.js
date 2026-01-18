@@ -1,10 +1,6 @@
 const format = require("pg-format");
 const db = require("../connection");
 
-if (!process.env.DATABASE_URL?.includes("neon.tech")) {
-	throw new Error("Refusing to seed non-production database");
-}
-
 const seed = async ({ eventsData, usersData }) => {
 	try {
 		await db.query(`DROP TABLE IF EXISTS events;`);
