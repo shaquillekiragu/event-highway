@@ -10,7 +10,6 @@ beforeEach(() => {
 });
 
 afterAll(async () => {
-	// Remove event listeners to prevent logging after tests complete
 	db.removeAllListeners();
 	await db.end();
 });
