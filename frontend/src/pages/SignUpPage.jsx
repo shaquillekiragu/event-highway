@@ -14,7 +14,7 @@ function SignUpPage() {
 	const [user_password, setUserPassword] = useState("");
 	const [is_admin, setIsAdmin] = useState(false);
 
-	const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+	const { setAuthUser, setIsLoggedIn } = useAuth();
 
 	const navigate = useNavigate();
 

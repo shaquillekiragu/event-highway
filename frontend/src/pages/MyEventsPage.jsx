@@ -10,7 +10,7 @@ function MyEventsPage() {
 				<h1 className="text-5xl font-bold text-gray-800 mb-2 text-center">
 					My Events
 				</h1>
-				<p className="text-gray-600 text-center">Events you're registered for</p>
+				<p className="text-gray-600 text-center">Events you&apos;re registered for</p>
 			</section>
 			{myEvents.length ? (
 				<ul className="grid gap-6 p-0 mx-auto mb-16 grid-cols-3 w-full max-w-300">
@@ -27,7 +27,7 @@ function MyEventsPage() {
 						No events yet
 					</h2>
 					<p className="text-gray-500 text-center">
-						You're currently signed up to no events...
+						You&apos;re currently signed up to no events...
 					</p>
 				</section>
 			)}

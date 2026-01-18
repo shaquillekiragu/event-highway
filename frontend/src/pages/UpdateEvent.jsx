@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/UserContext";
 import { patchEvent } from "../api";
 import UpdateEventForm from "../components/UpdateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin";
-import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
+// import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
 import stringToNum from "../utils";
 
 function UpdateEvent() {
