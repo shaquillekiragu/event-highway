@@ -63,19 +63,19 @@ Henry456
 
 - **Runtime:** Node.js (v22.0.0+)
 - **Framework:** Express.js (v4.21.2)
-- **Language:** JavaScript<br>
+- **Language:** JavaScript<br><br>
 - **Database:**
   - PostgreSQL (v12.x+)
   - SQL (query language)
   - pg (v8.13.1) - PostgreSQL client
   - pg-format (v1.0.4) - SQL formatting<br><br>
 - **Environment Management:** dotenv (v16.4.7)
-- **CORS:** cors (v2.8.5)<br>
+- **CORS:** cors (v2.8.5)<br><br>
 - **Testing:**
   - Jest (v29.7.0)
   - Supertest (v7.0.0)
   - jest-extended (v4.0.2)
-  - jest-sorted (v1.0.15)<br>
+  - jest-sorted (v1.0.15)<br><br>
 - **Development Tools:**
   - nodemon (v3.1.9)
   - Prettier (v3.0.0)
