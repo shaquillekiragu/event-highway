@@ -68,7 +68,7 @@ Henry456
   - PostgreSQL (v12.x+)
   - SQL (query language)
   - pg (v8.13.1) - PostgreSQL client
-  - pg-format (v1.0.4) - SQL formatting<br>
+  - pg-format (v1.0.4) - SQL formatting<br><br>
 - **Environment Management:** dotenv (v16.4.7)
 - **CORS:** cors (v2.8.5)<br>
 - **Testing:**
