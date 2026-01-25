@@ -141,7 +141,7 @@ npm install
 5. Next, create the test and development databases by running:
 
 ```
-npm run setup-dbs
+npm run setup-db
 ```
 
 **Note:** This command connects to the default `postgres` database to create the new databases. Make sure PostgreSQL is running and you have permission to create databases.
