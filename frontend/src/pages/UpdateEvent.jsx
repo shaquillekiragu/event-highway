@@ -4,8 +4,9 @@ import { useAuth } from "../contexts/UserContext";
 import { patchEvent } from "../api";
 import UpdateEventForm from "../components/UpdateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin";
-import { convertDatetimeLocalToUnix, convertUnixToDatetimeLocal } from "../components/FormatDatetime/dbDatetimeFunctions";
-import stringToNum from "../utils";
+import convertDatetimeLocalToUnix from "../utils/convertDatetimeLocalToUnix";
+import convertUnixToDatetimeLocal from "../utils/convertUnixToDatetimeLocal";
+import stringToNum from "../utils/stringToNum";
 
 function UpdateEvent() {
 	const { event_id } = useParams();

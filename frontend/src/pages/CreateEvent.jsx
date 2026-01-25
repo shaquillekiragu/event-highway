@@ -4,8 +4,9 @@ import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin";
-import { currentUnixTimestampInMilliseconds, convertDatetimeLocalToUnix } from "../components/FormatDatetime/dbDatetimeFunctions";
-import stringToNum from "../utils";
+import getCurrentUnixInMilliseconds from "../utils/getCurrentUnixInMilliseconds";
+import convertDatetimeLocalToUnix from "../utils/convertDatetimeLocalToUnix";
+import stringToNum from "../utils/stringToNum";
 
 function CreateEvent() {
 	const [eventData, setEventData] = useState({
@@ -44,7 +45,7 @@ function CreateEvent() {
 		try {
 			event.preventDefault();
 			setIsLoading(true);
-			const createdAt = currentUnixTimestampInMilliseconds();
+			const createdAt = getCurrentUnixInMilliseconds();
 
 			const response = await postEvent(
 				authUser.display_name,

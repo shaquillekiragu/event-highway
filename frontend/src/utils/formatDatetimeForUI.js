@@ -1,4 +1,4 @@
-function FormatDatetimeFrontend({ sqlTimestamp }) {
+export default function formatDatetimeForUI(sqlTimestamp) {
 	if (!sqlTimestamp) return null;
 	const date = new Date(sqlTimestamp);
 
@@ -8,7 +8,5 @@ function FormatDatetimeFrontend({ sqlTimestamp }) {
 		minute: "2-digit",
 	});
 
-	return <span>{`${formattedDate} ${formattedTime}`}</span>;
+	return `${formattedDate} ${formattedTime}`;
 }
-
-export default FormatDatetimeFrontend;

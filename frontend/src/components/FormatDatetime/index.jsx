@@ -1,3 +1,4 @@
+// Utility functions for datetime conversion
 export function convertDatetimeLocalToUnix(datetimeLocal) {
 	if (!datetimeLocal) {
 		return null;
@@ -21,6 +22,20 @@ export function convertUnixToDatetimeLocal(unixTimestamp) {
 	return `${year}-${month}-${day}T${hours}:${minutes}`;
 }
 
-export function currentUnixTimestampInMilliseconds() {
+export function getCurrentUnixInMilliseconds() {
 	return Date.now();
+}
+
+// React component for displaying formatted datetime
+export default function FormatDatetimeFrontend({ sqlTimestamp }) {
+	if (!sqlTimestamp) return null;
+	const date = new Date(sqlTimestamp);
+
+	const formattedDate = date.toLocaleDateString();
+	const formattedTime = date.toLocaleTimeString("en-GB", {
+		hour: "2-digit",
+		minute: "2-digit",
+	});
+
+	return <span>{`${formattedDate} ${formattedTime}`}</span>;
 }

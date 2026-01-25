@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getEvent, deleteEvent } from "../api";
 import { useAuth } from "../contexts/UserContext.jsx";
-import FormatDatetimeFrontend from "../components/FormatDatetime/FormatDatetimeFrontend";
+import formatDatetimeForUI from "../utils/formatDatetimeForUI.js";
 import Loading from "../components/Loading.jsx";
 
 function ViewEvent() {
@@ -148,27 +148,19 @@ function ViewEvent() {
 					<div className="flex gap-3">
 						<span className="text-gray-500 font-medium min-w-35">Event Start:</span>
 						<span className="text-gray-800 font-semibold">
-							{eventObj.event_start ? (
-								<FormatDatetimeFrontend sqlTimestamp={eventObj.event_start} />
-							) : (
-								"TBD"
-							)}
+							{eventObj.event_start ? formatDatetimeForUI(eventObj.event_start) : "TBD"}
 						</span>
 					</div>
 					<div className="flex items-start gap-3">
 						<span className="text-gray-500 font-medium min-w-35">Event Finish:</span>
 						<span className="text-gray-800 font-semibold">
-							{eventObj.event_end ? (
-								<FormatDatetimeFrontend sqlTimestamp={eventObj.event_end} />
-							) : (
-								"TBD"
-							)}
+							{eventObj.event_end ? formatDatetimeForUI(eventObj.event_end) : "TBD"}
 						</span>
 					</div>
 					<div className="flex items-start gap-3">
 						<span className="text-gray-500 font-medium min-w-35">Date posted:</span>
 						<span className="text-gray-800">
-							{<FormatDatetimeFrontend sqlTimestamp={eventObj.created_at} />}
+							{formatDatetimeForUI(eventObj.created_at)}
 						</span>
 					</div>
 					<div className="flex items-start gap-3">
