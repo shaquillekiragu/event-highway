@@ -24,7 +24,7 @@ function SignUpPage() {
 			setIsSubmitting(true);
 			setErrorMessage(null);
 
-			await postUser(
+			const response = await postUser(
 				first_name,
 				last_name,
 				display_name,
@@ -33,19 +33,22 @@ function SignUpPage() {
 				is_admin
 			);
 
-			setAuthUser({
-				first_name: first_name,
-				last_name: last_name,
-				display_name: display_name,
-				email: email,
-				user_password: user_password,
-				is_admin: is_admin,
-			});
-
-			setIsLoggedIn(true);
-			navigate("/events");
+			if (response && response.data && response.data.user) {
+				setAuthUser(response.data.user);
+				setIsLoggedIn(true);
+				navigate("/events");
+			} else {
+				setErrorMessage("Sign up failed. Please try again.");
+			}
 		} catch (err) {
 			console.error(err, " << postUser error");
+			if (err.response && err.response.status === 409) {
+				setErrorMessage("A user with this email already exists.");
+			} else if (err.response && err.response.data && err.response.data.msg) {
+				setErrorMessage(err.response.data.msg);
+			} else {
+				setErrorMessage("An error occurred during sign up. Please try again.");
+			}
 		} finally {
 			setIsSubmitting(false);
 		}

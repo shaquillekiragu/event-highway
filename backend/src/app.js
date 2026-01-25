@@ -29,7 +29,11 @@ const {
 	getUsers,
 	getUser,
 	postUser,
+	loginUser,
+	validateToken,
 } = require("./controllers/users.controller");
+
+const { authenticateToken, requireAdmin } = require("./middleware/auth.middleware");
 
 app.use(express.json());
 
@@ -37,20 +41,22 @@ app.get("/api/healthcheck", healthcheck);
 
 app.get("/api", getApi);
 
+// Public routes
 app.get("/api/events", getEvents);
-
-app.post("/api/events", postEvent);
-
 app.get("/api/events/:event_id", getEvent);
 
-app.patch("/api/events/:event_id", patchEvent);
-
-app.delete("/api/events/:event_id", deleteEvent);
-
-app.get("/api/users", getUsers);
-
+// Authentication routes
+app.post("/api/login", loginUser);
 app.post("/api/users", postUser);
+app.get("/api/auth/validate", authenticateToken, validateToken);
 
+// Protected routes - require authentication
+app.post("/api/events", authenticateToken, requireAdmin, postEvent);
+app.patch("/api/events/:event_id", authenticateToken, requireAdmin, patchEvent);
+app.delete("/api/events/:event_id", authenticateToken, requireAdmin, deleteEvent);
+
+// User routes (keeping getUsers public for now, but could be protected)
+app.get("/api/users", getUsers);
 app.get("/api/users/:user_id", getUser);
 
 app.all("*", (request, response) => {

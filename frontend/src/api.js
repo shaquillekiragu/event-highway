@@ -5,11 +5,79 @@ const API_URL =
 		? "https://event-highway-backend.onrender.com"
 		: "http://localhost:9090";
 
+const apiClient = axios.create({
+	baseURL: API_URL,
+});
+
+apiClient.interceptors.request.use(
+	(config) => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			config.headers.Authorization = `Bearer ${token}`;
+		}
+		return config;
+	},
+	(error) => {
+		return Promise.reject(error);
+	}
+);
+
+apiClient.interceptors.response.use(
+	(response) => response,
+	(error) => {
+		if (error.response?.status === 401 || error.response?.status === 403) {
+			localStorage.removeItem("token");
+			localStorage.removeItem("authUser");
+
+			if (window.location.pathname !== "/login" && window.location.pathname !== "/") {
+				window.location.href = "/login";
+			}
+		}
+		return Promise.reject(error);
+	}
+);
+
 // GET:
+
+// Authentication endpoints
+export async function loginUser(email, user_password) {
+	try {
+		const response = await apiClient.post("/api/login", {
+			email,
+			user_password,
+		});
+		if (response && response.data) {
+			// Store token and user
+			if (response.data.token) {
+				localStorage.setItem("token", response.data.token);
+			}
+			if (response.data.user) {
+				localStorage.setItem("authUser", JSON.stringify(response.data.user));
+			}
+			return response;
+		} else {
+			console.error("No data found in the response.");
+			return null;
+		}
+	} catch (err) {
+		console.error("Error logging in:", err.message || err);
+		throw err;
+	}
+}
+
+export async function validateToken() {
+	try {
+		const response = await apiClient.post("/api/auth/validate");
+		return response;
+	} catch (err) {
+		console.error("Error validating token:", err.message || err);
+		throw err;
+	}
+}
 
 export async function getEvents() {
 	try {
-		const response = await axios.get(`${API_URL}/api/events`);
+		const response = await apiClient.get("/api/events");
 		if (response && response.data) {
 			return response;
 		} else {
@@ -24,7 +92,7 @@ export async function getEvents() {
 
 export async function getEvent(event_id) {
 	try {
-		const response = await axios.get(`${API_URL}/api/events/${event_id}`);
+		const response = await apiClient.get(`/api/events/${event_id}`);
 		return response;
 	} catch (err) {
 		console.error("Error fetching event:", err.message || err);
@@ -32,25 +100,6 @@ export async function getEvent(event_id) {
 	}
 }
 
-export async function getUsers() {
-	try {
-		const response = await axios.get(`${API_URL}/api/users`);
-		return response;
-	} catch (err) {
-		console.error("Error fetching users:", err.message || err);
-		return null;
-	}
-}
-
-export async function getUser(user_id) {
-	try {
-		const response = await axios.get(`${API_URL}/api/users/${user_id}`);
-		return response;
-	} catch (err) {
-		console.error("Error fetching user:", err.message || err);
-		return null;
-	}
-}
 
 // POST:
 
@@ -73,7 +122,7 @@ export async function postEvent(
 	thumbnail
 ) {
 	try {
-		const response = await axios.post(`${API_URL}/api/events`, {
+		const response = await apiClient.post("/api/events", {
 			publisher,
 			host,
 			event_name,
@@ -94,7 +143,7 @@ export async function postEvent(
 		return response;
 	} catch (err) {
 		console.error("Error posting event:", err.message || err);
-		return null;
+		throw err;
 	}
 }
 
@@ -107,7 +156,7 @@ export async function postUser(
 	is_admin
 ) {
 	try {
-		const response = await axios.post(`${API_URL}/api/users`, {
+		const response = await apiClient.post("/api/users", {
 			first_name,
 			last_name,
 			display_name,
@@ -115,10 +164,17 @@ export async function postUser(
 			user_password,
 			is_admin,
 		});
+		// Store token and user if signup successful
+		if (response && response.data && response.data.token) {
+			localStorage.setItem("token", response.data.token);
+		}
+		if (response && response.data && response.data.user) {
+			localStorage.setItem("authUser", JSON.stringify(response.data.user));
+		}
 		return response;
 	} catch (err) {
 		console.error("Error posting user:", err.message || err);
-		return null;
+		throw err;
 	}
 }
 
@@ -144,7 +200,7 @@ export async function patchEvent(
 	thumbnail
 ) {
 	try {
-		const response = await axios.patch(`${API_URL}/api/events/${event_id}`, {
+		const response = await apiClient.patch(`/api/events/${event_id}`, {
 			publisher,
 			host,
 			event_name,
@@ -165,7 +221,7 @@ export async function patchEvent(
 		return response;
 	} catch (err) {
 		console.error("Error patching event:", err.message || err);
-		return null;
+		throw err;
 	}
 }
 
@@ -173,10 +229,10 @@ export async function patchEvent(
 
 export async function deleteEvent(event_id) {
 	try {
-		const response = await axios.delete(`${API_URL}/api/events/${event_id}`);
+		const response = await apiClient.delete(`/api/events/${event_id}`);
 		return response;
 	} catch (err) {
 		console.error("Error deleting event:", err.message || err);
-		return null;
+		throw err;
 	}
 }

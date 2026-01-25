@@ -208,7 +208,7 @@ function ViewEvent() {
 					</div>
 				</div>
 
-				{isLoggedIn && authUser.is_admin && (
+				{isLoggedIn && authUser?.is_admin && (
 					<section className="w-full flex justify-between gap-4 pt-6 border-t border-gray-200">
 						<button
 							onClick={handleUpdateClick}

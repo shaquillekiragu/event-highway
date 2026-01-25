@@ -77,7 +77,7 @@ function CreateEvent() {
 		}
 	}
 
-	if (!authUser.is_admin) {
+	if (!authUser || !authUser.is_admin) {
 		return <NotAnAdmin />;
 	}
 	return (

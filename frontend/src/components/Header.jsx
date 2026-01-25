@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/UserContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
 function Header() {
-	const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+	const { authUser, isLoggedIn, logout } = useAuth();
 
 	const [isTakingLoginAction, setIsTakingLoginAction] = useState(false);
 
@@ -12,9 +12,7 @@ function Header() {
 
 	function handleLogoutClick(event) {
 		event.preventDefault();
-		setAuthUser(null);
-		localStorage.removeItem("authUser");
-		setIsLoggedIn(false);
+		logout();
 		navigate("/events");
 	}
 

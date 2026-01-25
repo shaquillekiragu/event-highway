@@ -1,5 +1,6 @@
 const format = require("pg-format");
 const db = require("../connection");
+const { hashPassword } = require("../../utils/password");
 
 const seed = async ({ eventsData, usersData }) => {
 	try {
@@ -13,21 +14,26 @@ const seed = async ({ eventsData, usersData }) => {
         		last_name VARCHAR(20),
         		display_name VARCHAR(40) NOT NULL UNIQUE,
         		email VARCHAR(50) NOT NULL,
-        		user_password VARCHAR(20) NOT NULL,
+        		user_password VARCHAR(255) NOT NULL,
         		is_admin BOOLEAN NOT NULL
       		)`
 		);
 
-		const formattedUserData = usersData.map((user) => {
-			return [
-				user.first_name,
-				user.last_name,
-				user.display_name,
-				user.email,
-				user.user_password,
-				user.is_admin,
-			];
-		});
+		// Hash passwords before inserting
+		const formattedUserData = await Promise.all(
+			usersData.map(async (user) => {
+				const hashedPassword = await hashPassword(user.user_password);
+				
+				return [
+					user.first_name,
+					user.last_name,
+					user.display_name,
+					user.email,
+					hashedPassword,
+					user.is_admin,
+				];
+			})
+		);
 
 		const usersInsertQuery = format(
 			`INSERT INTO users (first_name, last_name, display_name, email, user_password, is_admin)

@@ -1,68 +1,58 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/UserContext";
-import { getUsers } from "../api.js";
+import { loginUser } from "../api.js";
 import Loading from "../components/Loading";
 
 function LoginPage() {
-	const [users, setUsers] = useState([]);
 	const [email, setEmailAddress] = useState("");
 	const [user_password, setUserPassword] = useState("");
-	const [invalidEmailMsg, setInvalidEmailMsg] = useState(false);
-	const [invalidPasswordMsg, setInvalidPasswordMsg] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 
 	const navigate = useNavigate();
 	const { setAuthUser, setIsLoggedIn } = useAuth();
 
-	useEffect(() => {
-		async function fetchUsers() {
-			try {
-				const response = await getUsers();
-				setUsers(response.data.users);
-			} catch (err) {
-				console.error(err);
-			} finally {
-				setIsLoading(false);
-			}
-		}
-		fetchUsers();
-	}, []);
-
 	function handleEmailChange(event) {
 		setEmailAddress(event.target.value);
+		setErrorMessage("");
 	}
 
 	function handlePasswordChange(event) {
 		setUserPassword(event.target.value);
+		setErrorMessage("");
 	}
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault();
+		setErrorMessage("");
+		setIsLoading(true);
 
-		setInvalidEmailMsg(false);
-		setInvalidPasswordMsg(false);
-
-		const attemptedUser = users.find((user) => user.email === email);
-
-		if (!attemptedUser) {
-			setInvalidEmailMsg(true);
-			return;
+		try {
+			const response = await loginUser(email, user_password);
+			
+			if (response && response.data && response.data.user) {
+				setAuthUser(response.data.user);
+				setIsLoggedIn(true);
+				navigate("/events");
+			} else {
+				setErrorMessage("Login failed. Please try again.");
+			}
+		} catch (err) {
+			if (err.response && err.response.status === 401) {
+				setErrorMessage("Invalid email or password. Please try again.");
+			} else {
+				setErrorMessage("An error occurred. Please try again.");
+			}
+		} finally {
+			setIsLoading(false);
 		}
-
-		if (attemptedUser.user_password !== user_password) {
-			setInvalidPasswordMsg(true);
-			return;
-		}
-
-		setAuthUser(attemptedUser);
-		setIsLoggedIn(true);
-		navigate("/events");
 	}
 
 	if (isLoading) {
 		return <Loading page={"Login"} />;
 	}
+
 	return (
 		<main className="min-h-[75vh] flex justify-center items-center py-16 px-8">
 			<article className="flex flex-col items-center w-full max-w-md bg-white rounded-2xl shadow-2xl p-10 border border-gray-200">
@@ -106,16 +96,7 @@ function LoginPage() {
 					</button>
 				</form>
 				<section className="text-center text-sm text-red-600 mt-4 min-h-5">
-					{invalidEmailMsg && (
-						<span className="block">
-							User not found. Please enter a valid email address.
-						</span>
-					)}
-					{invalidPasswordMsg && (
-						<span className="block">
-							Incorrect password. Please enter the correct password.
-						</span>
-					)}
+					{errorMessage && <span className="block">{errorMessage}</span>}
 				</section>
 			</article>
 		</main>
