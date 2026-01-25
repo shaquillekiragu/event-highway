@@ -1,4 +1,3 @@
-// eslint-disable-next-line react/prop-types
 function FormatDatetimeFrontend({ sqlTimestamp }) {
 	if (!sqlTimestamp) return null;
 	const date = new Date(sqlTimestamp);
