@@ -4,22 +4,42 @@ import { useAuth } from "../contexts/UserContext";
 import { patchEvent } from "../api";
 import UpdateEventForm from "../components/UpdateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin";
-// import formatDatetimeForDB from "../components/FormatDatetime/dbDatetimeFunctions";
+import { convertDatetimeLocalToUnix, convertUnixToDatetimeLocal } from "../components/FormatDatetime/dbDatetimeFunctions";
 import stringToNum from "../utils";
 
 function UpdateEvent() {
 	const { event_id } = useParams();
 	const { state } = useLocation();
 
-	const [eventData, setEventData] = useState(
-		state?.eventData || {
+	const [eventData, setEventData] = useState(() => {
+		if (state?.eventObj) {
+			return {
+				publisher: state.eventObj.publisher || "",
+				host: state.eventObj.host || "",
+				event_name: state.eventObj.event_name || "",
+				event_start: convertUnixToDatetimeLocal(state.eventObj.event_start) || "",
+				event_end: convertUnixToDatetimeLocal(state.eventObj.event_end) || "",
+				event_description: state.eventObj.event_description || "",
+				created_at: state.eventObj.created_at || "",
+				category: state.eventObj.category || "",
+				is_online: state.eventObj.is_online || false,
+				venue: state.eventObj.venue || "",
+				venue_address: state.eventObj.venue_address || "",
+				is_free: state.eventObj.is_free || false,
+				cost_in_gbp: state.eventObj.cost_in_gbp || 0,
+				is_limit: state.eventObj.is_limit || false,
+				attendee_limit: state.eventObj.attendee_limit || 0,
+				thumbnail: state.eventObj.thumbnail || "",
+			};
+		}
+		return {
 			publisher: "",
 			host: "",
 			event_name: "",
 			event_start: "",
 			event_end: "",
 			event_description: "",
-			createdAt: "",
+			created_at: "",
 			category: "",
 			is_online: false,
 			venue: "",
@@ -29,8 +49,8 @@ function UpdateEvent() {
 			is_limit: false,
 			attendee_limit: 0,
 			thumbnail: "",
-		}
-	);
+		};
+	});
 	const [error, setError] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -50,25 +70,14 @@ function UpdateEvent() {
 			event.preventDefault();
 			setIsLoading(true);
 
-			// console.log(eventData.event_start, " <<< event_start");
-			// console.log(eventData.event_end, " <<< event_end");
-			// console.log(eventData.created_at, " <<< created_at");
-
-			// const formattedEventStart = formatDatetimeForDB(eventData.event_start);
-			// const formattedEventEnd = formatDatetimeForDB(eventData.event_end);
-			// const formattedCreatedAt = formatDatetimeForDB(eventData.created_at);
-
 			const response = await patchEvent(
 				event_id,
 				authUser.display_name,
 				eventData.host,
 				eventData.event_name,
-				eventData.event_start,
-				eventData.event_end,
-				// formattedEventStart,
-				// formattedEventEnd,
+				convertDatetimeLocalToUnix(eventData.event_start),
+				convertDatetimeLocalToUnix(eventData.event_end),
 				eventData.event_description,
-				// formattedCreatedAt,
 				eventData.created_at,
 				eventData.category,
 				eventData.is_online,
@@ -86,8 +95,9 @@ function UpdateEvent() {
 			} else {
 				setError("Failed to update event. Please try again.");
 			}
-		} catch (error) {
+		} catch (err) {
 			setError("An error occurred while updating the event.");
+			console.error("Error updating event:", err);
 		} finally {
 			setIsLoading(false);
 		}

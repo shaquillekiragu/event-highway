@@ -7,6 +7,7 @@ export function useAuth() {
 	return useContext(UserContext);
 }
 
+// eslint-disable-next-line react/prop-types
 export default function UserProvider({ children }) {
 	const [authUser, setAuthUser] = useState(() => {
 		const savedUser = localStorage.getItem("authUser");

@@ -1,21 +1,26 @@
-export default function formatDatetimeForDB(datetime) {
-	const formattedDatetime = datetime.replace(
-		/^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/,
-		"$3-$2-$1T$4:$5:00"
-		// Causing an error upon patchEvent due to var value of undefined.
-	);
-	// console.log(formattedDatetime, " << formattedDatetime");
-	return formattedDatetime;
+export function convertDatetimeLocalToUnix(datetimeLocal) {
+	if (!datetimeLocal) {
+		return null;
+	}
+	const date = new Date(datetimeLocal);
+	return date.getTime();
 }
 
-export function currentDatetimeForDB() {
-	const currentDatetime = new Date();
+export function convertUnixToDatetimeLocal(unixTimestamp) {
+	if (!unixTimestamp) {
+		return "";
+	}
 
-	const currentDate = `${currentDatetime.getFullYear()}-${currentDatetime.getMonth()}-${currentDatetime.getDay()}`;
-	const currentTime = `T${currentDatetime.getHours()}:${currentDatetime.getMinutes()}:00`;
+	const date = new Date(unixTimestamp);
 
-	const datetime = `${currentDate}${currentTime}`;
-	// console.log(datetime, " <<< dateTime");
+	const year = date.getFullYear();
+	const month = String(date.getMonth() + 1).padStart(2, "0");
+	const day = String(date.getDate()).padStart(2, "0");
+	const hours = String(date.getHours()).padStart(2, "0");
+	const minutes = String(date.getMinutes()).padStart(2, "0");
+	return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
 
-	return datetime;
+export function currentUnixTimestampInMilliseconds() {
+	return Date.now();
 }

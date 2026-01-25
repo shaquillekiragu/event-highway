@@ -68,16 +68,16 @@ async function insertEvent(
 					msg: "Invalid event_name: must be a string",
 				};
 			}
-			if (event_start !== undefined && typeof event_start !== "string") {
+			if (event_start !== undefined && typeof event_start !== "number") {
 				throw {
 					status: 400,
-					msg: "Invalid event_start: must be a string in ISO format",
+					msg: "Invalid event_start: must be a Unix timestamp in milliseconds (number)",
 				};
 			}
-			if (event_end !== undefined && typeof event_end !== "string") {
+			if (event_end !== undefined && typeof event_end !== "number") {
 				throw {
 					status: 400,
-					msg: "Invalid event_end: must be a string in ISO format",
+					msg: "Invalid event_end: must be a Unix timestamp in milliseconds (number)",
 				};
 			}
 			if (
@@ -89,10 +89,10 @@ async function insertEvent(
 					msg: "Invalid event_description: must be a string",
 				};
 			}
-			if (created_at !== undefined && typeof created_at !== "string") {
+			if (created_at !== undefined && typeof created_at !== "number") {
 				throw {
 					status: 400,
-					msg: "Invalid created_at: must be a string in ISO format",
+					msg: "Invalid created_at: must be a Unix timestamp in milliseconds (number)",
 				};
 			}
 			if (category !== undefined && typeof category !== "string") {
@@ -183,11 +183,12 @@ async function insertEvent(
 		}
 
 		const display_name = userResult.rows[0].display_name;
+
 		const { rows } = await db.query(
 			`INSERT INTO events
       (publisher, host, event_name, event_start, event_end, event_description, created_at, category, is_online, venue, venue_address, is_free, cost_in_gbp, is_limit, attendee_limit, thumbnail)
       VALUES
-      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+      ($1, $2, $3, to_timestamp($4 / 1000.0), to_timestamp($5 / 1000.0), $6, to_timestamp($7 / 1000.0), $8, $9, $10, $11, $12, $13, $14, $15, $16)
       RETURNING *;`,
 			[
 				display_name,
@@ -252,16 +253,16 @@ async function updateEvent(
 					msg: "Invalid event_name: must be a string",
 				};
 			}
-			if (event_start !== undefined && typeof event_start !== "string") {
+			if (event_start !== undefined && typeof event_start !== "number") {
 				throw {
 					status: 400,
-					msg: "Invalid event_start: must be a string in ISO format",
+					msg: "Invalid event_start: must be a Unix timestamp in milliseconds (number)",
 				};
 			}
-			if (event_end !== undefined && typeof event_end !== "string") {
+			if (event_end !== undefined && typeof event_end !== "number") {
 				throw {
 					status: 400,
-					msg: "Invalid event_end: must be a string in ISO format",
+					msg: "Invalid event_end: must be a Unix timestamp in milliseconds (number)",
 				};
 			}
 			if (
@@ -351,8 +352,8 @@ async function updateEvent(
         SET 
         host = $2,
         event_name = $3,
-        event_start = $4,
-        event_end = $5,
+        event_start = to_timestamp($4 / 1000.0),
+        event_end = to_timestamp($5 / 1000.0),
         event_description = $6,
         category = $7,
         is_online = $8,

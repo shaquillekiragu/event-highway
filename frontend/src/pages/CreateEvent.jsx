@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/UserContext";
 import { postEvent } from "../api";
 import CreateEventForm from "../components/CreateEventForm";
 import NotAnAdmin from "../components/NotAnAdmin";
-import { currentDatetimeForDB } from "../components/FormatDatetime/dbDatetimeFunctions";
+import { currentUnixTimestampInMilliseconds, convertDatetimeLocalToUnix } from "../components/FormatDatetime/dbDatetimeFunctions";
 import stringToNum from "../utils";
 
 function CreateEvent() {
@@ -44,14 +44,14 @@ function CreateEvent() {
 		try {
 			event.preventDefault();
 			setIsLoading(true);
-			const createdAt = currentDatetimeForDB();
+			const createdAt = currentUnixTimestampInMilliseconds();
 
 			const response = await postEvent(
 				authUser.display_name,
 				eventData.host,
 				eventData.event_name,
-				eventData.event_start,
-				eventData.event_end,
+				convertDatetimeLocalToUnix(eventData.event_start),
+				convertDatetimeLocalToUnix(eventData.event_end),
 				eventData.event_description,
 				createdAt,
 				eventData.category,
@@ -70,8 +70,9 @@ function CreateEvent() {
 			} else {
 				setError("Failed to create event. Please try again.");
 			}
-		} catch (error) {
+		} catch (err) {
 			setError("An error occurred while creating the event.");
+			console.error("Error creating event:", err);
 		} finally {
 			setIsLoading(false);
 		}
@@ -91,11 +92,15 @@ function CreateEvent() {
 				</p>
 			</header>
 			<section className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
-				<CreateEventForm
-					eventData={eventData}
-					handleSubmit={handleSubmit}
-					handleChange={handleChange}
-				/>
+				{isLoading ? (
+					<p className="text-center text-blue-600 font-medium">Creating event...</p>
+				) : (
+					<CreateEventForm
+						eventData={eventData}
+						handleSubmit={handleSubmit}
+						handleChange={handleChange}
+					/>
+				)}
 			</section>
 			<section className="mt-6 min-h-8">
 				{error && <p className="text-center text-red-600 font-medium">{error}</p>}

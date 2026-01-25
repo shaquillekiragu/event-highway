@@ -6,9 +6,16 @@ const {
 	removeEvent,
 } = require("../models/events.model");
 
+const { convertPostgresTimestampToUnix } = require("../utils/datetime");
+
 async function getEvents(request, response, next) {
 	try {
 		const events = await fetchEvents();
+		events.forEach((event) => {
+			event.event_start = convertPostgresTimestampToUnix(event.event_start);
+			event.event_end = convertPostgresTimestampToUnix(event.event_end);
+			event.created_at = convertPostgresTimestampToUnix(event.created_at);
+		});
 		return response.status(200).send({ events });
 	} catch (err) {
 		next(err);
@@ -19,6 +26,9 @@ async function getEvent(request, response, next) {
 	try {
 		const { event_id } = request.params;
 		const event = await fetchEvent(event_id);
+		event.event_start = convertPostgresTimestampToUnix(event.event_start);
+		event.event_end = convertPostgresTimestampToUnix(event.event_end);
+		event.created_at = convertPostgresTimestampToUnix(event.created_at);
 		return response.status(200).send({ event });
 	} catch (err) {
 		next(err);
@@ -63,10 +73,9 @@ async function postEvent(request, response, next) {
 			attendee_limit,
 			thumbnail
 		);
-		const formatDate = (date) => new Date(date).toISOString().slice(0, 19);
-		event.event_start = formatDate(event.event_start);
-		event.event_end = formatDate(event.event_end);
-		event.created_at = formatDate(event.created_at);
+		event.event_start = convertPostgresTimestampToUnix(event.event_start);
+		event.event_end = convertPostgresTimestampToUnix(event.event_end);
+		event.created_at = convertPostgresTimestampToUnix(event.created_at);
 		return response.status(201).send({ event });
 	} catch (err) {
 		next(err);
@@ -110,6 +119,9 @@ async function patchEvent(request, response, next) {
 			attendee_limit,
 			thumbnail
 		);
+		event.event_start = convertPostgresTimestampToUnix(event.event_start);
+		event.event_end = convertPostgresTimestampToUnix(event.event_end);
+		event.created_at = convertPostgresTimestampToUnix(event.created_at);
 		return response.status(200).send({ event });
 	} catch (err) {
 		next(err);
